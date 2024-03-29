@@ -1,0 +1,77 @@
+[
+  {
+    "text": "Branch",
+    "align": "left",
+    "sortable": true,
+    "key": "branch_id",
+    "value": "branch_id",
+    "width": "300px",
+    "filterable": true,
+    "filterSpecial": true
+  },
+  {
+    "text": "Location / Address",
+    "align": "left",
+    "sortable": true,
+    "key": "location_address",
+    "value": "location_address",
+    "width": "300px",
+    "filterable": true,
+    "filterSpecial": false
+  },
+  {
+    "text": "Manager / Phone",
+    "align": "left",
+    "sortable": true,
+    "key": "manager_mobile",
+    "value": "manager_mobile",
+    "width": "200px",
+    "filterable": true,
+    "filterSpecial": false
+  },
+
+  {
+    "text": "No. EMP",
+    "align": "left",
+    "sortable": false,
+    "key": "employees_count",
+    "value": "employees_count",
+    "width": "150px",
+    "filterable": false,
+    "filterSpecial": false
+  },
+  {
+    "text": "No. Device",
+    "align": "left",
+    "sortable": false,
+    "key": "devices_count",
+    "value": "devices_count",
+    "filterable": false,
+    "filterSpecial": false
+  },
+  {
+    "text": "No. Depatment",
+    "align": "left",
+    "sortable": false,
+    "key": "departments_count",
+    "value": "departments_count",
+    "filterable": false,
+    "filterSpecial": false
+  },
+  {
+    "text": "Since",
+    "align": "left",
+    "sortable": false,
+    "key": "timezone",
+    "value": "created_date",
+    "filterable": false,
+    "filterSpecial": true
+  },
+  {
+    "text": "Action",
+    "align": "left",
+    "sortable": false,
+    "key": "options",
+    "value": "options"
+  }
+]

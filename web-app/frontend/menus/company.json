@@ -1,0 +1,432 @@
+[
+  {
+    "icon": "mdi-view-dashboard",
+    "title": "Dashboard",
+    "to": "/dashboard",
+    "submenu": "dashboard",
+    "menu": "branch_access",
+    "module": "dashboard"
+  },
+  {
+    "icon": "mdi-account-tie",
+    "title": "Employees",
+    "to": "/employees",
+    "menu": "employee_access",
+    "submenu": "employees",
+    "module": "dashboard"
+  },
+  {
+    "icon": "mdi-clock-time-five-outline",
+    "title": "Attendance",
+    "to": "/shift",
+    "menu": "employee_schedule_access",
+    "submenu": "attendance",
+    "module": "dashboard"
+  },
+  {
+    "icon": "mdi-cash-multiple",
+    "title": "Payroll",
+    "to": "/payroll/salary",
+    "menu": "payroll_access",
+    "submenu": "payroll",
+    "module": "dashboard"
+  },
+  {
+    "icon": "mdi-security",
+    "title": "Access Control",
+    "to": "/timezone",
+    "menu": "timezone",
+    "submenu": "access_control",
+    "module": "dashboard"
+  },
+
+  {
+    "icon": "mdi-transit-transfer",
+    "title": "Visitors",
+    "to": "/visitor/visitor-dashboard",
+    "menu": "true",
+    "submenu": "visitors",
+    "module": "dashboard"
+  },
+  {
+    "icon": "mdi-chart-box-outline",
+    "title": "Reports",
+    "to": "/visitor/visitor-dashboard",
+    "menu": "true",
+    "submenu": "visitors",
+    "module": "dashboard"
+  },
+
+  {
+    "icon": "mdi-filmstrip-box-multiple",
+    "title": "Branches",
+    "to": "/branches",
+    "menu": "branch_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-chair-rolling",
+    "title": "Departments",
+    "to": "/department",
+    "menu": "department_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-email",
+    "title": "Automation",
+    "to": "/automation",
+    "menu": "notifications_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-cellphone-text",
+    "title": "Device Notifications",
+    "to": "/device_notifications",
+    "menu": "notifications_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-domain",
+    "title": "Profile",
+    "to": "/companies",
+    "menu": "setting_access",
+    "class": "submenutitle",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-account-supervisor-circle",
+    "title": "Roles",
+    "to": "/role",
+    "menu": "role_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-cellphone-text",
+    "title": "Devices",
+    "to": "/device",
+    "menu": "device_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi mdi-calendar-star-four-points",
+    "title": "Holidays",
+    "to": "/holidays",
+    "menu": "holiday_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi mdi-calendar",
+    "title": "Leaves",
+    "to": "/leaves/leave_types",
+    "menu": "leave_type_access",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-bell",
+    "title": "Announcements",
+    "open_menu": false,
+    "to": "/announcement_type",
+    "module": "settings"
+  },
+
+  {
+    "icon": "mdi-web-box",
+    "title": "Web Logs",
+    "open_menu": false,
+    "to": "/web_login_logs",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-shape-square-plus",
+    "title": "Community Setup",
+    "open_menu": false,
+    "to": "/community/setup",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-mail",
+    "title": "Mail",
+    "open_menu": false,
+    "to": "/automation_mail_content",
+    "module": "settings"
+  },
+  {
+    "icon": "mdi-account-tie",
+    "title": "Employees",
+    "to": "/employees",
+    "menu": "employee_access",
+    "module": "employees"
+  },
+  {
+    "icon": "mdi mdi-calendar-account",
+    "title": "Leaves",
+    "to": "/leaves",
+    "menu": "leave_application_access",
+    "module": "employees"
+  },
+
+  {
+    "icon": "mdi-bell",
+    "title": "Announcements",
+    "open_menu": false,
+    "to": "/announcements",
+    "module": "employees"
+  },
+
+  {
+    "icon": "mdi mdi-camera-account",
+    "title": "Photo Upload",
+    "to": "/employee_photo_upload",
+    "menu": "employee_photo_upload",
+    "module": "employees"
+  },
+
+  {
+    "icon": "mdi-clock-outline",
+    "title": "Shifts",
+    "to": "/shift",
+    "menu": "shift_access",
+    "module": "employees"
+  },
+
+  {
+    "icon": "mdi-account-tie",
+    "title": "Schedule",
+    "to": "/employee_schedule",
+    "menu": "employee_schedule_access",
+    "module": "employees"
+  },
+  {
+    "icon": "mdi-clipboard-text-clock",
+    "title": "Device Logs",
+    "to": "/devicelogs",
+    "menu": "logs_access",
+    "module": "employees"
+  },
+  {
+    "icon": "mdi-calendar-today",
+    "title": "Reports",
+    "to": "/attendance_report",
+    "menu": "attendance_report_access",
+    "module": "employees"
+  },
+  {
+    "icon": "mdi-clipboard-text",
+    "title": "Change Requests",
+    "to": "/change_requests",
+    "menu": "attendance_report_access",
+    "module": "employees"
+  },
+  {
+    "icon": "mdi-cash",
+    "title": "Salary",
+    "to": "/payroll/salary",
+    "menu": "payroll_access",
+    "module": "payroll"
+  },
+  {
+    "icon": "mdi mdi-calculator",
+    "title": "Settings",
+    "to": "/payroll/create",
+    "menu": "payroll_settings_access",
+    "module": "payroll"
+  },
+  {
+    "icon": "mdi-format-list-bulleted",
+    "title": "Payroll Formulla List",
+    "to": "/payroll_formula",
+    "menu": "payroll_settings_access",
+    "module": "payroll"
+  },
+  {
+    "icon": "mdi-format-list-bulleted",
+    "title": "Payroll Generation Date List",
+    "to": "/payroll_generate_date",
+    "menu": "payroll_settings_access",
+    "module": "payroll"
+  },
+  {
+    "icon": "mdi mdi-clock-time-four-outline",
+    "title": "Timezones",
+    "to": "/timezone",
+    "menu": "timezone",
+    "module": "access_control"
+  },
+  {
+    "icon": "mdi mdi-credit-card-clock-outline",
+    "title": "Mapped List",
+    "to": "/timezonemapping/list",
+    "menu": "timezone_mapping_list",
+    "module": "access_control"
+  },
+  {
+    "icon": "mdi mdi-camera-account",
+    "title": "Photo Upload",
+    "to": "/employee_photo_upload",
+    "menu": "employee_photo_upload",
+    "module": "access_control"
+  },
+  {
+    "icon": "mdi mdi-clock-time-four-outline",
+    "title": "Access Control Report",
+    "to": "/access_control_report",
+    "menu": "timezone",
+    "module": "access_control"
+  },
+  {
+    "icon": "mdi-home",
+    "title": "Dashboard",
+    "to": "/visitor/visitor-dashboard",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-comment-alert",
+    "title": "Requests",
+    "to": "/visitor/requests",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-account",
+    "title": "Visitors",
+    "to": "/visitor/visitor_list",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-account-tie",
+    "title": "Host",
+    "to": "/host",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-bullhorn",
+    "title": "Purpose",
+    "to": "/purpose",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-home ",
+    "title": "Dashboard",
+    "to": "/community/dashboard",
+    "menu": "community",
+    "module": "community"
+  },
+  {
+    "icon": "mdi-clock-time-four-outline ",
+    "title": "Report",
+    "to": "/community/report",
+    "menu": "community",
+    "module": "community"
+  },
+  {
+    "icon": "mdi-account-card-details",
+    "title": "Tanent",
+    "to": "/community/tanent",
+    "menu": "community",
+    "module": "community"
+  },
+  {
+    "icon": "mdi-camera-account",
+    "title": "Tanent Upload",
+    "to": "/community/tanent/tanent_upload",
+    "menu": "community",
+    "module": "community"
+  },
+  {
+    "icon": "mdi-chart-box",
+    "title": "Visitor Logs",
+    "to": "/visitor/visitor_logs",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-select-group",
+    "title": "Zones",
+    "to": "/zone",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-chart-box",
+    "title": "Reports",
+    "to": "/visitor/visitors_report",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-account-question",
+    "title": "Unknown",
+    "to": "/visitor/unknown",
+    "menu": "visitors_access",
+    "module": "visitors"
+  },
+  {
+    "icon": "mdi-clock-time-four",
+    "title": "Attendance",
+    "to": "/attendance_report",
+    "menu": "attendance_report_access",
+    "module": "reports"
+  },
+  {
+    "icon": "mdi-lock",
+    "title": "Access Control",
+    "to": "/access_control_report",
+    "menu": "timezone",
+    "module": "reports"
+  },
+  {
+    "icon": "mdi-clipboard-text-clock",
+    "title": "Device Logs",
+    "to": "/devicelogs",
+    "menu": "logs_access",
+    "module": "reports"
+  },
+  {
+    "icon": "mdi-cash",
+    "title": "Salary",
+    "to": "/payroll/salary",
+    "menu": "reports",
+    "module": "reports"
+  },
+  {
+    "icon": "mdi mdi-calendar-account",
+    "title": "Leaves",
+    "to": "/leaves",
+    "menu": "reports",
+    "module": "reports"
+  },
+  {
+    "icon": "mdi-account",
+    "title": "Visitors",
+    "to": "/visitor/visitors_report",
+    "menu": "visitors_access",
+    "module": "reports"
+  },
+
+  {
+    "icon": "mdi-chart-box-outline",
+    "title": "Visitor Logs",
+    "to": "/visitor/visitor_logs",
+    "menu": "visitors_access",
+    "module": "reports"
+  },
+  {
+    "icon": "mdi-web-box",
+    "title": "Web Logs",
+    "open_menu": false,
+    "to": "/web_login_logs",
+    "module": "reports"
+  },
+  
+  {
+    "icon": "mdi-file-remove-outline",
+    "title": "Document Expiry",
+    "to": "/document_expiry",
+    "menu": "reports",
+    "module": "reports"
+  }
+]
