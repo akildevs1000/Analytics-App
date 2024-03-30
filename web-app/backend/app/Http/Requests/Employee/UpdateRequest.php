@@ -32,7 +32,7 @@ class UpdateRequest extends FormRequest
             'status' => ['nullable'],
             'department_id' => ['required'],
             'sub_department_id' => ['nullable'],
-            'designation_id' => ['required'],
+            'designation_id' => ['nullable'],
             'employee_id' => ['required'],
             'leave_group_id' => ['nullable'],
             'reporting_manager_id' => ['nullable'],

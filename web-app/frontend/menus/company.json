@@ -366,6 +366,13 @@
   },
   {
     "icon": "mdi-clock-time-four",
+    "title": "Customer Reports",
+    "to": "/customer_report",
+    "menu": "customer_report_access",
+    "module": "reports"
+  },
+  {
+    "icon": "mdi-clock-time-four",
     "title": "Attendance",
     "to": "/attendance_report",
     "menu": "attendance_report_access",
@@ -383,13 +390,6 @@
     "title": "Device Logs",
     "to": "/devicelogs",
     "menu": "logs_access",
-    "module": "reports"
-  },
-  {
-    "icon": "mdi-cash",
-    "title": "Salary",
-    "to": "/payroll/salary",
-    "menu": "reports",
     "module": "reports"
   },
   {
@@ -421,7 +421,7 @@
     "to": "/web_login_logs",
     "module": "reports"
   },
-  
+
   {
     "icon": "mdi-file-remove-outline",
     "title": "Document Expiry",

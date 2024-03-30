@@ -43,9 +43,7 @@
         <v-card elevation="0" class="mt-2">
           <v-toolbar class="mb-2 white--text" color="white" dense flat>
             <v-toolbar-title>
-              <span style="color: black">
-                Attendances Logs</span
-              ></v-toolbar-title
+              <span style="color: black"> Device Logs</span></v-toolbar-title
             >
             <!-- <v-tooltip top color="primary">
               <template v-slot:activator="{ on, attrs }"> -->
@@ -464,6 +462,16 @@ export default {
     snackbar: false,
     headers_table: [
       {
+        text: "User Type",
+        align: "left",
+        sortable: true,
+        key: "User Type",
+        value: "user_type",
+        width: "150px",
+        filterable: true,
+        filterSpecial: false,
+      },
+      {
         text: "User Id /Emp.Id ",
         align: "left",
         sortable: true,
@@ -474,7 +482,7 @@ export default {
         filterSpecial: false,
       },
       {
-        text: "Employee",
+        text: "User/Employee",
         align: "left",
         sortable: true,
         key: "employee_first_name", //sorting
@@ -502,6 +510,57 @@ export default {
         filterable: true,
         filterSpecial: true,
         fieldType: "date_range_picker",
+      },
+
+      {
+        text: "Clarity",
+        align: "left",
+        sortable: true,
+        key: "Clarity",
+        value: "Clarity",
+        width: "150px",
+        filterable: true,
+        filterSpecial: false,
+      },
+      {
+        text: "Age",
+        align: "left",
+        sortable: true,
+        key: "Age",
+        value: "Age",
+        width: "150px",
+        filterable: true,
+        filterSpecial: false,
+      },
+      {
+        text: "Quality",
+        align: "left",
+        sortable: true,
+        key: "Quality",
+        value: "Quality",
+        width: "150px",
+        filterable: true,
+        filterSpecial: false,
+      },
+      {
+        text: "Gender",
+        align: "left",
+        sortable: true,
+        key: "Gender",
+        value: "Gender",
+        width: "150px",
+        filterable: true,
+        filterSpecial: false,
+      },
+      {
+        text: "Similarity",
+        align: "left",
+        sortable: true,
+        key: "Similarity",
+        value: "Similarity",
+        width: "150px",
+        filterable: true,
+        filterSpecial: false,
       },
       // {
       //   text: "Log Time",

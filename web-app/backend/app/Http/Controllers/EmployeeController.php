@@ -100,9 +100,9 @@ class EmployeeController extends Controller
 
 
 
-        if ($maximumEmployeeCount - $existEmployeeCount <= 0) {
-            return $this->response("Account Maximum " . $maximumEmployeeCount . " Employee count is reached.", null, false);
-        }
+        // if ($maximumEmployeeCount - $existEmployeeCount <= 0) {
+        //     return $this->response("Account Maximum " . $maximumEmployeeCount . " Employee count is reached.", null, false);
+        // }
 
         // DB::beginTransaction();
 

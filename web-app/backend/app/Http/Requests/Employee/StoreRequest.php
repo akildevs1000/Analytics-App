@@ -5,6 +5,7 @@ namespace App\Http\Requests\Employee;
 use App\Http\Controllers\Controller;
 use App\Traits\failedValidationWithName;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -26,23 +27,24 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
-        $employee = [
-            "employee_id" => $this->employee_id,
-            "company_id" => $this->company_id
-        ];
-
-        $employeeDevice = [
-            "system_user_id" => $this->system_user_id,
-            "company_id" => $this->company_id
-        ];
-
         $controller = new Controller;
 
         return [
             'department_id' => ['required'],
             'company_id' => ['required'],
-            'employee_id' => ['required', $controller->uniqueRecord("employees", $employee)],
-            'system_user_id' => ['required', $controller->uniqueRecord("employees", $employeeDevice), 'regex:/^[1-9][0-9]*$/'],
+            'employee_id' => [
+                'required',
+                'regex:/^[1-9][0-9]*$/',
+                // "unique:attendance_logs,UserID",
+                $controller->uniqueRecord("employees", "employee_id", $this->employee_id),
+                $controller->uniqueRecord("attendance_logs", "UserID", $this->employee_id),
+            ],
+            'system_user_id' => [
+                'required',
+                'regex:/^[1-9][0-9]*$/',
+                $controller->uniqueRecord("employees", "system_user_id", $this->system_user_id),
+                $controller->uniqueRecord("attendance_logs", "UserID", $this->system_user_id),
+            ],
             'full_name' => ['nullable', 'min:3', 'max:100'],
             'display_name' => ['required', 'min:3', 'max:20'],
             'first_name' => ['required', 'min:3', 'max:20'],

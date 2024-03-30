@@ -110,7 +110,7 @@ class AttendanceLog extends Model
 
         $model->with('employee', function ($q) use ($request) {
             $q->where('company_id', $request->company_id);
-            $q->withOut(["schedule", "department", "sub_department", "designation", "user"]);
+            $q->withOut(["schedule", "sub_department", "designation", "user"]);
 
             $q->select(
                 "first_name",
@@ -121,6 +121,7 @@ class AttendanceLog extends Model
                 "system_user_id",
                 "display_name",
                 "timezone_id",
+                "department_id"
             );
         })
             // ->distinct("LogTime", "UserID", "company_id")

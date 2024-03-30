@@ -22,17 +22,23 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $monthYear = date("M-Y");
+
+        $schedule
+            ->command('task:sync_attendance_camera_logs')
+            ->everyMinute()
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('task:update_company_ids')
+            ->everyMinute()
+            ->withoutOverlapping();
 
 
         // $schedule->call(function () {
-        //     exec('pm2 reload 5');
-        //     info("Log listener restart");
+        //     exec('pm2 reload 3');
+        //     info("Camera Log listener restart");
         // })->dailyAt('00:00');
-
-        $schedule->call(function () {
-            exec('pm2 reload 3');
-            info("Camera Log listener restart");
-        })->dailyAt('00:00');
 
 
         // $schedule->call(function () {
@@ -40,51 +46,17 @@ class Kernel extends ConsoleKernel
         //     info("Log listener backup restart");
         // })->monthlyOn(1, "00:00");
 
-        $schedule->call(function () {
-            exec('pm2 reload 4');
-            info("MyTime2Cloud SDK Production");
-        })->dailyAt('05:15');
-
-
-        $monthYear = date("M-Y");
-
-        $schedule
-            ->command('task:sync_attendance_logs')
-            ->everyMinute()
-
-            //->withoutOverlapping()
-            ->appendOutputTo(storage_path("kernal_logs/" . date("d-M-y") . "-attendance-logs.log")); //->emailOutputOnFailure(env("ADMIN_MAIL_RECEIVERS"));
-        $schedule
-            ->command('task:sync_attendance_camera_logs')
-            ->everyMinute()
-            //->withoutOverlapping()
-            ->appendOutputTo(storage_path("kernal_logs/" . date("d-M-y") . "-attendance-logs.log")); //->emailOutputOnFailure(env("ADMIN_MAIL_RECEIVERS"));
-
-        $schedule
-            ->command('task:sync_alarm_logs')
-            ->everyMinute()
-            //->withoutOverlapping()
-            ->appendOutputTo(storage_path("kernal_logs/alarm/" . date("d-M-y") . "-alarm-logs-laravel.log")); //->emailOutputOnFailure(env("ADMIN_MAIL_RECEIVERS"));
-
-
-        $schedule
-            ->command('task:update_company_ids')
-            // ->everyThirtyMinutes()
-            ->everyMinute()
-            //->withoutOverlapping()
-            ->appendOutputTo(storage_path("kernal_logs/$monthYear-logs.log")); //->emailOutputOnFailure(env("ADMIN_MAIL_RECEIVERS"));
-        // $schedule
-        //     ->command('task:alarm_update_company_ids')
-        //     // ->everyThirtyMinutes()
-        //     ->everyMinute()
-        //     //->withoutOverlapping()
-        //     ->appendOutputTo(storage_path("kernal_logs/alarm-$monthYear-logs.log")); //->emailOutputOnFailure(env("ADMIN_MAIL_RECEIVERS"));
-
 
         $companyIds = Company::pluck("id");
         //step 1 ;
 
         foreach ($companyIds as $companyId) {
+
+            $schedule
+                ->command("sync_customer_report {$companyId} " . date("Y-m-d"))
+                ->everyMinute()
+                ->runInBackground()
+                ->withoutOverlapping();
 
             $schedule
                 ->command("task:sync_auto_shift {$companyId} " . date("Y-m-d") . " false")

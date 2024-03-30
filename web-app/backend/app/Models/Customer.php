@@ -16,6 +16,11 @@ class Customer extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function branch()
+    {
+        return $this->belongsTo(CompanyBranch::class);
+    }
+
     public function logs()
     {
         return $this->hasMany(AttendanceLog::class, "UserID", "system_user_id");

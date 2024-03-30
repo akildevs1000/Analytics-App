@@ -265,10 +265,10 @@ class Controller extends BaseController
         return (($h < 10 ? "0" . $h : $h) . ":" . ($m < 10 ? "0" . $m : $m));
     }
 
-    public function uniqueRecord($table, $params)
+    public function uniqueRecord($table, $key, $value)
     {
-        return Rule::unique($table)->where(function ($query) use ($params) {
-            return $query->where($params);
+        return Rule::unique($table, $key)->where(function ($query) use ($key, $value) {
+            return $query->where('company_id', request('company_id'));
         });
     }
 

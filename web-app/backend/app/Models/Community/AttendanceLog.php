@@ -3,6 +3,7 @@
 namespace App\Models\Community;
 
 use App\Models\CompanyBranch;
+use App\Models\Customer;
 use App\Models\Device;
 use App\Models\Employee;
 use App\Models\Reason;
@@ -254,6 +255,11 @@ class AttendanceLog extends Model
             ->distinct("LogTime", "UserID", "company_id")
             ->get()
             ->groupBy(['company_id', 'UserID']);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, "UserID", "system_user_id");
     }
 
     public function getLogs($params)

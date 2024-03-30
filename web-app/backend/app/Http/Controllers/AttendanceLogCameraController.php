@@ -90,7 +90,13 @@ class AttendanceLogCameraController extends Controller
                 "UserID" => $columns[0],
                 "DeviceID" => $columns[1],
                 "LogTime" => substr(str_replace("T", " ", $columns[2]), 0, -3),
-                "SerialNumber" => $columns[3]
+                "SerialNumber" => $columns[3],
+                "FaceID" => $columns[4],
+                "Clarity" => $columns[5],
+                "Age" => $columns[6],
+                "Quality" => $columns[7],
+                "Gender" => $columns[8],
+                "Similarity" => $columns[9],
             ];
         }
 
@@ -171,6 +177,8 @@ class AttendanceLogCameraController extends Controller
 
     public function store()
     {
+        $employeeIds = Employee::pluck("system_user_id")->toArray();
+
         $result = $this->handleFile();
 
         if (array_key_exists("error", $result)) {
@@ -189,13 +197,19 @@ class AttendanceLogCameraController extends Controller
             if (!$isDuplicateLogTime) {
                 $datetime = substr(str_replace("T", " ", $columns[2]), 0, 16);
 
-
                 if ($datetime != 'undefined') {
                     $records[] = [
                         "UserID" => $columns[0],
                         "DeviceID" => $columns[1],
-                        "LogTime" =>  $datetime,
-                        "SerialNumber" => $columns[3]
+                        "LogTime" => $datetime,
+                        "SerialNumber" => $columns[3],
+                        "FaceID" => $columns[4],
+                        "Clarity" => $columns[5],
+                        "Age" => $columns[6],
+                        "Quality" => $columns[7],
+                        "Gender" => $columns[8],
+                        "Similarity" => $columns[9],
+                        "user_type" => in_array($columns[0], $employeeIds) ? "Employee" : "Customer"
                     ];
                 }
             }

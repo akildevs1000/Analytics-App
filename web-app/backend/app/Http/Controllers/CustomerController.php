@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Customer\StoreRequest;
 use App\Http\Requests\Customer\UpdateRequest;
-
+use App\Models\Community\AttendanceLog;
 use App\Models\Customer;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
