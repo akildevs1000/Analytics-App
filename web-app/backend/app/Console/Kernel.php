@@ -25,6 +25,11 @@ class Kernel extends ConsoleKernel
         $monthYear = date("M-Y");
 
         $schedule
+            ->command('upload:customers_to_camera')
+            ->everyMinute()
+            ->withoutOverlapping();
+
+        $schedule
             ->command('task:sync_attendance_camera_logs')
             ->everyMinute()
             ->withoutOverlapping();

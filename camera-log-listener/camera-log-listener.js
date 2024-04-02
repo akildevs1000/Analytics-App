@@ -3,6 +3,8 @@ const fs = require("fs");
 const xml2js = require("xml2js");
 const path = require('path');
 
+let BASE_URL = "../web-app/backend";
+
 const server = net.createServer((socket) => {
   logConsoleStatus("Client connected");
 
@@ -23,7 +25,7 @@ const server = net.createServer((socket) => {
   const [m, d, y] = newDate.split("/");
   const formattedDate = `${d.padStart(2, 0)}-${m.padStart(2, 0)}-${y}`;
   //let GlobalformattedDate = `${d.padStart(2, 0)}-${m.padStart(2, 0)}-${y}`;
-  const logFilePath = `../backend/storage/app/camera/camera-logs-${formattedDate}.csv`;
+  const logFilePath = `${BASE_URL}/storage/app/camera/camera-logs-${formattedDate}.csv`;
 
   socket.on("data", (data) => {
     let TodayDatetime = getTime();
@@ -36,7 +38,7 @@ const server = net.createServer((socket) => {
 
       const logFileDirPath = path.dirname(logFilePath);
       if (!fs.existsSync(logFileDirPath)) {
-        fs.mkdirSync(logFileDir, { recursive: true });
+        fs.mkdirSync(logFileDirPath, { recursive: true });
       }
 
 
@@ -97,39 +99,28 @@ function saveUNRegisteredMemberstoImage(xmlData, TodayDatetime, deviceId) {
               result.DetectedFaceList.Face_0[0].SnapshotNum[0];
             const Quality = result.DetectedFaceList.Face_0[0].Quality[0];
 
+
+
+
             if (Quality >= 0.9) {
               logConsoleStatus(
                 `${TodayDatetime} - Saved unregistered member - Face Id:  ${FaceId} - Quality:${Quality}`
               );
 
-              // Example: Log the extracted values
-
               logConsoleStatus("FaceId:", FaceId);
               logConsoleStatus("Device ID:", DeviceID);
 
-              let pictureName =
-                DeviceID +
-                "_" +
-                FaceId +
-                "_" +
-                SnapshotNum +
-                "_" +
-                TodayDatetime +
-                "_.jpg";
+
               // Convert base64 to a Buffer
               const buffer = Buffer.from(Snapshot, "base64");
 
-              // Write the Buffer content to an image file
-              fs.writeFileSync(
-                "../backend/public/camera-unregsitered-faces-logs/" +
-                pictureName,
-                buffer
-              );
-            } else {
-              // logConsoleStatus(
-              //   "No image saved due to lessthan 90% quality",
-              //   Quality
-              // );
+              let filePath = `${BASE_URL}/public/camera-unregsitered-faces-logs/${FaceId}/${SnapshotNum}.jpg`;
+              const logFileDir = path.dirname(filePath);
+              if (!fs.existsSync(logFileDir)) {
+                fs.mkdirSync(logFileDir, { recursive: true });
+              }
+
+              fs.writeFileSync(filePath, buffer);
             }
           }
         });
@@ -156,10 +147,16 @@ function saveUNRegisteredMemberstoImage(xmlData, TodayDatetime, deviceId) {
 function getPicStoragePermission(device_id) {
   // Example usage
 
-  const content = fs.readFileSync(
-    "../backend/storage/app/devices_list.json",
-    "utf8"
-  );
+  return true;
+
+  const filePath = `${BASE_URL}/storage/app/devices_list.json`;
+
+  const logFileDir = path.dirname(filePath);
+  if (!fs.existsSync(logFileDir)) {
+    fs.mkdirSync(logFileDir, { recursive: true });
+  }
+
+  const content = fs.readFileSync(filePath, "utf8");
 
   let data1 = JSON.parse(content);
   let specificValue = data1.find((e) => e.device_id == device_id);

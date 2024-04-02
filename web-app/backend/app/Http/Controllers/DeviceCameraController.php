@@ -57,10 +57,6 @@ class DeviceCameraController extends Controller
 
     public function pushUserToCameraDevice($name,  $system_user_id, $base65Image)
     {
-
-
-
-
         $gender  = 'Male';
         $sessionResponse = $this->getActiveSessionId();
         if ($sessionResponse['status']) {

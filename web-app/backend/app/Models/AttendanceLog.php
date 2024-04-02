@@ -53,6 +53,10 @@ class AttendanceLog extends Model
     {
         return $this->belongsTo(Employee::class, "UserID", "system_user_id");
     }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, "UserID", "system_user_id");
+    }
     public function branch()
     {
         return $this->belongsTo(CompanyBranch::class, "branch_id");
@@ -88,11 +92,16 @@ class AttendanceLog extends Model
         $model->where("company_id", $request->company_id);
 
         // $model->whereHas('device', fn ($q) => $q->whereIn('device_type', request("include_device_types") ?? ["all", "Attendance", "Mobile", "Manual"]));
+        $model->when(request()->filled("Clarity"), fn ($query) => $query->where('Clarity', request("Clarity")));
+        $model->when(request()->filled("Age"), fn ($query) => $query->where('Age', request("Age")));
+        $model->when(request()->filled("Quality"), fn ($query) => $query->where('Quality', request("Quality")));
+        $model->when(request()->filled("Gender"), fn ($query) => $query->where('Gender', request("Gender")));
+        $model->when(request()->filled("Similarity"), fn ($query) => $query->where('Similarity', request("Similarity")));
+
 
         $model->when(request()->filled("UserID"), function ($query) use ($request) {
             return $query->where('UserID', $request->UserID);
         });
-
 
         $model->when(request()->filled("DeviceID"), function ($query) use ($request) {
             return $query->where('DeviceID', $request->DeviceID);
@@ -103,10 +112,10 @@ class AttendanceLog extends Model
 
         $model->with("device");
 
-        // $model->whereHas("employee", function ($q) use ($request) {
-        //     $q->where("company_id", $request->company_id);
-        //     $q->where('status', 1);
-        // });
+
+        $model->with('customer', function ($q) use ($request) {
+            // $q->where('company_id', $request->company_id);
+        });
 
         $model->with('employee', function ($q) use ($request) {
             $q->where('company_id', $request->company_id);

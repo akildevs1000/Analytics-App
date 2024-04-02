@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\TimezonePhotoUploadJob;
+use App\Models\Customer;
 use App\Models\Device;
 use App\Models\Employee;
 use App\Models\Timezone;
 use App\Models\TimezoneDefaultJson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -103,6 +105,40 @@ class SDKController extends Controller
         }
         return $arr;
     }
+
+    public function uploadCustomersToCamera()
+    {
+        $devices = Device::where('model_number', "CAMERA1")->get(["device_id", "camera_sdk_url"]);
+        $imageDirectory = public_path('camera-unregsitered-faces-logs');
+        $files = glob($imageDirectory . '/*');
+
+        if (!is_dir($imageDirectory) || !count($files)) {
+            return "Directory not found";
+        }
+
+        $message = [];
+        
+        foreach ($devices as $device) {
+            foreach ($files as $file) {
+                $UserID = rand(1000, 9999);
+                $fileCount = glob($file . '/*');
+                if (count($fileCount) == 0) {
+                    File::deleteDirectory(($file));
+                } else {
+                    $file = glob($file . '/*')[0];
+                    $filename =  "customer-" . $UserID;
+                    $imageData = file_get_contents($file);
+                    $md5string = base64_encode($imageData);
+                    $message[] = (new DeviceCameraController($device['camera_sdk_url']))->pushUserToCameraDevice($filename,  $UserID, $md5string);
+                    File::deleteDirectory(dirname($file));
+                }
+            }
+        }
+
+        return  $message;
+    }
+
+
     public function PersonAddRangePhotos(Request $request)
     {
 

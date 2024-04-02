@@ -30,9 +30,11 @@ class StoreRequest extends FormRequest
             'profile_picture' => 'string',
             'system_user_id' => 'required|string|unique:customers',
             'type' => 'required|string',
-            'date' => 'required|date',
+            'date' => 'nullable|date',
             'company_id' => 'required|integer|min:0',
             'branch_id' => 'nullable',
+            'phone_number' => 'required|string|min:10|max:13',
+            'status' => 'required|string',
         ];
     }
 }

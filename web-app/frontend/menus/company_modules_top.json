@@ -16,8 +16,8 @@
   {
     "icon": "mdi-bell",
     "title": "Customers",
-    "to": "/visitor/visitor-dashboard",
-    "menu": "visitors",
+    "to": "/customer",
+    "menu": "customers",
     "module": "topmenu"
   },
   {

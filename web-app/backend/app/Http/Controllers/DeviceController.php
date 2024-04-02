@@ -181,8 +181,6 @@ class DeviceController extends Controller
             $data = $request->validated();
 
 
-
-
             $data["ip"] = "0.0.0.0";
             $data["port"] = "0000";
             $record = $model->create($data);

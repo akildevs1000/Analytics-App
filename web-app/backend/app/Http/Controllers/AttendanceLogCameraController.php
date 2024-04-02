@@ -192,27 +192,28 @@ class AttendanceLogCameraController extends Controller
         foreach ($result["data"] as $row) {
             $columns = explode(',', $row);
 
-            $isDuplicateLogTime = $this->verifyDuplicateLog($columns);
-            //$isDuplicateLogTime = false;
-            if (!$isDuplicateLogTime) {
-                $datetime = substr(str_replace("T", " ", $columns[2]), 0, 16);
+            $datetime = substr(str_replace("T", " ", $columns[2]), 0, 16);
 
-                if ($datetime != 'undefined') {
-                    $records[] = [
-                        "UserID" => $columns[0],
-                        "DeviceID" => $columns[1],
-                        "LogTime" => $datetime,
-                        "SerialNumber" => $columns[3],
-                        "FaceID" => $columns[4],
-                        "Clarity" => $columns[5],
-                        "Age" => $columns[6],
-                        "Quality" => $columns[7],
-                        "Gender" => $columns[8],
-                        "Similarity" => $columns[9],
-                        "user_type" => in_array($columns[0], $employeeIds) ? "Employee" : "Customer"
-                    ];
-                }
+            if ($datetime != 'undefined') {
+                $records[] = [
+                    "UserID" => $columns[0],
+                    "DeviceID" => $columns[1],
+                    "LogTime" => $datetime,
+                    "SerialNumber" => $columns[3],
+                    "FaceID" => $columns[4],
+                    "Clarity" => $columns[5],
+                    "Age" => $columns[6],
+                    "Quality" => $columns[7],
+                    "Gender" => $columns[8],
+                    "Similarity" => $columns[9],
+                    "user_type" => in_array($columns[0], $employeeIds) ? "Employee" : "Customer"
+                ];
             }
+
+            // $isDuplicateLogTime = $this->verifyDuplicateLog($columns);
+            // //$isDuplicateLogTime = false;
+            // if (!$isDuplicateLogTime) {
+            // }
         }
 
         try {

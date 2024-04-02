@@ -115,7 +115,7 @@
 
           <v-data-table
             dense
-            :headers="headers_table"
+            :headers="headers"
             :items="data"
             model-value="data.id"
             :loading="loading"
@@ -274,8 +274,42 @@
                   : "---"
               }}
             </template>
-            <template v-slot:item.employee.first_name="{ item, index }">
-              <v-row no-gutters>
+            <template v-slot:item.user="{ item, index }">
+              <v-row no-gutters v-if="item.customer">
+                <v-col
+                  style="
+                    padding: 5px;
+                    padding-left: 0px;
+                    width: 50px;
+                    max-width: 50px;
+                  "
+                >
+                  <v-img
+                    style="
+                      border-radius: 50%;
+                      height: auto;
+                      width: 50px;
+                      max-width: 50px;
+                    "
+                    :src="
+                      item.customer && item.customer.profile_picture
+                        ? item.customer.profile_picture
+                        : '/no-profile-image.jpg'
+                    "
+                  >
+                  </v-img>
+                </v-col>
+                <v-col style="padding: 10px">
+                  <strong v-if="item.customer">
+                    {{ item.customer.full_name }}
+                  </strong>
+                  <br>
+                  <small v-if="item.customer">
+                    {{ item.customer.phone_number }}
+                  </small>
+                </v-col>
+              </v-row>
+              <v-row no-gutters v-else>
                 <v-col
                   style="
                     padding: 5px;
@@ -425,22 +459,6 @@ export default {
       date: null,
       time: null,
     },
-    headers: [
-      {
-        text: "UserID",
-        align: "center",
-        sortable: false,
-        value: "UserID",
-      },
-      { text: "DeviceID", align: "center", sortable: false, value: "DeviceID" },
-      // {
-      //   text: "Device Name",
-      //   align: "center",
-      //   sortable: false,
-      //   value: "device.name",
-      // },
-      { text: "LogTime", align: "center", sortable: false, value: "LogTime" },
-    ],
     ids: [],
 
     data: [],
@@ -460,7 +478,7 @@ export default {
     errors: [],
     response: "",
     snackbar: false,
-    headers_table: [
+    headers: [
       {
         text: "User Type",
         align: "left",
@@ -485,8 +503,8 @@ export default {
         text: "User/Employee",
         align: "left",
         sortable: true,
-        key: "employee_first_name", //sorting
-        value: "employee.first_name", //edit purpose
+        key: "user", //sorting
+        value: "user", //edit purpose
         width: "300px",
         filterable: true,
         filterSpecial: false,
@@ -511,7 +529,6 @@ export default {
         filterSpecial: true,
         fieldType: "date_range_picker",
       },
-
       {
         text: "Clarity",
         align: "left",
@@ -618,7 +635,7 @@ export default {
           filterSpecial: true,
         },
       ];
-      this.headers_table.splice(1, 0, ...branch_header);
+      this.headers.splice(1, 0, ...branch_header);
     }
     this.firstLoad();
     this.getDepartments();

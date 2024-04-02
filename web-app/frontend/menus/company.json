@@ -275,10 +275,17 @@
   },
   {
     "icon": "mdi-home",
-    "title": "Dashboard",
-    "to": "/visitor/visitor-dashboard",
-    "menu": "visitors_access",
-    "module": "visitors"
+    "title": "Customers",
+    "to": "/customer",
+    "menu": "community",
+    "module": "customers"
+  },
+  {
+    "icon": "mdi-clock-time-four-outline ",
+    "title": "Report",
+    "to": "/customer_report",
+    "menu": "community",
+    "module": "customers"
   },
   {
     "icon": "mdi-comment-alert",

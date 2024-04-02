@@ -33,6 +33,8 @@ class UpdateRequest extends FormRequest
             'date' => 'required|date',
             'company_id' => 'required|integer|min:0',
             'branch_id' => 'nullable',
+            'phone_number' => 'required|string|min:10|max:13',
+            'status' => 'required|string',
         ];
     }
 }

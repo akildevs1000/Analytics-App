@@ -18,7 +18,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return Customer::paginate(request('per_page') ?? 10);
+        return Customer::with("recent_log")->paginate(request('per_page') ?? 10);
     }
 
     public function show(Customer $customer)
@@ -38,6 +38,7 @@ class CustomerController extends Controller
             if ($request->filled("profile_picture")) {
                 $data['profile_picture'] = $this->processImage("customer/profile_picture");
             }
+            $data["date"] = date("Y-m-d");
             Customer::create($request->validated());
             return $this->response("Customer has been registered", null, true);
         } catch (\Throwable $th) {

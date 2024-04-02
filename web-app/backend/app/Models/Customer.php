@@ -25,4 +25,9 @@ class Customer extends Model
     {
         return $this->hasMany(AttendanceLog::class, "UserID", "system_user_id");
     }
+
+    public function recent_log()
+    {
+        return $this->hasOne(AttendanceLog::class, "UserID", "system_user_id");
+    }
 }

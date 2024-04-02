@@ -1,0 +1,358 @@
+[2024-04-01 19:04:53] local.INFO: CURL /ISAPI/Security/Login- EMPTY SDK URL in DB Devices Table  
+[2024-04-01 19:04:53] local.INFO: --- - 567921 - SessionID is not generated.  
+[2024-04-01 19:17:51] local.INFO: CURL /ISAPI/Security/Login- EMPTY SDK URL in DB Devices Table  
+[2024-04-01 19:17:51] local.INFO: --- - 567921 - SessionID is not generated.  
+[2024-04-01 19:17:53] local.INFO: CURL /ISAPI/Security/Login- EMPTY SDK URL in DB Devices Table  
+[2024-04-01 19:17:53] local.INFO: --- - 567921 - SessionID is not generated.  
+[2024-04-01 19:23:24] local.INFO: CURL /ISAPI/Security/Login- EMPTY SDK URL in DB Devices Table  
+[2024-04-01 19:23:24] local.INFO: --- - 567921 - SessionID is not generated.  
+[2024-04-01 19:23:32] local.INFO: CURL /ISAPI/Security/Login- EMPTY SDK URL in DB Devices Table  
+[2024-04-01 19:23:32] local.INFO: --- - 567921 - SessionID is not generated.  
+[2024-04-01 19:27:10] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:27:10] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:27:11] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=92512473-  
+[2024-04-01 19:27:11] local.INFO: --- - 567921 - OK - Successfully Uploaded  
+[2024-04-01 19:28:41] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:28:41] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:28:41] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=46800231-  
+[2024-04-01 19:28:41] local.ERROR: --- - 567921 - Face Exists With Name "---" - Failed:   
+[2024-04-01 19:28:50] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:28:50] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:28:50] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=230702034-  
+[2024-04-01 19:28:50] local.ERROR: --- - 567921 - Face Exists With Name "---" - Failed:   
+[2024-04-01 19:29:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:29:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-01 19:29:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1173599781-  
+[2024-04-01 19:29:00] local.ERROR: --- - 567921 - Face Exists With Name "---" - Failed:   
+[2024-04-02 12:05:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 12:05:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 12:05:29] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=768156021-  
+[2024-04-02 12:05:29] local.INFO: --- - 4444444444 - OK - Successfully Uploaded  
+[2024-04-02 12:05:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 12:05:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 12:05:37] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1260165216-  
+[2024-04-02 12:05:37] local.ERROR: --- - 4444444444 - Face Exists With Name "---" - Failed:   
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=884177876-  
+[2024-04-02 13:51:03] local.ERROR: D:\projects\Analytics-App\web-app\backend\public\camera-unregsitered-faces-logs/1886/1886_3852.jpg - 1073 - Invalid Param: Name - Failed:   
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=278583243-  
+[2024-04-02 13:51:03] local.ERROR: D:\projects\Analytics-App\web-app\backend\public\camera-unregsitered-faces-logs/1886/1886_3867.jpg - 7996 - Invalid Param: Name - Failed:   
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 13:51:03] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1038789590-  
+[2024-04-02 13:51:03] local.ERROR: D:\projects\Analytics-App\web-app\backend\public\camera-unregsitered-faces-logs/1886/1886_3868.jpg - 7165 - Invalid Param: Name - Failed:   
+[2024-04-02 14:11:47] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:11:47] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:11:48] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1440198289-  
+[2024-04-02 14:11:48] local.INFO: 660bd9e3a5f9c.jpg - 9805 - OK - Successfully Uploaded  
+[2024-04-02 14:11:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:11:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:11:48] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=822641839-  
+[2024-04-02 14:11:48] local.INFO: 660bd9e464f8a.jpg - 7944 - OK - Successfully Uploaded  
+[2024-04-02 14:11:49] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:11:49] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:11:50] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=524071011-  
+[2024-04-02 14:11:50] local.ERROR: 660bd9e4f0325.jpg - 3682 - Face Exists With Name "660bd9e464f8a.jpg" - Failed:   
+[2024-04-02 14:13:18] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:13:18] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:13:19] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1068161672-  
+[2024-04-02 14:13:19] local.ERROR: 660bda3e08aed.jpg - 8926 - Face Exists With Name "660bd9e3a5f9c.jpg" - Failed:   
+[2024-04-02 14:13:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:13:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:13:19] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=161087687-  
+[2024-04-02 14:13:19] local.ERROR: 660bda3f4c91a.jpg - 7090 - Face Exists With Name "660bd9e464f8a.jpg" - Failed:   
+[2024-04-02 14:13:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:13:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:13:20] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2009550788-  
+[2024-04-02 14:13:20] local.ERROR: 660bda3fd4f34.jpg - 6757 - Face Exists With Name "660bd9e464f8a.jpg" - Failed:   
+[2024-04-02 14:16:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:16:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:16:59] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=591713310-  
+[2024-04-02 14:16:59] local.ERROR: 660bdb1a91aa8 - 3594 - Face Exists With Name "660bd9e3a5f9c.jpg" - Failed:   
+[2024-04-02 14:16:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:16:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:17:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=282773983-  
+[2024-04-02 14:17:00] local.ERROR: 660bdb1b4cabd - 4319 - Face Exists With Name "660bd9e464f8a.jpg" - Failed:   
+[2024-04-02 14:17:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:17:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:17:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1822018130-  
+[2024-04-02 14:17:00] local.ERROR: 660bdb1c28a54 - 6817 - Face Exists With Name "660bd9e464f8a.jpg" - Failed:   
+[2024-04-02 14:22:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:22:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:22:58] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=20725589-  
+[2024-04-02 14:22:58] local.INFO: customer-4938 - 4938 - OK - Successfully Uploaded  
+[2024-04-02 14:22:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:22:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:22:59] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=488280556-  
+[2024-04-02 14:22:59] local.INFO: customer-3745 - 3745 - OK - Successfully Uploaded  
+[2024-04-02 14:22:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:22:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2026560786-  
+[2024-04-02 14:23:00] local.ERROR: customer-8892 - 8892 - Face Exists With Name "customer-3745" - Failed:   
+[2024-04-02 14:23:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=643816775-  
+[2024-04-02 14:23:00] local.ERROR: customer-9423 - 9423 - Extract Feature Failed - Failed:   
+[2024-04-02 14:23:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:01] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=37384229-  
+[2024-04-02 14:23:01] local.ERROR: customer-5916 - 5916 - Face Exists With Name "customer-4938" - Failed:   
+[2024-04-02 14:23:45] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:45] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:46] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1076532528-  
+[2024-04-02 14:23:46] local.ERROR: customer-5479 - 5479 - Face Exists With Name "customer-4938" - Failed:   
+[2024-04-02 14:23:46] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:46] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:46] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1844649723-  
+[2024-04-02 14:23:46] local.ERROR: customer-6259 - 6259 - Face Exists With Name "customer-3745" - Failed:   
+[2024-04-02 14:23:46] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:47] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:48] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1246906752-  
+[2024-04-02 14:23:48] local.ERROR: customer-2195 - 2195 - Face Exists With Name "customer-3745" - Failed:   
+[2024-04-02 14:23:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:48] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1706552468-  
+[2024-04-02 14:23:48] local.ERROR: customer-8403 - 8403 - Extract Feature Failed - Failed:   
+[2024-04-02 14:23:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:23:48] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=21091125-  
+[2024-04-02 14:23:48] local.ERROR: customer-3005 - 3005 - Face Exists With Name "customer-4938" - Failed:   
+[2024-04-02 14:24:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:24:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:24:58] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1280625743-  
+[2024-04-02 14:24:58] local.ERROR: customer-1734 - 1734 - Face Exists With Name "customer-4938" - Failed:   
+[2024-04-02 14:24:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:24:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:25:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=670694351-  
+[2024-04-02 14:25:00] local.ERROR: customer-4870 - 4870 - Face Exists With Name "customer-3745" - Failed:   
+[2024-04-02 14:25:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:25:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:25:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=838722699-  
+[2024-04-02 14:25:00] local.ERROR: customer-9875 - 9875 - Face Exists With Name "customer-3745" - Failed:   
+[2024-04-02 14:25:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:25:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:25:01] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=524103966-  
+[2024-04-02 14:25:01] local.ERROR: customer-7072 - 7072 - Extract Feature Failed - Failed:   
+[2024-04-02 14:25:02] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:25:02] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 14:25:02] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=994995300-  
+[2024-04-02 14:25:02] local.ERROR: customer-4938 - 4938 - Face Exists With Name "customer-4938" - Failed:   
+[2024-04-02 15:26:53] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:54] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:54] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=268675204-  
+[2024-04-02 15:26:54] local.ERROR: customer-6387 - 6387 - Extract Feature Failed - Failed:   
+[2024-04-02 15:26:54] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:54] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:55] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1818000218-  
+[2024-04-02 15:26:55] local.INFO: customer-7361 - 7361 - OK - Successfully Uploaded  
+[2024-04-02 15:26:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:56] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1203835697-  
+[2024-04-02 15:26:56] local.INFO: customer-5680 - 5680 - OK - Successfully Uploaded  
+[2024-04-02 15:26:56] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:56] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:26:57] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1670090091-  
+[2024-04-02 15:26:57] local.ERROR: customer-3823 - 3823 - Face Exists With Name "customer-5680" - Failed:   
+[2024-04-02 15:27:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:20] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1891789678-  
+[2024-04-02 15:27:20] local.ERROR: customer-6865 - 6865 - Extract Feature Failed - Failed:   
+[2024-04-02 15:27:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:20] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=216687312-  
+[2024-04-02 15:27:20] local.ERROR: customer-7597 - 7597 - Face Exists With Name "customer-7361" - Failed:   
+[2024-04-02 15:27:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:20] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2052689548-  
+[2024-04-02 15:27:20] local.ERROR: customer-1827 - 1827 - Face Exists With Name "customer-5680" - Failed:   
+[2024-04-02 15:27:21] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:21] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:21] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=674905281-  
+[2024-04-02 15:27:21] local.ERROR: customer-2872 - 2872 - Face Exists With Name "customer-5680" - Failed:   
+[2024-04-02 15:27:21] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:21] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:27:22] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=70915640-  
+[2024-04-02 15:27:22] local.INFO: customer-9314 - 9314 - OK - Successfully Uploaded  
+[2024-04-02 15:43:29] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:29] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:29] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1425917647-  
+[2024-04-02 15:43:29] local.INFO: customer-7035 - 7035 - OK - Successfully Uploaded  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1129374726-  
+[2024-04-02 15:43:30] local.ERROR: customer-3304 - 3304 - Extract Feature Failed - Failed:   
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1599258021-  
+[2024-04-02 15:43:30] local.ERROR: customer-7922 - 7922 - Face Exists With Name "customer-7035" - Failed:   
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1284933827-  
+[2024-04-02 15:43:30] local.ERROR: customer-5457 - 5457 - Face Exists With Name "customer-7035" - Failed:   
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:31] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=979919974-  
+[2024-04-02 15:43:31] local.ERROR: customer-2195 - 2195 - Extract Feature Failed - Failed:   
+[2024-04-02 15:43:31] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:31] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1444304477-  
+[2024-04-02 15:43:32] local.INFO: customer-6058 - 6058 - OK - Successfully Uploaded  
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1141420096-  
+[2024-04-02 15:43:32] local.ERROR: customer-5943 - 5943 - Extract Feature Failed - Failed:   
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1612785624-  
+[2024-04-02 15:43:32] local.ERROR: customer-4370 - 4370 - Extract Feature Failed - Failed:   
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:33] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=233859167-  
+[2024-04-02 15:43:33] local.ERROR: customer-1562 - 1562 - Extract Feature Failed - Failed:   
+[2024-04-02 15:43:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:33] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1767465598-  
+[2024-04-02 15:43:33] local.INFO: customer-8831 - 8831 - OK - Successfully Uploaded  
+[2024-04-02 15:43:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:43:34] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=394805110-  
+[2024-04-02 15:43:34] local.INFO: customer-8981 - 8981 - OK - Successfully Uploaded  
+[2024-04-02 15:56:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=389671279-  
+[2024-04-02 15:56:05] local.INFO: customer-3388 - 3388 - OK - Successfully Uploaded  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1935098019-  
+[2024-04-02 15:56:05] local.INFO: customer-2430 - 2430 - OK - Successfully Uploaded  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1625731888-  
+[2024-04-02 15:56:05] local.ERROR: customer-2186 - 2186 - Extract Feature Failed - Failed:   
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1324634099-  
+[2024-04-02 15:56:05] local.ERROR: customer-3888 - 3888 - Extract Feature Failed - Failed:   
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:56:06] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2094426602-  
+[2024-04-02 15:56:06] local.INFO: customer-6416 - 6416 - OK - Successfully Uploaded  
+[2024-04-02 15:57:25] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:57:25] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:57:25] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1079491099-  
+[2024-04-02 15:57:25] local.ERROR: customer-7197 - 7197 - Extract Feature Failed - Failed:   
+[2024-04-02 15:57:25] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:57:25] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:57:26] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1854180252-  
+[2024-04-02 15:57:26] local.ERROR: customer-4656 - 4656 - Face Exists With Name "customer-6416" - Failed:   
+[2024-04-02 15:57:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:57:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:57:59] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=865625192-  
+[2024-04-02 15:57:59] local.ERROR: customer-3781 - 3781 - Extract Feature Failed - Failed:   
+[2024-04-02 15:59:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:59:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:59:33] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2046847307-  
+[2024-04-02 15:59:33] local.ERROR: customer-3783 - 3783 - Extract Feature Failed - Failed:   
+[2024-04-02 15:59:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:59:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 15:59:33] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=672222925-  
+[2024-04-02 15:59:33] local.INFO: customer-5061 - 5061 - OK - Successfully Uploaded  
+[2024-04-02 16:00:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:00:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:00:19] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=327832117-  
+[2024-04-02 16:00:19] local.ERROR: customer-9159 - 9159 - Extract Feature Failed - Failed:   
+[2024-04-02 16:00:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:00:19] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:00:20] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1099787035-  
+[2024-04-02 16:00:20] local.ERROR: customer-3165 - 3165 - Extract Feature Failed - Failed:   
+[2024-04-02 16:00:52] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:00:52] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:00:53] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=419516539-  
+[2024-04-02 16:00:53] local.INFO: customer-2467 - 2467 - OK - Successfully Uploaded  
+[2024-04-02 16:08:21] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:08:21] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:08:22] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1004719724-  
+[2024-04-02 16:08:22] local.ERROR: customer-4523 - 4523 - Extract Feature Failed - Failed:   
+[2024-04-02 16:08:22] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:08:22] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:08:22] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1463672025-  
+[2024-04-02 16:08:22] local.ERROR: customer-9814 - 9814 - Extract Feature Failed - Failed:   
+[2024-04-02 16:09:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:09:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:09:07] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1436447377-  
+[2024-04-02 16:09:07] local.ERROR: customer-8672 - 8672 - Extract Feature Failed - Failed:   
+[2024-04-02 16:09:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:09:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:09:08] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1136817623-  
+[2024-04-02 16:09:08] local.ERROR: customer-5379 - 5379 - Extract Feature Failed - Failed:   
+[2024-04-02 16:11:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:06] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=372807945-  
+[2024-04-02 16:11:06] local.INFO: customer-8858 - 8858 - OK - Successfully Uploaded  
+[2024-04-02 16:11:06] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:06] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1904315101-  
+[2024-04-02 16:11:07] local.INFO: customer-8343 - 8343 - OK - Successfully Uploaded  
+[2024-04-02 16:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=239808164-  
+[2024-04-02 16:11:07] local.ERROR: customer-9488 - 9488 - Extract Feature Failed - Failed:   
+[2024-04-02 16:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:08] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2080538682-  
+[2024-04-02 16:11:08] local.INFO: customer-5074 - 5074 - OK - Successfully Uploaded  
+[2024-04-02 16:11:08] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:08] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:08] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1472053557-  
+[2024-04-02 16:11:08] local.ERROR: customer-7191 - 7191 - Extract Feature Failed - Failed:   
+[2024-04-02 16:11:08] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:08] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1174416062-  
+[2024-04-02 16:11:09] local.ERROR: customer-3218 - 3218 - Extract Feature Failed - Failed:   
+[2024-04-02 16:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=567233211-  
+[2024-04-02 16:11:09] local.ERROR: customer-1999 - 1999 - Extract Feature Failed - Failed:   
+[2024-04-02 16:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=261807127-  
+[2024-04-02 16:11:09] local.ERROR: customer-9412 - 9412 - Extract Feature Failed - Failed:   
+[2024-04-02 16:18:53] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:18:53] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:18:55] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=567676397-  
+[2024-04-02 16:18:55] local.ERROR: customer-5674 - 5674 - Extract Feature Failed - Failed:   
+[2024-04-02 16:18:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:18:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:18:55] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=721936510-  
+[2024-04-02 16:18:55] local.INFO: customer-8157 - 8157 - OK - Successfully Uploaded  
+[2024-04-02 16:18:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:18:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:18:56] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1491820710-  
+[2024-04-02 16:18:56] local.ERROR: customer-6879 - 6879 - Extract Feature Failed - Failed:   
+[2024-04-02 16:19:26] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:19:26] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:19:26] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1431633075-  
+[2024-04-02 16:19:26] local.INFO: customer-3175 - 3175 - OK - Successfully Uploaded  
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=164482428-  
+[2024-04-02 16:22:01] local.ERROR: customer-5228 - 5228 - Extract Feature Failed - Failed:   
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=930107450-  
+[2024-04-02 16:22:01] local.ERROR: customer-6584 - 6584 - Extract Feature Failed - Failed:   
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:22:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 16:22:02] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1693855816-  
+[2024-04-02 16:22:02] local.INFO: customer-7205 - 7205 - OK - Successfully Uploaded  
+[2024-04-02 17:08:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 17:08:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 17:08:01] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1667878987-  
+[2024-04-02 17:08:01] local.INFO: customer-2285 - 2285 - OK - Successfully Uploaded  
+[2024-04-02 17:50:02] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 17:50:02] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-02 17:50:02] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=705362199-  
+[2024-04-02 17:50:02] local.INFO: customer-9308 - 9308 - OK - Successfully Uploaded  
