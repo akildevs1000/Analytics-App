@@ -83,7 +83,7 @@
                 </v-btn>
               </template>
               <v-list width="150" dense>
-                <v-list-item>
+                <!-- <v-list-item>
                   <v-list-item-title style="cursor: pointer">
                     <CustomerSingle @response="handleResponse" :item="item" />
                   </v-list-item-title>
@@ -92,7 +92,7 @@
                   <v-list-item-title style="cursor: pointer">
                     <CustomerEdit @response="handleResponse" :item="item" />
                   </v-list-item-title>
-                </v-list-item>
+                </v-list-item> -->
                 <v-list-item @click="deleteItem(item)">
                   <v-list-item-title style="cursor: pointer">
                     <v-icon color="error" small> mdi-delete </v-icon>

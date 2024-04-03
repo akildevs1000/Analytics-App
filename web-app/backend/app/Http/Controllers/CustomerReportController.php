@@ -59,7 +59,7 @@ class CustomerReportController extends Controller
             "UserIds" => $userIds,
         ];
 
-        if (!$customRender) {
+        if (!$customRender || !count($userIds)) {
             $userIds = AttendanceLog::where("company_id", $companyId)
                 ->where("checked", false) // Only today's records
                 ->where("user_type", "Customer")

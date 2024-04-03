@@ -30,4 +30,10 @@ class Customer extends Model
     {
         return $this->hasOne(AttendanceLog::class, "UserID", "system_user_id");
     }
+
+    public function getProfilePictureAttribute($value)
+    {
+        if (!$value) return null;
+        return asset('customer/profile_picture/' . $value);
+    }
 }

@@ -324,7 +324,7 @@ function getTime2() {
   let utc = date_ob.getTime();
 
   // Define the time difference in hours for GMT+4
-  let gmt_offset = 4;
+  let gmt_offset = 0;
 
   // Calculate the time in milliseconds for GMT+4 by adding the offset
   let gmt_time = utc + gmt_offset * 60 * 60 * 1000;
@@ -367,7 +367,7 @@ function getTime() {
   let utc = date_ob.getTime();
 
   // Define the time difference in hours for GMT+4
-  let gmt_offset = 4;
+  let gmt_offset = 0;
 
   // Calculate the time in milliseconds for GMT+4 by adding the offset
   let gmt_time = utc + gmt_offset * 60 * 60 * 1000;

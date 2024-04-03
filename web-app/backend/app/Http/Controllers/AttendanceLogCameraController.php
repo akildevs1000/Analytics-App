@@ -197,7 +197,7 @@ class AttendanceLogCameraController extends Controller
             if ($datetime != 'undefined') {
                 $records[] = [
                     "UserID" => $columns[0],
-                    "DeviceID" => $columns[1],
+                    "DeviceID" => $columns[1] = "2222222222",
                     "LogTime" => $datetime,
                     "SerialNumber" => $columns[3],
                     "FaceID" => $columns[4],

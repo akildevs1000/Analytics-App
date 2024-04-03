@@ -43,7 +43,9 @@
         <v-card elevation="0" class="mt-2">
           <v-toolbar class="mb-2 white--text" color="white" dense flat>
             <v-toolbar-title>
-              <span style="color: black"> Device Logs</span></v-toolbar-title
+              <span style="color: black">
+                Device Logs</span
+              ></v-toolbar-title
             >
             <!-- <v-tooltip top color="primary">
               <template v-slot:activator="{ on, attrs }"> -->
@@ -148,7 +150,7 @@
                       :hide-details="true"
                       v-if="
                         header.filterSpecial &&
-                        header.value == 'employee.branch.branch_name'
+                        header.value == 'branch.branch_name'
                       "
                       clearable
                       outlined
@@ -303,7 +305,7 @@
                   <strong v-if="item.customer">
                     {{ item.customer.full_name }}
                   </strong>
-                  <br>
+                  <br />
                   <small v-if="item.customer">
                     {{ item.customer.phone_number }}
                   </small>
@@ -509,16 +511,15 @@ export default {
         filterable: true,
         filterSpecial: false,
       },
-
-      {
-        text: "Department",
-        align: "left",
-        sortable: false,
-        key: "department", //sorting
-        value: "department.name.id", //edit purpose
-        filterable: true,
-        filterSpecial: true,
-      },
+      // {
+      //   text: "Department",
+      //   align: "left",
+      //   sortable: false,
+      //   key: "department", //sorting
+      //   value: "department.name.id", //edit purpose
+      //   filterable: true,
+      //   filterSpecial: true,
+      // },
       {
         text: "Date Range",
         align: "left",
@@ -622,20 +623,20 @@ export default {
     }, 1000 * 60 * 2);
   },
   created() {
-    if (this.$auth.user.branch_id == null) {
+    if (this.$auth.user.user_type == "company") {
       let branch_header = [
         {
           text: "Branch",
           align: "left",
           sortable: true,
           key: "branch_id", //sorting
-          value: "employee.branch.branch_name", //edit purpose
-          width: "300px",
+          value: "branch.branch_name", //edit purpose
+          width: "150px",
           filterable: true,
           filterSpecial: true,
         },
       ];
-      this.headers.splice(1, 0, ...branch_header);
+      this.headers.splice(3, 0, ...branch_header);
     }
     this.firstLoad();
     this.getDepartments();
@@ -654,8 +655,6 @@ export default {
       this.payloadOptions = {
         params: {
           company_id: this.$auth.user.company_id,
-
-          branch_id: this.$auth.user.branch_id,
         },
       };
 

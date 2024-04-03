@@ -414,4 +414,17 @@ class Controller extends BaseController
         file_put_contents($publicDirectory . '/' . $imageName, $base64Image);
         return $imageName;
     }
+
+
+    public function processImageWithOutRequest($folder, $content): string
+    {
+        $base64Image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $content));
+        $imageName = time() . ".png";
+        $publicDirectory = public_path($folder);
+        if (!file_exists($publicDirectory)) {
+            mkdir($publicDirectory, 0777, true);
+        }
+        file_put_contents($publicDirectory . '/' . $imageName, $base64Image);
+        return $imageName;
+    }
 }

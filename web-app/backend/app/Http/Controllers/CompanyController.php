@@ -461,12 +461,14 @@ class CompanyController extends Controller
         });
 
         $model->take(100);
-        $model->with("device:device_id,company_id,location,device_type");
+        $model->with("device:device_id,company_id,branch_id,location,device_type");
         $rows = $model->get(["DeviceID"]);
 
         if (count($rows) == 0) {
             return "[" . $date . "] Cron: UpdateCompanyIds. No new record found while updating company ids for device.\n";
         }
+
+        // return json_encode($rows);
 
         $i = 0;
 
@@ -475,6 +477,7 @@ class CompanyController extends Controller
                 $i++;
                 AttendanceLog::where("DeviceID", $arr["DeviceID"])->update([
                     "company_id" => $arr["device"]["company_id"] ?? 0,
+                    "branch_id" => $arr["device"]["branch_id"] ?? 0,
                     "gps_location" => $arr["device"]["location"],
                     "log_type" => $arr["device"]["function"]
                 ]);

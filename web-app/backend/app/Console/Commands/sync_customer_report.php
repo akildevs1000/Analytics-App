@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerReportController;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -34,7 +34,7 @@ class sync_customer_report extends Command
 
 
         try {
-            echo (new CustomerController)->render($id, $date, [], false) . "\n";
+            echo (new CustomerReportController)->render($id, $date, [], false) . "\n";
         } catch (\Throwable $th) {
             //throw $th;
             $error_message = 'Cron: ' . env('APP_NAME') . ': Exception in sync_tanent_report  : Company Id :' . $id . ', : Date :' . $date . ', ' . $th;
