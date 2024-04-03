@@ -194,6 +194,8 @@ class AttendanceLogCameraController extends Controller
 
             $datetime = substr(str_replace("T", " ", $columns[2]), 0, 16);
 
+            $age = round($columns[6]);
+
             if ($datetime != 'undefined') {
                 $records[] = [
                     "UserID" => $columns[0],
@@ -202,7 +204,8 @@ class AttendanceLogCameraController extends Controller
                     "SerialNumber" => $columns[3],
                     "FaceID" => $columns[4],
                     "Clarity" => $columns[5],
-                    "Age" => $columns[6],
+                    "Age" => $age,
+                    "age_category" => $this->getAgeCategory($age),
                     "Quality" => $columns[7],
                     "Gender" => $columns[8],
                     "Similarity" => $columns[9],
@@ -234,6 +237,17 @@ class AttendanceLogCameraController extends Controller
             // ];
             // Mail::to(env("ADMIN_MAIL_RECEIVERS"))->send(new NotifyIfLogsDoesNotGenerate($data));
         }
+    }
+    public function getAgeCategory($age)
+    {
+        return match (true) {
+            $age <= 10 => 'CHILD',
+            $age > 10 && $age < 18 => 'TEENAGE',
+            $age >= 18 && $age < 25 => 'YOUNGER',
+            $age >= 25 && $age < 50 => 'ADULT',
+            $age >= 50 && $age <= 100 => 'SENIOR',
+            default => 'Invalid Age',
+        };
     }
     public function verifyDuplicateLog($columns)
     {

@@ -90,7 +90,7 @@ class AttendanceLog extends Model
         $model = self::query();
 
         $model->where("company_id", $request->company_id);
-
+        $model->when(request()->filled("age_category"), fn ($q) => $q->where("age_category", 'like', '%' . request("age_category") . '%')->where('company_id', $request->company_id));
         $model->when(request()->filled("user_type"), fn ($q) => $q->where("user_type", 'like', '%' . request("user_type") . '%')->where('company_id', $request->company_id));
         $model->when(request()->filled("Clarity"), fn ($q) => $q->where("Clarity", 'like', '%' . request("Clarity") . '%')->where('company_id', $request->company_id));
         $model->when(request()->filled("Age"), fn ($q) => $q->where("Age", 'like', '%' . request("Age") . '%')->where('company_id', $request->company_id));
@@ -111,6 +111,9 @@ class AttendanceLog extends Model
         });
 
         $model->with('customer', function ($q) use ($request) {
+            $q->where('company_id', $request->company_id);
+        });
+        $model->with('branch', function ($q) use ($request) {
             $q->where('company_id', $request->company_id);
         });
         $model->with('employee', function ($q) use ($request) {
@@ -139,16 +142,6 @@ class AttendanceLog extends Model
                 $query->where('LogTime', '>=', $request->dates[0])
                     ->where('LogTime', '<=',   date("Y-m-d", strtotime($request->dates[1] . " +1 day")));
             });
-        });
-
-        $model->when($request->filled('system_user_id'), function ($q) use ($request) {
-            $q->where('UserID', $request->system_user_id);
-        });
-
-        $model->when($request->filled('devicelocation'), function ($q) use ($request) {
-            if ($request->devicelocation != 'All Locations') {
-                $q->whereHas('device', fn (Builder $query) => $query->where('location', 'ILIKE', "$request->devicelocation%"));
-            }
         });
 
         $model->when($request->filled('employee_first_name'), function ($q) use ($request) {

@@ -11,14 +11,14 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function dropDown()
+    {
+        return Customer::where("company_id", request("company_id"))->get();
+    }
+
     public function index()
     {
-        return Customer::with("recent_log")->paginate(request('per_page') ?? 10);
+        return Customer::where("company_id", request("company_id"))->with("recent_log")->paginate(request('per_page') ?? 10);
     }
 
     public function show(Customer $customer)

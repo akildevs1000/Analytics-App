@@ -59,7 +59,7 @@ class CustomerReportController extends Controller
             "UserIds" => $userIds,
         ];
 
-        if (!$customRender || !count($userIds)) {
+        if (!$customRender) {
             $userIds = AttendanceLog::where("company_id", $companyId)
                 ->where("checked", false) // Only today's records
                 ->where("user_type", "Customer")
@@ -109,6 +109,8 @@ class CustomerReportController extends Controller
 
             $item = [
                 "user_id" =>   $firstLog["UserID"],
+                "company_id" =>   $firstLog["company_id"],
+                "branch_id" =>   $firstLog["branch_id"],
                 "total_hrs" => '00:00',
                 "in_id" => $firstLog["id"],
                 "status" => "in",
@@ -160,27 +162,51 @@ class CustomerReportController extends Controller
     {
         $query = CustomerReport::query();
 
+        $query->when(request()->filled("branch_id"), function ($q) {
+            $q->whereHas("customer", function ($qu) {
+                $qu->where('branch_id', request("branch_id"));
+            });
+        });
+
+        $query->when(request()->filled("status"), function ($q) {
+            $q->where('status', request("status"));
+            $q->where('company_id', request("company_id"));
+        });
+
+        $query->when(request()->filled("type"), function ($q) {
+            $q->whereHas("customer", function ($qu) {
+                $qu->where('type', request("type"));
+                $qu->where('company_id', request("company_id"));
+            });
+        });
+
         $query->when(request()->filled("UserID"), function ($q) {
             $q->whereHas("in_log", function ($qu) {
                 $qu->where('UserID', request("UserID"));
+                $qu->where('company_id', request("company_id"));
             });
         });
+
 
         $query->when(request()->filled("DeviceID"), function ($query) {
             $query->where(function ($q) {
                 $q->whereHas("in_log", function ($qu) {
                     $qu->where('DeviceID', request("DeviceID"));
+                    $qu->where('company_id', request("company_id"));
                 });
                 $q->orWhereHas("out_log", function ($qu) {
                     $qu->where('DeviceID', request("DeviceID"));
+                    $qu->where('company_id', request("company_id"));
                 });
             });
         });
         $query->when(request()->filled("from_date"), function ($q) {
             $q->where('date', '>=', request("from_date"));
+            $q->where('company_id', request("company_id"));
         });
         $query->when(request()->filled("to_date"), function ($q) {
             $q->where('date', '<=', request("to_date"));
+            $q->where('company_id', request("company_id"));
         });
 
         $query->with("customer", "in_log", "out_log");

@@ -22,8 +22,8 @@
               :hide-details="true"
             ></v-select>
           </v-col>
-          <v-col md="2" sm="4">
-            Door
+          <!-- <v-col md="2" sm="4">
+            Device Name
             <v-select
               class="mt-2"
               outlined
@@ -35,27 +35,47 @@
               item-text="name"
               :hide-details="true"
             ></v-select>
-          </v-col>
-          <!-- <v-col md="2" sm="2">
-            User Type
+          </v-col> -->
+          <v-col md="2" sm="2">
+            Customer Type
             <v-select
-              placeholder="User Type"
+              placeholder="Customer Type"
               class="mt-2"
               outlined
               dense
-              v-model="payload.user_type"
+              v-model="payload.type"
               x-small
               :items="[
-                { id: `Employee`, name: `Employee` },
-                { id: `Visitor`, name: `Visitor` },
+                { id: ``, name: `Select All` },
+                { id: `vip`, name: `VIP` },
+                { id: `normal`, name: `NORMAL` },
               ]"
               item-value="id"
               item-text="name"
               :hide-details="true"
             ></v-select>
-          </v-col> -->
+          </v-col>
+          <v-col md="2" sm="2">
+            Status
+            <v-select
+              placeholder="Status"
+              class="mt-2"
+              outlined
+              dense
+              v-model="payload.status"
+              x-small
+              :items="[
+                { id: ``, name: `Select All` },
+                { id: `in`, name: `In` },
+                { id: `out`, name: `Out` },
+              ]"
+              item-value="id"
+              item-text="name"
+              :hide-details="true"
+            ></v-select>
+          </v-col>
           <v-col md="2" sm="4">
-            User ID
+            Customer
             <v-autocomplete
               density="comfortable"
               class="mt-2"
@@ -64,11 +84,11 @@
               v-model="payload.UserID"
               x-small
               :items="[
-                { system_user_id: ``, name_with_user_id: `Select All` },
+                { system_user_id: ``, full_name: `Select All` },
                 ...employees,
               ]"
               item-value="system_user_id"
-              item-text="name_with_user_id"
+              item-text="full_name"
               :hide-details="true"
             ></v-autocomplete>
           </v-col>
@@ -276,7 +296,7 @@ export default {
       daily_date: null,
       UserID: "",
       department_ids: [],
-      status: "-1",
+      status: ``,
       DeviceID: "",
       branch_id: "",
       include_device_types: ["all", "Access Control"],
@@ -288,13 +308,6 @@ export default {
     report_template: "Template1",
     headers: [
       {
-        text: "S.NO",
-        align: "left",
-        sortable: true,
-        key: "id",
-        value: "id",
-      },
-      {
         text: "Customer",
         align: "left",
         sortable: true,
@@ -302,14 +315,7 @@ export default {
         value: "customer",
         width: "300px",
       },
-      {
-        text: "Customer Type",
-        align: "left",
-        sortable: true,
-        key: "customer.type",
-        value: "customer.type",
-        width: "300px",
-      },
+
       {
         text: "In DateTime",
         align: "left",
@@ -324,6 +330,22 @@ export default {
         key: "out",
         value: "out_log.LogTime",
       },
+
+      {
+        text: "In Device",
+        align: "left",
+        sortable: false,
+        key: "in",
+        value: "in_log.device.name",
+      },
+      {
+        text: "Out Device",
+        align: "left",
+        sortable: false,
+        key: "out",
+        value: "out_log.device.name",
+      },
+
       {
         text: "Total Hrs",
         align: "left",
@@ -337,6 +359,13 @@ export default {
         sortable: false,
         key: "status",
         value: "status",
+      },
+      {
+        text: "Customer Type",
+        align: "left",
+        sortable: true,
+        key: "customer.type",
+        value: "customer.type",
       },
     ],
     max_date: null,
@@ -372,7 +401,7 @@ export default {
         filterSpecial: true,
       },
     ];
-    this.headers.splice(3, 0, ...branch_header);
+    this.headers.splice(0, 0, ...branch_header);
     this.setFromDate();
     this.getBranches();
     this.getScheduledEmployees();
@@ -408,15 +437,12 @@ export default {
         params: {
           per_page: 1000,
           company_id: this.$auth.user.company_id,
-          shift_type_id: this.shift_type_id,
         },
       };
 
-      this.$axios
-        .get(`/scheduled_employees_with_type`, options)
-        .then(({ data }) => {
-          this.employees = data;
-        });
+      this.$axios.get(`/customer-list`, options).then(({ data }) => {
+        this.employees = data;
+      });
     },
 
     getDeviceList() {
@@ -549,7 +575,7 @@ export default {
               `${encodeURIComponent(key)}=${encodeURIComponent(
                 queryParams[key]
               )}`
-          ) 
+          )
           .join("&");
 
         const reportUrl = `${backendUrl}/${type}?${queryString}&include_device_types[]=all&include_device_types[]=Access Control`;
