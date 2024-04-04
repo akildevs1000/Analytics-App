@@ -189,6 +189,71 @@ class AttendanceLog extends Model
         return $model;
     }
 
+
+    public function statsFilter($request)
+    {
+        $model = self::query();
+
+        $model->where("company_id", $request->company_id);
+        $model->when(request()->filled("age_category"), fn ($q) => $q->where("age_category", 'like', '%' . request("age_category") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("user_type"), fn ($q) => $q->where("user_type", 'like', '%' . request("user_type") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("Clarity"), fn ($q) => $q->where("Clarity", 'like', '%' . request("Clarity") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("Age"), fn ($q) => $q->where("Age", 'like', '%' . request("Age") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("Quality"), fn ($q) => $q->where("Quality", 'like', '%' . request("Quality") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("Gender"), fn ($q) => $q->where("Gender", 'like', '%' . request("Gender") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("Similarity"), fn ($q) => $q->where("Similarity", 'like', '%' . request("Similarity") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("branch_id"), fn ($q) => $q->where("branch_id", 'like', '%' . request("branch_id") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("UserID"), fn ($q) => $q->where("UserID", 'like', '%' . request("UserID") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("DeviceID"), fn ($q) => $q->where("DeviceID", 'like', '%' . request("DeviceID") . '%')->where('company_id', $request->company_id));
+        $model->when(request()->filled("customer"), fn ($q) => $q->where("customer", 'like', '%' . request("customer") . '%')->where('company_id', $request->company_id));
+
+        $model->when($request->from_date, function ($query) use ($request) {
+            return $query->where('LogTime', '>=', $request->from_date);
+        });
+
+        $model->when($request->to_date, function ($query) use ($request) {
+            return $query->where('LogTime', '<=',   date("Y-m-d", strtotime($request->to_date . " +1 day")));
+        });
+
+        $model->with('customer', function ($q) use ($request) {
+            $q->where('company_id', $request->company_id);
+        });
+        $model->with('branch', function ($q) use ($request) {
+            $q->where('company_id', $request->company_id);
+        });
+        $model->with('employee', function ($q) use ($request) {
+            $q->where('company_id', $request->company_id);
+            $q->withOut(["schedule", "sub_department", "designation", "user"]);
+
+            $q->select(
+                "first_name",
+                "last_name",
+                "profile_picture",
+                "employee_id",
+                "branch_id",
+                "system_user_id",
+                "display_name",
+                "timezone_id",
+                "department_id"
+            );
+        });
+
+        $model->with('device', function ($q) use ($request) {
+            $q->where('company_id', $request->company_id);
+        });
+
+        $model->when($request->filled('dates') && count($request->dates) > 1, function ($q) use ($request) {
+            $q->where(function ($query) use ($request) {
+                $query->where('LogTime', '>=', $request->dates[0])
+                    ->where('LogTime', '<=',   date("Y-m-d", strtotime($request->dates[1] . " +1 day")));
+            });
+        });
+
+      
+
+        return $model;
+    }
+
     public function getEmployeeIdsForNewLogs($params)
     {
         return self::
