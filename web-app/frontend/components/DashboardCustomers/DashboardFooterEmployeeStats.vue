@@ -4,32 +4,32 @@
       <v-row class="text-center">
         <v-col cols="1"> </v-col>
         <v-col cols="1">
-          <div>IN</div>
-          <div>10</div>
+          <div style="font-size: 20px">IN</div>
+          <div style="font-size: 40px">{{ data.totalIn ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div>Out</div>
-          <div>10</div>
+          <div style="font-size: 20px">Out</div>
+          <div style="font-size: 40px">{{ data.totalOut ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div>Present</div>
-          <div>10</div>
+          <div style="font-size: 20px">Present</div>
+          <div style="font-size: 40px">{{ data.presentCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div>Absent</div>
-          <div>10</div>
+          <div style="font-size: 20px">Absent</div>
+          <div style="font-size: 40px">{{ data.absentCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div>Holiday</div>
-          <div>10</div>
+          <div style="font-size: 20px">Holiday</div>
+          <div style="font-size: 40px">{{ data.holidayCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div>Leave</div>
-          <div>10</div>
+          <div style="font-size: 20px">Leave</div>
+          <div style="font-size: 40px">{{ data.leaveCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div>Vacation</div>
-          <div>10</div>
+          <div style="font-size: 20px">Vacation</div>
+          <div style="font-size: 40px">{{ data.vaccationCount ?? "---" }}</div>
         </v-col>
         <v-col cols="4">
           <div>Manager On Duty</div>
@@ -53,20 +53,18 @@ export default {
       from_menu: false,
       topMenu: 0,
       devicesList: [],
+      data: {},
     };
   },
   watch: {},
   mounted() {},
   async created() {
-    this.branchList = await this.$store.dispatch("fetchDropDowns", {
-      key: "branchList",
-      endpoint: "branch-list",
-      refresh: true,
-    });
-
-    const today = new Date();
-
-    this.from_date = today.toISOString().slice(0, 10);
+    if (this.$store.state.dashboard.customerDashboardEmployeeData)
+      this.data = this.$store.state.dashboard.customerDashboardEmployeeData;
+    setInterval(() => {
+      if (this.$store.state.dashboard.customerDashboardEmployeeData)
+        this.data = this.$store.state.dashboard.customerDashboardEmployeeData;
+    }, 5000);
   },
   // watch: {
   //   overlay(val) {

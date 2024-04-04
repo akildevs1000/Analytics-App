@@ -9,13 +9,13 @@
                 ><span>Live IN</span>
               </v-col>
               <v-col cols="8" style="font-size: 60px; color: #c55a11">
-                <span>1000</span>
+                <span>{{ data.live_total_count ?? "---" }}</span>
               </v-col>
             </v-row>
             <v-row
               style="
                 vertical-align: bottom;
-                font-size: 30px;
+                font-size: 40px;
                 font-weight: 300;
                 color: #c55a11;
               "
@@ -28,8 +28,15 @@
                       style="width: 25px"
                     />
                   </span>
-                  <span style="margin: auto; padding: 0px; margin-left: 0px"
-                    >1111
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      padding-left: 5px;
+                      margin-top: -3px;
+                    "
+                    >{{ data.live_male_count ?? "---" }}
                   </span>
                 </span>
               </v-col>
@@ -41,8 +48,15 @@
                       style="width: 25px"
                     />
                   </span>
-                  <span style="margin: auto; padding: 0px; margin-left: 0px"
-                    >1111
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      padding-left: 5px;
+                      margin-top: -3px;
+                    "
+                    >{{ data.live_female_count ?? "---" }}
                   </span>
                 </span>
               </v-col>
@@ -61,8 +75,10 @@
                       padding: 0px;
                       margin-left: 0px;
                       padding-top: 4px;
+                      padding-left: 5px;
+                      margin-top: -3px;
                     "
-                    >1111</span
+                    >{{ data.live_child_count ?? "---" }}</span
                   >
                 </span>
               </v-col>
@@ -78,13 +94,13 @@
                 ><span>Out</span>
               </v-col>
               <v-col cols="8" style="font-size: 60px; color: #c55a11">
-                <span>1000</span>
+                <span>{{ data.out_total_count ?? "---" }}</span>
               </v-col>
             </v-row>
             <v-row
               style="
                 vertical-align: bottom;
-                font-size: 30px;
+                font-size: 40px;
                 font-weight: 300;
                 color: #c55a11;
               "
@@ -97,8 +113,15 @@
                       style="width: 25px"
                     />
                   </span>
-                  <span style="margin: auto; padding: 0px; margin-left: 0px"
-                    >1111</span
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      padding-left: 5px;
+                      margin-top: -3px;
+                    "
+                    >{{ data.out_male_count ?? "---" }}</span
                   >
                 </span>
               </v-col>
@@ -110,8 +133,15 @@
                       style="width: 25px"
                     />
                   </span>
-                  <span style="margin: auto; padding: 0px; margin-left: 0px"
-                    >1111
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      padding-left: 5px;
+                      margin-top: -3px;
+                    "
+                    >{{ data.out_female_count ?? "---" }}
                   </span>
                 </span>
               </v-col>
@@ -130,8 +160,11 @@
                       padding: 0px;
                       margin-left: 0px;
                       padding-top: 4px;
+                      padding-left: 5px;
+
+                      margin-top: -3px;
                     "
-                    >1111</span
+                    >{{ data.out_child_count ?? "---" }}</span
                   >
                 </span>
               </v-col>
@@ -164,7 +197,7 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >1111</span
+                    >{{ data.total_footfall_count ?? "---" }}</span
                   >
                 </span>
               </v-col>
@@ -185,7 +218,8 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >20% vs Yesterday</span
+                    >{{ data.total_footfall_yesterday_percentage ?? "---" }}% vs
+                    Yesterday</span
                   >
                 </span>
               </v-col>
@@ -222,7 +256,7 @@
                       font-weight: 300;
                       font-size: 50px;
                     "
-                    >50%</span
+                    >{{ data.room_occupancy ?? "---" }}%</span
                   >
                 </span>
               </v-col>
@@ -243,7 +277,8 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >20% vs Yesterday</span
+                    >{{ data.room_occupancy_before1day_percentage ?? "---" }}%
+                    vs Yesterday</span
                   >
                 </span>
               </v-col>
@@ -280,7 +315,11 @@
                       font-weight: 300;
                       font-size: 50px;
                     "
-                    >00:45
+                    >{{
+                      data.avg_time_spent
+                        ? $dateFormat.minutesToHHMM(data.avg_time_spent)
+                        : "---"
+                    }}
                   </span>
                 </span>
                 <span style="font-size: 25px"> min</span>
@@ -302,7 +341,11 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >01:15</span
+                    >{{
+                      data.avg_time_spent
+                        ? $dateFormat.minutesToHHMM(data.max_time_spent)
+                        : "---"
+                    }}</span
                   >
                 </span>
               </v-col>
@@ -321,7 +364,11 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >01:15</span
+                    >{{
+                      data.avg_time_spent
+                        ? $dateFormat.minutesToHHMM(data.min_time_spent)
+                        : "---"
+                    }}</span
                   >
                 </span>
               </v-col>
@@ -345,20 +392,18 @@ export default {
       from_menu: false,
       topMenu: 0,
       devicesList: [],
+      data: {},
     };
   },
   watch: {},
   mounted() {},
-  async created() {
-    this.branchList = await this.$store.dispatch("fetchDropDowns", {
-      key: "branchList",
-      endpoint: "branch-list",
-      refresh: true,
-    });
-
-    const today = new Date();
-
-    this.from_date = today.toISOString().slice(0, 10);
+  created() {
+    if (this.$store.state.dashboard.customerDashboardData)
+      this.data = this.$store.state.dashboard.customerDashboardData;
+    setInterval(() => {
+      if (this.$store.state.dashboard.customerDashboardData)
+        this.data = this.$store.state.dashboard.customerDashboardData;
+    }, 5000);
   },
   // watch: {
   //   overlay(val) {
