@@ -10,9 +10,14 @@ class CustomerReport extends Model
     use HasFactory;
 
     protected $guarded = [];
+
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+    public function branch_for_stats_only()
+    {
+        return $this->belongsTo(CompanyBranch::class, "br_id");
     }
     public function in_log()
     {

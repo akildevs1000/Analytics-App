@@ -10,3 +10,4 @@ Route::apiResource('customer', CustomerController::class);
 Route::apiResource('customer-report', CustomerReportController::class);
 Route::get('customer-report-print', [CustomerReportController::class, "print"]);
 Route::get('customer-report-download', [CustomerReportController::class, "download"]);
+Route::get('customer-stats-report', [CustomerReportController::class, "stats"]);

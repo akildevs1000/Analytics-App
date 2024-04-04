@@ -288,6 +288,13 @@
     "module": "customers"
   },
   {
+    "icon": "mdi-chart-bar",
+    "title": "Stats Report",
+    "to": "/customer_stats_report",
+    "menu": "community",
+    "module": "customers"
+  },
+  {
     "icon": "mdi-comment-alert",
     "title": "Requests",
     "to": "/visitor/requests",

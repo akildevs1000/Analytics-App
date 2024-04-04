@@ -36,4 +36,9 @@ class Customer extends Model
         if (!$value) return null;
         return asset('customer/profile_picture/' . $value);
     }
+
+    public function getTypeAttribute($value)
+    {
+        return strtoupper($value);
+    }
 }

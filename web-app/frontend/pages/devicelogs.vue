@@ -90,7 +90,6 @@
               :items="[
                 { name: `Select All`, id: `` },
                 { name: `CHILD`, id: `CHILD` },
-                { name: `TEENAGE`, id: `TEENAGE` },
                 { name: `YOUNGER`, id: `YOUNGER` },
                 { name: `ADULT`, id: `ADULT` },
                 { name: `SENIOR`, id: `SENIOR` },
@@ -215,31 +214,15 @@
         :height="tableHeight"
       >
         <template v-slot:item.user="{ item, index }">
-          <v-row no-gutters v-if="item.customer">
-            <v-col
-              style="
-                padding: 5px;
-                padding-left: 0px;
-                width: 50px;
-                max-width: 50px;
-              "
-            >
-              <v-img
-                style="
-                  border-radius: 50%;
-                  height: auto;
-                  width: 50px;
-                  max-width: 50px;
-                "
-                :src="
-                  item.customer && item.customer.profile_picture
-                    ? item.customer.profile_picture
-                    : '/no-profile-image.jpg'
-                "
+          <v-row no-gutters v-if="item.customer" class="pa-1">
+            <v-col cols="2" class="mr-4">
+              <v-avatar
+                v-if="item && item.customer && item.customer.profile_picture"
               >
-              </v-img>
+                <v-img :src="item?.customer?.profile_picture || '/no-profile-image.jpg'"> </v-img>
+              </v-avatar>
             </v-col>
-            <v-col style="padding: 10px">
+            <v-col class="pt-1">
               <strong v-if="item.customer">
                 {{ item.customer.full_name }}
               </strong>
@@ -250,30 +233,19 @@
             </v-col>
           </v-row>
           <v-row no-gutters v-else>
-            <v-col
-              style="
-                padding: 5px;
-                padding-left: 0px;
-                width: 50px;
-                max-width: 50px;
-              "
-            >
-              <v-img
-                style="
-                  border-radius: 50%;
-                  height: auto;
-                  width: 50px;
-                  max-width: 50px;
-                "
-                :src="
-                  item.employee && item.employee.profile_picture
-                    ? item.employee.profile_picture
-                    : '/no-profile-image.jpg'
-                "
-              >
-              </v-img>
+            <v-col class="mr-4">
+              <v-avatar>
+                <v-img
+                  :src="
+                    item.employee && item.employee.profile_picture
+                      ? item.employee.profile_picture
+                      : '/no-profile-image.jpg'
+                  "
+                >
+                </v-img>
+              </v-avatar>
             </v-col>
-            <v-col style="padding: 10px">
+            <v-col class="pt-1">
               <strong>
                 {{ item.employee ? item.employee.first_name : "---" }}
                 {{ item.employee ? item.employee.last_name : "---" }}</strong

@@ -21,93 +21,6 @@
             ></v-select>
           </v-col>
           <v-col cols="2">
-            <v-autocomplete
-              label="Customer"
-              density="comfortable"
-              outlined
-              dense
-              v-model="payload.UserID"
-              x-small
-              :items="[
-                { system_user_id: ``, full_name: `Select All` },
-                ...employees,
-              ]"
-              item-value="system_user_id"
-              item-text="full_name"
-              :hide-details="true"
-            ></v-autocomplete>
-          </v-col>
-          <v-col cols="1">
-            <v-select
-              label="Customer Type"
-              outlined
-              dense
-              v-model="payload.type"
-              x-small
-              :items="[
-                { id: ``, name: `Select All` },
-                { id: `vip`, name: `VIP` },
-                { id: `normal`, name: `NORMAL` },
-              ]"
-              item-value="id"
-              item-text="name"
-              :hide-details="true"
-            ></v-select>
-          </v-col>
-          <v-col cols="1">
-            <v-select
-              label="Gender"
-              outlined
-              dense
-              v-model="payload.Gender"
-              x-small
-              :items="[
-                { id: ``, name: `Select All` },
-                { id: `Male`, name: `Male` },
-                { id: `Female`, name: `Female` },
-              ]"
-              item-value="id"
-              item-text="name"
-              :hide-details="true"
-            ></v-select>
-          </v-col>
-          <v-col cols="1">
-            <v-select
-              label="Age Group"
-              outlined
-              dense
-              v-model="payload.age_category"
-              x-small
-              item-text="name"
-              item-value="id"
-              :items="[
-                { name: `Select All`, id: `` },
-                { name: `CHILD`, id: `CHILD` },
-                { name: `YOUNGER`, id: `YOUNGER` },
-                { name: `ADULT`, id: `ADULT` },
-                { name: `SENIOR`, id: `SENIOR` },
-              ]"
-              :hide-details="true"
-            ></v-select>
-          </v-col>
-          <v-col cols="1">
-            <v-select
-              label="Status"
-              outlined
-              dense
-              v-model="payload.status"
-              x-small
-              :items="[
-                { id: ``, name: `Select All` },
-                { id: `in`, name: `In` },
-                { id: `out`, name: `Out` },
-              ]"
-              item-value="id"
-              item-text="name"
-              :hide-details="true"
-            ></v-select>
-          </v-col>
-          <v-col cols="2">
             <CustomFilter
               @filter-attr="filterAttr"
               :defaultFilterType="1"
@@ -187,10 +100,10 @@
               {{ item.date }} {{ item.time }}
             </template>
 
-            <template v-slot:item.total_hrs="{ item, index }">
+            <template v-slot:item.avg_total_hours="{ item, index }">
               {{
-                item.total_hrs
-                  ? $dateFormat.minutesToHHMM(item.total_hrs)
+                item.avg_total_hours
+                  ? $dateFormat.minutesToHHMM(parseInt(item.avg_total_hours))
                   : "---"
               }}
             </template>
@@ -282,12 +195,10 @@ export default {
     date: null,
     menu: false,
     options: {},
-    date: null,
-    menu: false,
     loading: false,
     time_menu: false,
     Model: "Attendance Reports",
-    endpoint: "customer-report",
+    endpoint: "customer-stats-report",
     search: "",
     snackbar: false,
     add_manual_log: false,
@@ -302,7 +213,6 @@ export default {
     DateRange: true,
     devices: [],
 
-    loading: false,
     total: 0,
 
     payload: {
@@ -327,84 +237,89 @@ export default {
     report_template: "Template1",
     headers: [
       {
-        text: "Customer",
+        text: "Date",
         align: "left",
         sortable: true,
-        key: "customer",
-        value: "customer",
-        width: "300px",
+        key: "date",
+        value: "date",
       },
       {
-        text: "Age",
+        text: "Avg Hrs",
         align: "left",
-        sortable: false,
-        key: "Age",
-        value: "in_log.Age",
+        sortable: true,
+        key: "avg_total_hours",
+        value: "avg_total_hours",
       },
       {
-        text: "Age Group",
+        text: "Male Count",
         align: "left",
-        sortable: false,
-        key: "age_category",
-        value: "in_log.age_category",
+        sortable: true,
+        key: "male_count",
+        value: "male_count",
       },
       {
-        text: "Gender",
+        text: "Female Count",
         align: "left",
-        sortable: false,
-        key: "Gender",
-        value: "in_log.Gender",
+        sortable: true,
+        key: "female_count",
+        value: "female_count",
       },
       {
-        text: "In DateTime",
+        text: "Child Count",
         align: "left",
-        sortable: false,
-        key: "in",
-        value: "in_log.LogTime",
-      },
-      {
-        text: "Out DateTime",
-        align: "left",
-        sortable: false,
-        key: "out",
-        value: "out_log.LogTime",
+        sortable: true,
+        key: "child_count",
+        value: "child_count",
       },
 
       {
-        text: "In Device",
-        align: "left",
-        sortable: false,
-        key: "in",
-        value: "in_log.device.name",
-      },
-      {
-        text: "Out Device",
-        align: "left",
-        sortable: false,
-        key: "out",
-        value: "out_log.device.name",
-      },
-
-      {
-        text: "Total Hrs",
+        text: "Younger count",
         align: "left",
         sortable: true,
-        key: "total_hrs",
-        value: "total_hrs",
+        key: "younger_count",
+        value: "younger_count",
       },
       {
-        text: "Status",
-        align: "left",
-        sortable: false,
-        key: "status",
-        value: "status",
-      },
-      {
-        text: "Customer Type",
+        text: "Adult Count",
         align: "left",
         sortable: true,
-        key: "customer.type",
-        value: "customer.type",
+        key: "adult_count",
+        value: "adult_count",
+      },
+      {
+        text: "Senior Count",
+        align: "left",
+        sortable: true,
+        key: "senior_count",
+        value: "senior_count",
+      },
+      {
+        text: "VIP Customers",
+        align: "left",
+        sortable: true,
+        key: "vip_customer_count",
+        value: "vip_customer_count",
+      },
+      {
+        text: "Normal Customers",
+        align: "left",
+        sortable: true,
+        key: "normal_customer_count",
+        value: "normal_customer_count",
+      },
+      {
+        text: "Total In",
+        align: "left",
+        sortable: true,
+        key: "in_count",
+        value: "in_count",
+      },
+      {
+        text: "Total Out",
+        align: "left",
+        sortable: true,
+        key: "out_count",
+        value: "out_count",
       },
     ],
     max_date: null,
@@ -434,7 +349,7 @@ export default {
         align: "left",
         sortable: true,
         key: "branch_id", //sorting
-        value: "customer.branch.branch_name", //edit purpose
+        value: "branch_for_stats_only.branch_name", //edit purpose
 
         filterable: true,
         filterSpecial: true,
@@ -506,46 +421,7 @@ export default {
         this.payload.from_date = `${y}-${formattedMonth}-01`;
       }
     },
-
-    setThirtyDays(selected_date) {
-      const date = new Date(selected_date);
-
-      date.setDate(date.getDate() + 29);
-
-      let datetime = new Date(date);
-
-      let d = datetime.getDate();
-      d = d < "10" ? "0" + d : d;
-      let m = datetime.getMonth() + 1;
-      m = m < 10 ? "0" + m : m;
-      let y = datetime.getFullYear();
-
-      this.max_date = `${y}-${m}-${d}`;
-      this.payload.to_date = `${y}-${m}-${d}`;
-    },
-
-    getFirstAndLastDay() {
-      const currentDate = new Date();
-      const day = currentDate.getDate();
-      const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
-      const year = currentDate.getFullYear();
-      const last = new Date(year, month, 0)
-        .getDate()
-        .toString()
-        .padStart(2, "0");
-
-      let firstDay = `${year}-${month}-0${1}`;
-
-      let lastDayFirst = last > 9 ? `${last}` : `0${last}`;
-
-      let lastDay = `${year}-${month}-${lastDayFirst}`;
-
-      return [firstDay, lastDay];
-    },
-
-    caps(str) {
-      return str.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-    },
+    
     can(per) {
       return this.$pagePermission.can(per, this);
     },

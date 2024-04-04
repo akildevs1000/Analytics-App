@@ -259,6 +259,7 @@ class Controller extends BaseController
     public function getTotalHrsMins($first, $last)
     {
         $diff = abs(strtotime($last) - strtotime($first));
+        return floor($diff / 60); // Convert seconds to minutes
 
         $h = floor($diff / 3600);
         $m = floor(($diff % 3600) / 60);
