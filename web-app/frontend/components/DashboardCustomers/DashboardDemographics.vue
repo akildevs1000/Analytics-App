@@ -229,7 +229,7 @@
                       <span style="font-size: 14px">12%</span>
                     </div>
                     <div style="font-size: 12px">Female</div>
-                    <div style="font-size: 10px; color: #a6a6a6">15 YEARS</div>
+                    <div style="font-size: 10px; color: #a6a6a6"><15 YEARS</div>
                   </span>
                 </v-col>
               </v-row>
@@ -243,7 +243,7 @@
                       <span style="font-size: 14px">12%</span>
                     </div>
                     <div style="font-size: 12px">Male</div>
-                    <div style="font-size: 10px; color: #a6a6a6">15 YEARS</div>
+                    <div style="font-size: 10px; color: #a6a6a6"><15 YEARS</div>
                   </span>
                 </v-col>
               </v-row>

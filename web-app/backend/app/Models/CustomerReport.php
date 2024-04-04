@@ -10,7 +10,10 @@ class CustomerReport extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
     public function in_log()
     {
         return $this->belongsTo(AttendanceLog::class, "in_id")->with("device");

@@ -185,7 +185,7 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >20% Vs Yesterday</span
+                    >20% vs Yesterday</span
                   >
                 </span>
               </v-col>
@@ -243,7 +243,7 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >20% Vs Yesterday</span
+                    >20% vs Yesterday</span
                   >
                 </span>
               </v-col>
