@@ -120,6 +120,45 @@ export default ({ app }, inject) => {
       // console.log(`Minutes: ${minutes}`);
       return `${hour}:${minutes}`;
     },
+    //Output: e.g., 02-04-2024, Monday
+
+    format_date_with_dayname: (inputdate) => {
+      // Create a new Date object for today's date
+      var today = new Date(inputdate);
+
+      //console.log("today", today);
+
+      // Get the day, month, year, and day of the week
+      var day = today.getDate();
+      var month = today.getMonth() + 1; // Month is zero-based, so add 1
+      var year = today.getFullYear();
+      var dayOfWeek = today.getDay(); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+
+      //console.log("datodayyOfWeek", dayOfWeek);
+
+      // Ensure day and month are formatted with leading zeros if needed
+      day = (day < 10 ? "0" : "") + day;
+      month = (month < 10 ? "0" : "") + month;
+
+      // Array to map day of the week number to its name
+      var daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      // Get the name of the day of the week
+      var dayName = daysOfWeek[dayOfWeek];
+
+      // Construct the desired date format
+      var formattedDate = day + "-" + month + "-" + year + ", " + dayName;
+      return formattedDate;
+      //console.log(formattedDate); // Output: e.g., 02-04-2024, Monday
+    },
     format_month_name_year: (inputdate) => {
       // Create a Date object with the date "2023-09-13"  Output: "23-09-13"
       const date = new Date(inputdate);

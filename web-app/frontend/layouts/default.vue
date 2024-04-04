@@ -110,7 +110,7 @@
       app
       :style="$nuxt.$route.name == 'index' ? 'z-index: 100000' : ''"
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" style="color: #fff" />
       <span
         class="text-overflow"
         style="cursor: pointer"
@@ -152,7 +152,37 @@
       </span>
 
       <v-spacer></v-spacer>
-
+      <span style="font-size: 30px; color: #fff; padding-right: 75px">
+        <div style="vertical-align: middle; margin: auto; padding: 0px">
+          <!-- <v-icon color="white" size="35" style="color: #fff"
+            >mdi-clock-outline</v-icon
+          > -->
+          <span style="width: 70px"
+            ><img
+              src="../static/icons/clock.png"
+              style="width: 60px; padding-top: 10px"
+          /></span>
+          <span
+            style="
+              font-size: 40px;
+              color: #fff;
+              font-weight: 400;
+              vertical-align: super;
+            "
+          >
+            {{ currentTime }}</span
+          >
+          <span
+            style="
+              font-size: 20px;
+              font-weight: 200;
+              color: #fff;
+              vertical-align: super;
+            "
+            >{{ todayDate }}</span
+          >
+        </div>
+      </span>
       <v-menu
         nudge-bottom="50"
         transition="scale-transition"
@@ -161,10 +191,11 @@
         left
         min-width="200"
         nudge-left="20"
+        style="z-index: 9999"
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon color="red" v-bind="attrs" v-on="on">
-            <v-avatar size="35" style="border: 1px solid #6946dd">
+            <v-avatar size="35" style="border: 1px solid #fff">
               <v-img class="company_logo" :src="getLogo"></v-img>
             </v-avatar>
           </v-btn>
@@ -230,7 +261,7 @@
         plan
         @click="goToSettings()"
         class="mr-3"
-        ><v-icon class="violet--text" style="text-align: center"
+        ><v-icon class="white--text" style="text-align: center"
           >mdi-settings</v-icon
         ></v-btn
       >
@@ -252,7 +283,7 @@
               "
               style="top: 10px; left: -19px"
             >
-              <v-icon style="top: -10px; left: 10px" class="violet--text"
+              <v-icon style="top: -10px; left: 10px" class="white--text"
                 >mdi mdi-bell-ring</v-icon
               >
             </v-badge>
@@ -413,7 +444,13 @@
 
     <v-main
       class="main_bg"
-      :style="miniVariant ? 'padding-left: 60px;' : 'padding-left: 140px;'"
+      :style="
+        miniVariant && drawer
+          ? 'padding-left: 60px;'
+          : !drawer
+          ? 'padding-left: 10px;'
+          : 'padding-left: 140px;'
+      "
     >
       <v-container style="max-width: 100%">
         <nuxt />
@@ -562,6 +599,8 @@ import employee_top_menu from "../menus/employee_modules_top.json";
 export default {
   data() {
     return {
+      currentTime: "00:00:00",
+      todayDate: "---",
       notificationsMenuItems: [
         {
           title: "Leaves Pending (0)",
@@ -681,7 +720,7 @@ export default {
       clipped: true,
 
       miniVariant: true,
-      title: "MyTime2Cloud",
+      title: "Peoples Count - Application",
       socket: null,
       logout_btn: {
         icon: "mdi-logout",
@@ -702,6 +741,24 @@ export default {
     this.setSubLeftMenuItems("dashboard", "/dashboard2", false);
     this.logo_src = require("@/static/logo22.png");
     this.pendingNotificationsCount = 0;
+
+    setInterval(() => {
+      const now = new Date();
+      // Get the day, month, year, and day of the week
+      var day = now.getDate();
+      var month = now.getMonth() + 1; // Month is zero-based, so add 1
+      var year = now.getFullYear();
+
+      day = (day < 10 ? "0" : "") + day;
+      month = (month < 10 ? "0" : "") + month;
+      const formattedDateTime = month + "-" + day + "-" + year;
+
+      this.currentTime = now.toLocaleTimeString([], { hour12: false });
+      try {
+        this.todayDate =
+          this.$dateFormat.format_date_with_dayname(formattedDateTime);
+      } catch (e) {}
+    }, 1000);
   },
 
   mounted() {
@@ -720,7 +777,7 @@ export default {
     //this.company_menus = [];
 
     let menu_name = this.$route.name;
-    let bgColor = "violet";
+    let bgColor = "white";
     let loadSelectedMenu = "";
 
     menu_name = menu_name.replaceAll("-", "/");
@@ -759,6 +816,7 @@ export default {
   watch: {},
   computed: {
     changeColor() {
+      return "#222a35"; //background color
       return "#ecf0f4"; //this.$store.state.color;
     },
 
@@ -854,11 +912,9 @@ export default {
       } catch (e) {}
     },
     handleActivity() {
-      console.log("handleActivity");
       this.resetTimer();
     },
     resetTimer() {
-      console.log("resetTimer");
       // Time in milliseconds after which the user is considered inactive
       const INACTIVITY_TIME = 1000 * 60 * 30; //30 minutes
       clearTimeout(this.inactivityTimeout);
@@ -953,7 +1009,7 @@ export default {
         // if (this.pendingNotificationsCount > 0) {
         //   //console.log("this.$config", this.$config);
         //   document.title =
-        //     "Mytime2Cloud " +
+        //     "Peoples Count - Application " +
         //     " - Notifications Pending : " +
         //     this.pendingNotificationsCount;
         // }
@@ -1005,7 +1061,7 @@ export default {
     setSubLeftMenuItems(menu_name, page, redirect = true) {
       this.topMenu_Selected = menu_name;
 
-      let bgColor = "violet";
+      let bgColor = "white";
       this.setMenus();
 
       // Check if menu_name exists in menuProperties
@@ -1221,7 +1277,7 @@ header,
 header button,
 header a,
 header i {
-  color: black !important;
+  color: rgb(165, 163, 163) !important;
 }
 
 .theme--dark.v-bottom-navigation .v-btn:not(.v-btn--active) {
@@ -1693,6 +1749,16 @@ body {
 
 .no-border:before {
   border-color: #fff !important;
+}
+</style>
+<style>
+.v-toolbar__content .mdi-menu {
+  color: #fff !important;
+}
+
+.theme--dark.v-bottom-navigation .v-btn--active {
+  background: rgb(105, 70, 221);
+  color: #fff !important;
 }
 </style>
 
