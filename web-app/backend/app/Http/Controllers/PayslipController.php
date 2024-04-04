@@ -293,7 +293,7 @@ class PayslipController extends Controller
             ->whereIn('status', ['P', 'A', 'M', 'O'])
             ->get();
 
-        $Payroll->present = $attendances->whereIn('status', 'P')->count();
+        $Payroll->present = $attendances->where('status', 'P')->count();
         $Payroll->absent = $attendances->where('status', 'A')->count();
         $Payroll->missing = $attendances->where('status', 'M')->count();
         $Payroll->off = $attendances->where('status', 'O')->count();
