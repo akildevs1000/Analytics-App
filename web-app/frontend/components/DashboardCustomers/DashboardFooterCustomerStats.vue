@@ -5,11 +5,11 @@
         <v-col cols="4">
           <v-row>
             <v-col cols="12" class="pb-0">
-              <span style="display: flex; float: right">
+              <span>
                 <span>
                   <img
                     src="../../static/icons/customer_vip.png"
-                    style="width: 60px; padding-top: 5px"
+                    style="width: 40px; padding-top: 5px"
                   />
                 </span>
                 <span
@@ -17,9 +17,10 @@
                     margin: auto;
                     padding: 0px;
                     margin-left: 0px;
-                    font-size: 40px;
+                    font-size: 50px;
                   "
-                  >1111
+                >
+                  {{ data.vip_customer_count ?? "---" }}
                 </span>
               </span>
             </v-col>
@@ -31,11 +32,11 @@
         <v-col cols="4">
           <v-row>
             <v-col cols="12" class="pb-0">
-              <span style="display: flex; float: right">
+              <span>
                 <span>
                   <img
                     src="../../static/icons/customer_repeated.png"
-                    style="width: 60px"
+                    style="width: 40px"
                   />
                 </span>
                 <span
@@ -43,9 +44,9 @@
                     margin: auto;
                     padding: 0px;
                     margin-left: 0px;
-                    font-size: 40px;
+                    font-size: 50px;
                   "
-                  >1111
+                  >{{ data.repeated_customer_count ?? "---" }}
                 </span>
               </span>
             </v-col>
@@ -57,11 +58,11 @@
         <v-col cols="4">
           <v-row>
             <v-col cols="12" class="pb-0">
-              <span style="display: flex; float: right">
+              <span>
                 <span>
                   <img
                     src="../../static/icons/customer_blocked.png"
-                    style="width: 60px"
+                    style="width: 40px"
                   />
                 </span>
                 <span
@@ -69,9 +70,9 @@
                     margin: auto;
                     padding: 0px;
                     margin-left: 0px;
-                    font-size: 40px;
+                    font-size: 50px;
                   "
-                  >1111
+                  >{{ data.blocked_customer_count ?? "---" }}
                 </span>
               </span>
             </v-col>
@@ -97,20 +98,18 @@ export default {
       from_menu: false,
       topMenu: 0,
       devicesList: [],
+      data: {},
     };
   },
   watch: {},
   mounted() {},
-  async created() {
-    this.branchList = await this.$store.dispatch("fetchDropDowns", {
-      key: "branchList",
-      endpoint: "branch-list",
-      refresh: true,
-    });
-
-    const today = new Date();
-
-    this.from_date = today.toISOString().slice(0, 10);
+  created() {
+    if (this.$store.state.dashboard.customerDashboardData)
+      this.data = this.$store.state.dashboard.customerDashboardData;
+    setInterval(() => {
+      if (this.$store.state.dashboard.customerDashboardData)
+        this.data = this.$store.state.dashboard.customerDashboardData;
+    }, 5000);
   },
   // watch: {
   //   overlay(val) {

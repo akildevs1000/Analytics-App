@@ -26,6 +26,6 @@ class CustomerReport extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'user_id', 'system_user_id')->with("branch");
+        return $this->belongsTo(Customer::class, 'user_id', 'system_user_id')->with(["recent_log", "branch"]);
     }
 }

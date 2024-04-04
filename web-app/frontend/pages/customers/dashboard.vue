@@ -95,9 +95,7 @@
         <v-row>
           <v-col cols="4" class="pl-0">
             <v-card class="py-2" style="width: 100%; height: 130px">
-              <div class="pl-3" style="font-size: 18px">
-                Customers ( Today )
-              </div>
+              <div class="pl-3" style="font-size: 18px">Customers</div>
               <DashboardFooterCustomerStats />
             </v-card>
           </v-col>
@@ -164,7 +162,7 @@ export default {
         this.device_serial_number = this.$store.state.deviceList[0].device_id;
         //this.getDataFromApi();
       }
-
+      this.getDataFromApi();
       // await this.$store.dispatch("fetchDropDowns", {
       //   key: "employeeList",
       //   endpoint: "employee-list",
@@ -178,7 +176,10 @@ export default {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-    //this.getDataFromApi(1);
+    this.getDataFromApi(1);
+    setInterval(() => {
+      this.getDataFromApi(1);
+    }, 1000 * 10);
   },
   // watch: {
   //   overlay(val) {
@@ -198,9 +199,40 @@ export default {
         // this.key++;
         // this.keyChart2++;
 
-        //this.getDataFromApi(1);
+        this.getDataFromApi(1);
         //console.log(this.device_serial_number, " this.device_serial_number");
       } catch (e) {}
+    },
+
+    getDataFromApi(repeat) {
+      let options = {
+        params: {
+          per_page: 1000,
+          company_id: this.$auth.user.company_id,
+
+          date: this.from_date,
+        },
+      };
+      this.$axios.get(`/dashboard-statistics`, options).then(({ data }) => {
+        this.$store.commit("dashboard/customerDashboardData", data);
+      });
+
+      this.getEmployeeStats();
+    },
+
+    getDataFromApi(repeat) {
+      let options = {
+        params: {
+          per_page: 1000,
+          company_id: this.$auth.user.company_id,
+          date: this.from_date,
+        },
+      };
+      this.$axios
+        .get(`/dashbaord_attendance_count`, options)
+        .then(({ data }) => {
+          this.$store.commit("dashboard/customerDashboardEmployeeData", data);
+        });
     },
   },
 };

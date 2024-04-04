@@ -28,7 +28,7 @@ class Customer extends Model
 
     public function recent_log()
     {
-        return $this->hasOne(AttendanceLog::class, "UserID", "system_user_id");
+        return $this->hasOne(AttendanceLog::class, "UserID", "system_user_id")->orderBy('created_at', 'desc');
     }
 
     public function getProfilePictureAttribute($value)

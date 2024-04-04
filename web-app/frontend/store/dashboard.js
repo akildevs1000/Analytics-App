@@ -17,6 +17,8 @@ export const state = () => ({
   system_user_id: null,
 
   visitor_every_hour_count: null,
+  customerDashboardData: null,
+  customerDashboardEmployeeData: null,
 });
 
 export const mutations = {
@@ -30,7 +32,12 @@ export const mutations = {
   setDashboardData(state, data) {
     state.dashboardData = data;
   },
-
+  customerDashboardData(state, customerDashboardData) {
+    state.customerDashboardData = customerDashboardData;
+  },
+  customerDashboardEmployeeData(state, customerDashboardEmployeeData) {
+    state.customerDashboardEmployeeData = customerDashboardEmployeeData;
+  },
   branch_id(state, branch_id) {
     // Mutation to set 'date_from'
     state.branch_id = branch_id;
