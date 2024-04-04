@@ -104,6 +104,9 @@ class CustomerReportController extends Controller
                 return isset($record["device"]["function"]) && ($record["device"]["function"] !== "In");
             })->last();
 
+            if(!$firstLog) {
+                continue;
+            }
 
             $item = [];
 
