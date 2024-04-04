@@ -29,7 +29,7 @@ class CustomerFactory extends Factory
             'company_id' => 1, //$this->faker->numberBetween(1, 10),
             'branch_id' => 9, // Assuming nullable field
             'phone_number' => $this->faker->phoneNumber,
-            'status' => $this->faker->randomElement(['whitelisted', 'blacklisted']),
+            'status' => $this->faker->randomElement(['whitelisted', 'Blocklisted']),
         ];
     }
 }

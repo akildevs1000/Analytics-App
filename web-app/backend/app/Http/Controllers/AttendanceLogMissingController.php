@@ -44,7 +44,7 @@ class AttendanceLogMissingController  extends Controller
             19 => "Unregistered",
             20 => "Detection lock",
             23 => "Loss Card",
-            24 => "Blacklisted",
+            24 => "Blocklisted",
             25 => "Without Verification",
             26 => "No Card Verification",
             27 => "No Fingerprint"
