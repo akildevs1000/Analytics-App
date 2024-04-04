@@ -242,10 +242,9 @@ class AttendanceLogCameraController extends Controller
     {
         return match (true) {
             $age <= 10 => 'CHILD',
-            $age > 10 && $age < 18 => 'TEENAGE',
-            $age >= 18 && $age < 25 => 'YOUNGER',
+            $age > 10  && $age < 25 => 'YOUNGER',
             $age >= 25 && $age < 50 => 'ADULT',
-            $age >= 50 && $age <= 100 => 'SENIOR',
+            $age >= 50   => 'SENIOR',
             default => 'Invalid Age',
         };
     }
