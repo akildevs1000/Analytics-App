@@ -51,4 +51,4 @@ include('client_support_api.php');
 include('alarm/api_alarm.php');
 
 include 'customer.php';
-
+include 'customers/dashboard.php';
