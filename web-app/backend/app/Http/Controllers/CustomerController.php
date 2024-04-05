@@ -13,7 +13,9 @@ class CustomerController extends Controller
 {
     public function dropDown()
     {
-        return Customer::where("company_id", request("company_id"))->get();
+        return Customer::where("company_id", request("company_id"))
+            ->when(request()->filled("branch_id"), fn ($q) => $q->where("branch_id", request("branch_id")))
+            ->get();
     }
 
     public function index()

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\SDKController;
+use App\Http\Controllers\SDKControllerV1;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/setUserExpiry/{id}', [SDKController::class, 'setUserExpiry']);
@@ -14,6 +15,7 @@ Route::post('/getDevicesCountForTimezone', [SDKController::class, 'getDevicesCou
 Route::post('/{id}/WriteTimeGroup', [SDKController::class, 'processTimeGroup']);
 //Route::post('/Person/AddRange', [SDKController::class, 'PersonAddRange']);
 Route::post('/Person/AddRange/Photos', [SDKController::class, 'PersonAddRangePhotos']);
+Route::post('/Person/AddRange/Photos/V1', [SDKControllerV1::class, 'PersonAddRangePhotos']);
 Route::post('/uploadCustomersToCamera', [SDKController::class, 'uploadCustomersToCamera']);
 
 

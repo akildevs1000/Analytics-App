@@ -55,6 +55,34 @@ class DeviceCameraController extends Controller
         return  $online_devices_count;
     }
 
+    public function pushUserToCameraDeviceV1($sessionResponse, $name,  $system_user_id, $base65Image)
+    {
+        $gender  = 'Male';
+        if ($sessionResponse['status']) {
+            $sessionId = $sessionResponse['message'];
+
+
+            $postData = '<RegisterImage>
+            <FaceItem>
+            <Name>' . $name . '</Name> 
+            <CardType>0</CardType>
+            <CardNum>' . $system_user_id . '</CardNum> 
+            <Gender>Male</Gender>
+            <Overwrite>0</Overwrite>
+            <ImageContent>' . $base65Image . '</ImageContent>
+            </FaceItem>
+            </RegisterImage>';
+            $response = $this->curlPost('/ISAPI/FaceDetection/RegisterImage?ID=' . $sessionId, $postData);
+
+            $xml = simplexml_load_string($response);
+            $responseJson = json_decode(json_encode($xml));
+
+            return $responseJson->StatusCode == 200 ? $system_user_id : 0;
+        } else {
+            return $sessionResponse['message'];
+        }
+    }
+
     public function pushUserToCameraDevice($name,  $system_user_id, $base65Image)
     {
         $gender  = 'Male';
@@ -158,8 +186,7 @@ class DeviceCameraController extends Controller
             curl_setopt_array($curl, array(
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
-
-
+                CURLOPT_TIMEOUT => 10,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => $post_data,
