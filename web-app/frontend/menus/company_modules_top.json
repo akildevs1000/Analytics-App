@@ -7,6 +7,13 @@
     "module": "topmenu"
   },
   {
+    "icon": "mdi-home",
+    "title": "Customers Dashboard",
+    "to": "/statistics",
+    "menu": "statistics",
+    "module": "topmenu"
+  },
+  {
     "icon": "mdi-clipboard-text-clock",
     "title": "Employees",
     "to": "/employees",
