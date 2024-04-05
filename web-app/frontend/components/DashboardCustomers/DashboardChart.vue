@@ -325,6 +325,7 @@ export default {
         params: {
           per_page: 1000,
           company_id: this.$auth.user.company_id,
+          branch_id: this.branch_id,
           filter_duration_min: this.filterDuration
             ? this.filterDuration.split("-")[0]
             : null,
