@@ -53,26 +53,32 @@
           :server-items-length="totalRowsCount"
         >
           <template v-slot:item.customer="{ item, index }">
-            <v-row no-gutters >
+            <v-row no-gutters>
               <v-col cols="3">
                 <v-avatar size="50">
-                  <v-img :src="item && item.profile_picture || '/no-profile-image.jpg'"> </v-img>
+                  <v-img
+                    :src="
+                      (item && item.profile_picture) || '/no-profile-image.jpg'
+                    "
+                  >
+                  </v-img>
                 </v-avatar>
               </v-col>
               <v-col class="pt-2">
                 <div>
-                  <strong>
-                    {{ item.full_name }}</strong
-                  >
+                  <strong> {{ item.full_name }}</strong>
                 </div>
               </v-col>
             </v-row>
           </template>
 
           <template v-slot:item.type="{ item }">
-            <span style="text-transform: uppercase">
-              {{ item.type }}</span
-            >
+            <span style="text-transform: uppercase"> {{ item.type }}</span>
+          </template>
+
+          <template v-slot:item.camera1="{ item }">
+            <v-icon v-if="item.camera1" color="green">mdi-check</v-icon>
+            <v-icon v-else color="red">mdi-close</v-icon>
           </template>
 
           <template v-slot:item.options="{ item }">
@@ -207,6 +213,15 @@ export default {
         sortable: true,
         key: "Similarity",
         value: "recent_log.Similarity",
+        filterable: true,
+        filterSpecial: false,
+      },
+      {
+        text: "Uploaded to camera(s)",
+        align: "left",
+        sortable: true,
+        key: "camera1",
+        value: "camera1",
         filterable: true,
         filterSpecial: false,
       },

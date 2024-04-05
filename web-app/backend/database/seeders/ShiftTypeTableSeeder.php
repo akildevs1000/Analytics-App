@@ -17,8 +17,13 @@ class ShiftTypeTableSeeder extends Seeder
 
         $shiftType = [
             [
-                'name' => 'No Shift',
+                'name' => 'FILO',
                 'slug' => 'no_shift',
+
+            ],
+            [
+                'name' => 'Multi In/Out Shift',
+                'slug' => 'multi_in_out_shift',
 
             ],
             [
@@ -27,12 +32,22 @@ class ShiftTypeTableSeeder extends Seeder
 
             ],
             [
-                'name' => 'Manual Shift',
+                'name' => 'Night Shift',
+                'slug' => 'night_shift',
+
+            ],
+            [
+                'name' => 'Split Shift',
+                'slug' => 'split_shift',
+
+            ],
+            [
+                'name' => 'Single Shift',
                 'slug' => 'manual_shift',
 
             ],
-
         ];
         ShiftType::insert($shiftType);
+        // php artisan db:seed --class=ShiftTypeTableSeeder
     }
 }

@@ -13,7 +13,9 @@ class CustomerController extends Controller
 {
     public function dropDown()
     {
-        return Customer::where("company_id", request("company_id"))->get();
+        return Customer::where("company_id", request("company_id"))
+            ->when(request()->filled("branch_id"), fn ($q) => $q->where("branch_id", request("branch_id")))
+            ->get();
     }
 
     public function index()
@@ -39,7 +41,7 @@ class CustomerController extends Controller
                 $data['profile_picture'] = $this->processImage("customer/profile_picture");
             }
             $data["date"] = date("Y-m-d");
-            Customer::create($request->validated());
+            Customer::create($data);
             return $this->response("Customer has been registered", null, true);
         } catch (\Throwable $th) {
             return $this->response("Customer cannot be registered", null, false);
@@ -59,7 +61,7 @@ class CustomerController extends Controller
             if ($request->filled("profile_picture")) {
                 $data['profile_picture'] = $this->processImage("customer/profile_picture");
             }
-            $customer->update($request->validated());
+            $customer->update($data);
             return $this->response("Customer has been updated", null, true);
         } catch (\Throwable $th) {
             return $this->response("Customer cannot be update", null, false);

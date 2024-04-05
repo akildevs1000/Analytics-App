@@ -174,7 +174,7 @@
   },
 
   {
-    "icon": "mdi mdi-camera-account",
+    "icon": "mdi-camera-account",
     "title": "Photo Upload",
     "to": "/employee_photo_upload",
     "menu": "employee_photo_upload",
@@ -277,6 +277,13 @@
     "icon": "mdi-home",
     "title": "Customers",
     "to": "/customer",
+    "menu": "community",
+    "module": "customers"
+  },
+  {
+    "icon": "mdi-camera-account",
+    "title": "Customer Upload",
+    "to": "/customer/upload",
     "menu": "community",
     "module": "customers"
   },
