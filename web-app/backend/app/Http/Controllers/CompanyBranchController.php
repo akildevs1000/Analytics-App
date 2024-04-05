@@ -65,15 +65,15 @@ class CompanyBranchController extends Controller
         $data["created_date"] = date("Y-m-d");
         $data["branch_code"] = strtoupper(substr($data["branch_name"], 0, 3)) . CompanyBranch::where("company_id", $request->company_id)->orderBy("id", "desc")->value("id") ?? 0;
 
-        $company = Company::withCount('companybranches')->find($request->company_id);
-        $totalBranches = $company->companybranches_count ?? 0;
-        $max_branches = $company->max_branches ?? 0;
-        $remainingEmployee =  (int) $max_branches - (int) $totalBranches;
+        // $company = Company::withCount('companybranches')->find($request->company_id);
+        // $totalBranches = $company->companybranches_count ?? 0;
+        // $max_branches = $company->max_branches ?? 0;
+        // $remainingEmployee =  (int) $max_branches - (int) $totalBranches;
 
-        if ($remainingEmployee <= 0) {
+        // if ($remainingEmployee <= 0) {
 
-            return $this->response("Branch limit exceeded. Maximum limit is " . $max_branches, null, false);
-        }
+        //     return $this->response("Branch limit exceeded. Maximum limit is " . $max_branches, null, false);
+        // }
 
         if (isset($request->logo)) {
             $file = $request->file('logo');

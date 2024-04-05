@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("profile_picture")->default();
             $table->string("system_user_id")->default();
             $table->string("type")->default();
-            $table->date("date")->default();
+            $table->date("date");
             $table->integer('company_id')->default(0);
             $table->integer('branch_id')->default(0);
             $table->timestamps();

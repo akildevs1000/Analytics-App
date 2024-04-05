@@ -841,6 +841,7 @@ export default {
     getLogo() {
       let logosrc = "/no-image.PNG";
 
+
       if (
         this.$auth.user &&
         this.$auth.user.user_type == "company" &&
@@ -849,10 +850,7 @@ export default {
         logosrc = this.$auth.user.company.logo || "/no-image.PNG1111111";
       } else if (this.$auth.user && this.$auth.user.user_type == "master") {
         logosrc = "/no-image.PNG";
-      } else if (this.$auth.user && this.$auth.user.user_type == "employee") {
-        logosrc =
-          this.$auth.user.employee.profile_picture || "/no-profile-image.jpg";
-      } else if (this.$auth.user && this.$auth.user.user_type == "branch") {
+      }  else if (this.$auth.user && this.$auth.user.user_type == "branch") {
         logosrc = this.$auth.user.branch_logo || "/no-profile-image.jpg";
       }
 

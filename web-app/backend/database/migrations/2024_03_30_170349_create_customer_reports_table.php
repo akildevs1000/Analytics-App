@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('in_id')->default(0);
             $table->unsignedBigInteger('out_id')->default(0);
             $table->date('date')->default(now());
-            $table->date('status')->default('in');
+            $table->string('status')->default('in');
             $table->unsignedBigInteger('company_id')->default(0);
             $table->unsignedBigInteger('branch_id')->default(0);
             $table->timestamps();
