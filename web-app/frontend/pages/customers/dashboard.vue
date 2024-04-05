@@ -214,13 +214,14 @@ export default {
         },
       };
       this.$axios.get(`/dashboard-statistics`, options).then(({ data }) => {
+        console.log(data);
         this.$store.commit("dashboard/customerDashboardData", data);
       });
 
       this.getEmployeeStats();
     },
 
-    getDataFromApi(repeat) {
+    getEmployeeStats(repeat) {
       let options = {
         params: {
           per_page: 1000,

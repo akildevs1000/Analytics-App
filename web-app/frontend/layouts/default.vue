@@ -120,7 +120,7 @@
       </span>
       <v-spacer></v-spacer>
 
-      <span style="100%">
+      <span>
         <template
           v-if="
             getLoginType == 'company' ||
@@ -762,18 +762,18 @@ export default {
   },
 
   mounted() {
-    setTimeout(() => {
-      this.loadNotificationMenu();
-      this.verifyAlarmStatus();
-    }, 1000 * 10);
+    // setTimeout(() => {
+    //   this.loadNotificationMenu();
+    //   this.verifyAlarmStatus();
+    // }, 1000 * 10);
 
-    setInterval(() => {
-      this.resetTimer();
-      this.verifyAlarmStatus();
-    }, 1000 * 60 * 1);
-    setInterval(() => {
-      this.loadNotificationMenu();
-    }, 1000 * 60 * 2);
+    // setInterval(() => {
+    //   this.resetTimer();
+    //   this.verifyAlarmStatus();
+    // }, 1000 * 60 * 1);
+    // setInterval(() => {
+    //   this.loadNotificationMenu();
+    // }, 1000 * 60 * 2);
     //this.company_menus = [];
 
     let menu_name = this.$route.name;
