@@ -5,12 +5,9 @@
         <v-row style="text-align: right" justify="end">
           <v-col cols="2">
             <v-select
-              v-model="filterType"
+              @change="getDataFromApi()"
+              v-model="filterINOut"
               :items="[
-                {
-                  id: '',
-                  name: 'All',
-                },
                 {
                   id: 'in',
                   name: 'IN',
@@ -30,29 +27,34 @@
             ></v-select>
           </v-col>
 
-          <v-col cols="2">
+          <v-col cols="3">
             <v-select
-              v-model="filterType"
+              @change="getDataFromApi()"
+              v-model="filterDuration"
               :items="[
                 {
-                  id: '',
+                  id: null,
                   name: 'All',
                 },
                 {
-                  id: 5,
+                  id: '0-5',
                   name: 5,
                 },
                 {
-                  id: 10,
-                  name: '>10',
+                  id: '5-10',
+                  name: '5 to 10 ',
                 },
                 {
-                  id: 30,
-                  name: '>30',
+                  id: '10-30',
+                  name: '10 to 30 ',
                 },
                 {
-                  id: 60,
-                  name: '>60',
+                  id: '30-60',
+                  name: '30 to 60 ',
+                },
+                {
+                  id: '60-1000',
+                  name: 'Above 60 ',
                 },
               ]"
               label="Time Spent   Minutes"
@@ -66,11 +68,7 @@
           </v-col>
         </v-row>
 
-        <div
-          :id="name"
-          style="width: 100%; height: 400px"
-          :key="display_title"
-        ></div>
+        <div :id="name" style="width: 100%; height: 400px" :key="key"></div>
       </v-col>
     </v-row>
   </div>
@@ -79,15 +77,25 @@
 <script>
 // import VueApexCharts from 'vue-apexcharts'
 export default {
-  props: ["height", "branch_id", "date_from", "date_to"],
+  props: [
+    "height",
+    "branch_id",
+    "date_from",
+    "date_to",
+    "filter_device_serial_number",
+    "filter_from_date",
+  ],
   data() {
     return {
+      key: 1,
       name: "apexDashboardHour",
       filterDeviceId: null,
       devices: [],
       loading: false,
       display_title: "Alarm Events",
       filterType: "",
+      filterINOut: "in",
+      filterDuration: null,
 
       series: [
         {
@@ -120,7 +128,7 @@ export default {
             data: [],
           },
         ],
-        colors: ["#fe0000", "#14B012"],
+        colors: ["#01b0f0", "#f75b95", "#16b16d"],
         chart: {
           toolbar: {
             show: false,
@@ -178,7 +186,7 @@ export default {
             data: [],
           },
         ],
-        colors: ["#fe0000", "#14B012"],
+        colors: ["#01b0f0", "#f75b95", "#16b16d"],
         chart: {
           type: "bar",
           width: "98%",
@@ -220,10 +228,12 @@ export default {
           },
         },
       },
+
+      ApexCharts1: {},
     };
   },
   watch: {
-    async display_title() {
+    async filter_from_date() {
       await this.getDataFromApi();
     },
     async branch_id(val) {
@@ -235,10 +245,15 @@ export default {
   mounted() {
     this.chartOptions1.chart.height = this.height;
     this.chartOptions1.series = this.series;
-    // new ApexCharts(
-    //   document.querySelector("#" + this.name),
-    //   this.chartOptions
-    // ).render();
+    this.ApexCharts1 = new ApexCharts(
+      document.querySelector("#" + this.name),
+      this.chartOptions1
+    ); //.render();
+    this.ApexCharts1.render();
+
+    setInterval(() => {
+      this.getDataFromApi();
+    }, 1000 * 60 * 15);
   },
   async created() {
     // // Get today's date
@@ -254,7 +269,14 @@ export default {
     // // this.display_title =
     // //   "Attendance : " + this.date_from + " to " + this.date_to;
 
-    await this.getDataFromApi();
+    // const today = new Date();
+
+    // this.date_from = today.toISOString().slice(0, 10);
+    // this.date_to = today.toISOString().slice(0, 10);
+
+    setTimeout(() => {
+      this.getDataFromApi();
+    }, 1000 * 3);
     this.getDeviceList();
   },
 
@@ -263,6 +285,7 @@ export default {
       let options = {
         params: {
           company_id: this.$auth.user.company_id,
+          branch_id: this.branch_id,
         },
       };
       this.$axios.get(`/device_list`, options).then(({ data }) => {
@@ -290,95 +313,77 @@ export default {
       this.getDataFromApi();
     },
     async getDataFromApi() {
+      console.log(this.date_from, this.date_to);
+
       this.loading = true;
+
+      if (this.filterDuration) {
+        this.filterINOut = "in";
+      }
 
       let options = {
         params: {
           per_page: 1000,
           company_id: this.$auth.user.company_id,
-
-          date_from: this.date_from,
-          date_to: this.date_to,
+          filter_duration_min: this.filterDuration
+            ? this.filterDuration.split("-")[0]
+            : null,
+          filter_duration_max: this.filterDuration
+            ? this.filterDuration.split("-")[1]
+            : null,
+          //date_from: this.date_from,
+          //date_to: this.date_to,
+          DeviceID: this.filter_device_serial_number,
+          filter_from_date: this.filter_from_date,
         },
       };
       if (this.date_from == this.date_to) {
+        if (this.filterINOut == "out") {
+          this.$axios
+            .get(`/dashboard-get-hourly-out-data`, options)
+            .then(({ data }) => {
+              this.renderChart1(data.houry_data);
+            });
+        } else if (this.filterINOut == "in") {
+          this.$axios
+            .get(`/dashboard-get-hourly-in-data`, options)
+            .then(({ data }) => {
+              this.renderChart1(data.houry_data);
+            });
+        }
+      } else {
         this.$axios
-          .get(`/alarm_dashboard_get_hourly_data`, options)
-          .then(({ data }) => {
-            this.renderChart1(data.houry_data);
-          });
-      } else
-        this.$axios
-          .get(`/alarm_dashboard_get_monthly_data`, options)
+          .get(`/dashboard-get-hourly-in-data`, options)
           .then(({ data }) => {
             this.renderChart2(data);
           });
-
-      let data = [
-        {
-          date: "2023-12-01",
-          count: 0,
-          batteryCount: 0,
-        },
-        {
-          date: "2023-12-02",
-          count: 0,
-          batteryCount: 0,
-        },
-        {
-          date: "2023-12-03",
-          count: 0,
-          batteryCount: 0,
-        },
-        {
-          date: "2023-12-04",
-          count: 0,
-          batteryCount: 0,
-        },
-        {
-          date: "2023-12-05",
-          count: 0,
-          batteryCount: 0,
-        },
-        {
-          date: "2023-12-06",
-          count: 0,
-          batteryCount: 0,
-        },
-        {
-          date: "2023-12-07",
-          count: 0,
-          batteryCount: 0,
-        },
-        {
-          date: "2024-05-30",
-          count: 0,
-          batteryCount: 0,
-        },
-      ];
-
-      this.renderChart2(data);
+      }
     },
 
     renderChart1(data) {
+      console.log("data", data);
       let counter = 0;
+
+      let Series;
       data.forEach((item) => {
-        this.chartOptions1.series[0]["data"][counter] = parseInt(item.count);
+        this.chartOptions1.series[0]["data"][counter] = parseInt(
+          item.maleCount
+        );
 
         this.chartOptions1.series[1]["data"][counter] = parseInt(
-          item.batteryCount
+          item.femaleCount
+        );
+        this.chartOptions1.series[2]["data"][counter] = parseInt(
+          item.kidsCount
         );
 
         this.chartOptions1.xaxis.categories[counter] = item.hour;
         counter++;
       });
-      try {
-        new ApexCharts(
-          document.querySelector("#" + this.name),
-          this.chartOptions1
-        ).render();
-        this.loading = false;
-      } catch (error) {}
+
+      this.ApexCharts1.updateOptions(this.chartOptions1);
+
+      this.loading = false;
     },
     renderChart2(data) {
       try {

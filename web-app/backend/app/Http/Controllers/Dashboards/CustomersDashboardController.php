@@ -15,7 +15,228 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CustomersDashboardController extends Controller
 {
+    public function getDashboardHourlyInCount(Request $request)
+    {
 
+
+        $date = date('Y-m-d');
+        if ($request->filled("filter_from_date")) {
+            $date = $request->filter_from_date;
+        }
+        $finalarray = [];
+
+        for ($i = 0; $i < 24; $i++) {
+
+            $j = $i;
+
+            $j = $i <= 9 ? "0" . $i : $i;
+
+
+            $customerReportModel = CustomerReport::with(["in_log"])
+                ->where("company_id", $request->company_id)
+                ->when(request()->filled("branch_id"), function ($q) {
+                    $q->where('branch_id', request("branch_id"));
+                });
+            $customerReportModel->when(request()->filled("DeviceID"), function ($query) {
+                $query->where(function ($q) {
+                    $q->whereHas("in_log", function ($qu) {
+                        $qu->where('DeviceID', request("DeviceID"));
+                        $qu->where('company_id', request("company_id"));
+                    });
+                    $q->orWhereHas("out_log", function ($qu) {
+                        $qu->where('DeviceID', request("DeviceID"));
+                        $qu->where('company_id', request("company_id"));
+                    });
+                });
+            });
+
+            $customerReportModel->when(request()->filled("filter_duration_min"), function ($q) {
+                $q->where('total_hrs', '>',  (int)request("filter_duration_min"));
+            });
+            $customerReportModel->when(request()->filled("filter_duration_max"), function ($q) {
+                $q->where('total_hrs', '<', (int)request("filter_duration_max"));
+            });
+
+
+
+
+            $customerReportModel->where(function ($q) use ($date, $j) {
+                $q->whereHas("in_log", function ($qu)  use ($date, $j) {
+                    $qu->where('LogTime', '>=', $date . ' ' . $j . ':00:00');
+                    $qu->where('LogTime', '<=', $date  . ' ' . $j . ':59:59');
+                });
+            });
+
+            $customerReportTodayModel = $customerReportModel->where("date", $date);
+
+
+
+            $maleCount = $customerReportTodayModel->clone()->where(function ($q) {
+                $q->whereHas("in_log", function ($qu) {
+                    $qu->where('Gender',  "Male");
+                    $qu->where('age_category', '!=', 'CHILD');
+                });
+            })->count();
+            $femaleCount = $customerReportTodayModel->clone()->where(function ($q) {
+                $q->whereHas("in_log", function ($qu) {
+                    $qu->where('Gender',  "Female");
+                    $qu->where('age_category', '!=', 'CHILD');
+                });
+            })->count();
+
+            $kidsCount = $customerReportTodayModel->clone()->where(function ($q) {
+                $q->whereHas("in_log", function ($qu) {
+                    $qu->where('age_category',   'CHILD');
+                });
+            })->count();
+
+            $finalarray[] = [
+                "date" => $date,
+                "hour" => $i,
+                "maleCount" => $maleCount,
+                "femaleCount" => $femaleCount,
+                "kidsCount" => $kidsCount,
+
+            ];
+        }
+
+        return [
+
+            "houry_data" => $finalarray
+        ];
+
+        // $date = date('Y-m-d');
+        // if ($request->filled("from_date")) {
+        //     $date = $request->from_date;
+        // }
+        // $finalarray = [];
+
+        // for ($i = 0; $i < 24; $i++) {
+
+        //     $j = $i;
+
+        //     $j = $i <= 9 ? "0" . $i : $i;
+
+
+
+        //     $AttendanceLogModel = AttendanceLog::with(["customer"])->where("company_id", $request->company_id)
+        //         ->when(request()->filled("branch_id"), function ($q) {
+        //             $q->where('branch_id', request("branch_id"));
+        //         })
+        //         ->where('LogTime', '>=', $date . ' ' . $j . ':00:00')
+        //         ->where('LogTime', '<=', $date  . ' ' . $j . ':59:59');
+
+
+        //     $AttendanceLogModel->when(request()->filled("filter_duration"), function ($q) {
+
+        //         $q->whereHas("customer", function ($qu) {
+        //             $qu->where('total_hrs', "<=", request("filter_duration"));
+        //             $qu->where('total_hrs', request("filter_duration"));
+        //         });
+        //     });
+        //     // $AttendanceLogModel->whereHas("customer", function ($qu) {
+        //     //     $qu->where('status',  "out");
+        //     // });
+
+        //     return $AttendanceLogModel->get();
+        //     $maleCount = $AttendanceLogModel->clone()->where('Gender',  "Male")->where('age_category', '!=', 'CHILD')->distinct('UserID')->count();
+        //     $femaleCount = $AttendanceLogModel->clone()->where('Gender',  "Female")->where('age_category', '!=', 'CHILD')->distinct('UserID')->count();
+        //     $kidsCount = $AttendanceLogModel->clone()->where('age_category',  'CHILD')->distinct('UserID')->count();
+
+
+
+        //     $finalarray[] = [
+        //         "date" => $date,
+        //         "hour" => $i,
+        //         "maleCount" => $maleCount,
+        //         "femaleCount" => $femaleCount,
+        //         "kidsCount" => $kidsCount,
+        //     ];
+        // }
+
+        // return [
+
+        //     "houry_data" => $finalarray
+        // ];
+    }
+    public function getDashboardHourlyOutCount(Request $request)
+    {
+
+
+        $date = date('Y-m-d');
+        if ($request->filled("filter_from_date")) {
+            $date = $request->filter_from_date;
+        }
+        $finalarray = [];
+
+        for ($i = 0; $i < 24; $i++) {
+
+            $j = $i;
+
+            $j = $i <= 9 ? "0" . $i : $i;
+
+            $customerReportModel = CustomerReport::with(["out_log"])
+                ->where("company_id", $request->company_id)
+                ->when(request()->filled("branch_id"), function ($q) {
+                    $q->where('branch_id', request("branch_id"));
+                });
+
+            $customerReportModel->when(request()->filled("DeviceID"), function ($query) {
+                $query->where(function ($q) {
+                    $q->whereHas("in_log", function ($qu) {
+                        $qu->where('DeviceID', request("DeviceID"));
+                        $qu->where('company_id', request("company_id"));
+                    });
+                    $q->orWhereHas("out_log", function ($qu) {
+                        $qu->where('DeviceID', request("DeviceID"));
+                        $qu->where('company_id', request("company_id"));
+                    });
+                });
+            });
+
+            $customerReportModel->where(function ($q) use ($date, $j) {
+                $q->whereHas("out_log", function ($qu)  use ($date, $j) {
+                    $qu->where('LogTime', '>=', $date . ' ' . $j . ':00:00');
+                    $qu->where('LogTime', '<=', $date  . ' ' . $j . ':59:59');
+                });
+            });
+
+            $customerReportTodayModel = $customerReportModel->where("date", $date);
+
+            $maleCount = $customerReportTodayModel->clone()->where(function ($q) {
+                $q->whereHas("out_log", function ($qu) {
+                    $qu->where('Gender',  "Male");
+                    $qu->where('age_category', '!=', 'CHILD');
+                });
+            })->count();
+            $femaleCount = $customerReportTodayModel->clone()->where(function ($q) {
+                $q->whereHas("out_log", function ($qu) {
+                    $qu->where('Gender',  "Female");
+                    $qu->where('age_category', '!=', 'CHILD');
+                });
+            })->count();
+
+            $kidsCount = $customerReportTodayModel->clone()->where(function ($q) {
+                $q->whereHas("out_log", function ($qu) {
+                    $qu->where('age_category',   'CHILD');
+                });
+            })->count();
+
+            $finalarray[] = [
+                "date" => $date,
+                "hour" => $i,
+                "maleCount" => $maleCount,
+                "femaleCount" => $femaleCount,
+                "kidsCount" => $kidsCount,
+
+            ];
+        }
+
+        return [
+
+            "houry_data" => $finalarray
+        ];
+    }
 
     public function dashboardStatistics(Request $request)
     {
@@ -52,11 +273,13 @@ class CustomersDashboardController extends Controller
         $repeated_customer_count = 0;
         $blocked_customer_count = 0;
 
+        $room_occupancy_before1day_percentage = 0;
+
         $total_footfall_yesterday_percentage = 0;
 
 
         $total_company_capacity_occupancy = 10;
-        $date = $request->date;
+        $date = $request->filter_from_date;
 
 
         $AttendanceLogModel = AttendanceLog::where("company_id", $request->company_id)

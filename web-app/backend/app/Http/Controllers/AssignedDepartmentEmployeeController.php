@@ -48,7 +48,7 @@ class AssignedDepartmentEmployeeController extends Controller
             return $q->where("branch_id", $request->branch_id);
         });
         $model->whereHas("user.role", function ($q) {
-            return $q->where('name', "ILIKE", "manager");
+            return $q->where('name',   "Manager");
         });
 
         // $model->whereHas("user.role", function ($q) {

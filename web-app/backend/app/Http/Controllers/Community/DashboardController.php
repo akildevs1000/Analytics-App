@@ -51,6 +51,11 @@ class DashboardController extends Controller
     }
     public function getCounts($id = 0, $request): array
     {
+
+        $date = date("Y-m-d");
+        if ($request->filled("filter_from_date")) {
+            $date = request("filter_from_date");
+        }
         $model = Attendance::with("employee")->where('company_id', $id)
 
             ->when($request->filled("department_ids") && count($request->department_ids) > 0, function ($q) use ($request) {
@@ -62,12 +67,12 @@ class DashboardController extends Controller
                 $q->whereHas("employee", fn ($q) => $q->where("branch_id", $request->branch_id));
             })
             ->whereIn('status', ['P', 'A', 'M', 'O', 'H', 'L', 'V'])
-            ->whereDate('date', date("Y-m-d"))
+            ->whereDate('date', $date)
             ->select('status')
             ->get();
 
         $attendanceCounts = AttendanceLog::with(["employee"])->where("company_id", $id)
-            ->whereDate("LogTime", date("Y-m-d"))
+            ->whereDate("LogTime",  $date)
             ->when($request->filled("branch_id"), function ($q) use ($request) {
                 $q->whereHas("employee", fn ($q) => $q->where("branch_id", $request->branch_id));
             })

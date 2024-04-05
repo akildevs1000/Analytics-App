@@ -109,7 +109,7 @@ export default {
     setInterval(() => {
       if (this.$store.state.dashboard.customerDashboardData)
         this.data = this.$store.state.dashboard.customerDashboardData;
-    }, 5000);
+    }, 1000);
   },
   // watch: {
   //   overlay(val) {
