@@ -48,13 +48,13 @@ class CustomerReportController extends Controller
             ->selectRaw('COUNT(CASE WHEN customers.type = "normal" THEN 1 END) as normal_customer_count')
             ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in" THEN 1 END) as in_count')
             ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in" AND attendance_logs.Gender = "Male" AND attendance_logs.age_category != "CHILD" THEN 1 END) as in_male_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in"  AND attendance_logs.Gender = "Feale" AND attendance_logs.age_category != "CHILD" THEN 1 END) as in_female_count')
+            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in"  AND attendance_logs.Gender = "Female" AND attendance_logs.age_category != "CHILD" THEN 1 END) as in_female_count')
             ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in"  AND attendance_logs.age_category = "CHILD"  THEN 1 END) as in_child_count')
 
             ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out" THEN 1 END) as out_count')
 
             ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out" AND attendance_logs.Gender = "Male" AND attendance_logs.age_category != "CHILD" THEN 1 END) as out_male_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out"  AND attendance_logs.Gender = "Feale" AND attendance_logs.age_category != "CHILD" THEN 1 END) as out_female_count')
+            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out"  AND attendance_logs.Gender = "Female" AND attendance_logs.age_category != "CHILD" THEN 1 END) as out_female_count')
             ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out"  AND attendance_logs.age_category = "CHILD"  THEN 1 END) as out_child_count')
 
             ->selectRaw('(SELECT COUNT(*) 
