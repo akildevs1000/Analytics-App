@@ -37,6 +37,8 @@ class CustomerController extends Controller
     public function store(StoreRequest $request)
     {
         try {
+            $data = $request->validated();
+
             if ($request->filled("profile_picture")) {
                 $data['profile_picture'] = $this->processImage("customer/profile_picture");
             }
@@ -58,6 +60,8 @@ class CustomerController extends Controller
     public function update(UpdateRequest $request, Customer $customer)
     {
         try {
+            $data = $request->validated();
+
             if ($request->filled("profile_picture")) {
                 $data['profile_picture'] = $this->processImage("customer/profile_picture");
             }
