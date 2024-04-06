@@ -4,7 +4,7 @@
       <v-col lg="3" md="3" sm="12" xs="12">
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
-            <v-row style="height: 75px">
+            <v-row style="height: 70px">
               <v-col cols="4" style="padding-left: 25px; font-size: 18px"
                 ><span>Live IN</span>
               </v-col>
@@ -89,7 +89,7 @@
       <v-col lg="3" md="3" sm="12" xs="12">
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
-            <v-row style="height: 75px">
+            <v-row style="height: 70px">
               <v-col cols="4" style="padding-left: 25px; font-size: 18px"
                 ><span>Out</span>
               </v-col>
@@ -317,7 +317,9 @@
                     "
                     >{{
                       data.avg_time_spent
-                        ? $dateFormat.minutesToHHMM(data.avg_time_spent)
+                        ? $dateFormat.minutesToHHMM(
+                            Math.round(data.avg_time_spent)
+                          )
                         : "---"
                     }}
                   </span>
@@ -403,7 +405,7 @@ export default {
     setInterval(() => {
       if (this.$store.state.dashboard.customerDashboardData)
         this.data = this.$store.state.dashboard.customerDashboardData;
-    }, 5000);
+    }, 1000);
   },
   // watch: {
   //   overlay(val) {

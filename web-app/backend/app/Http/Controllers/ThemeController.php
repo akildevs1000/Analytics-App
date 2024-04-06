@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Models\AttendanceLog;
+use App\Models\CompanyBranch;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Theme;
@@ -45,7 +46,10 @@ class ThemeController extends Controller
     }
     public function getCounts($id = 0, $request): array
     {
-
+        $date = date("Y-m-d");
+        if ($request->filled("filter_from_date")) {
+            $date = request("filter_from_date");
+        }
 
         $model = Attendance::with("employee")->where('company_id', $id)
 
@@ -58,13 +62,13 @@ class ThemeController extends Controller
                 $q->whereHas("employee", fn ($q) => $q->where("branch_id", $request->branch_id));
             })
             ->whereIn('status', ['P', 'A', 'M', 'O', 'H', 'L', 'V'])
-            ->whereDate('date', date("Y-m-d"))
+            ->whereDate('date',  $date)
             ->select('status')
             ->get();
         $attendanceCounts = 0;
         try {
             $attendanceCounts = AttendanceLog::with(["employee"])->where("company_id", $id)
-                ->whereDate("LogTime", date("Y-m-d"))
+                ->whereDate("LogTime", $date)
                 ->when($request->filled("branch_id"), function ($q) use ($request) {
                     $q->whereHas("employee", fn ($q) => $q->where("branch_id", $request->branch_id));
                 })
@@ -96,6 +100,8 @@ class ThemeController extends Controller
             "holidayCount" => $model->where('status', 'H')->count(),
             "leaveCount" => $model->where('status', 'L')->count(),
             "vaccationCount" => $model->where('status', 'V')->count(),
+
+            "branchDetails" => $request->filled("branch_id") ? CompanyBranch::with("user.employee")->where("id", request("branch_id"))->first() : null,
         ];
     }
     public function dashboardGetCountDepartment(Request $request)

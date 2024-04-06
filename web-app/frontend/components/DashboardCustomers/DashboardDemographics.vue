@@ -248,7 +248,13 @@
                     <div style="font-size: 30px">
                       {{ data.child_percentage ?? "---" }}%
                     </div>
-                    <div style="font-size: 12px; text-align: left">
+                    <div
+                      style="
+                        font-size: 12px;
+                        text-align: left;
+                        margin-top: -10px;
+                      "
+                    >
                       <img
                         v-if="data.child_percentage_yesterday > 0"
                         src="../../static/icons/up1.png"
@@ -348,7 +354,7 @@ export default {
     setInterval(() => {
       if (this.$store.state.dashboard.customerDashboardData)
         this.data = this.$store.state.dashboard.customerDashboardData;
-    }, 5000);
+    }, 1000);
   },
   // watch: {
   //   overlay(val) {

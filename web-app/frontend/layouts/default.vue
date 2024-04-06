@@ -620,6 +620,10 @@ export default {
       seelctedBranchId: "",
       branch_id: "",
       menuProperties: {
+        statistics: {
+          elevation: 0,
+          selected: "",
+        },
         dashboard: {
           elevation: 0,
           selected: "",

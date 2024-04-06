@@ -64,10 +64,10 @@
                   item-value="id"
                   placeholder="Select"
                   v-model="employee.employee_role_id"
-                  :hide-details="!errors.employee_role_id"
+                  :hide-details="!errors?.employee_role_id"
                   :error-messages="
-                    errors && errors.employee_role_id
-                      ? errors.employee_role_id[0]
+                    errors && errors?.employee_role_id
+                      ? errors?.employee_role_id[0]
                       : ''
                   "
                   dense
@@ -83,12 +83,12 @@
                   label="Email"
                   dense
                   outlined
-                  :hide-details="!errors.email"
+                  :hide-details="!errors?.email"
                   type="text"
                   v-model="employee.email"
-                  :error="errors.email"
+                  :error="errors?.email"
                   :error-messages="
-                    errors && errors.email ? errors.email[0] : ''
+                    errors && errors?.email ? errors?.email[0] : ''
                   "
                 ></v-text-field>
               </v-col>
@@ -99,12 +99,12 @@
                   label="Password"
                   dense
                   outlined
-                  :hide-details="!errors.password"
+                  :hide-details="!errors?.password"
                   type="text"
                   v-model="employee.password"
-                  :error="errors.password"
+                  :error="errors?.password"
                   :error-messages="
-                    errors && errors.password ? errors.password[0] : ''
+                    errors && errors?.password ? errors?.password[0] : ''
                   "
                 ></v-text-field>
               </v-col>
@@ -115,13 +115,13 @@
                   label="Confirm Password"
                   dense
                   outlined
-                  :hide-details="!errors.password_confirmation"
+                  :hide-details="!errors?.password_confirmation"
                   type="text"
                   v-model="employee.password_confirmation"
-                  :error="errors.password_confirmation"
+                  :error="errors?.password_confirmation"
                   :error-messages="
-                    errors && errors.password_confirmation
-                      ? errors.password_confirmation[0]
+                    errors && errors?.password_confirmation
+                      ? errors?.password_confirmation[0]
                       : ''
                   "
                 ></v-text-field>

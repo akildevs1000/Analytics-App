@@ -10,19 +10,38 @@
         style="padding-right: 0px; margin-right: 0px"
       >
         <v-row justify="end">
-          <v-col cols="3" class="pb-0">
+          <v-col cols="4" class="pb-0" style="min-width: 670px">
+            <span style="float: left; width: 200px">
+              <v-select
+                @change="changeBranch(filter_branch_id)"
+                class="ma-2"
+                v-model="filter_branch_id"
+                item-text="name"
+                item-value="id"
+                :items="[{ name: `All Branches`, id: null }, ...branches_list]"
+                dense
+                small
+                outlined
+                hide-details
+                label="Branches"
+              >
+              </v-select>
+            </span>
             <span style="float: left; width: 200px">
               <v-select
                 style="z-index: 9999"
-                @change="ChangeDevice(device_serial_number)"
-                v-model="device_serial_number"
-                :items="devicesList"
+                @change="ChangeDevice(filter_device_serial_number)"
+                v-model="filter_device_serial_number"
+                :items="[
+                  { name: 'All Locations', serial_number: null },
+                  ...devicesList,
+                ]"
                 dense
                 small
                 outlined
                 hide-details
                 class="ma-2"
-                label="Room"
+                label="Location/Camera"
                 item-value="serial_number"
                 item-text="name"
               ></v-select>
@@ -47,7 +66,7 @@
                       padding-top: 8px;
                     "
                     outlined
-                    v-model="from_date"
+                    v-model="filter_from_date"
                     v-bind="attrs"
                     v-on="on"
                     dense
@@ -58,7 +77,7 @@
                 <v-date-picker
                   no-title
                   scrollable
-                  v-model="from_date"
+                  v-model="filter_from_date"
                   @input="from_menu = false"
                   @change="getDataFromApi()"
                 ></v-date-picker>
@@ -73,7 +92,11 @@
       <v-col cols="12">
         <v-row>
           <v-col cols="6" class="pl-0">
-            <v-card class="py-2" style="width: 100%; height: 500px">
+            <v-card
+              :loading="loading"
+              class="py-2"
+              style="width: 100%; height: 500px"
+            >
               <div class="pl-3" style="font-size: 18px">Demographics</div>
               <DashboardDemographics />
             </v-card>
@@ -81,11 +104,14 @@
           <v-col cols="6" style="padding-left: 6px">
             <v-card class="py-2" style="width: 100%; height: 500px">
               <DashboardChart
+                :filter_device_serial_number="filter_device_serial_number"
                 :name="'AlarmDashboardHourlyChart'"
                 :height="'400px'"
                 :key="keyChart3"
                 :date_from="from_date"
                 :date_to="to_date"
+                :filter_from_date="filter_from_date"
+                :branch_id="filter_branch_id"
               />
             </v-card>
           </v-col>
@@ -118,13 +144,17 @@ export default {
   //components: { DashboardTopStats },
   data() {
     return {
-      device_serial_number: "",
+      filter_device_serial_number: null,
       from_date: "",
       to_date: "",
       from_menu: false,
       topMenu: 0,
       devicesList: [],
       keyChart3: 1,
+      loading: false,
+      filter_from_date: "",
+      branches_list: [],
+      filter_branch_id: null,
     };
   },
   watch: {},
@@ -133,8 +163,9 @@ export default {
     this.keyChart3++;
     const today = new Date();
 
-    this.from_date = today.toISOString().slice(0, 10);
-    this.to_date = today.toISOString().slice(0, 10);
+    // this.from_date = today.toISOString().slice(0, 10);
+    // this.to_date = today.toISOString().slice(0, 10);
+    this.filter_from_date = today.toISOString().slice(0, 10);
     if (this.$auth.user.branch_id == 0 && this.$auth.user.is_master == false) {
       alert("You do not have permission to access this branch");
       //this.$router.push("/login");
@@ -158,28 +189,20 @@ export default {
       this.devicesList = this.devicesList.filter(
         (item) => item.serial_number != null
       );
-      if (this.$store.state.deviceList && this.$store.state.deviceList[0]) {
-        this.device_serial_number = this.$store.state.deviceList[0].device_id;
-        //this.getDataFromApi();
-      }
+
+      this.branches_list = await this.$store.dispatch("fetchDropDowns", {
+        key: "branchList",
+        endpoint: "branch-list",
+      });
+
       this.getDataFromApi();
-      // await this.$store.dispatch("fetchDropDowns", {
-      //   key: "employeeList",
-      //   endpoint: "employee-list",
-      //   refresh: true,
-      // });
-      // this.branchList = await this.$store.dispatch("fetchDropDowns", {
-      //   key: "branchList",
-      //   endpoint: "branch-list",
-      //   refresh: true,
-      // });
     } catch (error) {
       console.error("Error fetching data:", error);
     }
     this.getDataFromApi(1);
     setInterval(() => {
       this.getDataFromApi(1);
-    }, 1000 * 10);
+    }, 1000 * 30);
   },
   // watch: {
   //   overlay(val) {
@@ -193,9 +216,19 @@ export default {
     can(per) {
       return this.$pagePermission.can(per, this);
     },
-    ChangeDevice(serial_number) {
+    changeBranch(filter_branch) {
+      this.devicesList = this.$store.state.deviceList;
+      if (filter_branch) {
+        this.devicesList = this.devicesList.filter(
+          (item) => item.branch_id == filter_branch
+        );
+      }
+      this.getDataFromApi();
+      this.getEmployeeStats();
+    },
+    ChangeDevice(filter_device_serial_number) {
       try {
-        this.device_serial_number = serial_number;
+        this.filter_device_serial_number = filter_device_serial_number;
         // this.key++;
         // this.keyChart2++;
 
@@ -204,18 +237,24 @@ export default {
       } catch (e) {}
     },
 
-    getDataFromApi(repeat) {
+    getDataFromApi() {
+      if (this.loading) return false;
+      this.loading = true;
       let options = {
         params: {
           per_page: 1000,
           company_id: this.$auth.user.company_id,
-
-          date: this.from_date,
+          DeviceID: this.filter_device_serial_number,
+          filter_from_date: this.filter_from_date,
+          branch_id: this.filter_branch_id,
         },
       };
       this.$axios.get(`/dashboard-statistics`, options).then(({ data }) => {
-        console.log(data);
+        console.log("data", data);
         this.$store.commit("dashboard/customerDashboardData", data);
+        setTimeout(() => {
+          this.loading = false;
+        }, 2000);
       });
 
       this.getEmployeeStats();
@@ -226,7 +265,8 @@ export default {
         params: {
           per_page: 1000,
           company_id: this.$auth.user.company_id,
-          date: this.from_date,
+          branch_id: this.filter_branch_id,
+          filter_from_date: this.filter_from_date,
         },
       };
       this.$axios

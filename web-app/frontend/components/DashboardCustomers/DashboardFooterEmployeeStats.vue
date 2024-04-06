@@ -33,8 +33,19 @@
         </v-col>
         <v-col cols="4">
           <div>Manager On Duty</div>
-          <div style="font-size: 30px; color: #203864">Mr. Mohamed Ajbar</div>
-          <div style="font-size: 10px">055-222 5641</div>
+          <div
+            style="font-size: 30px; color: #203864"
+            v-if="data.branchDetails?.user"
+          >
+            {{ data.branchDetails?.user?.employee?.title }}
+            {{ data.branchDetails?.user?.employee?.first_name ?? "---" }}
+            {{ data.branchDetails?.user?.employee?.last_name ?? "---" }}
+            <div style="font-size: 10px">
+              {{ data.branchDetails?.user?.employee?.phone_number ?? "---" }}
+            </div>
+          </div>
+
+          <div v-else>---</div>
         </v-col>
       </v-row>
     </div>
@@ -45,6 +56,7 @@
 // import DashboardlastMultiStatistics from "../../components/dashboard2/DashboardlastMultiStatistics.vue";
 export default {
   components: {},
+  props: ["filter_from_date"],
   data() {
     return {
       device_serial_number: "",
@@ -64,7 +76,7 @@ export default {
     setInterval(() => {
       if (this.$store.state.dashboard.customerDashboardEmployeeData)
         this.data = this.$store.state.dashboard.customerDashboardEmployeeData;
-    }, 5000);
+    }, 1000);
   },
   // watch: {
   //   overlay(val) {
