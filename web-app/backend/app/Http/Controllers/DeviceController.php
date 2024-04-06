@@ -797,6 +797,7 @@ class DeviceController extends Controller
 
     public function checkDevicesHealthCompanyId($company_id = '')
     {
+        return   "Please wait data loading...";
 
 
 
