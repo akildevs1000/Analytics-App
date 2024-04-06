@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboards;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\AttendanceLog;
+use App\Models\CompanyBranch;
 use App\Models\CustomerReport;
 use App\Models\EmployeeLeaves;
 use App\Models\Visitor;
@@ -278,20 +279,17 @@ class CustomersDashboardController extends Controller
         $total_footfall_yesterday_percentage = 0;
 
 
-        $total_company_capacity_occupancy = 10;
+        $total_company_capacity_occupancy = 0;
         $date = $request->filter_from_date;
 
 
-        $AttendanceLogModel = AttendanceLog::where("company_id", $request->company_id)
+        $total_company_capacity_occupancy = CompanyBranch::where("company_id", $request->company_id)
 
-            ->where("date", $date)
+
             ->when(request()->filled("branch_id"), function ($q) {
 
-                $q->where('branch_id', request("branch_id"));
-            })->when(request()->filled("DeviceID"), function ($q) {
-
-                $q->where('DeviceID', request("DeviceID"));
-            });
+                $q->where('id', request("branch_id"));
+            })->sum("occupancy");
 
 
 
@@ -344,9 +342,7 @@ class CustomersDashboardController extends Controller
                 $qu->where('status',  "blocklisted");
             });
         })->count();
-        $repeated_customer_count = $AttendanceLogModel->groupBy('UserID')
-            ->havingRaw('COUNT(*) > 2')
-            ->count();
+
 
         // //Yesterday Male/Femlae/Kids 
         $total_male_count_before1day = $customerReportYesterdayModel->clone()->where(function ($q) {

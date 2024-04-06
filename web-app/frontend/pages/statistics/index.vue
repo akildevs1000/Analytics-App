@@ -201,7 +201,9 @@ export default {
     }
     this.getDataFromApi(1);
     setInterval(() => {
-      this.getDataFromApi(1);
+      if (this.$route.name == "statistics") {
+        this.getDataFromApi(1);
+      }
     }, 1000 * 30);
   },
   // watch: {

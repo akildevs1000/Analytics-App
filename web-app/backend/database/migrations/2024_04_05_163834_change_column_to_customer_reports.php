@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customer_reports', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id')->default(0);
-            $table->integer('total_hrs')->default(0);
-            $table->unsignedBigInteger('in_id')->default(0);
-            $table->unsignedBigInteger('out_id')->default(0);
-            $table->date('date')->default(now());
-            $table->date('status')->default('in');
-            $table->unsignedBigInteger('company_id')->default(0);
-            $table->unsignedBigInteger('branch_id')->default(0);
-            $table->timestamps();
-        });
+        // Schema::create('customer_reports', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('user_id')->default(0);
+        //     $table->integer('total_hrs')->default(0);
+        //     $table->unsignedBigInteger('in_id')->default(0);
+        //     $table->unsignedBigInteger('out_id')->default(0);
+        //     $table->date('date')->default(now());
+        //     $table->date('status')->default('in');
+        //     $table->unsignedBigInteger('company_id')->default(0);
+        //     $table->unsignedBigInteger('branch_id')->default(0);
+        //     $table->timestamps();
+        // });
     }
 
     /**

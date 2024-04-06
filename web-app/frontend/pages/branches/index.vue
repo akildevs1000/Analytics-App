@@ -176,7 +176,7 @@
                       </div>
                     </v-col>
 
-                    <v-col md="6" cols="12" sm="12" dense>
+                    <v-col md="4" cols="12" sm="12" dense>
                       <label>Lat</label>
                       <v-text-field
                         :disabled="disabled"
@@ -192,7 +192,7 @@
                         >{{ errors.lat[0] }}</span
                       >
                     </v-col>
-                    <v-col md="6" cols="12" sm="12" dense>
+                    <v-col md="4" cols="12" sm="12" dense>
                       <label>Lon</label>
                       <v-text-field
                         :disabled="disabled"
@@ -206,6 +206,22 @@
                         v-if="errors && errors.lon"
                         class="text-danger mt-2"
                         >{{ errors.lon[0] }}</span
+                      >
+                    </v-col>
+                    <v-col md="4" cols="12" sm="12" dense>
+                      <label>Occupancy</label>
+                      <v-text-field
+                        :disabled="disabled"
+                        dense
+                        outlined
+                        type="number"
+                        v-model="branch.occupancy"
+                        hide-details
+                      ></v-text-field>
+                      <span
+                        v-if="errors && errors.occupancy"
+                        class="text-danger mt-2"
+                        >{{ errors.occupancy[0] }}</span
                       >
                     </v-col>
                     <v-col md="12" cols="12" sm="12" dense>
@@ -1034,6 +1050,7 @@ export default {
       branch.append("lat", this.branch.lat);
       branch.append("lon", this.branch.lon);
       branch.append("address", this.branch.address);
+      branch.append("occupancy", this.branch.occupancy);
 
       if (this.upload.name) {
         branch.append("logo", this.upload.name);
@@ -1078,6 +1095,7 @@ export default {
       branch.append("lat", this.branch.lat);
       branch.append("lon", this.branch.lon);
       branch.append("address", this.branch.address);
+      branch.append("occupancy", this.branch.occupancy);
 
       if (this.upload.name) {
         branch.append("logo", this.upload.name);
