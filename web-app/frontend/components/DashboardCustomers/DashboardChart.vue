@@ -252,7 +252,9 @@ export default {
     this.ApexCharts1.render();
 
     setInterval(() => {
-      this.getDataFromApi();
+      if (this.$route.name == "statistics") {
+        this.getDataFromApi();
+      }
     }, 1000 * 60);
   },
   async created() {
@@ -275,7 +277,9 @@ export default {
     // this.date_to = today.toISOString().slice(0, 10);
 
     setTimeout(() => {
-      this.getDataFromApi();
+      if (this.$route.name == "statistics") {
+        this.getDataFromApi();
+      }
     }, 1000 * 3);
     this.getDeviceList();
   },
