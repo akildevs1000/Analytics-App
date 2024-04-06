@@ -59,7 +59,7 @@
             <v-toolbar-title> </v-toolbar-title>
 
             <v-spacer></v-spacer>
-            <!-- <span style="padding-left: 15px"
+            <span style="padding-left: 15px"
               ><img
                 title="Print"
                 style="cursor: pointer"
@@ -74,7 +74,7 @@
                 @click="process_file('customer-report-download')"
                 src="/icons/icon_pdf.png"
                 class="iconsize"
-            /></span> -->
+            /></span>
           </v-toolbar>
 
           <v-data-table
@@ -95,125 +95,85 @@
             <template v-slot:item.id="{ item, index }">
               {{ index + 1 }}
             </template>
-
-            <template v-slot:item.total_footfall="{ item, index }">
-              <div>{{ item.in_count + item.out_count }}</div>
+            <template v-slot:item.total_ffotfall="{ item, index }">
+              <div>10</div>
               <div>
-                <span>{{ item.male_count }}</span
-                ><span style="font-size: 10px">M</span>
-
-                <span>{{ item.female_count }}</span
-                ><span style="font-size: 10px">F</span>
-                <span>{{ item.child_count }}</span
-                ><span style="font-size: 10px">K</span>
+                <span>5</span><span style="font-size: 10px">M</span>
+                <span>5</span><span style="font-size: 10px">F</span>
+                <span>5</span><span style="font-size: 10px">K</span>
               </div>
+            </template>
+
+            <template v-slot:item.dateTime="{ item, index }">
+              {{ item.date }} {{ item.time }}
+            </template>
+
+            <template v-slot:item.avg_total_hours="{ item, index }">
+              {{
+                item.avg_total_hours
+                  ? $dateFormat.minutesToHHMM(parseInt(item.avg_total_hours))
+                  : "---"
+              }}
+            </template>
+
+            <template v-slot:item.branch="{ item, index }">
+              <span>
+                <b>{{
+                  item.employee ? item.employee?.branch?.branch_name : "---"
+                }}</b
+                ><br />
+                {{ item.employee ? item.employee?.department?.name : "---" }}
+              </span>
             </template>
             <template v-slot:item.in="{ item, index }">
-              <div>{{ item.in_count }}</div>
-              <div>
-                <span>{{ item.in_male_count }}</span
-                ><span style="font-size: 10px">M</span>
-                <span>{{ item.in_female_count }}</span
-                ><span style="font-size: 10px">F</span>
-                <span>{{ item.in_child_count }}</span
-                ><span style="font-size: 10px">K</span>
-              </div>
+              {{
+                item?.in_log?.device?.function !== "out" ||
+                item?.in_log?.device?.function !== "Out"
+                  ? "In"
+                  : "---"
+              }}
             </template>
             <template v-slot:item.out="{ item, index }">
-              <div>{{ item.out_count }}</div>
-              <div>
-                <span>{{ item.out_male_count }}</span
-                ><span style="font-size: 10px">M</span>
-                <span>{{ item.out_female_count }}</span
-                ><span style="font-size: 10px">F</span>
-                <span>{{ item.out_child_count }}</span
-                ><span style="font-size: 10px">K</span>
-              </div>
+              {{
+                item?.out_log?.device?.function == "out" ||
+                item?.out_log?.device?.function == "Out"
+                  ? "Out"
+                  : "---"
+              }}
             </template>
-            <template v-slot:item.occupancy="{ item, index }">
-              <div>
-                {{
-                  item.occupancy > 0
-                    ? Math.round(
-                        ((item.in_count + item.out_count) * 100) /
-                          item.occupancy
-                      )
-                    : 0
-                }}%
-              </div>
+
+            <template v-slot:item.status="{ item, index }">
+              {{ item.status }}
+              <br />
+              <small>{{ item.reason ?? "" }}</small>
             </template>
-            <template v-slot:item.avg_time="{ item, index }">
-              <div>
-                {{
-                  item.avg_total_hours
-                    ? $dateFormat.minutesToHHMM(
-                        Math.round(item.avg_total_hours)
-                      )
-                    : "---"
-                }}
-              </div>
-            </template>
-            <template v-slot:item.min_time="{ item, index }">
-              <div>
-                {{
-                  item.min_total_hours
-                    ? $dateFormat.minutesToHHMM(
-                        Math.round(item.min_total_hours)
-                      )
-                    : "---"
-                }}
-              </div>
-            </template>
-            <template v-slot:item.max_time="{ item, index }">
-              <div>
-                {{
-                  item.max_total_hours
-                    ? $dateFormat.minutesToHHMM(
-                        Math.round(item.max_total_hours)
-                      )
-                    : "---"
-                }}
-              </div>
-            </template>
-            <template v-slot:item.male="{ item, index }">
-              <div>{{ item.male_count }}</div>
-              <div>
-                <span>{{ item.male_adult_count }}</span
-                ><span style="font-size: 10px">A</span>
-                <span>{{ item.male_younger_count }}</span
-                ><span style="font-size: 10px">Y</span>
-                <span>{{ item.male_senior_count }}</span
-                ><span style="font-size: 10px">S</span>
-              </div>
-            </template>
-            <template v-slot:item.female="{ item, index }">
-              <div>{{ item.female_count }}</div>
-              <div>
-                <span>{{ item.female_adult_count }}</span
-                ><span style="font-size: 10px">A</span>
-                <span>{{ item.female_younger_count }}</span
-                ><span style="font-size: 10px">Y</span>
-                <span>{{ item.female_senior_count }}</span
-                ><span style="font-size: 10px">S</span>
-              </div>
-            </template>
-            <template v-slot:item.child="{ item, index }">
-              <div>{{ item.child_count }}</div>
-              <div>
-                <span>{{ item.child_male_count }}</span
-                ><span style="font-size: 10px">M</span>
-                <span>{{ item.child_female_count }}</span
-                ><span style="font-size: 10px">F</span>
-              </div>
-            </template>
-            <template v-slot:item.vip="{ item, index }">
-              <div>{{ item.vip_customer_count }}</div>
-            </template>
-            <template v-slot:item.repeated="{ item, index }">
-              <div>{{ item.repeated_customer_count }}</div>
-            </template>
-            <template v-slot:item.blocked="{ item, index }">
-              <div>{{ item.blocklisted_customer_count }}</div>
+
+            <template v-slot:item.customer="{ item }" style="padding: 0px">
+              <v-row no-gutters>
+                <v-col md="2" class="mr-4">
+                  <v-avatar
+                    v-if="
+                      item && item.customer && item.customer.profile_picture
+                    "
+                  >
+                    <v-img
+                      :src="
+                        item?.customer?.profile_picture ||
+                        '/no-profile-image.jpg'
+                      "
+                    >
+                    </v-img>
+                  </v-avatar>
+                </v-col>
+                <v-col style="padding: 3px" md="8">
+                  <strong>
+                    {{ item.customer ? item.customer.full_name : "---" }}
+                  </strong>
+                  <div class="secondary-value">
+                    {{ item.user_id }}
+                  </div>
+                </v-col>
+              </v-row>
             </template>
           </v-data-table>
         </v-card>
@@ -296,94 +256,87 @@ export default {
         text: "Total Footfall",
         align: "center",
         sortable: true,
-        key: "total_footfall",
-        value: "total_footfall",
+        key: "total_ffotfall",
+        value: "total_ffotfall",
       },
       {
-        text: "IN",
-        align: "center",
+        text: "Male Count",
+        align: "left",
         sortable: true,
-        key: "in",
-        value: "in",
+        key: "male_count",
+        value: "male_count",
       },
       {
-        text: "Male",
-        align: "center",
+        text: "Female Count",
+        align: "left",
         sortable: true,
-        key: "male",
-        value: "male",
+        key: "female_count",
+        value: "female_count",
       },
       {
-        text: "Female",
-        align: "center",
+        text: "Child Count",
+        align: "left",
         sortable: true,
-        key: "female",
-        value: "female",
-      },
-      {
-        text: "Child",
-        align: "center",
-        sortable: true,
-        key: "child",
-        value: "child",
-      },
-      {
-        text: "Out",
-        align: "center",
-        sortable: true,
-        key: "out",
-        value: "out",
-      },
-      {
-        text: "Occupancy",
-        align: "center",
-        sortable: true,
-        key: "occupancy",
-        value: "occupancy",
+        key: "child_count",
+        value: "child_count",
       },
 
       {
-        text: "Avg Time  ",
-        align: "center",
+        text: "Younger count",
+        align: "left",
         sortable: true,
-        key: "avg_time",
-        value: "avg_time",
+        key: "younger_count",
+        value: "younger_count",
       },
       {
-        text: "Min Time",
-        align: "center",
+        text: "Adult Count",
+        align: "left",
         sortable: true,
-        key: "min_time",
-        value: "min_time",
+        key: "adult_count",
+        value: "adult_count",
       },
       {
-        text: "Max Time",
-        align: "center",
+        text: "Senior Count",
+        align: "left",
         sortable: true,
-        key: "max_time",
-        value: "max_time",
+        key: "senior_count",
+        value: "senior_count",
+      },
+      {
+        text: "VIP Customers",
+        align: "left",
+        sortable: true,
+        key: "vip_customer_count",
+        value: "vip_customer_count",
+      },
+      {
+        text: "Normal Customers",
+        align: "left",
+        sortable: true,
+        key: "normal_customer_count",
+        value: "normal_customer_count",
+      },
+      {
+        text: "Total In",
+        align: "left",
+        sortable: true,
+        key: "in_count",
+        value: "in_count",
       },
 
       {
-        text: "VIP  ",
-        align: "center",
+        text: "Avg Hrs",
+        align: "left",
         sortable: true,
-        key: "vip",
-        value: "vip",
+        key: "avg_total_hours",
+        value: "avg_total_hours",
       },
       {
-        text: "Repeated",
-        align: "center",
+        text: "Total Out",
+        align: "left",
         sortable: true,
-        key: "repeated",
-        value: "repeated",
-      },
-      {
-        text: "Blocked",
-        align: "center",
-        sortable: true,
-        key: "blocked",
-        value: "blocked",
+        key: "out_count",
+        value: "out_count",
       },
     ],
     max_date: null,

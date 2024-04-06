@@ -253,7 +253,7 @@ export default {
 
     setInterval(() => {
       this.getDataFromApi();
-    }, 1000 * 60 * 15);
+    }, 1000 * 60);
   },
   async created() {
     // // Get today's date
