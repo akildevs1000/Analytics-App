@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('customer_reports', function (Blueprint $table) {
-            $table->integer('total_hrs')->default(0)->change();
-        });
+        // Schema::table('customer_reports', function (Blueprint $table) {
+        //     $table->integer('total_hrs')->default(0)->change();
+        // });
     }
 
     /**
