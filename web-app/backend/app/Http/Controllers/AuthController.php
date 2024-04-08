@@ -29,7 +29,7 @@ class AuthController extends Controller
 
 
         $user = User::with('company', 'company.contact', 'employee')->where('email', $request->email)
-            ->with("company:id,user_id,name,location,logo,company_code,expiry,contact_number,enable_whatsapp_otp")
+            ->with("company:id,user_id,name,location,logo,company_code,expiry,contact_number,enable_whatsapp_otp,monday,tuesday,wednesday,thursday,friday,saturday,sunday")
             ->select()
             ->first();
 
@@ -164,6 +164,7 @@ class AuthController extends Controller
                 // "can_login",
                 // "web_login_access",
                 // "mobile_app_login_access",
+
             )
             ->first();
 

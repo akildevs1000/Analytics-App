@@ -96,6 +96,55 @@ class CompanyBranchController extends Controller
         }
     }
 
+    public function getWeekendsList(Request $request)
+    {
+
+        $company_id = $request->company_id;
+        $branch_id = $request->branch_id;
+        $data = [
+            "monday" => false,
+            "tuesday" => false,
+            "wednesday" => false,
+            "thursday" => false,
+            "friday" => false,
+            "saturday" => false,
+            "sunday" => false,
+        ];
+        if ($branch_id == 0) {
+            $weekEnds = Company::where("id", $company_id)->get(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+            return $weekEnds[0] ?? [];
+        } else {
+            $weekEnds =   CompanyBranch::where("id", $branch_id)->get(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+
+            return $weekEnds[0] ?? [];
+        }
+
+        return $data;
+    }
+    public function updateWeekends(Request $request)
+    {
+
+        $company_id = $request->company_id;
+        $branch_id = $request->branch_id;
+
+        $data = [
+            "monday" => $request->monday ?? 0,
+            "tuesday" => $request->tuesday ?? 0,
+            "wednesday" => $request->wednesday ?? 0,
+            "thursday" => $request->thursday ?? 0,
+            "friday" => $request->friday ?? 0,
+            "saturday" => $request->saturday ?? 0,
+            "sunday" => $request->sunday ?? 0,
+        ];
+        if ($branch_id == 0) {
+
+            Company::where("id", $company_id)->update($data);
+        } else {
+            CompanyBranch::where("id", $branch_id)->update($data);
+        }
+
+        return $this->response('Weekends successfully Updated.', null, true);
+    }
     public function update(CompanyBranch $model, StoreRequest $request, $id)
     {
         $data = $request->validated();

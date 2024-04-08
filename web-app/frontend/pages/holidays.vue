@@ -25,7 +25,7 @@
                   @change="getDataFromApi()"
                   v-model="branch_id"
                   :items="[
-                    { id: ``, branch_name: `Select All` },
+                    { id: 0, branch_name: `Select Branch` },
                     ...branchesList,
                   ]"
                   dense
@@ -122,11 +122,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <v-row>
-      <v-col md="12">
-        <!-- <Back color="primary" /> -->
-
+    <v-tabs right style="background-color: transparent">
+      <v-tab> Holidays </v-tab>
+      <v-tab> Weekends </v-tab>
+      <!-- <v-tab-slider color="violet"></v-tab-slider> -->
+      <v-tab-item>
         <v-card class="mb-5 mt-2 rounded-md" elevation="0">
           <v-toolbar class="rounded-md" dense flat>
             <v-toolbar-title
@@ -254,8 +254,91 @@
             </template>
           </v-data-table>
         </v-card>
-      </v-col>
-    </v-row>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card class="mb-5 mt-2 rounded-md py-2" elevation="1">
+          <h3 class="pl-4">Weekends</h3>
+
+          <v-card-text>
+            <v-row>
+              <v-col
+                v-if="isCompany"
+                style="max-width: 200px; padding-top: 22px"
+              >
+                <v-select
+                  @change="loadWeekends()"
+                  label="Branch"
+                  v-model="branch_id"
+                  :items="[{ id: 0, branch_name: `Company` }, ...branchesList]"
+                  dense
+                  placeholder="Company"
+                  outlined
+                  item-value="id"
+                  item-text="branch_name"
+                  hide-details
+                >
+                </v-select>
+              </v-col>
+              <v-col style="max-width: 150px">
+                <v-checkbox
+                  v-model="weekends.monday"
+                  label="Monday"
+                  hide-details
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col style="max-width: 150px">
+                <v-checkbox
+                  v-model="weekends.tuesday"
+                  label="Tuesday"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col style="max-width: 150px">
+                <v-checkbox
+                  v-model="weekends.wednesday"
+                  label="Wednesday"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col style="max-width: 150px">
+                <v-checkbox
+                  v-model="weekends.thursday"
+                  label="Thursday"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col style="max-width: 150px">
+                <v-checkbox
+                  v-model="weekends.friday"
+                  label="Friday"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col style="max-width: 150px">
+                <v-checkbox
+                  v-model="weekends.saturday"
+                  label="Saturday"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col style="max-width: 150px">
+                <v-checkbox
+                  v-model="weekends.sunday"
+                  label="Sunday"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col style="max-width: 150px; padding-top: 30px">
+                <v-btn class="primary" small @click="updateWeekends"
+                  >Save</v-btn
+                >
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
   </div>
 
   <NoAccess v-else />
@@ -263,6 +346,15 @@
 <script>
 export default {
   data: () => ({
+    weekends: {
+      monday: false,
+      tuesday: false,
+      wednesday: false,
+      thursday: false,
+      saturday: false,
+      sunday: false,
+      friday: false,
+    },
     dialogFilter: false,
     options: {},
     totalRowsCount: 0,
@@ -381,7 +473,7 @@ export default {
     dataYears: [],
     filterYear: "",
     branchesList: [],
-    branch_id: "",
+    branch_id: 0,
     isCompany: true,
   }),
 
@@ -436,9 +528,32 @@ export default {
 
     this.getDataFromApi();
     this.lastTenYears();
+
+    this.loadWeekends();
   },
 
   methods: {
+    loadWeekends() {
+      let options = {
+        params: {
+          company_id: this.$auth.user.company_id,
+
+          branch_id: this.branch_id,
+        },
+      };
+
+      this.$axios.get(`/get-weekends-list`, options).then(({ data }) => {
+        this.weekends = {
+          monday: data.monday,
+          tuesday: data.tuesday,
+          wednesday: data.wednesday,
+          thursday: data.thursday,
+          saturday: data.saturday,
+          sunday: data.sunday,
+          friday: data.friday,
+        };
+      });
+    },
     filterAttr(data) {
       this.editedItem.start_date = data.from;
       this.editedItem.end_date = data.to;
@@ -486,7 +601,7 @@ export default {
           per_page: itemsPerPage,
           company_id: this.$auth.user.company_id,
           year: this.filterYear,
-          branch_id: this.branch_id,
+          branch_id: this.branch_id > 0 ? this.branch_id : null,
         },
       };
       if (filter_column != "") {
@@ -634,6 +749,23 @@ export default {
           })
           .catch((res) => console.log(res));
       }
+    },
+    updateWeekends() {
+      let payload = {
+        params: {
+          company_id: this.$auth.user.company_id,
+          branch_id: this.branch_id,
+          ...this.weekends,
+        },
+      };
+
+      // return;
+      let endpoint = "/update-weekends";
+
+      this.$axios
+        .post(endpoint, payload.params)
+        .then(({ data }) => {})
+        .catch((e) => console.log(e));
     },
   },
 };

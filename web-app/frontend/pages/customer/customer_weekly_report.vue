@@ -32,15 +32,34 @@
                 :hide-details="true"
               ></v-select>
             </v-col>
-            <v-col cols="2">
+            <v-col cols="2" style="padding-left: 0px">
               <CustomFilter
                 @filter-attr="filterAttr"
                 :default_date_from="date_from"
                 :default_date_to="date_to"
                 :defaultFilterType="1"
                 :height="'40px '"
-                :maximum_days="10"
+                :maximum_days="30"
               />
+            </v-col>
+            <v-col cols="2" v-if="isCompany">
+              <v-select
+                @change="getDataFromApi()"
+                label="Days"
+                outlined
+                dense
+                small
+                v-model="dayFilter"
+                x-small
+                :items="[
+                  { id: '', branch_name: `All Days` },
+                  { id: 'holidays', branch_name: `Only Holidays` },
+                  { id: 'weekends', branch_name: `Only Weekends` },
+                ]"
+                item-value="id"
+                item-text="branch_name"
+                :hide-details="true"
+              ></v-select>
             </v-col>
 
             <v-col cols="2">
@@ -72,7 +91,11 @@
             </tr>
             <tr style="font-weight: bold; text-align: center">
               <td>Total</td>
-              <td style="text-align: center" v-for="(date, index) in dates">
+              <td
+                style="text-align: center"
+                v-for="(date, index) in dates"
+                v-if="filterDays(date)"
+              >
                 {{ dateTotals[index] ?? "--" }}
               </td>
               <td>Total</td>
@@ -80,8 +103,27 @@
 
             <tr>
               <td></td>
-              <td style="text-align: center" v-for="(date, index) in dates">
+              <td
+                style="text-align: center"
+                v-for="(date, index) in dates"
+                v-if="filterDays(date)"
+              >
                 {{ $dateFormat.format_date66(date) }}
+                <span style="font-size: 10px"
+                  >({{ $dateFormat.getDayName(date) }})</span
+                >
+                <div>
+                  <span style="color: blueviolet">
+                    {{ holidaysList[date] ?? " " }}
+                  </span>
+                  <span style="color: brown">
+                    {{
+                      weekendsList[$dateFormat.getDayFullName(date)]
+                        ? "Weekend "
+                        : " "
+                    }}
+                  </span>
+                </div>
               </td>
               <td></td>
             </tr>
@@ -131,6 +173,7 @@ export default {
   components: {},
   data() {
     return {
+      dayFilter: "",
       isCompany: true,
       branch_id: null,
       branches: [],
@@ -144,6 +187,8 @@ export default {
       ApexCharts1: null,
       date_to: "",
       date_from: "",
+      holidaysList: [],
+      weekendsList: [],
       chartOptions1: {
         series: [
           {
@@ -225,6 +270,18 @@ export default {
     can(per) {
       return this.$pagePermission.can(per, this);
     },
+
+    filterDays(date) {
+      if (this.dayFilter == "") return true;
+      if (this.dayFilter == "holidays") {
+        return this.holidaysList[date] ? true : false;
+      }
+      if (this.dayFilter == "weekends") {
+        return this.weekendsList[this.$dateFormat.getDayFullName(date)] == 1
+          ? true
+          : false;
+      }
+    },
     getBranches() {
       if (this.$auth.user.branch_id) {
         this.payload.branch_id = this.$auth.user.branch_id;
@@ -277,6 +334,7 @@ export default {
           from_date: this.date_from,
           to_date: this.date_to,
           branch_id: this.branch_id,
+          day_filter: this.dayFilter,
         },
       };
 
@@ -285,6 +343,9 @@ export default {
         this.colorCodes = data.colorCodes;
         this.hours = data.hours;
         this.dates = data.dates;
+
+        this.holidaysList = data.holidaysList;
+        this.weekendsList = data.weekendsList;
 
         this.hourTotals = [];
 
@@ -323,39 +384,43 @@ export default {
 
         datesArray.forEach((item) => {
           let filterItem = data.filter((e) => {
-            // Assuming `item` is a Date object
             return e.date === item;
           });
 
-          //filterItem = data.filter((e) => e.date == item);
+          //  if (this.filterDays(item))
+          {
+            if (filterItem.length > 0) {
+              const { date, male_count, female_count, child_count } =
+                filterItem[0];
+              this.chartOptions1.series[0]["data"][counter] =
+                parseInt(male_count);
 
-          if (filterItem.length > 0) {
-            const { date, male_count, female_count, child_count } =
-              filterItem[0];
-            this.chartOptions1.series[0]["data"][counter] =
-              parseInt(male_count);
+              this.chartOptions1.series[1]["data"][counter] =
+                parseInt(female_count);
+              this.chartOptions1.series[2]["data"][counter] =
+                parseInt(child_count);
+            } else {
+              this.chartOptions1.series[0]["data"][counter] = parseInt(0);
 
-            this.chartOptions1.series[1]["data"][counter] =
-              parseInt(female_count);
-            this.chartOptions1.series[2]["data"][counter] =
-              parseInt(child_count);
-
-            this.chartOptions1.xaxis.categories[counter] =
-              this.$dateFormat.format_date66(date);
-          } else {
-            this.chartOptions1.series[0]["data"][counter] = parseInt(0);
-
-            this.chartOptions1.series[1]["data"][counter] = parseInt(0);
-            this.chartOptions1.series[2]["data"][counter] = parseInt(0);
-
-            this.chartOptions1.xaxis.categories[counter] =
-              this.$dateFormat.format_date66(item);
+              this.chartOptions1.series[1]["data"][counter] = parseInt(0);
+              this.chartOptions1.series[2]["data"][counter] = parseInt(0);
+            }
+            let name = this.$dateFormat.format_date66(item);
+            // if (this.holidaysList[item]) {
+            //   name = name + " - " + this.holidaysList[item];
+            // }
+            this.chartOptions1.xaxis.categories[counter] = name;
+            counter++;
           }
-
-          counter++;
         });
-        if (this.ApexCharts1)
+        if (this.ApexCharts1) {
+          //this.ApexCharts1.render();
           this.ApexCharts1.updateOptions(this.chartOptions1);
+
+          // setTimeout(() => {
+          //   this.ApexCharts1.render();
+          // }, 2000);
+        }
       });
     },
     getDatesArray(startDate, endDate) {

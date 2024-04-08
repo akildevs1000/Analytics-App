@@ -182,6 +182,44 @@ export default ({ app }, inject) => {
 
       return formattedDate;
     },
+    getDayName: (inputDate) => {
+      // Create a new Date object
+      var today = new Date(inputDate);
+
+      // Get the day of the week (0-6)
+      var dayOfWeek = today.getDay();
+
+      // Define an array of day names
+      var days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+      // Retrieve the day name using the day of the week
+      return days[dayOfWeek];
+
+      // Output the day of the week
+    },
+    getDayFullName: (inputDate) => {
+      // Create a new Date object
+      var today = new Date(inputDate);
+
+      // Get the day of the week (0-6)
+      var dayOfWeek = today.getDay();
+
+      // Define an array of day names
+      var days = [
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+      ];
+
+      // Retrieve the day name using the day of the week
+      return days[dayOfWeek];
+
+      // Output the day of the week
+    },
     format_month_name_year: (inputdate) => {
       // Create a Date object with the date "2023-09-13"  Output: "23-09-13"
       const date = new Date(inputdate);
