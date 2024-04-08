@@ -23,6 +23,7 @@ export default {
     "width",
     "default_date_from",
     "default_date_to",
+    "maximum_days",
   ],
   data() {
     return {
@@ -127,6 +128,26 @@ export default {
       }
     },
     CustomFilter() {
+      if (this.maximum_days) {
+        const startDate = this.time3[0];
+        const endDate = this.time3[1];
+
+        const difference =
+          new Date(endDate).getTime() - new Date(startDate).getTime();
+
+        const differenceInDays = difference / (1000 * 3600 * 24);
+
+        if (differenceInDays > this.maximum_days) {
+          //this.time3 = [null, null]; // Resetting the date range
+          alert(
+            "Please select a date range of no more than " +
+              this.maximum_days +
+              " days."
+          );
+
+          return false;
+        }
+      }
       this.from_date = this.time3[0];
       this.to_date = this.time3[1];
       if (this.from_date && this.to_date) {

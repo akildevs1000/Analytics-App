@@ -9,6 +9,10 @@ use App\Models\CompanyBranch;
 use App\Models\CustomerReport;
 use App\Models\EmployeeLeaves;
 use App\Models\Visitor;
+use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +20,172 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CustomersDashboardController extends Controller
 {
+
+
+
+    public function getDashboardWeeklyCount(Request $request)
+    {
+
+
+
+        // Get the first and last day of the month
+        $firstDayOfMonth = $request->from_date; //Carbon::now()->startOfMonth()->format('Y-m-d');
+        $lastDayOfMonth = $request->to_date;; // Carbon::now()->endOfMonth()->format('Y-m-d');
+
+
+        // Generate an array of all dates for the month
+        $dates = [];
+        $currentDate = $firstDayOfMonth;
+        while ($currentDate <= $lastDayOfMonth) {
+            $dates[] = $currentDate;
+            $currentDate = Carbon::parse($currentDate)->addDay()->format('Y-m-d');
+        }
+
+
+        $distinctUserCountByDateAndHour = AttendanceLog::selectRaw('DATE(LogTime) as date1')
+            ->selectRaw('SUBSTRING(LogTime, 12, 2) AS hour')
+            ->selectRaw('COUNT(DISTINCT UserID) as user_count')
+            ->whereBetween('LogTime', [$firstDayOfMonth . ' 00:00:00', $lastDayOfMonth . ' 23:59:59'])
+            ->when(request()->filled("branch_id"), function ($q) {
+                return $q->where('branch_id', request('branch_id'));
+            })
+            ->groupBy(DB::raw('DATE(LogTime)'), DB::raw('SUBSTRING(LogTime, 12, 2)'))
+            ->orderBy('date1')
+            ->orderBy('hour')
+
+            ->get();
+
+        // Create an associative array with default user count as 0 for all dates and hours
+        $userCountsByDateAndHour = [];
+        foreach ($dates as $date) {
+            foreach (range(0, 23) as $hour) {
+                $userCountsByDateAndHour[$date][(int)$hour] = 0;
+            }
+        }
+
+        // Fill the array with actual user counts from the query result
+        foreach ($distinctUserCountByDateAndHour as $data) {
+            $userCountsByDateAndHour[$data->date1][(int)$data->hour] = $data->user_count;
+        }
+        $finalArray = [];
+
+        // Display the results
+        foreach ($userCountsByDateAndHour as $date => $hours) {
+            foreach ($hours as $hour => $user_count) {
+                // echo "Date: " . $date . ", Hour: " . $hour . ", User Count: " . $user_count . "<br>";
+
+                $finalArray[(int)$hour][] =  $user_count;
+            }
+        }
+
+        // $finalArray10To23 = [];;
+        // $finalArray0To10 = [];
+
+        // foreach ($finalArray as $index => $row) {
+        //     if ($index <= 5) {
+        //         $finalArray0To10[] = $row;
+        //     } else {
+
+        //         $finalArray10To23[] = $row;
+        //     }
+        // }
+
+        // $rowSum0To23 = array_fill(0, count($finalArray0To10[0]), 0); // Initialize an array to store sums
+
+        $startIgnore = 0;
+        $endIgnore = 10;
+
+        $finalArray0To10 = array_slice($finalArray,   $startIgnore, $endIgnore);
+        $finalArray10To23 = array_slice($finalArray, $endIgnore + 1, 23);
+
+        $rowSum0To23 = array_fill(0, count($finalArray0To10[0]), 0); // Initialize an array to store sums
+
+        foreach ($finalArray0To10 as $row) {
+            foreach ($row as $index => $value) {
+                $rowSum0To23[$index] += $value; // Sum the values at each index
+            }
+        }
+
+        foreach ($finalArray0To10 as $row) {
+            foreach ($row as $index => $value) {
+                $rowSum0To23[$index] += $value; // Sum the values at each index
+            }
+        }
+
+
+        array_unshift($finalArray10To23, $rowSum0To23);
+
+        $finalArrayWithHour = [];
+        foreach ($finalArray10To23 as $key => $value) {
+            $finalArrayWithHour[] = ['hour' => $key, 'value' => $value];
+        }
+
+        $colorCodes = [
+            ["min" => 1, "max" => 2, "color" => "#0086A8"], ["min" => 3, "max" => 5, "color" => "#006078"], ["min" => 6, "max" => 10, "color" => "#004D60"], ["min" => 6, "max" => 10, "color" => "#003542"], ["min" => 11, "max" => 10, "color" => "#00242C"], ["min" => 15, "max" => 10, "color" => "#00161A"]
+        ];
+
+
+        return [
+            "data" => $finalArrayWithHour, "colorCodes" => $colorCodes,
+            "dates" => $this->generateDateRangeArray($firstDayOfMonth, $lastDayOfMonth),
+            "hours" => $this->generateClockTimingsArray($startIgnore, $endIgnore)
+        ];
+    }
+    function generateClockTimingsArray($startIgnore, $endIgnore)
+    {
+
+        $clockTimings = array();
+
+
+        // $startIgnore = 0;
+        // $endIgnore = 13;
+
+        $start = ($startIgnore % 12 == 0) ? "12AM" : ($startIgnore % 12) . "AM"; // Start time of the hour
+        $end = (($endIgnore + 1) % 12 == 0) ? "12PM" : (($endIgnore + 1) % 12) . "AM"; // End time of the hour
+        if ($startIgnore >= 12) {
+            $start = ($startIgnore % 12 == 0) ? "12PM" : ($startIgnore % 12) . "PM";
+        }
+        if ($endIgnore >= 12) {
+
+            $end = (($endIgnore + 1) % 12 == 0) ? "12AM" : (($endIgnore + 1) % 12) . "PM";
+        }
+        $clockTimings[] = $start . " to " . $end; // Add the timing range to the array
+        // Loop through each hour from 0AM to 23PM
+        for ($hour = $endIgnore + 1; $hour < 24; $hour++) {
+            $start = ($hour % 12 == 0) ? "12AM" : ($hour % 12) . "AM"; // Start time of the hour
+            $end = (($hour + 1) % 12 == 0) ? "12PM" : (($hour + 1) % 12) . "AM"; // End time of the hour
+            if ($hour >= 12) {
+                $start = ($hour % 12 == 0) ? "12PM" : ($hour % 12) . "PM";
+                $end = (($hour + 1) % 12 == 0) ? "12AM" : (($hour + 1) % 12) . "PM";
+            }
+            $clockTimings[] = $start . " to " . $end; // Add the timing range to the array
+        }
+
+        return $clockTimings;
+    }
+
+    function generateDateRangeArray($startDate, $endDate)
+    {
+        // Convert string dates to DateTime objects
+        $start = new DateTime($startDate);
+        $end = new DateTime($endDate);
+
+        // Initialize an empty array to store dates
+        $datesArray = array();
+
+        // Include the end date in the range
+        $end->modify('+1 day');
+
+        // Loop through each day from the start date to the end date
+        $interval = new DateInterval('P1D');
+        $dateRange = new DatePeriod($start, $interval, $end);
+        foreach ($dateRange as $date) {
+            // Format the date as 'Y-m-d' and add it to the array
+            $datesArray[] = $date->format('Y-m-d');
+        }
+
+        return $datesArray;
+    }
     public function getDashboardHourlyInCount(Request $request)
     {
 

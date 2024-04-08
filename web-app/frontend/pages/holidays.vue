@@ -66,8 +66,8 @@
           <v-container>
             <v-row>
               <v-col v-if="isCompany" cols="12">
-                <label for="" style="padding-bottom: 5px">Branches</label>
                 <v-select
+                  label="Branch"
                   v-model="editedItem.branch_id"
                   :items="branchesList"
                   dense
@@ -84,8 +84,8 @@
               </v-col>
 
               <v-col cols="12">
-                <label for="" style="padding-bottom: 5px">Title</label>
                 <v-text-field
+                  label="Title"
                   dense
                   outlined
                   v-model="editedItem.name"
@@ -98,7 +98,7 @@
               <v-col cols="12">
                 <label for="" style="padding-bottom: 5px">Date</label>
                 <CustomFilter
-                  style="float: right; width: 100%; padding-left: 13px"
+                  style="float: right; width: 100%; padding-left: 0px"
                   @filter-attr="filterAttr"
                   :default_date_from="editedItem.start_date"
                   :default_date_to="editedItem.end_date"

@@ -302,6 +302,13 @@
     "module": "customers"
   },
   {
+    "icon": "mdi-chart-bar",
+    "title": "Weekly Report",
+    "to": "/customer/customer_weekly_report",
+    "menu": "community",
+    "module": "customers"
+  },
+  {
     "icon": "mdi-comment-alert",
     "title": "Requests",
     "to": "/visitor/requests",

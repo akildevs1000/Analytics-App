@@ -845,7 +845,6 @@ export default {
     getLogo() {
       let logosrc = "/no-image.PNG";
 
-
       if (
         this.$auth.user &&
         this.$auth.user.user_type == "company" &&
@@ -854,7 +853,7 @@ export default {
         logosrc = this.$auth.user.company.logo || "/no-image.PNG1111111";
       } else if (this.$auth.user && this.$auth.user.user_type == "master") {
         logosrc = "/no-image.PNG";
-      }  else if (this.$auth.user && this.$auth.user.user_type == "branch") {
+      } else if (this.$auth.user && this.$auth.user.user_type == "branch") {
         logosrc = this.$auth.user.branch_logo || "/no-profile-image.jpg";
       }
 
@@ -1761,6 +1760,35 @@ body {
 .theme--dark.v-bottom-navigation .v-btn--active {
   background: rgb(105, 70, 221);
   color: #fff !important;
+}
+.weekly-report-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.weekly-report-table td,
+.weekly-report-table th {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.weekly-report-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.weekly-report-table tr:hover {
+  background-color: #ddd;
+}
+
+.weekly-report-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+.weekly-report-table td {
+  border: 1px solid #ddd;
 }
 </style>
 
