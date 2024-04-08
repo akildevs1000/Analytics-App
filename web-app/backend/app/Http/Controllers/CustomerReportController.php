@@ -70,15 +70,23 @@ class CustomerReportController extends Controller
         })->when(!request()->filled("branch_id"), function ($q) {
             return $q->selectRaw('(SELECT SUM(occupancy) FROM company_branches WHERE company_id = ' . request("company_id") . ') as occupancy');
         });
-        return   $Query->join('customers', 'customer_reports.user_id', '=', 'customers.system_user_id')
+        $return =   $Query->join('customers', 'customer_reports.user_id', '=', 'customers.system_user_id')
             ->join('attendance_logs', 'attendance_logs.id', '=', 'customer_reports.in_id')
 
             ->where('customers.company_id', request("company_id"))
             ->whereBetween('customer_reports.date', [request("from_date"), request("to_date")])
             ->when(request()->filled("branch_id"), fn ($q) => $q->where('br_id', request("branch_id")))
             ->with("branch_for_stats_only")
-            ->groupBy('customer_reports.date')
-            ->paginate(request("per_page") ?? 10);
+            ->groupBy('customer_reports.date');
+
+
+        if (!request()->filled("noPagination"))
+
+            return  $return->paginate(request("per_page") ?? 10);
+
+        else {
+            return  $return->get();
+        }
     }
 
 

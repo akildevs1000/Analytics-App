@@ -14,7 +14,7 @@
               dense
               v-model="payload.branch_id"
               x-small
-              :items="[{ id: ``, branch_name: `Select All` }, ...branches]"
+              :items="[{ id: ``, branch_name: `All Branches` }, ...branches]"
               item-value="id"
               item-text="branch_name"
               :hide-details="true"
@@ -29,7 +29,7 @@
           </v-col>
           <v-col cols="2">
             <v-btn @click="getDataFromApi()" color="primary" primary fill
-              >Generate
+              >Submit
             </v-btn>
           </v-col>
         </v-row>

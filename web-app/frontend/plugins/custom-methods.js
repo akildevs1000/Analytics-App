@@ -170,6 +170,18 @@ export default ({ app }, inject) => {
       return formattedDate;
       //console.log(formattedDate); // Output: e.g., 02-04-2024, Monday
     },
+
+    format_date66: (inputDate) => {
+      ////23/04/2024
+      if (!inputDate) return "";
+      // Split the date string into year, month, and day
+      var parts = inputDate.split("-");
+
+      // Rearrange the parts to form the desired format
+      var formattedDate = parts[2] + "/" + parts[1] + "/" + parts[0];
+
+      return formattedDate;
+    },
     format_month_name_year: (inputdate) => {
       // Create a Date object with the date "2023-09-13"  Output: "23-09-13"
       const date = new Date(inputdate);
