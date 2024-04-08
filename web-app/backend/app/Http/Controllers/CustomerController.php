@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Customer\StoreRequest;
 use App\Http\Requests\Customer\UpdateRequest;
-use App\Models\Community\AttendanceLog;
 use App\Models\Customer;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\CustomerSync;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -26,6 +25,14 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         return $customer;
+    }
+
+    public function tempUpload(Request $request)
+    {
+        return CustomerSync::create([
+            "payload" => $request->all(),
+            "company_id" => $request->company_id
+        ]);
     }
 
     /**

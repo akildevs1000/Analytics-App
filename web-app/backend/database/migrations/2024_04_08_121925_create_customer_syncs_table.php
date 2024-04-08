@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('customer_reports', function (Blueprint $table) {
-        //     $table->integer('total_hrs')->default(0)->change();
-        // });
+        Schema::create('customer_syncs', function (Blueprint $table) {
+            $table->id();
+            $table->json("payload");
+            $table->unsignedBigInteger("company_id")->default(0);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('customer_reports', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('customer_syncs');
     }
 };
