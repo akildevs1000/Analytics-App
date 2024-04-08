@@ -222,7 +222,7 @@ class SDKControllerV1 extends Controller
             $xml = simplexml_load_string($response);
 
             if (!$xml) {
-                throw new \Exception("Server Error from Camera 1");
+                throw new \Exception("Server Error. Address: " . $camera_sdk_url);
             }
 
             $sessionId = (string) $xml->SessionId;
@@ -254,7 +254,6 @@ class SDKControllerV1 extends Controller
             if ($StatusCode == 200) {
                 return ["message" => $sessionId, "status" => true];
             } else {
-                Log::channel("camerasdk")->error("SessionID activation is failed");
                 throw new \Exception("SessionID activation is failed.");
             }
         } catch (\Throwable $th) {
@@ -279,7 +278,6 @@ class SDKControllerV1 extends Controller
 
         $response = curl_exec($curl);
         curl_close($curl);
-        Log::channel("camerasdk")->info('CURL ' . $url . '-');
         return $response;
     }
 
