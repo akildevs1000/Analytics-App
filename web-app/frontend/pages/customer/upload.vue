@@ -400,7 +400,7 @@ export default {
   data() {
     return {
       isCompany: true,
-      branch_id: null,
+      branch_id: ``,
       branchesList: [],
       loading: false,
       counter: 0,
@@ -501,7 +501,7 @@ export default {
     },
     async getUsersDataFromApi(branch_id) {
       this.$axios
-        .get(`customer-list`, {
+        .get(`https://analyticsbackend.xtremeguard.org/api/customer-list`, {
           params: {
             branch_id,
             company_id: this.$auth.user.company_id,
@@ -794,7 +794,7 @@ export default {
     },
     async onSubmit() {
       // this.displaybutton = false;
-      this.loading = true;
+
       this.serverErrorResponse = null;
       if (this.rightUsers.length == 0) {
         this.response = this.response + " Atleast select one Employee Details";
@@ -809,18 +809,9 @@ export default {
       this.rightUsers.forEach((item) => {
         let person = {
           name: item.first_name + " " + item.last_name,
-          cardData: null,
-          password: null,
 
           userCode: parseInt(item.system_user_id),
-          profile_picture_raw: item.profile_picture_raw,
-          // faceImage:
-          //   process.env.APP_ENV != "local"
-          //     ? item.profile_picture
-          //     : "https://backend.mytime2cloud.com/media/employee/profile_picture/1706172456.jpg",
-
-          faceImage:
-            "https://backend.mytime2cloud.com/media/employee/profile_picture/1706346188.jpg",
+          faceImage: item.profile_picture,
         };
         personListArray.push(person);
       });
@@ -841,6 +832,9 @@ export default {
         e.state = "---";
         e.message = "---";
       });
+
+      this.processRequest(payload);
+      return;
 
       try {
         const { data, status } = await this.$axios.post(
@@ -880,6 +874,27 @@ export default {
           // Fallback message for other types of errors
           this.serverErrorResponse = "An error occurred.";
         }
+      }
+    },
+
+    async processRequest(payload) {
+      this.loading = true;
+
+      try {
+        let url = `customers_temp_pload`;
+        await this.$axios.post(url, payload);
+        this.snackbar = true;
+        this.response = "Customer(s) has been uploaded";
+        this.loading = false;
+
+        // setTimeout(() => {
+        //   this.goback();
+        // }, 1000);
+      } catch (error) {
+        this.loading = false;
+        this.snackbar = true;
+        this.response = "Customer cannot uplload";
+        console.log(error);
       }
     },
   },
