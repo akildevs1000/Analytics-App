@@ -212,7 +212,7 @@ class CustomersDashboardController extends Controller
 
             $end = (($endIgnore + 1) % 12 == 0) ? "12AM" : (($endIgnore + 1) % 12) . "PM";
         }
-        $clockTimings[] = $start . " to " . $end; // Add the timing range to the array
+        $clockTimings[] = $start . " - " . $end; // Add the timing range to the array
         // Loop through each hour from 0AM to 23PM
         for ($hour = $endIgnore + 1; $hour < 24; $hour++) {
             $start = ($hour % 12 == 0) ? "12AM" : ($hour % 12) . "AM"; // Start time of the hour
@@ -221,7 +221,7 @@ class CustomersDashboardController extends Controller
                 $start = ($hour % 12 == 0) ? "12PM" : ($hour % 12) . "PM";
                 $end = (($hour + 1) % 12 == 0) ? "12AM" : (($hour + 1) % 12) . "PM";
             }
-            $clockTimings[] = $start . " to " . $end; // Add the timing range to the array
+            $clockTimings[] = $start . " - " . $end; // Add the timing range to the array
         }
 
         return $clockTimings;

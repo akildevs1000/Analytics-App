@@ -76,10 +76,10 @@
         </v-col>
       </v-row>
       <v-row style="font-size: 14px; margin-top: 0px; padding-top: 0px">
-        <v-col cols="12" class="pt-1">
+        <v-col cols="12" class="pt-1" style="overflow-x: scroll">
           <table style="width: 100%" class="weekly-report-table">
             <tr v-for="(counts, index) in data">
-              <td style="">
+              <td style="font-size: 10px">
                 {{ hours ? hours[counts.hour] : "---" }}
               </td>
               <td :style="'text-align:center;  '" v-for="count in counts.value">
@@ -96,7 +96,10 @@
                 v-for="(date, index) in dates"
                 v-if="filterDays(date)"
               >
-                {{ dateTotals[index] ?? "--" }}
+                <div v-if="dateTotals[index] >= 0">
+                  {{ dateTotals[index] ?? "--" }}
+                </div>
+                <div v-else>0</div>
               </td>
               <td>Total</td>
             </tr>
