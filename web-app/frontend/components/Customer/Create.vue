@@ -6,7 +6,12 @@
       </span>
     </template>
     <v-card>
-      <v-card-title>Create Customer</v-card-title>
+      <v-card-title
+        >Create Customer<v-spacer />
+        <v-icon color="primary" @click="dialog = false"
+          >mdi-close</v-icon
+        ></v-card-title
+      >
       <v-container>
         <v-row>
           <v-col cols="3">
@@ -30,8 +35,8 @@
                   outlined
                   v-model="payload.type"
                   :items="[
-                    { id: `vip`, name: `VIP` },
-                    { id: `normal`, name: `Normal` },
+                    { id: `VIP`, name: `VIP` },
+                    { id: `NORMAL`, name: `NORMAL` },
                   ]"
                   item-value="id"
                   item-text="name"
@@ -94,6 +99,23 @@
                   "
                 ></v-text-field>
               </v-col>
+              <v-col cols="6">
+                <v-autocomplete
+                  label="Status"
+                  outlined
+                  v-model="payload.status"
+                  :items="[
+                    { id: `whitelisted`, name: `Whitle List` },
+                    { id: `blocklisted`, name: `Block List` },
+                  ]"
+                  item-value="id"
+                  item-text="name"
+                  dense
+                  :hide-details="!errors.type"
+                  :error-messages="errors && errors.type ? errors.type[0] : ''"
+                >
+                </v-autocomplete>
+              </v-col>
             </v-row>
           </v-col>
         </v-row>
@@ -134,12 +156,12 @@ export default {
       this.payload.full_name =
         this.payload.first_name + " " + this.payload.last_name;
       this.payload.company_id = this.$auth.user.company_id;
-      this.payload.status = "whitelisted";
       this.$axios
         .post(this.endpoint, this.payload)
         .then(({ data }) => {
           this.errors = [];
           this.$emit("response", "Customer inserted successfully");
+          this.dialog = false;
         })
         .catch(({ response }) => {
           this.response = response?.data?.message ?? null;
