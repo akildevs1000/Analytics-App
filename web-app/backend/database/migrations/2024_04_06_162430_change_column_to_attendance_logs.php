@@ -18,11 +18,11 @@ return new class extends Migration
             // $table->dateTime("LogTime")->nullable()->change();
 
 
-            $table->timestamp('LogTime')->nullable()->change();
+            //$table->timestamp('LogTime')->nullable()->change();
         });
 
         // Specify the conversion
-        DB::statement('ALTER TABLE attendance_logs ALTER COLUMN "LogTime" TYPE timestamp without time zone USING "LogTime"::timestamp without time zone');
+        // DB::statement('ALTER TABLE attendance_logs ALTER COLUMN "LogTime" TYPE timestamp without time zone USING "LogTime"::timestamp without time zone');
     }
 
     /**
