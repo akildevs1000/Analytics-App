@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Dashboards;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\AttendanceLog;
+use App\Models\Company;
 use App\Models\CompanyBranch;
 use App\Models\CustomerReport;
 use App\Models\EmployeeLeaves;
+use App\Models\Holidays;
 use App\Models\Visitor;
 use Carbon\Carbon;
 use DateInterval;
@@ -33,6 +35,56 @@ class CustomersDashboardController extends Controller
         $lastDayOfMonth = $request->to_date;; // Carbon::now()->endOfMonth()->format('Y-m-d');
 
 
+
+        //Holidays List 
+
+        $holidays = Holidays::where("company_id",  $request->company_id)
+            ->when(request()->filled("branch_id") && request("branch_id") > 0, function ($q) {
+                return $q->where('branch_id', request('branch_id'));
+            })->get();
+
+        $finalHolidaysArray = [];
+        foreach ($holidays as $key => $row) {
+            if ($row['start_date'] == $row['end_date']) {
+                $finalHolidaysArray[$row['start_date']] = $row['name'];
+            } else {
+                foreach ($this->generateDateRangeArray($row['start_date'], $row['end_date']) as $key => $value) {
+                    $finalHolidaysArray[$value] = $row['name'];
+                }
+            }
+        }
+
+
+        //  $finalHolidaysArray = array_unique($finalHolidaysArray);
+
+        //weekends list 
+
+        $weekendsList = [
+            "monday" => false,
+            "tuesday" => false,
+            "wednesday" => false,
+            "thursday" => false,
+            "friday" => false,
+            "saturday" => false,
+            "sunday" => false,
+        ];
+        if ($request->branch_id == 0) {
+            $weekEnds = Company::where("id", $request->company_id)->get(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+            $weekendsList = $weekEnds[0] ?? $weekendsList;
+        } else {
+            $weekEnds =   CompanyBranch::where("id", $request->branch_id)->get(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+            $weekendsList = $weekEnds[0] ?? $weekendsList;
+        }
+
+
+
+
+
+
+
+
+
+
         // Generate an array of all dates for the month
         $dates = [];
         $currentDate = $firstDayOfMonth;
@@ -42,7 +94,8 @@ class CustomersDashboardController extends Controller
         }
 
 
-        $distinctUserCountByDateAndHour = AttendanceLog::selectRaw('DATE(LogTime) as date1')
+        $distinctUserCountByDateAndHour = AttendanceLog::where("company_id", $request->company_id)
+            ->selectRaw('DATE(LogTime) as date1')
             ->selectRaw('SUBSTRING(LogTime, 12, 2) AS hour')
             ->selectRaw('COUNT(DISTINCT UserID) as user_count')
             ->whereBetween('LogTime', [$firstDayOfMonth . ' 00:00:00', $lastDayOfMonth . ' 23:59:59'])
@@ -72,32 +125,26 @@ class CustomersDashboardController extends Controller
         // Display the results
         foreach ($userCountsByDateAndHour as $date => $hours) {
             foreach ($hours as $hour => $user_count) {
-                // echo "Date: " . $date . ", Hour: " . $hour . ", User Count: " . $user_count . "<br>";
 
-                $finalArray[(int)$hour][] =  $user_count;
+                if ($request->day_filter == '')  // no filter specified
+                    $finalArray[(int)$hour][] =  $user_count;
+                else {
+
+
+                    if ($this->IsfilterInWeekdaysHolidays($request->day_filter, $date, $finalHolidaysArray, $weekendsList))
+                        $finalArray[(int)$hour][] =  $user_count;
+                }
             }
         }
 
-        // $finalArray10To23 = [];;
-        // $finalArray0To10 = [];
-
-        // foreach ($finalArray as $index => $row) {
-        //     if ($index <= 5) {
-        //         $finalArray0To10[] = $row;
-        //     } else {
-
-        //         $finalArray10To23[] = $row;
-        //     }
-        // }
-
-        // $rowSum0To23 = array_fill(0, count($finalArray0To10[0]), 0); // Initialize an array to store sums
 
         $startIgnore = 0;
         $endIgnore = 10;
+        //$rowSum0To23 = [];
 
         $finalArray0To10 = array_slice($finalArray,   $startIgnore, $endIgnore);
         $finalArray10To23 = array_slice($finalArray, $endIgnore + 1, 23);
-
+        //if (isset($finalArray0To10[0]))
         $rowSum0To23 = array_fill(0, count($finalArray0To10[0]), 0); // Initialize an array to store sums
 
         foreach ($finalArray0To10 as $row) {
@@ -123,13 +170,29 @@ class CustomersDashboardController extends Controller
         $colorCodes = [
             ["min" => 1, "max" => 2, "color" => "#0086A8"], ["min" => 3, "max" => 5, "color" => "#006078"], ["min" => 6, "max" => 10, "color" => "#004D60"], ["min" => 6, "max" => 10, "color" => "#003542"], ["min" => 11, "max" => 10, "color" => "#00242C"], ["min" => 15, "max" => 10, "color" => "#00161A"]
         ];
+        //------------------------------------
+
+
 
 
         return [
             "data" => $finalArrayWithHour, "colorCodes" => $colorCodes,
             "dates" => $this->generateDateRangeArray($firstDayOfMonth, $lastDayOfMonth),
-            "hours" => $this->generateClockTimingsArray($startIgnore, $endIgnore)
+            "hours" => $this->generateClockTimingsArray($startIgnore, $endIgnore),
+            "holidaysList" => ($finalHolidaysArray),
+            "weekendsList" => $weekendsList
         ];
+    }
+
+    function IsfilterInWeekdaysHolidays($filter_type, $date, $finalHolidaysArray, $weekendsList)
+    {
+
+        if ($filter_type == 'holidays') {
+            return isset($finalHolidaysArray[$date]) ? true : false;
+        }
+        if ($filter_type == 'weekends') {
+            return ($weekendsList[(strtolower(date('l', strtotime($date))))] == 1) ? true : false;
+        }
     }
     function generateClockTimingsArray($startIgnore, $endIgnore)
     {
@@ -149,7 +212,7 @@ class CustomersDashboardController extends Controller
 
             $end = (($endIgnore + 1) % 12 == 0) ? "12AM" : (($endIgnore + 1) % 12) . "PM";
         }
-        $clockTimings[] = $start . " to " . $end; // Add the timing range to the array
+        $clockTimings[] = $start . " - " . $end; // Add the timing range to the array
         // Loop through each hour from 0AM to 23PM
         for ($hour = $endIgnore + 1; $hour < 24; $hour++) {
             $start = ($hour % 12 == 0) ? "12AM" : ($hour % 12) . "AM"; // Start time of the hour
@@ -158,7 +221,7 @@ class CustomersDashboardController extends Controller
                 $start = ($hour % 12 == 0) ? "12PM" : ($hour % 12) . "PM";
                 $end = (($hour + 1) % 12 == 0) ? "12AM" : (($hour + 1) % 12) . "PM";
             }
-            $clockTimings[] = $start . " to " . $end; // Add the timing range to the array
+            $clockTimings[] = $start . " - " . $end; // Add the timing range to the array
         }
 
         return $clockTimings;
