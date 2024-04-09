@@ -200,7 +200,7 @@ export default {
       if (this.$route.name == "statistics") {
         this.getDataFromApi(1);
       }
-    }, 1000 * 30);
+    }, 1000 * 60);
   },
   // watch: {
   //   overlay(val) {

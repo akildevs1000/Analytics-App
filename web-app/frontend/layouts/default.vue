@@ -636,6 +636,14 @@ export default {
           elevation: 0,
           selected: "",
         },
+        customers: {
+          elevation: 0,
+          selected: "",
+        },
+        customer: {
+          elevation: 0,
+          selected: "",
+        },
         attendance: {
           elevation: 0,
           selected: "",
