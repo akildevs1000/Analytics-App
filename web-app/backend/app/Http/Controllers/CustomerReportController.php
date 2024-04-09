@@ -15,7 +15,7 @@ class CustomerReportController extends Controller
         return $this->processFilter()->paginate(request("per_page") ?? 10);
     }
 
-    public function stats()
+    public function stats1()
     {
         $Query = CustomerReport::query()
             ->select("customer_reports.date", "customer_reports.total_hrs", "customer_reports.branch_id as br_id")
@@ -90,7 +90,80 @@ class CustomerReportController extends Controller
     }
 
 
+    public function stats()
+    {
+        $Query = CustomerReport::query()
+            ->select("customer_reports.date", "customer_reports.total_hrs", "customer_reports.branch_id as br_id")
+            ->selectRaw('(AVG(CAST(customer_reports.total_hrs AS FLOAT))) AS avg_total_hrs')
+            ->selectRaw('(SELECT MIN(customer_reports.total_hrs)) as min_total_hours')
+            ->selectRaw('(SELECT MAX(customer_reports.total_hrs)) as max_total_hours')
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender'   = 'Male' AND attendance_logs.age_category != 'CHILD' THEN 1 END) as male_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Male' AND attendance_logs.age_category = 'CHILD'   THEN 1 END) as child_male_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Male' AND attendance_logs.age_category = 'YOUNGER' THEN 1 END) as male_younger_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Male' AND attendance_logs.age_category  = 'ADULT' THEN 1 END) as male_adult_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Male' AND attendance_logs.age_category  = 'SENIOR' THEN 1 END) as male_senior_count")
 
+
+
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Female' AND attendance_logs.age_category != 'CHILD' THEN 1 END) as female_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Female' AND attendance_logs.age_category = 'CHILD'   THEN 1 END) as child_female_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Female' AND attendance_logs.age_category = 'YOUNGER' THEN 1 END) as female_younger_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Female' AND attendance_logs.age_category  = 'ADULT' THEN 1 END) as female_adult_count")
+            ->selectRaw("COUNT(CASE WHEN 'attendance_logs.Gender' = 'Female' AND attendance_logs.age_category  = 'SENIOR' THEN 1 END) as female_senior_count")
+
+
+
+            ->selectRaw("COUNT(CASE WHEN attendance_logs.age_category = 'CHILD'  THEN 1 END) as child_count")
+            ->selectRaw("COUNT(CASE WHEN attendance_logs.age_category = 'YOUNGER' THEN 1 END) as younger_count")
+            ->selectRaw("COUNT(CASE WHEN attendance_logs.age_category = 'ADULT' THEN 1 END) as adult_count")
+            ->selectRaw("COUNT(CASE WHEN attendance_logs.age_category = 'SENIOR' THEN 1 END) as senior_count")
+            ->selectRaw("COUNT(CASE WHEN customers.type = 'vip' THEN 1 END) as vip_customer_count")
+
+            ->selectRaw("COUNT(CASE WHEN customers.status = 'blocklisted' THEN 1 END) as blocklisted_customer_count")
+            ->selectRaw("COUNT(CASE WHEN customers.type = 'normal' THEN 1 END) as normal_customer_count")
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status = 'in' THEN 1 END) as in_count")
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status = 'in' AND 'attendance_logs.Gender' = 'Male' AND attendance_logs.age_category != 'CHILD' THEN 1 END) as in_male_count")
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status = 'in'  AND 'attendance_logs.Gender' = 'Female' AND attendance_logs.age_category != 'CHILD' THEN 1 END) as in_female_count")
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status = 'in'  AND attendance_logs.age_category = 'CHILD'  THEN 1 END) as in_child_count")
+
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status ='out' THEN 1 END) as out_count")
+
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status = 'out' AND 'attendance_logs.Gender' = 'Male' AND attendance_logs.age_category != 'CHILD' THEN 1 END) as out_male_count")
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status = 'out'  AND 'attendance_logs.Gender' = 'Female' AND attendance_logs.age_category != 'CHILD' THEN 1 END) as out_female_count")
+            ->selectRaw("COUNT(CASE WHEN customer_reports.status = 'out'  AND attendance_logs.age_category = 'CHILD'  THEN 1 END) as out_child_count")
+
+            // ->selectRaw("(SELECT COUNT(*) 
+            //       FROM (
+            //           SELECT  'UserID' as user_id
+            //           FROM attendance_logs
+            //           GROUP BY user_id
+            //           HAVING COUNT(*) > 2
+            //       ) AS repeated_users) AS repeated_customer_count")
+        ;
+
+        // $Query->when(request()->filled("branch_id"), function ($q) {
+        //     return $q->selectRaw('(SELECT occupancy FROM company_branches WHERE id = ' . request("branch_id") . ') as occupancy');
+        // })->when(!request()->filled("branch_id"), function ($q) {
+        //     return $q->selectRaw('(SELECT SUM(occupancy) FROM company_branches WHERE company_id = ' . request("company_id") . ') as occupancy');
+        // });
+        $return =   $Query->join('customers', 'customer_reports.user_id', '=', 'customers.system_user_id')
+            ->join('attendance_logs', 'attendance_logs.id', '=', 'customer_reports.in_id')
+
+            ->where('customers.company_id', request("company_id"))
+            ->whereBetween('customer_reports.date', [request("from_date"), request("to_date")])
+            ->when(request()->filled("branch_id"), fn ($q) => $q->where('br_id', request("branch_id")))
+            ->with("branch_for_stats_only")
+            ->groupBy(['customer_reports.date']);
+
+
+        if (!request()->filled("noPagination"))
+
+            return  $return->paginate(request("per_page") ?? 10);
+
+        else {
+            return  $return->get();
+        }
+    }
 
     public function store(Request $request)
     {

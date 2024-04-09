@@ -750,7 +750,12 @@ class CustomersDashboardController extends Controller
 
 
         //total_hrs
-        $totalHrsArray = $customerReportTodayModel->clone()->selectRaw('avg(total_hrs) as avg_total_hrs, min(total_hrs) as min_total_hrs, max(total_hrs) as max_total_hrs')
+        // $totalHrsArray = $customerReportTodayModel->clone()->selectRaw('avg(total_hrs) as avg_total_hrs, min(total_hrs) as min_total_hrs, max(total_hrs) as max_total_hrs')
+        //     ->first();
+
+        $totalHrsArray = $customerReportTodayModel
+            ->clone()
+            ->selectRaw('AVG(CAST(total_hrs AS FLOAT)) AS avg_total_hrs, MIN(CAST(total_hrs AS FLOAT)) AS min_total_hrs, MAX(CAST(total_hrs AS FLOAT)) AS max_total_hrs')
             ->first();
 
         $avg_time_spent = $totalHrsArray->avg_total_hrs;
