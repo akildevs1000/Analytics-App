@@ -10,6 +10,7 @@ use App\Http\Controllers\CommonController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DeviceStatusController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ResetPasswordController;
@@ -131,3 +132,6 @@ Route::get('reset_file/{token}/{file}', [CommonController::class, 'destroy']);
 
 Route::get('downloadfiles', [SdkLogcsvfileController::class, 'list']);
 Route::get('download/{key}', [SdkLogcsvfileController::class, 'download']);
+
+
+Route::post('image-upload', [ImageUploadController::class, 'upload']);
