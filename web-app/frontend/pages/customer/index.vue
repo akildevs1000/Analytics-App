@@ -89,7 +89,7 @@
                 </v-btn>
               </template>
               <v-list width="150" dense>
-                <!-- <v-list-item>
+                <v-list-item>
                   <v-list-item-title style="cursor: pointer">
                     <CustomerSingle @response="handleResponse" :item="item" />
                   </v-list-item-title>
@@ -98,7 +98,7 @@
                   <v-list-item-title style="cursor: pointer">
                     <CustomerEdit @response="handleResponse" :item="item" />
                   </v-list-item-title>
-                </v-list-item> -->
+                </v-list-item>
                 <v-list-item @click="deleteItem(item)">
                   <v-list-item-title style="cursor: pointer">
                     <v-icon color="error" small> mdi-delete </v-icon>
@@ -123,7 +123,6 @@ export default {
     snackText: "",
     loadinglinear: true,
     displayErrormsg: false,
-    dialog: false,
     loading: false,
     //total: 0,
     next_page_url: "",
@@ -332,7 +331,6 @@ export default {
     handleResponse(message) {
       this.snackbar = true;
       this.response = message;
-      this.dialog = true;
       this.getDataFromApi();
     },
   },
