@@ -256,7 +256,6 @@ export default {
     can(per) {
       return this.$pagePermission.can(per, this);
     },
-    
 
     getInfo() {
       this.$axios

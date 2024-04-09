@@ -4,7 +4,7 @@
       <v-row class="text-center">
         <v-col cols="1"> </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">IN</div>
+          <div style="font-size: 20px">In</div>
           <div style="font-size: 40px">{{ data.totalIn ?? "---" }}</div>
         </v-col>
         <v-col cols="1">

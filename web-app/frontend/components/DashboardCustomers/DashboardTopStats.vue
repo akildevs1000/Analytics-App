@@ -332,29 +332,6 @@
                 <span style="text-align: left; padding-left: 10%">
                   <span>
                     <img
-                      src="../../static/icons/stats-up.png"
-                      style="width: 17px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                    "
-                    >{{
-                      data.avg_time_spent
-                        ? $dateFormat.minutesToHHMM(data.max_time_spent)
-                        : "---"
-                    }}</span
-                  >
-                </span>
-              </v-col>
-              <v-col cols="6" style="text-align: right; padding-right: 10%">
-                <span>
-                  <span>
-                    <img
                       src="../../static/icons/stats-down.png"
                       style="width: 17px"
                     />
@@ -369,6 +346,29 @@
                     >{{
                       data.avg_time_spent
                         ? $dateFormat.minutesToHHMM(data.min_time_spent)
+                        : "---"
+                    }}</span
+                  >
+                </span>
+              </v-col>
+              <v-col cols="6" style="text-align: right; padding-right: 10%">
+                <span>
+                  <span>
+                    <img
+                      src="../../static/icons/stats-up.png"
+                      style="width: 17px"
+                    />
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                    "
+                    >{{
+                      data.avg_time_spent
+                        ? $dateFormat.minutesToHHMM(data.max_time_spent)
                         : "---"
                     }}</span
                   >
