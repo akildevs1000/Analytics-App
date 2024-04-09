@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 
 class ImageUploadController extends Controller
 {
-    public function upload(Request $request)
+    public function upload()
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif', // Adjust max size as needed
-            'imageName' => 'required|string|max:255', // Assuming image_name is provided in the payload
-        ]);
-
-
-        if ($request->hasFile('image')) {
-            $path = "customer/profile_picture/";
-            $destinationPath = public_path($path);
-
-            $request->image->move($destinationPath, $request->imageName);
+        $base64Image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', request('profile_picture')));
+        $publicDirectory = public_path("customer/profile_picture");
+        if (!file_exists($publicDirectory)) {
+            mkdir($publicDirectory, 0777, true);
         }
-
-        return public_path($path . $request->imageName);
+        file_put_contents($publicDirectory . '/' . request('imageName'), $base64Image);
+        return request('imageName');
     }
 }
