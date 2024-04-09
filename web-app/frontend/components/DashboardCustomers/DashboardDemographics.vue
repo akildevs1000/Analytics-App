@@ -45,7 +45,7 @@
                         {{ data.total_male_count ?? "---" }}
                       </span>
                       <span style="font-size: 14px"
-                        >{{ data.male_percentage_yesterday ?? "---" }}%</span
+                        >{{ data.male_percentage ?? "---" }}%</span
                       >
                     </div>
                     <div style="font-size: 12px">TOTAL MALE</div>
@@ -62,7 +62,12 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.male_younger_percentage_yesterday ?? "---"
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.male_younger_count * 100) /
+                                  data.total_male_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>
@@ -82,7 +87,12 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.male_adult_percentage_yesterday ?? "---"
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.male_adult_count * 100) /
+                                  data.total_male_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>
@@ -102,7 +112,12 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.male_seniour_percentage_yesterday ?? "---"
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.male_senior_count * 100) /
+                                  data.total_male_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>
@@ -172,7 +187,12 @@
                       </span>
                       <span style="font-size: 14px">
                         {{
-                          data.female_younger_percentage_yesterday ?? "---"
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.female_younger_count * 100) /
+                                  data.total_female_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>
@@ -190,9 +210,14 @@
                       <span style="font-size: 22px; font-weight: 300"
                         >{{ data.female_adult_count ?? "---" }}
                       </span>
-                      <span style="font-size: 14px"
-                        >{{
-                          data.female_adult_percentage_yesterday ?? "---"
+                      <span style="font-size: 14px">
+                        {{
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.female_adult_count * 100) /
+                                  data.total_female_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>
@@ -212,7 +237,12 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.female_seniour_percentage_yesterday ?? "---"
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.female_senior_count * 100) /
+                                  data.total_female_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>
@@ -295,7 +325,12 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.child_female_percentage_yesterday ?? "---"
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.child_female_count * 100) /
+                                  data.total_child_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>
@@ -313,7 +348,12 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.child_male_percentage_yesterday ?? "---"
+                          data.total_male_count > 0
+                            ? Math.round(
+                                (data.child_male_count * 100) /
+                                  data.total_child_count
+                              )
+                            : "---"
                         }}%</span
                       >
                     </div>

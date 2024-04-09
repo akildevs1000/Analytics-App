@@ -92,11 +92,7 @@
       <v-col cols="12">
         <v-row>
           <v-col cols="6" class="pl-0">
-            <v-card
-              :loading="loading"
-              class="py-2"
-              style="width: 100%; height: 500px"
-            >
+            <v-card class="py-2" style="width: 100%; height: 500px">
               <div class="pl-3" style="font-size: 18px">Demographics</div>
               <DashboardDemographics />
             </v-card>

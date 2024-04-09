@@ -39,7 +39,7 @@
                 :default_date_to="date_to"
                 :defaultFilterType="1"
                 :height="'40px '"
-                :maximum_days="30"
+                :maximum_days="10"
               />
             </v-col>
             <v-col cols="2" v-if="isCompany">
@@ -79,7 +79,7 @@
         <v-col cols="12" class="pt-1" style="overflow-x: scroll">
           <table style="width: 100%" class="weekly-report-table">
             <tr v-for="(counts, index) in data">
-              <td style="font-size: 10px">
+              <td style="font-size: 12px">
                 {{ hours ? hours[counts.hour] : "---" }}
               </td>
               <td :style="'text-align:center;  '" v-for="count in counts.value">
@@ -89,7 +89,13 @@
                 {{ hourTotals[index] }}
               </td>
             </tr>
-            <tr style="font-weight: bold; text-align: center">
+            <tr
+              style="
+                font-weight: bold;
+                text-align: center;
+                background-color: #adadad;
+              "
+            >
               <td>Total</td>
               <td
                 style="text-align: center"

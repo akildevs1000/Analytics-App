@@ -97,49 +97,82 @@ export default {
       filterINOut: "in",
       filterDuration: null,
 
+      // series: [
+      //     {
+      //       name: 'Q1 Budget',
+      //       group: 'budget',
+      //       data: [44000, 55000, 41000, 67000, 22000]
+      //     },
+      //     {
+      //       name: 'Q1 Actual',
+      //       group: 'actual',
+      //       data: [48000, 50000, 40000, 65000, 25000]
+      //     },
+      //     {
+      //       name: 'Q2 Budget',
+      //       group: 'budget',
+      //       data: [13000, 36000, 20000, 8000, 13000]
+      //     },
+      //     {
+      //       name: 'Q2 Actual',
+      //       group: 'actual',
+      //       data: [20000, 40000, 25000, 10000, 12000]
+      //     }
+      //   ],
       series: [
         {
-          name: "Male",
+          name: "Male In",
           data: [],
+          group: "in",
+        },
+        {
+          name: "Male Out",
+          data: [],
+          group: "out",
         },
 
         {
-          name: "Female",
+          name: "Female In",
           data: [],
+          group: "in",
         },
         {
-          name: "Kids",
+          name: "Female Out",
           data: [],
+          group: "out",
+        },
+        {
+          name: "Kids In",
+          data: [],
+          group: "in",
+        },
+        {
+          name: "Kids Out",
+          data: [],
+          group: "out",
         },
       ],
       chartOptions1: {
-        series: [
-          {
-            name: "Male",
-            data: [],
-          },
-
-          {
-            name: "Female",
-            data: [],
-          },
-          {
-            name: "Kids",
-            data: [],
-          },
+        colors: [
+          "#01b0f0",
+          "#99ccff",
+          "#f75b95",
+          "#ff99cc",
+          "#16b16d",
+          "#66cc99",
         ],
-        colors: ["#01b0f0", "#f75b95", "#16b16d"],
         chart: {
           toolbar: {
             show: false,
           },
           type: "bar",
           width: "98%",
+          stacked: true,
         },
         plotOptions: {
           bar: {
             horizontal: false,
-            columnWidth: "25%",
+            columnWidth: "50%",
             endingShape: "rounded",
           },
         },
@@ -197,7 +230,7 @@ export default {
         plotOptions: {
           bar: {
             horizontal: false,
-            columnWidth: "25%",
+            columnWidth: "50%",
             endingShape: "rounded",
           },
         },
@@ -206,7 +239,7 @@ export default {
         },
         stroke: {
           show: true,
-          width: 2,
+          width: 10,
           colors: ["transparent"],
         },
         xaxis: {
@@ -317,8 +350,6 @@ export default {
       this.getDataFromApi();
     },
     async getDataFromApi() {
-      console.log(this.date_from, this.date_to);
-
       this.loading = true;
 
       if (this.filterDuration) {
@@ -343,43 +374,76 @@ export default {
         },
       };
       if (this.date_from == this.date_to) {
-        if (this.filterINOut == "out") {
-          this.$axios
-            .get(`/dashboard-get-hourly-out-data`, options)
-            .then(({ data }) => {
-              this.renderChart1(data.houry_data);
-            });
-        } else if (this.filterINOut == "in") {
-          this.$axios
-            .get(`/dashboard-get-hourly-in-data`, options)
-            .then(({ data }) => {
-              this.renderChart1(data.houry_data);
-            });
-        }
-      } else {
-        this.$axios
+        let InData = [];
+        let OutData = [];
+        await this.$axios
+          .get(`/dashboard-get-hourly-out-data`, options)
+          .then(({ data }) => {
+            InData = data.houry_data;
+            //this.renderChart1(data.houry_data);
+          });
+
+        await this.$axios
           .get(`/dashboard-get-hourly-in-data`, options)
           .then(({ data }) => {
-            this.renderChart2(data);
+            OutData = data.houry_data;
           });
-      }
-    },
 
-    renderChart1(data) {
-      console.log("data", data);
+        this.renderChartGroupChart(InData, OutData);
+      }
+      //}
+      // if (this.date_from == this.date_to) {
+      //   if (this.filterINOut == "out") {
+      //     this.$axios
+      //       .get(`/dashboard-get-hourly-out-data`, options)
+      //       .then(({ data }) => {
+      //         this.renderChart1(data.houry_data);
+      //       });
+      //   } else if (this.filterINOut == "in") {
+      //     this.$axios
+      //       .get(`/dashboard-get-hourly-in-data`, options)
+      //       .then(({ data }) => {
+      //         this.renderChart1(data.houry_data);
+      //       });
+      //   }
+      // } else {
+      //   this.$axios
+      //     .get(`/dashboard-get-hourly-in-data`, options)
+      //     .then(({ data }) => {
+      //       this.renderChart2(data);
+      //     });
+      // }
+    },
+    renderChartGroupChart(InData, OutData) {
       let counter = 0;
 
       let Series;
-      data.forEach((item) => {
+      InData.forEach((item) => {
+        //male
         this.chartOptions1.series[0]["data"][counter] = parseInt(
           item.maleCount
         );
 
         this.chartOptions1.series[1]["data"][counter] = parseInt(
+          OutData[counter].maleCount
+        );
+
+        //female
+        this.chartOptions1.series[2]["data"][counter] = parseInt(
           item.femaleCount
         );
-        this.chartOptions1.series[2]["data"][counter] = parseInt(
+
+        this.chartOptions1.series[3]["data"][counter] = parseInt(
+          OutData[counter].femaleCount
+        );
+
+        //female
+        this.chartOptions1.series[4]["data"][counter] = parseInt(
           item.kidsCount
+        );
+
+        this.chartOptions1.series[5]["data"][counter] = parseInt(
+          OutData[counter].kidsCount
         );
 
         this.chartOptions1.xaxis.categories[counter] = item.hour;
@@ -390,52 +454,76 @@ export default {
 
       this.loading = false;
     },
-    renderChart2(data) {
-      try {
-        this.chartOptions2.chart.height = this.height;
-        this.chartOptions2.series = this.series;
+    //   renderChart1(data) {
+    //     let counter = 0;
 
-        let counter = 0;
+    //     let Series;
+    //     data.forEach((item) => {
+    //       this.chartOptions1.series[0]["data"][counter] = parseInt(
+    //         item.maleCount
+    //       );
 
-        this.chartOptions2.series = [
-          {
-            name: "Male",
-            data: [],
-          },
+    //       this.chartOptions1.series[1]["data"][counter] = parseInt(
+    //         item.femaleCount
+    //       );
+    //       this.chartOptions1.series[2]["data"][counter] = parseInt(
+    //         item.kidsCount
+    //       );
 
-          {
-            name: "Female",
-            data: [],
-          },
-          {
-            name: "Kids",
-            data: [],
-          },
-        ];
+    //       this.chartOptions1.xaxis.categories[counter] = item.hour;
+    //       counter++;
+    //     });
 
-        this.chartOptions2.xaxis = {
-          categories: [],
-        };
-        data.forEach((item) => {
-          this.chartOptions2.series[0]["data"][counter] = parseInt(item.count);
+    //     this.ApexCharts1.updateOptions(this.chartOptions1);
 
-          this.chartOptions2.series[1]["data"][counter] = parseInt(
-            item.batteryCount
-          );
+    //     this.loading = false;
+    //   },
+    //   renderChart2(data) {
+    //     try {
+    //       this.chartOptions2.chart.height = this.height;
+    //       this.chartOptions2.series = this.series;
 
-          this.chartOptions2.xaxis.categories[counter] =
-            this.$dateFormat.format2(item.date);
+    //       let counter = 0;
 
-          counter++;
-        });
-        this.loading = false;
+    //       this.chartOptions2.series = [
+    //         {
+    //           name: "Male",
+    //           data: [],
+    //         },
 
-        new ApexCharts(
-          document.querySelector("#" + this.name),
-          this.chartOptions2
-        ).render();
-      } catch (error) {}
-    },
+    //         {
+    //           name: "Female",
+    //           data: [],
+    //         },
+    //         {
+    //           name: "Kids",
+    //           data: [],
+    //         },
+    //       ];
+
+    //       this.chartOptions2.xaxis = {
+    //         categories: [],
+    //       };
+    //       data.forEach((item) => {
+    //         this.chartOptions2.series[0]["data"][counter] = parseInt(item.count);
+
+    //         this.chartOptions2.series[1]["data"][counter] = parseInt(
+    //           item.batteryCount
+    //         );
+
+    //         this.chartOptions2.xaxis.categories[counter] =
+    //           this.$dateFormat.format2(item.date);
+
+    //         counter++;
+    //       });
+    //       this.loading = false;
+
+    //       new ApexCharts(
+    //         document.querySelector("#" + this.name),
+    //         this.chartOptions2
+    //       ).render();
+    //     } catch (error) {}
+    //   },
   },
 };
 </script>
