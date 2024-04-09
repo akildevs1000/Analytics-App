@@ -73,6 +73,7 @@ class DashboardController extends Controller
 
         $attendanceCounts = AttendanceLog::with(["employee"])->where("company_id", $id)
             ->whereDate("LogTime",  $date)
+
             ->when($request->filled("branch_id"), function ($q) use ($request) {
                 $q->whereHas("employee", fn ($q) => $q->where("branch_id", $request->branch_id));
             })

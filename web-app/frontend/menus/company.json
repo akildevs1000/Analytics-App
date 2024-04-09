@@ -275,11 +275,20 @@
   },
   {
     "icon": "mdi-home",
-    "title": "Customers",
-    "to": "/customer",
-    "menu": "community",
+    "title": "Dashboard",
+    "to": "/statistics",
+    "menu": "customers",
     "module": "customers"
   },
+
+  {
+    "icon": "mdi-home",
+    "title": "Customers",
+    "to": "/customer",
+    "menu": "customers",
+    "module": "customers"
+  },
+
   {
     "icon": "mdi-camera-account",
     "title": "Customer Upload",

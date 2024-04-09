@@ -69,6 +69,7 @@ class ThemeController extends Controller
         try {
             $attendanceCounts = AttendanceLog::with(["employee"])->where("company_id", $id)
                 ->whereDate("LogTime", $date)
+                ->where("user_type", "Employee")
                 ->when($request->filled("branch_id"), function ($q) use ($request) {
                     $q->whereHas("employee", fn ($q) => $q->where("branch_id", $request->branch_id));
                 })
