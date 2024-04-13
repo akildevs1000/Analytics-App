@@ -35,6 +35,19 @@
           <div>Manager On Duty</div>
           <div
             style="font-size: 30px; color: #203864"
+            v-if="data.onDutyShiftManager?.employee"
+          >
+            {{ data.onDutyShiftManager?.employee?.title }}
+            {{ data.onDutyShiftManager?.employee?.first_name ?? "---" }}
+            {{ data.onDutyShiftManager?.employee?.last_name ?? "---" }}
+            <div style="font-size: 10px">
+              {{ data.onDutyShiftManager?.employee?.phone_number ?? "---" }}
+            </div>
+          </div>
+
+          <div v-else>---</div>
+          <!-- <div
+            style="font-size: 30px; color: #203864"
             v-if="data.branchDetails?.user"
           >
             {{ data.branchDetails?.user?.employee?.title }}
@@ -45,7 +58,7 @@
             </div>
           </div>
 
-          <div v-else>---</div>
+          <div v-else>---</div> -->
         </v-col>
       </v-row>
     </div>

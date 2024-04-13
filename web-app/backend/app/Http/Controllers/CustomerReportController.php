@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\CustomerReport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerReportController extends Controller
 {
@@ -92,6 +93,48 @@ class CustomerReportController extends Controller
 
     public function stats()
     {
+
+        // $perPage = 10; // Or any other number of items per page you prefer
+
+        // $query = CustomerReport::select([
+        //     'date',
+        //     'total_hrs',
+        //     'branch_id as br_id',
+        //     DB::raw('(SELECT AVG(total_hrs) FROM customer_reports) as avg_total_hours'),
+        //     DB::raw('(SELECT MIN(total_hrs) FROM customer_reports) as min_total_hours'),
+        //     DB::raw('(SELECT MAX(total_hrs) FROM customer_reports) as max_total_hours'),
+
+        //     DB::raw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category != "CHILD" THEN 1 END) as male_count'),
+        //     DB::raw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category = "CHILD" THEN 1 END) as child_male_count'),
+        //     DB::raw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category = "YOUNGER" THEN 1 END) as male_younger_count'),
+        //     DB::raw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category = "ADULT" THEN 1 END) as male_adult_count'),
+        //     DB::raw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category = "SENIOR" THEN 1 END) as male_senior_count'),
+
+        //     // Add similar counts for female
+        //     // Add similar counts for age categories
+        //     // Add similar counts for customer types and statuses
+        // ]);
+
+        // $query->addSelect([
+        //     DB::raw('COUNT(CASE WHEN customer_reports.status = "in" THEN 1 END) as in_count'),
+        //     DB::raw('COUNT(CASE WHEN customer_reports.status = "in" AND attendance_logs.Gender = "Male" AND attendance_logs.age_category != "CHILD" THEN 1 END) as in_male_count'),
+        //     DB::raw('COUNT(CASE WHEN customer_reports.status = "in" AND attendance_logs.Gender = "Female" AND attendance_logs.age_category != "CHILD" THEN 1 END) as in_female_count'),
+        //     DB::raw('COUNT(CASE WHEN customer_reports.status = "in" AND attendance_logs.age_category = "CHILD" THEN 1 END) as in_child_count'),
+
+        //     // Add similar counts for "out" status
+        // ]);
+
+        // $query->addSelect([
+        //     DB::raw('(SELECT COUNT(*)
+        // FROM (
+        //     SELECT UserID
+        //     FROM attendance_logs
+        //     GROUP BY UserID
+        //     HAVING COUNT(*) > 2
+        // ) AS repeated_users) AS repeated_customer_count')
+        // ]);
+
+        // return   $results = $query->paginate($perPage);
         $Query = CustomerReport::query()
             ->select("customer_reports.date", "customer_reports.total_hrs", "customer_reports.branch_id as br_id")
             ->selectRaw('(AVG(CAST(customer_reports.total_hrs AS FLOAT))) AS avg_total_hrs')

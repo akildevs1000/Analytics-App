@@ -71,7 +71,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">YOUNGER</div>
+                    <div style="font-size: 12px">YOUNG</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       15- 25 YEARS
                     </div>
@@ -96,7 +96,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">ADULT</div>
+                    <div style="font-size: 12px">Adult</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       26-59 YEARS
                     </div>
@@ -121,7 +121,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">SENIOR</div>
+                    <div style="font-size: 12px">Senior</div>
                     <div style="font-size: 10px; color: #a6a6a6">>60 YEARS</div>
                   </span>
                 </v-col>
@@ -170,7 +170,7 @@
                         {{ data.total_female_count ?? "---" }}
                       </span>
                       <span style="font-size: 14px">
-                        {{ data.female_percentage_yesterday ?? "---" }}%</span
+                        {{ data.female_percentage ?? "---" }}%</span
                       >
                     </div>
                     <div style="font-size: 12px">TOTAL FEMALE</div>
@@ -196,7 +196,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">YOUNGER</div>
+                    <div style="font-size: 12px">Young</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       15- 25 YEARS
                     </div>
@@ -212,7 +212,7 @@
                       </span>
                       <span style="font-size: 14px">
                         {{
-                          data.total_male_count > 0
+                          data.total_female_count > 0
                             ? Math.round(
                                 (data.female_adult_count * 100) /
                                   data.total_female_count
@@ -221,7 +221,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">ADULT</div>
+                    <div style="font-size: 12px">Adult</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       26-59 YEARS
                     </div>
@@ -246,7 +246,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">SENIOR</div>
+                    <div style="font-size: 12px">Senior</div>
                     <div style="font-size: 10px; color: #a6a6a6">>60 YEARS</div>
                   </span>
                 </v-col>
@@ -308,7 +308,7 @@
                         >{{ data.total_child_count ?? "---" }}
                       </span>
                       <span style="font-size: 14px"
-                        >{{ data.child_percentage_yesterday ?? "---" }}%</span
+                        >{{ data.child_percentage ?? "---" }}%</span
                       >
                     </div>
                     <div style="font-size: 12px">TOTAL CHILD</div>
@@ -325,7 +325,7 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.total_male_count > 0
+                          data.total_child_count > 0
                             ? Math.round(
                                 (data.child_female_count * 100) /
                                   data.total_child_count
@@ -348,7 +348,7 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.total_male_count > 0
+                          data.total_child_count > 0
                             ? Math.round(
                                 (data.child_male_count * 100) /
                                   data.total_child_count

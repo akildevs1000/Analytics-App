@@ -6,7 +6,7 @@
           <v-card class="py-2" style="width: 100%">
             <v-row style="height: 70px">
               <v-col cols="4" style="padding-left: 25px; font-size: 18px"
-                ><span>Live IN</span>
+                ><span>In</span>
               </v-col>
               <v-col cols="8" style="font-size: 60px; color: #c55a11">
                 <span>{{ data.live_total_count ?? "---" }}</span>
@@ -25,7 +25,7 @@
                   <span>
                     <img
                       src="../../static/icons/male.png"
-                      style="width: 25px"
+                      style="width: 17px"
                     />
                   </span>
                   <span
@@ -45,7 +45,7 @@
                   <span>
                     <img
                       src="../../static/icons/female.png"
-                      style="width: 25px"
+                      style="width: 17px"
                     />
                   </span>
                   <span
@@ -110,7 +110,7 @@
                   <span>
                     <img
                       src="../../static/icons/male.png"
-                      style="width: 25px"
+                      style="width: 17px"
                     />
                   </span>
                   <span
@@ -130,7 +130,7 @@
                   <span>
                     <img
                       src="../../static/icons/female.png"
-                      style="width: 25px"
+                      style="width: 17px"
                     />
                   </span>
                   <span
