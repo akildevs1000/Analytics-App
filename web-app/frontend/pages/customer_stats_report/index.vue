@@ -152,7 +152,7 @@
                 <span style="">
                   <span>
                     <img
-                      src="../../static/icons/male1.png"
+                      src="../../static/icons/male21.png"
                       style="width: 35px"
                     />
                   </span>
@@ -204,7 +204,7 @@
                 <span style="">
                   <span>
                     <img
-                      src="../../static/icons/female1.png"
+                      src="../../static/icons/female21.png"
                       style="width: 35px"
                     />
                   </span>

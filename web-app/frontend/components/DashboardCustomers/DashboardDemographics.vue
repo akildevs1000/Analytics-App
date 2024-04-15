@@ -6,20 +6,23 @@
           <v-col cols="4" class="text-center pa-0">
             <div
               class="text-center"
-              style="width: 65%; min-width: 170px; margin: auto"
+              style="width: 65%; min-width: 170px; margin: auto; color: #01b0f0"
             >
               <v-row class="text-center">
                 <v-col cols="12">
                   <span style="float: left; width: 30%; height: 65px">
                     <img
-                      src="../../static/icons/male1.png"
+                      src="../../static/icons/male31.png"
                       style="width: 60px"
                     />
                   </span>
 
                   <span style="float: left; width: 70%">
                     <div style="font-size: 30px">
-                      {{ data.male_percentage ?? "---" }}%
+                      {{ data.total_male_count ?? "---" }}
+                      <span style="font-size: 14px"
+                        >{{ data.male_percentage }}%
+                      </span>
                     </div>
                     <div style="font-size: 12px; text-align: left">
                       <img
@@ -37,7 +40,7 @@
                   </span>
                 </v-col>
               </v-row>
-              <v-row class="text-center">
+              <!-- <v-row class="text-center">
                 <v-col cols="12">
                   <span style="float: left; width: 100%">
                     <div>
@@ -51,10 +54,18 @@
                     <div style="font-size: 12px">TOTAL MALE</div>
                   </span>
                 </v-col>
+              </v-row> -->
+              <v-row>
+                <v-col cols="12" style="padding-left: 0px">
+                  <DashboardDemographicsMaleChart
+                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    :data="data"
+                    :height="200"
+                  />
+                </v-col>
               </v-row>
-
               <v-row class="text-center">
-                <v-col cols="12">
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -77,13 +88,12 @@
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
-                      <span style="font-size: 22px; font-weight: 300"
-                        >{{ data.male_adult_count ?? "---" }}
+                      <span style="font-size: 22px; font-weight: 300">
+                        {{ data.male_adult_count ?? "---" }}
                       </span>
                       <span style="font-size: 14px"
                         >{{
@@ -102,13 +112,12 @@
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
-                      <span style="font-size: 22px; font-weight: 300"
-                        >{{ data.male_senior_count ?? "---" }}
+                      <span style="font-size: 22px; font-weight: 300">
+                        {{ data.male_senior_count ?? "---" }}
                       </span>
                       <span style="font-size: 14px"
                         >{{
@@ -131,20 +140,24 @@
           <v-col cols="4" class="text-center pa-0">
             <div
               class="text-center"
-              style="width: 65%; min-width: 170px; margin: auto"
+              style="width: 65%; min-width: 170px; margin: auto; color: #f75b95"
             >
               <v-row class="text-center">
                 <v-col cols="12">
                   <span style="float: left; width: 30%; height: 65px">
                     <img
-                      src="../../static/icons/female1.png"
-                      style="width: 60px"
+                      src="../../static/icons/female31.png"
+                      style="width: 50px"
                     />
                   </span>
 
                   <span style="float: left; width: 70%">
                     <div style="font-size: 30px">
-                      {{ data.female_percentage ?? "---" }}%
+                      {{ data.total_female_count ?? "---" }}
+
+                      <span style="font-size: 14px"
+                        >{{ data.female_percentage }}%
+                      </span>
                     </div>
                     <div style="font-size: 12px; text-align: left">
                       <img
@@ -162,24 +175,18 @@
                   </span>
                 </v-col>
               </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
-                  <span style="float: left; width: 100%">
-                    <div>
-                      <span style="font-size: 22px; font-weight: 300">
-                        {{ data.total_female_count ?? "---" }}
-                      </span>
-                      <span style="font-size: 14px">
-                        {{ data.female_percentage ?? "---" }}%</span
-                      >
-                    </div>
-                    <div style="font-size: 12px">TOTAL FEMALE</div>
-                  </span>
+
+              <v-row>
+                <v-col cols="12" style="padding-left: 0px">
+                  <DashboardDemographicsFeMaleChart
+                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    :data="data"
+                    :height="200"
+                  />
                 </v-col>
               </v-row>
-
-              <v-row class="text-center">
-                <v-col cols="12">
+              <v-row>
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300">
@@ -202,9 +209,8 @@
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -227,9 +233,8 @@
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -269,14 +274,17 @@
                     "
                   >
                     <img
-                      src="../../static/icons/kid1.png"
-                      style="width: 30px; padding-top: 13px"
+                      src="../../static/icons/kids21.png"
+                      style="width: 45px; padding-top: 0px"
                     />
                   </span>
 
                   <span style="float: left; width: 70%">
                     <div style="font-size: 30px">
-                      {{ data.child_percentage ?? "---" }}%
+                      {{ data.total_child_count ?? "---" }}
+                      <span style="font-size: 14px"
+                        >{{ data.child_percentage ?? "---" }}%
+                      </span>
                     </div>
                     <div
                       style="
@@ -300,24 +308,17 @@
                   </span>
                 </v-col>
               </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
-                  <span style="float: left; width: 100%">
-                    <div>
-                      <span style="font-size: 22px; font-weight: 300"
-                        >{{ data.total_child_count ?? "---" }}
-                      </span>
-                      <span style="font-size: 14px"
-                        >{{ data.child_percentage ?? "---" }}%</span
-                      >
-                    </div>
-                    <div style="font-size: 12px">TOTAL CHILD</div>
-                  </span>
+              <v-row>
+                <v-col cols="12" style="padding-left: 0px">
+                  <DashboardDemographicsKidsChart
+                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    :data="data"
+                    :height="200"
+                  />
                 </v-col>
               </v-row>
-
               <v-row class="text-center">
-                <v-col cols="12">
+                <v-col cols="6">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -338,9 +339,8 @@
                     <div style="font-size: 10px; color: #a6a6a6"><15 YEARS</div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="6">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"

@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 101%">
+  <div style="width: 101%; margin-top: 4px">
     <v-row style="width: 101%; margin-right: 0px" class="pt-2">
       <v-col lg="3" md="3" sm="12" xs="12">
         <v-row style="width: 100%; height: 150px">
@@ -24,8 +24,8 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/male.png"
-                      style="width: 17px"
+                      src="../../static/icons/male31.png"
+                      style="width: 33px"
                     />
                   </span>
                   <span
@@ -44,8 +44,8 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/female.png"
-                      style="width: 17px"
+                      src="../../static/icons/female31.png"
+                      style="width: 26px"
                     />
                   </span>
                   <span
@@ -65,8 +65,8 @@
                 <span style="display: flex; float: left; padding-left: 10px">
                   <span>
                     <img
-                      src="../../static/icons/male.png"
-                      style="width: 13px; padding-top: 18px"
+                      src="../../static/icons/kids21.png"
+                      style="width: 22px; padding-top: 18px"
                     />
                   </span>
                   <span
@@ -109,8 +109,8 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/male.png"
-                      style="width: 17px"
+                      src="../../static/icons/male31.png"
+                      style="width: 33px"
                     />
                   </span>
                   <span
@@ -129,8 +129,8 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/female.png"
-                      style="width: 17px"
+                      src="../../static/icons/female31.png"
+                      style="width: 26px"
                     />
                   </span>
                   <span
@@ -150,8 +150,8 @@
                 <span style="display: flex; float: left; padding-left: 10px">
                   <span>
                     <img
-                      src="../../static/icons/male.png"
-                      style="width: 13px; padding-top: 18px"
+                      src="../../static/icons/kids21.png"
+                      style="width: 22px; padding-top: 18px"
                     />
                   </span>
                   <span
@@ -244,7 +244,7 @@
                         src="../../static/icons/foot.png"
                         style="width: 35px"
                       /> -->
-                    <v-icon size="40" style="margin-top: -10px"
+                    <v-icon size="40" style="margin-top: -10px" color="black"
                       >mdi mdi-account-group</v-icon
                     >
                   </span>

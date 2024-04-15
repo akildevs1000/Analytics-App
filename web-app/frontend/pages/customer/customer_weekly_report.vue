@@ -10,10 +10,8 @@
     </table> -->
     <v-card class="py-2 pl-2">
       <v-row>
-        <v-col cols="2" style="max-width: 175px"
-          ><h3>Weekly Analysis</h3></v-col
-        >
-        <v-col cols="9" class="pull-end" style="float: right">
+        <v-col cols="6" style=""><h3>Weekly Analysis</h3></v-col>
+        <v-col cols="6" class="pull-end" style="float: right">
           <v-spacer></v-spacer>
           <v-row>
             <v-col>
