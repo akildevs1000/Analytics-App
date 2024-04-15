@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchShiftManagersController;
 use App\Http\Controllers\CompanyBranchController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,3 +9,5 @@ Route::post('/branch/{id}', [CompanyBranchController::class, "update"]);
 Route::get('/branches_list', [CompanyBranchController::class, "branchesList"]);
 Route::get('/branch-list', [CompanyBranchController::class, "dropdownList"]);
 
+
+Route::apiResource('/branch-shift-managers', BranchShiftManagersController::class);

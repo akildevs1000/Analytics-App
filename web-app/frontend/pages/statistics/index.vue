@@ -248,7 +248,6 @@ export default {
         },
       };
       this.$axios.get(`/dashboard-statistics`, options).then(({ data }) => {
-        console.log("data", data);
         this.$store.commit("dashboard/customerDashboardData", data);
         setTimeout(() => {
           this.loading = false;

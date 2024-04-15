@@ -1,94 +1,17 @@
 <template>
   <div>
-    <v-row style="width: 100%; height: 100%">
-      <v-col cols="12">
-        <v-row style="text-align: right" justify="end">
-          <v-col cols="3">
-            <v-select
-              v-model="isGrouped"
-              :items="[
-                {
-                  id: 1,
-                  name: 'Group Gender',
-                },
-                {
-                  id: 0,
-                  name: 'Individual',
-                },
-              ]"
-              label="Group"
-              dense
-              placeholder="Group"
-              outlined
-              :hide-details="true"
-              item-text="name"
-              item-value="id"
-            ></v-select>
-          </v-col>
-
-          <v-col cols="3">
-            <v-select
-              @change="getDataFromApi()"
-              v-model="filterDuration"
-              :items="[
-                {
-                  id: null,
-                  name: 'All',
-                },
-                {
-                  id: '0-5',
-                  name: 5,
-                },
-                {
-                  id: '5-10',
-                  name: '5 to 10 ',
-                },
-                {
-                  id: '10-30',
-                  name: '10 to 30 ',
-                },
-                {
-                  id: '30-60',
-                  name: '30 to 60 ',
-                },
-                {
-                  id: '60-1000',
-                  name: 'Above 60 ',
-                },
-              ]"
-              label="Time Spent   Minutes"
-              dense
-              placeholder="Time Spent   Minutes"
-              outlined
-              :hide-details="true"
-              item-text="name"
-              item-value="id"
-            ></v-select>
-          </v-col>
-        </v-row>
-        <div :id="name" style="width: 100%; height: 400px" :key="key"></div>
-      </v-col>
-    </v-row>
+    <div :id="name" style="width: 100%" :key="key"></div>
   </div>
 </template>
 
 <script>
 // import VueApexCharts from 'vue-apexcharts'
 export default {
-  props: [
-    "height",
-    "branch_id",
-    "date_from",
-    "date_to",
-    "filter_device_serial_number",
-    "filter_from_date",
-  ],
+  props: ["height", "data"],
   data() {
     return {
       key: 1,
-      name: "apexDashboardHour",
-      nameGroup: "apexDashboardHourGroup",
-
+      name: "apexDashboardKidsChart",
       filterDeviceId: null,
       devices: [],
       loading: false,
@@ -97,121 +20,66 @@ export default {
       filterINOut: "in",
       filterDuration: null,
 
-      isGrouped: 1,
-      series: [
-        {
-          name: "Male In",
-          data: [],
-          group: "in",
-        },
-        {
-          name: "Male Out",
-          data: [],
-          group: "out",
-        },
-
-        {
-          name: "Female In",
-          data: [],
-          group: "in",
-        },
-        {
-          name: "Female Out",
-          data: [],
-          group: "out",
-        },
-        {
-          name: "Kids In",
-          data: [],
-          group: "in",
-        },
-        {
-          name: "Kids Out",
-          data: [],
-          group: "out",
-        },
-      ],
-
       chartOptions1: {
-        series: [
-          {
-            name: "Male In",
-            data: [],
-            group: "in",
-          },
-          {
-            name: "Male Out",
-            data: [],
-            group: "out",
-          },
-
-          {
-            name: "Female In",
-            data: [],
-            group: "in",
-          },
-          {
-            name: "Female Out",
-            data: [],
-            group: "out",
-          },
-          {
-            name: "Kids In",
-            data: [],
-            group: "in",
-          },
-          {
-            name: "Kids Out",
-            data: [],
-            group: "out",
-          },
-        ],
-        colors: [
-          "#DB4437",
-          "#0F9D58",
-          "#4285F4",
-          "#ff99cc",
-          "#16b16d",
-          "#66cc99",
-        ],
-        chart: {
-          toolbar: {
-            show: false,
-          },
-          type: "bar",
-          width: "98%",
-          stacked: true,
+        series: [],
+        colors: ["#0F9D58", "#DB4437"],
+        labels: ["Male", "Female"],
+        // labels: {
+        //   show: true,
+        // },
+        toolbar: {
+          show: false,
         },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: "100%",
-            endingShape: "rounded",
-          },
+
+        chart: {
+          type: "donut",
+          width: "100%",
         },
         dataLabels: {
-          enabled: false,
+          enabled: true,
         },
-        stroke: {
-          show: true,
-          width: 10,
-          colors: ["transparent"],
+        legend: {
+          show: false,
         },
-        xaxis: {
-          categories: [],
+
+        dataLabels: {
+          enabled: true,
         },
-        yaxis: {
-          title: {
-            text: " ",
-          },
-        },
-        fill: {
-          opacity: 1,
-        },
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return val;
+
+        plotOptions: {
+          pie: {
+            donut: {
+              labels: {
+                show: true,
+                name: {
+                  show: true,
+                  fontSize: "22px",
+                  fontFamily: "Rubik",
+                  color: "#dfsda",
+                  offsetY: -10,
+                },
+                value: {
+                  show: true,
+                  fontSize: "16px",
+                  fontFamily: "Roboto, sans-serif",
+                  color: undefined,
+                  offsetY: 16,
+                  formatter: function (val) {
+                    return val;
+                  },
+                },
+                total: {
+                  show: true,
+                  label: "Total",
+                  color: "#373d3f",
+                  fontFamily: "Roboto, sans-serif",
+                  formatter: function (w) {
+                    return w.globals.seriesTotals.reduce((a, b) => {
+                      return a + b;
+                    }, 0);
+                  },
+                },
+              },
             },
           },
         },
@@ -221,13 +89,14 @@ export default {
     };
   },
   watch: {
-    async filter_from_date() {
-      await this.getDataFromApi();
-    },
-    isGrouped(val) {
-      this.chartOptions1.chart.stacked = val == 1 ? true : false;
-
-      this.ApexCharts1.updateOptions(this.chartOptions1);
+    data() {
+      try {
+        this.chartOptions1.series = [
+          parseInt(this.data.child_male_count),
+          parseInt(this.data.child_female_count),
+        ];
+        this.ApexCharts1.updateOptions(this.chartOptions1);
+      } catch (e) {}
     },
     async branch_id(val) {
       this.$store.commit("CommDashboard/setDashboardData", null);
@@ -236,57 +105,46 @@ export default {
     },
   },
   mounted() {
-    // this.chartOptions1.chart.height = this.height;
-    // this.chartOptions1.series = this.series;
-    // this.ApexCharts1 = new ApexCharts(
-    //   document.querySelector("#" + this.nameGroup),
-    //   this.chartOptions1
-    // ); //.render();
-    // this.ApexCharts1.render();
+    setTimeout(() => {
+      if (this.data)
+        this.chartOptions1.series = [
+          parseInt(this.data.child_male_count),
+          parseInt(this.data.child_female_count),
+        ];
 
-    ///////------------------------
+      this.ApexCharts1 = new ApexCharts(
+        document.querySelector("#" + this.name),
+        this.chartOptions1
+      ); //.render();
+      this.ApexCharts1.render();
+    }, 1000);
 
-    this.chartOptions1.chart.height = this.height;
-    //this.chartOptions1.series = this.series2Columns;
-    this.chartOptions1.series = this.series;
-
-    this.ApexCharts1 = new ApexCharts(
-      document.querySelector("#" + this.name),
-      this.chartOptions1
-    ); //.render();
-    this.ApexCharts1.render();
-
-    setInterval(() => {
-      if (this.$route.name == "statistics") {
-        this.getDataFromApi();
-      }
-    }, 1000 * 60);
+    // setInterval(() => {
+    //   if (this.$route.name == "statistics") {
+    //     this.getDataFromApi();
+    //   }
+    // }, 1000 * 60);
   },
   async created() {
     // // Get today's date
     // let today = new Date();
-
     // // Subtract 7 days from today
     // let sevenDaysAgo = new Date(today);
     // sevenDaysAgo.setDate(today.getDate() - 0);
-
     // // Format the dates (optional)
     // this.date_to = today.toISOString().split("T")[0];
     // this.date_from = sevenDaysAgo.toISOString().split("T")[0];
     // // this.display_title =
     // //   "Attendance : " + this.date_from + " to " + this.date_to;
-
     // const today = new Date();
-
     // this.date_from = today.toISOString().slice(0, 10);
     // this.date_to = today.toISOString().slice(0, 10);
-
-    setTimeout(() => {
-      if (this.$route.name == "statistics") {
-        this.getDataFromApi();
-      }
-    }, 1000 * 3);
-    this.getDeviceList();
+    // setTimeout(() => {
+    //   if (this.$route.name == "statistics") {
+    //     this.getDataFromApi();
+    //   }
+    // }, 1000 * 3);
+    // this.getDeviceList();
   },
 
   methods: {

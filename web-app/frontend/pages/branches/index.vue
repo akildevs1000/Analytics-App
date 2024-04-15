@@ -12,6 +12,22 @@
         </template>
       </v-snackbar>
     </div>
+    <v-dialog persistent v-model="shiftManagersDialog" width="900">
+      <v-card>
+        <v-card-title dark class="popup_background">
+          Shift Managers
+          <v-spacer></v-spacer>
+          <v-icon @click="shiftManagersDialog = false" outlined dark>
+            mdi mdi-close-circle
+          </v-icon>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <BranchShiftManagers :key="key" :branch_id="selectedBranchId" />
+          </v-container>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
     <div v-if="!loading">
       <v-dialog persistent v-model="branchDialog" width="900">
         <v-card>
@@ -504,7 +520,7 @@
                     <v-icon>mdi-dots-vertical</v-icon>
                   </v-btn>
                 </template>
-                <v-list width="120" dense>
+                <v-list width="160" dense>
                   <v-list-item
                     v-if="can('branch_view')"
                     @click="viewItem(item)"
@@ -521,6 +537,17 @@
                     <v-list-item-title style="cursor: pointer">
                       <v-icon color="secondary" small> mdi-pencil </v-icon>
                       Edit
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item
+                    v-if="can('branch_edit')"
+                    @click="viewShiftManagers(item)"
+                  >
+                    <v-list-item-title style="cursor: pointer">
+                      <v-icon color="secondary" small>
+                        mdi mdi-account-tie
+                      </v-icon>
+                      Shift Managers
                     </v-list-item-title>
                   </v-list-item>
                   <v-list-item
@@ -557,6 +584,8 @@ export default {
   },
 
   data: () => ({
+    key: 0,
+    shiftManagersDialog: false,
     departments: [],
     shifts: [],
     timezones: [],
@@ -658,6 +687,7 @@ export default {
     headers_table,
     formTitle: "Create",
     disabled: false,
+    selectedBranchId: "",
   }),
 
   async created() {
@@ -795,6 +825,11 @@ export default {
         rows += Object.values(e).join(",").trim() + "\n";
       });
       return header + rows;
+    },
+    viewShiftManagers(item) {
+      this.selectedBranchId = item.id;
+      this.key++;
+      this.shiftManagersDialog = true;
     },
     export_submit() {
       if (this.data.length == 0) {

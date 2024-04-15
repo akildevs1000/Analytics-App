@@ -39,3 +39,4 @@ Route::post('delete-employee-from-device', [EmployeeController::class, 'deleteEm
 
 
 Route::get('get-employee-device-details', [DeviceController::class, 'getDevicePersonDetails']);
+Route::get('employees-list-dropdown', [EmployeeController::class, 'dropdownList']);

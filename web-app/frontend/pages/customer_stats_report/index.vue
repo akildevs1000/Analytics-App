@@ -3,37 +3,33 @@
     <v-card elevation="0" class="mt-2">
       <v-toolbar dense flat>
         <span class="headline black--text"> Customer Reports </span>
+        <v-spacer></v-spacer>
+
+        <v-select
+          style="width: 200px"
+          label="Branch"
+          outlined
+          dense
+          v-model="payload.branch_id"
+          x-small
+          :items="[{ id: ``, branch_name: `All Branches` }, ...branches]"
+          item-value="id"
+          item-text="branch_name"
+          :hide-details="true"
+        ></v-select>
+
+        <CustomFilter
+          @filter-attr="filterAttr"
+          :defaultFilterType="1"
+          :height="'40px'"
+        />
+
+        <v-btn @click="getDataFromApi()" color="primary" primary fill
+          >Submit
+        </v-btn>
       </v-toolbar>
 
-      <v-card-text class="py-3">
-        <v-row>
-          <v-col cols="2" v-if="isCompany">
-            <v-select
-              label="Branch"
-              outlined
-              dense
-              v-model="payload.branch_id"
-              x-small
-              :items="[{ id: ``, branch_name: `All Branches` }, ...branches]"
-              item-value="id"
-              item-text="branch_name"
-              :hide-details="true"
-            ></v-select>
-          </v-col>
-          <v-col cols="2">
-            <CustomFilter
-              @filter-attr="filterAttr"
-              :defaultFilterType="1"
-              :height="'40px'"
-            />
-          </v-col>
-          <v-col cols="2">
-            <v-btn @click="getDataFromApi()" color="primary" primary fill
-              >Submit
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card-text>
+      <v-card-text class="py-3"> </v-card-text>
     </v-card>
     <v-row class="mt-2 ml-1">
       <v-col lg="2" md="2" sm="12" xs="12">
@@ -156,7 +152,7 @@
                 <span style="">
                   <span>
                     <img
-                      src="../../static/icons/male1.png"
+                      src="../../static/icons/male21.png"
                       style="width: 35px"
                     />
                   </span>
@@ -208,7 +204,7 @@
                 <span style="">
                   <span>
                     <img
-                      src="../../static/icons/female1.png"
+                      src="../../static/icons/female21.png"
                       style="width: 35px"
                     />
                   </span>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\Attendance;
 use App\Models\AttendanceLog;
+use App\Models\BranchShiftManagers;
 use App\Models\Community\Member;
 use App\Models\Community\Room;
 use App\Models\Community\Tanent;
@@ -51,6 +52,7 @@ class DashboardController extends Controller
     }
     public function getCounts($id = 0, $request): array
     {
+        $onDutyShiftManagers = [];
 
         $date = date("Y-m-d");
         if ($request->filled("filter_from_date")) {
@@ -82,6 +84,33 @@ class DashboardController extends Controller
             ->selectRaw('"UserID", COUNT(*) as count')
             ->get();
 
+
+
+
+        if ($request->filled("branch_id")) {
+            $branchShiftManagers = BranchShiftManagers::with(["employee"])
+                ->where("company_id", $id)
+                ->where("branch_id", $request->branch_id)
+                ->get();
+
+            foreach ($branchShiftManagers as $branchShiftManager) {
+                $latestLog = AttendanceLog::with(["employee"])
+                    ->where("company_id", $id)
+                    ->whereDate("LogTime", $date)
+
+                    ->where("branch_id", $request->branch_id)
+                    ->where("UserID", $branchShiftManager->employee->system_user_id)
+                    ->orderBy("LogTime", "DESC")
+                    ->first();
+                if ($latestLog && $latestLog->log_type != 'out') {
+                    $currentHour = (int)date("H");
+                    if ($currentHour >= $branchShiftManager->shift_start  && $currentHour <= $branchShiftManager->shift_end) {
+                        $onDutyShiftManagers[] = $branchShiftManager;
+                    }
+                }
+            }
+        }
+
         $countsByParity = $attendanceCounts->groupBy(fn ($item) => $item->count % 2 === 0 ? 'even' : 'odd')->map->count();
 
         return [
@@ -103,6 +132,7 @@ class DashboardController extends Controller
             "holidayCount" => $model->where('status', 'H')->count(),
             "leaveCount" => $model->where('status', 'L')->count(),
             "vaccationCount" => $model->where('status', 'V')->count(),
+            "onDutyShiftManager" => $onDutyShiftManagers,
         ];
     }
     public function dashboardGetCountDepartment(Request $request)

@@ -6,20 +6,23 @@
           <v-col cols="4" class="text-center pa-0">
             <div
               class="text-center"
-              style="width: 65%; min-width: 170px; margin: auto"
+              style="width: 65%; min-width: 170px; margin: auto; color: #01b0f0"
             >
               <v-row class="text-center">
                 <v-col cols="12">
                   <span style="float: left; width: 30%; height: 65px">
                     <img
-                      src="../../static/icons/male1.png"
-                      style="width: 60px"
+                      src="../../static/icons/male51.png"
+                      style="width: 58px"
                     />
                   </span>
 
                   <span style="float: left; width: 70%">
                     <div style="font-size: 30px">
-                      {{ data.male_percentage ?? "---" }}%
+                      {{ data.total_male_count ?? "---" }}
+                      <span style="font-size: 14px"
+                        >{{ data.male_percentage }}%
+                      </span>
                     </div>
                     <div style="font-size: 12px; text-align: left">
                       <img
@@ -37,7 +40,7 @@
                   </span>
                 </v-col>
               </v-row>
-              <v-row class="text-center">
+              <!-- <v-row class="text-center">
                 <v-col cols="12">
                   <span style="float: left; width: 100%">
                     <div>
@@ -51,10 +54,18 @@
                     <div style="font-size: 12px">TOTAL MALE</div>
                   </span>
                 </v-col>
+              </v-row> -->
+              <v-row>
+                <v-col cols="12" style="padding-left: 0px">
+                  <DashboardDemographicsMaleChart
+                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    :data="data"
+                    :height="200"
+                  />
+                </v-col>
               </v-row>
-
               <v-row class="text-center">
-                <v-col cols="12">
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -71,19 +82,18 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">YOUNGER</div>
+                    <div style="font-size: 12px">YOUNG</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       15- 25 YEARS
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
-                      <span style="font-size: 22px; font-weight: 300"
-                        >{{ data.male_adult_count ?? "---" }}
+                      <span style="font-size: 22px; font-weight: 300">
+                        {{ data.male_adult_count ?? "---" }}
                       </span>
                       <span style="font-size: 14px"
                         >{{
@@ -96,19 +106,18 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">ADULT</div>
+                    <div style="font-size: 12px">Adult</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       26-59 YEARS
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
-                      <span style="font-size: 22px; font-weight: 300"
-                        >{{ data.male_senior_count ?? "---" }}
+                      <span style="font-size: 22px; font-weight: 300">
+                        {{ data.male_senior_count ?? "---" }}
                       </span>
                       <span style="font-size: 14px"
                         >{{
@@ -121,7 +130,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">SENIOR</div>
+                    <div style="font-size: 12px">Senior</div>
                     <div style="font-size: 10px; color: #a6a6a6">>60 YEARS</div>
                   </span>
                 </v-col>
@@ -131,20 +140,24 @@
           <v-col cols="4" class="text-center pa-0">
             <div
               class="text-center"
-              style="width: 65%; min-width: 170px; margin: auto"
+              style="width: 65%; min-width: 170px; margin: auto; color: #f75b95"
             >
               <v-row class="text-center">
                 <v-col cols="12">
                   <span style="float: left; width: 30%; height: 65px">
                     <img
-                      src="../../static/icons/female1.png"
-                      style="width: 60px"
+                      src="../../static/icons/female51.png"
+                      style="width: 58px"
                     />
                   </span>
 
                   <span style="float: left; width: 70%">
                     <div style="font-size: 30px">
-                      {{ data.female_percentage ?? "---" }}%
+                      {{ data.total_female_count ?? "---" }}
+
+                      <span style="font-size: 14px"
+                        >{{ data.female_percentage }}%
+                      </span>
                     </div>
                     <div style="font-size: 12px; text-align: left">
                       <img
@@ -162,24 +175,18 @@
                   </span>
                 </v-col>
               </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
-                  <span style="float: left; width: 100%">
-                    <div>
-                      <span style="font-size: 22px; font-weight: 300">
-                        {{ data.total_female_count ?? "---" }}
-                      </span>
-                      <span style="font-size: 14px">
-                        {{ data.female_percentage_yesterday ?? "---" }}%</span
-                      >
-                    </div>
-                    <div style="font-size: 12px">TOTAL FEMALE</div>
-                  </span>
+
+              <v-row>
+                <v-col cols="12" style="padding-left: 0px">
+                  <DashboardDemographicsFeMaleChart
+                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    :data="data"
+                    :height="200"
+                  />
                 </v-col>
               </v-row>
-
-              <v-row class="text-center">
-                <v-col cols="12">
+              <v-row>
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300">
@@ -196,15 +203,14 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">YOUNGER</div>
+                    <div style="font-size: 12px">Young</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       15- 25 YEARS
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -212,7 +218,7 @@
                       </span>
                       <span style="font-size: 14px">
                         {{
-                          data.total_male_count > 0
+                          data.total_female_count > 0
                             ? Math.round(
                                 (data.female_adult_count * 100) /
                                   data.total_female_count
@@ -221,15 +227,14 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">ADULT</div>
+                    <div style="font-size: 12px">Adult</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       26-59 YEARS
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="4">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -246,7 +251,7 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">SENIOR</div>
+                    <div style="font-size: 12px">Senior</div>
                     <div style="font-size: 10px; color: #a6a6a6">>60 YEARS</div>
                   </span>
                 </v-col>
@@ -260,6 +265,39 @@
             >
               <v-row class="text-center">
                 <v-col cols="12">
+                  <span style="float: left; width: 30%; height: 65px">
+                    <img
+                      src="../../static/icons/kids51.png"
+                      style="width: 48px"
+                    />
+                  </span>
+
+                  <span style="float: left; width: 70%">
+                    <div style="font-size: 30px">
+                      {{ data.total_child_count ?? "---" }}
+
+                      <span style="font-size: 14px"
+                        >{{ data.child_percentage }}%
+                      </span>
+                    </div>
+                    <div style="font-size: 12px; text-align: left">
+                      <img
+                        v-if="data.female_percentage_yesterday > 0"
+                        src="../../static/icons/up1.png"
+                        style="width: 20px"
+                      /><img
+                        v-if="data.female_percentage_yesterday <= 0"
+                        src="../../static/icons/down1.png"
+                        style="width: 20px"
+                      />
+                      {{ data.child_percentage_yesterday ?? "---" }}% vs
+                      Yesterday
+                    </div>
+                  </span>
+                </v-col>
+              </v-row>
+              <!-- <v-row class="text-center">
+                <v-col cols="12">
                   <span
                     style="
                       float: left;
@@ -269,14 +307,17 @@
                     "
                   >
                     <img
-                      src="../../static/icons/kid1.png"
-                      style="width: 30px; padding-top: 13px"
+                      src="../../static/icons/kids51.png"
+                      style="width: 45px; padding-top: 0px"
                     />
                   </span>
 
                   <span style="float: left; width: 70%">
                     <div style="font-size: 30px">
-                      {{ data.child_percentage ?? "---" }}%
+                      {{ data.total_child_count ?? "---" }}
+                      <span style="font-size: 14px"
+                        >{{ data.child_percentage ?? "---" }}%
+                      </span>
                     </div>
                     <div
                       style="
@@ -299,25 +340,18 @@
                     </div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
-                  <span style="float: left; width: 100%">
-                    <div>
-                      <span style="font-size: 22px; font-weight: 300"
-                        >{{ data.total_child_count ?? "---" }}
-                      </span>
-                      <span style="font-size: 14px"
-                        >{{ data.child_percentage_yesterday ?? "---" }}%</span
-                      >
-                    </div>
-                    <div style="font-size: 12px">TOTAL CHILD</div>
-                  </span>
+              </v-row> -->
+              <v-row>
+                <v-col cols="12" style="padding-left: 0px">
+                  <DashboardDemographicsKidsChart
+                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    :data="data"
+                    :height="200"
+                  />
                 </v-col>
               </v-row>
-
               <v-row class="text-center">
-                <v-col cols="12">
+                <v-col cols="6">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -325,7 +359,7 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.total_male_count > 0
+                          data.total_child_count > 0
                             ? Math.round(
                                 (data.child_female_count * 100) /
                                   data.total_child_count
@@ -338,9 +372,8 @@
                     <div style="font-size: 10px; color: #a6a6a6"><15 YEARS</div>
                   </span>
                 </v-col>
-              </v-row>
-              <v-row class="text-center">
-                <v-col cols="12">
+
+                <v-col cols="6">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -348,7 +381,7 @@
                       </span>
                       <span style="font-size: 14px"
                         >{{
-                          data.total_male_count > 0
+                          data.total_child_count > 0
                             ? Math.round(
                                 (data.child_male_count * 100) /
                                   data.total_child_count

@@ -10,13 +10,13 @@
     </table> -->
     <v-card class="py-2 pl-2">
       <v-row>
-        <v-col cols="2" style="max-width: 175px"
-          ><h3>Weekly Analysis</h3></v-col
-        >
-        <v-col cols="9">
+        <v-col cols="6" style=""><h3>Weekly Analysis</h3></v-col>
+        <v-col cols="6" class="pull-end" style="float: right">
+          <v-spacer></v-spacer>
           <v-row>
-            <v-col cols="2" v-if="isCompany">
+            <v-col>
               <v-select
+                v-if="isCompany"
                 label="Branch"
                 outlined
                 dense
@@ -32,7 +32,7 @@
                 :hide-details="true"
               ></v-select>
             </v-col>
-            <v-col cols="2" style="padding-left: 0px">
+            <v-col style="padding-left: 0px">
               <CustomFilter
                 @filter-attr="filterAttr"
                 :default_date_from="date_from"
@@ -42,8 +42,9 @@
                 :maximum_days="10"
               />
             </v-col>
-            <v-col cols="2" v-if="isCompany">
+            <v-col>
               <v-select
+                v-if="isCompany"
                 @change="getDataFromApi()"
                 label="Days"
                 outlined
@@ -62,7 +63,7 @@
               ></v-select>
             </v-col>
 
-            <v-col cols="2">
+            <v-col>
               <v-btn
                 style="margin-left: 5px"
                 @click="getDataFromApi()"
@@ -76,13 +77,16 @@
         </v-col>
       </v-row>
       <v-row style="font-size: 14px; margin-top: 0px; padding-top: 0px">
-        <v-col cols="12" class="pt-1" style="overflow-x: scroll">
+        <v-col cols="11" class="pt-1" style="overflow-x: auto">
           <table style="width: 100%" class="weekly-report-table">
             <tr v-for="(counts, index) in data">
               <td style="font-size: 12px">
                 {{ hours ? hours[counts.hour] : "---" }}
               </td>
-              <td :style="'text-align:center;  '" v-for="count in counts.value">
+              <td
+                :style="'text-align:center;  ' + getColor(count)"
+                v-for="count in counts.value"
+              >
                 {{ count }}
               </td>
               <td style="font-weight: bold; text-align: center">
@@ -139,25 +143,25 @@
           </table>
         </v-col>
 
-        <!-- <v-col>
-        <div
-          style="width: 50px"
-          v-for="colorRow in colorCodes"
-          v-if="colorCodes.length > 0"
-        >
+        <v-col>
           <div
-            :style="
-              'text-align:center;margin:auto;padding:0px;width: 50px;height:50px;color:#FFF; background-color:' +
-              colorRow.color +
-              ';height:' +
-              360 / colorCodes.length +
-              'px'
-            "
+            style="width: 80px"
+            v-for="colorRow in colorCodes"
+            v-if="colorCodes.length > 0"
           >
-            {{ colorRow.min }}
+            <div
+              :style="
+                'text-align:center;margin:auto;padding:0px;width: 80px;height:50px;color:#FFF; background-color:' +
+                colorRow.color +
+                ';height:' +
+                360 / colorCodes.length +
+                'px'
+              "
+            >
+              {{ colorRow.min }} to {{ colorRow.max }}
+            </div>
           </div>
-        </div>
-      </v-col> -->
+        </v-col>
       </v-row>
     </v-card>
 
@@ -319,7 +323,7 @@ export default {
       //this.getDataFromApi();
     },
     getColor(value) {
-      return "#FFF";
+      //return "#FFF";
       //   const colorRanges = [
       //     { min: 1, max: 5, color: "red" },
       //     { min: 6, max: 20, color: "green" },
@@ -330,7 +334,7 @@ export default {
           value >= this.colorCodes[i].min &&
           value <= this.colorCodes[i].max
         ) {
-          return this.colorCodes[i].color;
+          return "color:#FFF;background-color:" + this.colorCodes[i].color;
         }
       }
 

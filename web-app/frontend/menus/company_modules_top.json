@@ -1,5 +1,12 @@
 [
   {
+    "icon": "mdi-bell",
+    "title": "Customers",
+    "to": "/statistics",
+    "menu": "customers",
+    "module": "topmenu"
+  },
+  {
     "icon": "mdi-home",
     "title": "Employee Dashboard",
     "to": "/dashboard",
@@ -14,13 +21,7 @@
     "menu": "employees",
     "module": "topmenu"
   },
-  {
-    "icon": "mdi-bell",
-    "title": "Customers",
-    "to": "/statistics",
-    "menu": "customers",
-    "module": "topmenu"
-  },
+
   {
     "icon": "mdi-bell",
     "title": "Reports",

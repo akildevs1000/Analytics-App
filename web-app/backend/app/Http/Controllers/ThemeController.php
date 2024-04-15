@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Models\AttendanceLog;
+use App\Models\BranchShiftManagers;
 use App\Models\CompanyBranch;
 use App\Models\Department;
 use App\Models\Employee;
@@ -85,6 +86,33 @@ class ThemeController extends Controller
 
         $countsByParity = $attendanceCounts->groupBy(fn ($item) => $item->count % 2 === 0 ? 'even' : 'odd')->map->count();
 
+        $onDutyShiftManagers = [];
+        if ($request->filled("branch_id")) {
+            $branchShiftManagers = BranchShiftManagers::with(["employee"])
+                ->where("company_id", $id)
+                ->where("branch_id", $request->branch_id)
+                ->get();
+
+            foreach ($branchShiftManagers as $branchShiftManager) {
+
+
+                $latestLog = AttendanceLog::with(["employee"])
+                    ->where("company_id", $id)
+                    ->whereDate("LogTime", $date)
+
+                    ->where("branch_id", $request->branch_id)
+                    ->where("UserID", $branchShiftManager->employee->system_user_id)
+                    ->orderBy("LogTime", "DESC")
+                    ->first();
+                if ($latestLog && $latestLog->log_type != 'out') {
+                    $currentHour = (int)date("H");
+
+                    if ($currentHour >= $branchShiftManager->shift_start  && $currentHour <   $branchShiftManager->shift_end) {
+                        $onDutyShiftManagers  = $branchShiftManager;
+                    }
+                }
+            }
+        }
         return [
             "employeeCount" => Employee::where("company_id", $id)
                 ->when($request->filled("department_ids") && count($request->department_ids) > 0, function ($q) use ($request) {
@@ -104,7 +132,7 @@ class ThemeController extends Controller
             "holidayCount" => $model->where('status', 'H')->count(),
             "leaveCount" => $model->where('status', 'L')->count(),
             "vaccationCount" => $model->where('status', 'V')->count(),
-
+            "onDutyShiftManager" => $onDutyShiftManagers,
             "branchDetails" => $request->filled("branch_id") ? CompanyBranch::with("user.employee")->where("id", request("branch_id"))->first() : null,
         ];
     }
