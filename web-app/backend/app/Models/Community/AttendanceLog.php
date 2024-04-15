@@ -262,6 +262,17 @@ class AttendanceLog extends Model
         return $this->belongsTo(Customer::class, "UserID", "system_user_id");
     }
 
+
+    public function vip_customers()
+    {
+        return $this->hasMany(Customer::class, "system_user_id", "UserID");
+    }
+
+    public function normal_customers()
+    {
+        return $this->hasMany(Customer::class, "system_user_id", "UserID")->where("status", "normal");
+    }
+
     public function getLogs($params)
     {
         return self::whereDate("LogTime", $params["date"])
