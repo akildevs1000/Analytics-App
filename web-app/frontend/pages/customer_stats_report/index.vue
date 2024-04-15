@@ -4,29 +4,41 @@
       <v-toolbar dense flat>
         <span class="headline black--text"> Customer Reports </span>
         <v-spacer></v-spacer>
+        <v-row style="text-align: right" justify="end">
+          <v-col cols="3">
+            <v-select
+              style="width: 100%"
+              label="Branch"
+              outlined
+              dense
+              v-model="payload.branch_id"
+              x-small
+              :items="[{ id: ``, branch_name: `All Branches` }, ...branches]"
+              item-value="id"
+              item-text="branch_name"
+              :hide-details="true"
+            >
+            </v-select>
+          </v-col>
 
-        <v-select
-          style="width: 200px"
-          label="Branch"
-          outlined
-          dense
-          v-model="payload.branch_id"
-          x-small
-          :items="[{ id: ``, branch_name: `All Branches` }, ...branches]"
-          item-value="id"
-          item-text="branch_name"
-          :hide-details="true"
-        ></v-select>
-
-        <CustomFilter
-          @filter-attr="filterAttr"
-          :defaultFilterType="1"
-          :height="'40px'"
-        />
-
-        <v-btn @click="getDataFromApi()" color="primary" primary fill
-          >Submit
-        </v-btn>
+          <v-col cols="3" style="text-align: left">
+            <CustomFilter
+              @filter-attr="filterAttr"
+              :defaultFilterType="1"
+              :height="'40px'"
+            />
+          </v-col>
+          <v-col cols="1" style="text-align: left">
+            <v-btn
+              @click="getDataFromApi()"
+              style="margin-left: -10px"
+              color="primary"
+              primary
+              fill
+              >Submit
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-toolbar>
 
       <v-card-text class="py-3"> </v-card-text>
@@ -36,7 +48,7 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Footfall
+              Highest Footfall <span style="font-size: 12px">Weekday</span>
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -91,7 +103,7 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Lowest Footfall
+              Lowest Footfall <span style="font-size: 12px">Weekday</span>
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -142,7 +154,7 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Males
+              Peak Hours <span style="font-size: 12px">Weekday</span>
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -152,7 +164,7 @@
                 <span style="">
                   <span>
                     <img
-                      src="../../static/icons/male21.png"
+                      src="../../static/icons/male51.png"
                       style="width: 35px"
                     />
                   </span>
@@ -194,7 +206,7 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Females
+              Lean Hours <span style="font-size: 12px">Weekday</span>
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -204,7 +216,7 @@
                 <span style="">
                   <span>
                     <img
-                      src="../../static/icons/female21.png"
+                      src="../../static/icons/female51.png"
                       style="width: 35px"
                     />
                   </span>
@@ -246,7 +258,7 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Top Age Group
+              Top Age Group<span style="font-size: 12px">Weekday</span>
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -294,7 +306,7 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Time Spent
+              Highest Time Spent<span style="font-size: 12px">Weekday</span>
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -348,11 +360,14 @@
           </v-card>
         </v-row>
       </v-col>
-      <!-- <v-col lg="2" md="2" sm="12" xs="12" style="padding-right: 0px">
+    </v-row>
+
+    <v-row class="mt-5 ml-1">
+      <v-col lg="2" md="2" sm="12" xs="12">
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Blocklisted
+              Highest Footfall <span style="font-size: 12px">Weekend</span>
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -361,10 +376,13 @@
               >
                 <span style="">
                   <span>
-                    <img
-                      src="../../static/icons/customer_blocked.png"
-                      style="width: 35px"
-                    />
+                    <!-- <img
+                        src="../../static/icons/foot.png"
+                        style="width: 35px"
+                      /> -->
+                    <v-icon size="40" style="margin-top: -10px"
+                      >mdi mdi-account-group</v-icon
+                    >
                   </span>
                   <span
                     style="
@@ -374,7 +392,7 @@
                       font-weight: 300;
                       font-size: 50px;
                     "
-                    >{{ highestCounts.blockListed.count ?? "---" }}</span
+                    >{{ highestCounts.footFall.count ?? "---" }}</span
                   >
                 </span>
               </v-col>
@@ -392,14 +410,275 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.blockListed.date ?? "---" }}</span
+                    >{{ highestCounts.footFall.date ?? "---" }}</span
                   >
                 </span>
               </v-col>
             </v-row>
           </v-card>
         </v-row>
-      </v-col> -->
+      </v-col>
+      <v-col lg="2" md="2" sm="12" xs="12" style="padding-right: 0px">
+        <v-row style="width: 100%; height: 150px">
+          <v-card class="py-2" style="width: 100%">
+            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
+              Lowest Footfall <span style="font-size: 12px">Weekend</span>
+            </div>
+            <v-row style="height: 75px">
+              <v-col
+                cols="12"
+                style="font-size: 50px; color: #c55a11; text-align: center"
+              >
+                <span style="">
+                  <span>
+                    <v-icon size="40" style="margin-top: -10px"
+                      >mdi mdi-account-group</v-icon
+                    >
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                      font-size: 50px;
+                    "
+                    >{{ highestCounts.lowestFootfall.count ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" style="text-align: center">
+                <span style="">
+                  <span>
+                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                    "
+                    >{{ highestCounts.lowestFootfall.date ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
+      <v-col lg="2" md="2" sm="12" xs="12">
+        <v-row style="width: 100%; height: 150px">
+          <v-card class="py-2" style="width: 100%">
+            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
+              Peak Hours <span style="font-size: 12px">Weekend</span>
+            </div>
+            <v-row style="height: 75px">
+              <v-col
+                cols="12"
+                style="font-size: 50px; color: #c55a11; text-align: center"
+              >
+                <span style="">
+                  <span>
+                    <img
+                      src="../../static/icons/male51.png"
+                      style="width: 35px"
+                    />
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                      font-size: 50px;
+                    "
+                    >{{ highestCounts.maleCount.count ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" style="text-align: center">
+                <span style="">
+                  <span>
+                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                    "
+                    >{{ highestCounts.maleCount.date ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
+      <v-col lg="2" md="2" sm="12" xs="12">
+        <v-row style="width: 100%; height: 150px">
+          <v-card class="py-2" style="width: 100%">
+            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
+              Lean Hours <span style="font-size: 12px">Weekend</span>
+            </div>
+            <v-row style="height: 75px">
+              <v-col
+                cols="12"
+                style="font-size: 50px; color: #c55a11; text-align: center"
+              >
+                <span style="">
+                  <span>
+                    <img
+                      src="../../static/icons/female51.png"
+                      style="width: 35px"
+                    />
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                      font-size: 50px;
+                    "
+                    >{{ highestCounts.femaleCount.count ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" style="text-align: center">
+                <span style="">
+                  <span>
+                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                    "
+                    >{{ highestCounts.femaleCount.date ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
+      <v-col lg="2" md="2" sm="12" xs="12">
+        <v-row style="width: 100%; height: 150px">
+          <v-card class="py-2" style="width: 100%">
+            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
+              Top Age Group<span style="font-size: 12px">Weekend</span>
+            </div>
+            <v-row style="height: 75px">
+              <v-col
+                cols="12"
+                style="font-size: 50px; color: #c55a11; text-align: center"
+              >
+                <span style="">
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                      font-size: 30px;
+                    "
+                    >{{ highestCounts.ageGroup.name ?? "---" }} ({{
+                      highestCounts.ageGroup.count ?? "---"
+                    }})</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" style="text-align: center">
+                <span style="">
+                  <span>
+                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                    "
+                    >{{ highestCounts.ageGroup.date ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
+      <v-col lg="2" md="2" sm="12" xs="12">
+        <v-row style="width: 100%; height: 150px">
+          <v-card class="py-2" style="width: 100%">
+            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
+              Highest Time Spent<span style="font-size: 12px">Weekend</span>
+            </div>
+            <v-row style="height: 75px">
+              <v-col
+                cols="12"
+                style="font-size: 50px; color: #c55a11; text-align: center"
+              >
+                <span style="">
+                  <span>
+                    <v-icon size="40" style="margin-top: -10px"
+                      >mdi mdi-clock-outline</v-icon
+                    >
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                      font-size: 50px;
+                    "
+                  >
+                    {{
+                      highestCounts.timeSpent.count
+                        ? $dateFormat.minutesToHHMM(
+                            Math.round(highestCounts.timeSpent.count)
+                          )
+                        : "---"
+                    }}
+                  </span>
+                </span>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" style="text-align: center">
+                <span style="">
+                  <span>
+                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
+                  </span>
+                  <span
+                    style="
+                      margin: auto;
+                      padding: 0px;
+                      margin-left: 0px;
+                      font-weight: 300;
+                    "
+                    >{{ highestCounts.timeSpent.date ?? "---" }}</span
+                  >
+                </span>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
     </v-row>
     <v-card class="mb-5 mt-5" elevation="0">
       <div v-if="can(`attendance_report_access`)">
@@ -931,59 +1210,59 @@ export default {
 
       let lowestFootfall = 0;
       let lowestFootfallDate = "";
+      if (this.data)
+        this.data.forEach((entry) => {
+          if (entry.male_count > highestMaleCount) {
+            highestMaleCount = entry.male_count;
+            highestMaleCountDate = entry.date;
+          }
+          if (entry.female_count > highestFemaleCount) {
+            highestFemaleCount = entry.female_count;
+            highestFemaleCountDate = entry.date;
+          }
 
-      this.data.forEach((entry) => {
-        if (entry.male_count > highestMaleCount) {
-          highestMaleCount = entry.male_count;
-          highestMaleCountDate = entry.date;
-        }
-        if (entry.female_count > highestFemaleCount) {
-          highestFemaleCount = entry.female_count;
-          highestFemaleCountDate = entry.date;
-        }
+          if (entry.out_count + entry.in_count > highestFootFall) {
+            highestFootFall = entry.out_count + entry.in_count;
+            highestFootFallDate = entry.date;
+          }
 
-        if (entry.out_count + entry.in_count > highestFootFall) {
-          highestFootFall = entry.out_count + entry.in_count;
-          highestFootFallDate = entry.date;
-        }
+          //AgeGroup
+          if (entry.senior_count > highestAgeGroup) {
+            highestAgeGroup = entry.senior_count;
+            highestAgeGroupname = "Seniors";
+            highestAgeGroupDate = entry.date;
+          }
+          if (entry.adult_count > highestAgeGroup) {
+            highestAgeGroup = entry.adult_count;
+            highestAgeGroupname = "Adults";
+            highestAgeGroupDate = entry.date;
+          }
+          if (entry.younger_count > highestAgeGroup) {
+            highestAgeGroup = entry.younger_count;
+            highestAgeGroupname = "Youngers";
+            highestAgeGroupDate = entry.date;
+          }
+          if (entry.child_count > highestAgeGroup) {
+            highestAgeGroup = entry.child_count;
+            highestAgeGroupname = "Kids";
+            highestAgeGroupDate = entry.date;
+          }
 
-        //AgeGroup
-        if (entry.senior_count > highestAgeGroup) {
-          highestAgeGroup = entry.senior_count;
-          highestAgeGroupname = "Seniors";
-          highestAgeGroupDate = entry.date;
-        }
-        if (entry.adult_count > highestAgeGroup) {
-          highestAgeGroup = entry.adult_count;
-          highestAgeGroupname = "Adults";
-          highestAgeGroupDate = entry.date;
-        }
-        if (entry.younger_count > highestAgeGroup) {
-          highestAgeGroup = entry.younger_count;
-          highestAgeGroupname = "Youngers";
-          highestAgeGroupDate = entry.date;
-        }
-        if (entry.child_count > highestAgeGroup) {
-          highestAgeGroup = entry.child_count;
-          highestAgeGroupname = "Kids";
-          highestAgeGroupDate = entry.date;
-        }
+          if (entry.max_total_hours > highestTimeSpent) {
+            highestTimeSpent = entry.max_total_hours;
+            highestTimeSpentDate = entry.date;
+          }
 
-        if (entry.max_total_hours > highestTimeSpent) {
-          highestTimeSpent = entry.max_total_hours;
-          highestTimeSpentDate = entry.date;
-        }
+          if (entry.blocklisted_customer_count > highestBlocklisted) {
+            highestBlocklisted = entry.blocklisted_customer_count;
+            highestBlocklistedDate = entry.date;
+          }
 
-        if (entry.blocklisted_customer_count > highestBlocklisted) {
-          highestBlocklisted = entry.blocklisted_customer_count;
-          highestBlocklistedDate = entry.date;
-        }
-
-        if (entry.out_count + entry.in_count > lowestFootfall) {
-          lowestFootfall = entry.out_count + entry.in_count;
-          lowestFootfallDate = entry.date;
-        }
-      });
+          if (entry.out_count + entry.in_count > lowestFootfall) {
+            lowestFootfall = entry.out_count + entry.in_count;
+            lowestFootfallDate = entry.date;
+          }
+        });
       this.highestCounts = {
         footFall: {
           count: highestFootFall,

@@ -44,6 +44,11 @@ export default {
 
         dataLabels: {
           enabled: true,
+          style: {
+            fontSize: "10px",
+            fontFamily: "Roboto",
+            fontWeight: "normal",
+          },
         },
 
         plotOptions: {
@@ -53,14 +58,14 @@ export default {
                 show: true,
                 name: {
                   show: true,
-                  fontSize: "22px",
-                  fontFamily: "Rubik",
+
+                  fontFamily: "Roboto",
                   color: "#dfsda",
                   offsetY: -10,
                 },
                 value: {
                   show: true,
-                  fontSize: "16px",
+
                   fontFamily: "Roboto, sans-serif",
                   color: undefined,
                   offsetY: 16,

@@ -44,6 +44,11 @@ export default {
 
         dataLabels: {
           enabled: true,
+          style: {
+            fontSize: "10px",
+            fontFamily: "Roboto",
+            fontWeight: "normal",
+          },
         },
 
         plotOptions: {

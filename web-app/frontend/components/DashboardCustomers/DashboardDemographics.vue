@@ -58,7 +58,7 @@
               <v-row>
                 <v-col cols="12" style="padding-left: 0px">
                   <DashboardDemographicsMaleChart
-                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    style="padding: 0px; width: 110%; margin-left: -20%"
                     :data="data"
                     :height="200"
                   />
@@ -179,7 +179,7 @@
               <v-row>
                 <v-col cols="12" style="padding-left: 0px">
                   <DashboardDemographicsFeMaleChart
-                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    style="padding: 0px; width: 110%; margin-left: -20%"
                     :data="data"
                     :height="200"
                   />
@@ -344,7 +344,7 @@
               <v-row>
                 <v-col cols="12" style="padding-left: 0px">
                   <DashboardDemographicsKidsChart
-                    style="padding: 0px; width: 130%; margin-left: -20%"
+                    style="padding: 0px; width: 110%; margin-left: -20%"
                     :data="data"
                     :height="200"
                   />
