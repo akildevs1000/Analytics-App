@@ -145,20 +145,20 @@
 
         <v-col>
           <div
-            style="width: 50px"
+            style="width: 80px"
             v-for="colorRow in colorCodes"
             v-if="colorCodes.length > 0"
           >
             <div
               :style="
-                'text-align:center;margin:auto;padding:0px;width: 50px;height:50px;color:#FFF; background-color:' +
+                'text-align:center;margin:auto;padding:0px;width: 80px;height:50px;color:#FFF; background-color:' +
                 colorRow.color +
                 ';height:' +
                 360 / colorCodes.length +
                 'px'
               "
             >
-              {{ colorRow.min }}
+              {{ colorRow.min }} to {{ colorRow.max }}
             </div>
           </div>
         </v-col>

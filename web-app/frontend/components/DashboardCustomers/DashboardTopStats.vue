@@ -24,7 +24,7 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/male31.png"
+                      src="../../static/icons/male51.png"
                       style="width: 33px"
                     />
                   </span>
@@ -44,8 +44,8 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/female31.png"
-                      style="width: 26px"
+                      src="../../static/icons/female51.png"
+                      style="width: 33px"
                     />
                   </span>
                   <span
@@ -65,7 +65,7 @@
                 <span style="display: flex; float: left; padding-left: 10px">
                   <span>
                     <img
-                      src="../../static/icons/kids21.png"
+                      src="../../static/icons/kids51.png"
                       style="width: 22px; padding-top: 18px"
                     />
                   </span>
@@ -109,7 +109,7 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/male31.png"
+                      src="../../static/icons/male51.png"
                       style="width: 33px"
                     />
                   </span>
@@ -129,8 +129,8 @@
                 <span style="display: flex; float: right">
                   <span>
                     <img
-                      src="../../static/icons/female31.png"
-                      style="width: 26px"
+                      src="../../static/icons/female51.png"
+                      style="width: 33px"
                     />
                   </span>
                   <span
@@ -150,7 +150,7 @@
                 <span style="display: flex; float: left; padding-left: 10px">
                   <span>
                     <img
-                      src="../../static/icons/kids21.png"
+                      src="../../static/icons/kids51.png"
                       style="width: 22px; padding-top: 18px"
                     />
                   </span>

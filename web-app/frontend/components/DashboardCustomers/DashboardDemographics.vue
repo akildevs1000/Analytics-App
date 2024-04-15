@@ -12,8 +12,8 @@
                 <v-col cols="12">
                   <span style="float: left; width: 30%; height: 65px">
                     <img
-                      src="../../static/icons/male31.png"
-                      style="width: 60px"
+                      src="../../static/icons/male51.png"
+                      style="width: 58px"
                     />
                   </span>
 
@@ -146,8 +146,8 @@
                 <v-col cols="12">
                   <span style="float: left; width: 30%; height: 65px">
                     <img
-                      src="../../static/icons/female31.png"
-                      style="width: 50px"
+                      src="../../static/icons/female51.png"
+                      style="width: 58px"
                     />
                   </span>
 
@@ -265,6 +265,39 @@
             >
               <v-row class="text-center">
                 <v-col cols="12">
+                  <span style="float: left; width: 30%; height: 65px">
+                    <img
+                      src="../../static/icons/kids51.png"
+                      style="width: 48px"
+                    />
+                  </span>
+
+                  <span style="float: left; width: 70%">
+                    <div style="font-size: 30px">
+                      {{ data.total_child_count ?? "---" }}
+
+                      <span style="font-size: 14px"
+                        >{{ data.child_percentage }}%
+                      </span>
+                    </div>
+                    <div style="font-size: 12px; text-align: left">
+                      <img
+                        v-if="data.female_percentage_yesterday > 0"
+                        src="../../static/icons/up1.png"
+                        style="width: 20px"
+                      /><img
+                        v-if="data.female_percentage_yesterday <= 0"
+                        src="../../static/icons/down1.png"
+                        style="width: 20px"
+                      />
+                      {{ data.child_percentage_yesterday ?? "---" }}% vs
+                      Yesterday
+                    </div>
+                  </span>
+                </v-col>
+              </v-row>
+              <!-- <v-row class="text-center">
+                <v-col cols="12">
                   <span
                     style="
                       float: left;
@@ -274,7 +307,7 @@
                     "
                   >
                     <img
-                      src="../../static/icons/kids21.png"
+                      src="../../static/icons/kids51.png"
                       style="width: 45px; padding-top: 0px"
                     />
                   </span>
@@ -307,7 +340,7 @@
                     </div>
                   </span>
                 </v-col>
-              </v-row>
+              </v-row> -->
               <v-row>
                 <v-col cols="12" style="padding-left: 0px">
                   <DashboardDemographicsKidsChart

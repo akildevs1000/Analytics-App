@@ -3,23 +3,22 @@
     <v-row style="width: 100%; height: 100%">
       <v-col cols="12">
         <v-row style="text-align: right" justify="end">
-          <v-col cols="2">
+          <v-col cols="3">
             <v-select
-              @change="getDataFromApi()"
-              v-model="filterINOut"
+              v-model="isGrouped"
               :items="[
                 {
-                  id: 'in',
-                  name: 'IN',
+                  id: 1,
+                  name: 'Group Gender',
                 },
                 {
-                  id: 'out',
-                  name: 'Out',
+                  id: 0,
+                  name: 'Individual',
                 },
               ]"
-              label="In/Out"
+              label="Group"
               dense
-              placeholder="In/Out"
+              placeholder="Group"
               outlined
               :hide-details="true"
               item-text="name"
@@ -67,7 +66,6 @@
             ></v-select>
           </v-col>
         </v-row>
-
         <div :id="name" style="width: 100%; height: 400px" :key="key"></div>
       </v-col>
     </v-row>
@@ -89,6 +87,8 @@ export default {
     return {
       key: 1,
       name: "apexDashboardHour",
+      nameGroup: "apexDashboardHourGroup",
+
       filterDeviceId: null,
       devices: [],
       loading: false,
@@ -97,28 +97,7 @@ export default {
       filterINOut: "in",
       filterDuration: null,
 
-      // series: [
-      //     {
-      //       name: 'Q1 Budget',
-      //       group: 'budget',
-      //       data: [44000, 55000, 41000, 67000, 22000]
-      //     },
-      //     {
-      //       name: 'Q1 Actual',
-      //       group: 'actual',
-      //       data: [48000, 50000, 40000, 65000, 25000]
-      //     },
-      //     {
-      //       name: 'Q2 Budget',
-      //       group: 'budget',
-      //       data: [13000, 36000, 20000, 8000, 13000]
-      //     },
-      //     {
-      //       name: 'Q2 Actual',
-      //       group: 'actual',
-      //       data: [20000, 40000, 25000, 10000, 12000]
-      //     }
-      //   ],
+      isGrouped: 1,
       series: [
         {
           name: "Male In",
@@ -152,11 +131,45 @@ export default {
           group: "out",
         },
       ],
+
       chartOptions1: {
+        series: [
+          {
+            name: "Male In",
+            data: [],
+            group: "in",
+          },
+          {
+            name: "Male Out",
+            data: [],
+            group: "out",
+          },
+
+          {
+            name: "Female In",
+            data: [],
+            group: "in",
+          },
+          {
+            name: "Female Out",
+            data: [],
+            group: "out",
+          },
+          {
+            name: "Kids In",
+            data: [],
+            group: "in",
+          },
+          {
+            name: "Kids Out",
+            data: [],
+            group: "out",
+          },
+        ],
         colors: [
-          "#01b0f0",
-          "#99ccff",
-          "#f75b95",
+          "#DB4437",
+          "#0F9D58",
+          "#4285F4",
           "#ff99cc",
           "#16b16d",
           "#66cc99",
@@ -172,65 +185,7 @@ export default {
         plotOptions: {
           bar: {
             horizontal: false,
-            columnWidth: "50%",
-            endingShape: "rounded",
-          },
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          show: true,
-          width: 2,
-          colors: ["transparent"],
-        },
-        xaxis: {
-          categories: [],
-        },
-        yaxis: {
-          title: {
-            text: " ",
-          },
-        },
-        fill: {
-          opacity: 1,
-        },
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return val;
-            },
-          },
-        },
-      },
-      chartOptions2: {
-        series: [
-          {
-            name: "Male",
-            data: [],
-          },
-
-          {
-            name: "Female",
-            data: [],
-          },
-          {
-            name: "Kids",
-            data: [],
-          },
-        ],
-        colors: ["#01b0f0", "#f75b95", "#16b16d"],
-        chart: {
-          type: "bar",
-          width: "98%",
-          toolbar: {
-            show: false,
-          },
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: "50%",
+            columnWidth: "100%",
             endingShape: "rounded",
           },
         },
@@ -269,6 +224,11 @@ export default {
     async filter_from_date() {
       await this.getDataFromApi();
     },
+    isGrouped(val) {
+      this.chartOptions1.chart.stacked = val == 1 ? true : false;
+
+      this.ApexCharts1.updateOptions(this.chartOptions1);
+    },
     async branch_id(val) {
       this.$store.commit("CommDashboard/setDashboardData", null);
       //this.$store.commit("setDashboardData", null);
@@ -276,8 +236,20 @@ export default {
     },
   },
   mounted() {
+    // this.chartOptions1.chart.height = this.height;
+    // this.chartOptions1.series = this.series;
+    // this.ApexCharts1 = new ApexCharts(
+    //   document.querySelector("#" + this.nameGroup),
+    //   this.chartOptions1
+    // ); //.render();
+    // this.ApexCharts1.render();
+
+    ///////------------------------
+
     this.chartOptions1.chart.height = this.height;
+    //this.chartOptions1.series = this.series2Columns;
     this.chartOptions1.series = this.series;
+
     this.ApexCharts1 = new ApexCharts(
       document.querySelector("#" + this.name),
       this.chartOptions1
