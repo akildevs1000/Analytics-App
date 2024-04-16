@@ -48,7 +48,16 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Footfall <span style="font-size: 12px">Weekday</span>
+              Highest Footfall
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #0f9d58;
+                "
+                >Weekday</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -91,7 +100,12 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.footFall.date ?? "---" }}</span
+                    >{{ highestCounts.footFall.date ?? "---" }}
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(highestCounts.footFall.date)
+                      )
+                    }}</span
                   >
                 </span>
               </v-col>
@@ -103,7 +117,16 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Lowest Footfall <span style="font-size: 12px">Weekday</span>
+              Lowest Footfall
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #0f9d58;
+                "
+                >Weekday</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -124,8 +147,8 @@
                       font-weight: 300;
                       font-size: 50px;
                     "
-                    >{{ highestCounts.lowestFootfall.count ?? "---" }}</span
-                  >
+                    >{{ highestCounts.lowestFootfall.count ?? "---" }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -142,8 +165,15 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.lowestFootfall.date ?? "---" }}</span
-                  >
+                    >{{ highestCounts.lowestFootfall.date ?? "---" }}
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(
+                          highestCounts.lowestFootfall.date
+                        )
+                      )
+                    }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -154,48 +184,52 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Peak Hours <span style="font-size: 12px">Weekday</span>
+              Peak Hours
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #0f9d58;
+                "
+                >Weekday</span
+              >
             </div>
-            <v-row style="height: 75px">
+            <v-row style="height: 115px">
               <v-col
                 cols="12"
-                style="font-size: 50px; color: #c55a11; text-align: center"
+                style="
+                  font-size: 50px;
+                  color: #c55a11;
+                  text-align: center;
+                  margin: auto;
+                "
               >
                 <span style="">
-                  <span>
-                    <img
-                      src="../../static/icons/male51.png"
-                      style="width: 35px"
-                    />
-                  </span>
                   <span
                     style="
                       margin: auto;
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 50px;
+                      font-size: 30px;
                     "
-                    >{{ highestCounts.maleCount.count ?? "---" }}</span
+                    v-if="peakHoursListWeekDays.length == 0"
+                    >---</span
                   >
-                </span>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" style="text-align: center">
-                <span style="">
-                  <span>
-                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
-                  </span>
-                  <span
+                  <div
+                    v-for="hour in peakHoursListWeekDays"
                     style="
                       margin: auto;
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
+                      font-size: 30px;
                     "
-                    >{{ highestCounts.maleCount.date ?? "---" }}</span
                   >
+                    {{ $dateFormat.convertToAMPM(hour) }} -
+                    {{ $dateFormat.convertToAMPM(hour + 1) }}
+                  </div>
                 </span>
               </v-col>
             </v-row>
@@ -206,48 +240,54 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Lean Hours <span style="font-size: 12px">Weekday</span>
+              Lean Hours
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #0f9d58;
+                "
+                >Weekday</span
+              >
             </div>
-            <v-row style="height: 75px">
+            <v-row style="height: 115px">
               <v-col
                 cols="12"
-                style="font-size: 50px; color: #c55a11; text-align: center"
+                style="
+                  margin: auto;
+                  font-size: 50px;
+                  color: #c55a11;
+                  text-align: center;
+                "
               >
                 <span style="">
-                  <span>
-                    <img
-                      src="../../static/icons/female51.png"
-                      style="width: 35px"
-                    />
+                  <span style="">
+                    <span
+                      style="
+                        margin: auto;
+                        padding: 0px;
+                        margin-left: 0px;
+                        font-weight: 300;
+                        font-size: 30px;
+                      "
+                      v-if="leanHoursListWeekDays.length == 0"
+                      >---</span
+                    >
+                    <div
+                      v-for="hour in leanHoursListWeekDays"
+                      style="
+                        margin: auto;
+                        padding: 0px;
+                        margin-left: 0px;
+                        font-weight: 300;
+                        font-size: 30px;
+                      "
+                    >
+                      {{ $dateFormat.convertToAMPM(hour) }} -
+                      {{ $dateFormat.convertToAMPM(hour + 1) }}
+                    </div>
                   </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                      font-size: 50px;
-                    "
-                    >{{ highestCounts.femaleCount.count ?? "---" }}</span
-                  >
-                </span>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" style="text-align: center">
-                <span style="">
-                  <span>
-                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                    "
-                    >{{ highestCounts.femaleCount.date ?? "---" }}</span
-                  >
                 </span>
               </v-col>
             </v-row>
@@ -258,7 +298,16 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Top Age Group<span style="font-size: 12px">Weekday</span>
+              Top Age Group
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #0f9d58;
+                "
+                >Weekday</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -294,8 +343,14 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.ageGroup.date ?? "---" }}</span
                   >
+                    {{ highestCounts.ageGroup.date }}
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(highestCounts.ageGroup.date)
+                      )
+                    }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -306,7 +361,15 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Time Spent<span style="font-size: 12px">Weekday</span>
+              Highest Time Spent<span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #0f9d58;
+                "
+                >Weekday</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -329,7 +392,7 @@
                     "
                   >
                     {{
-                      highestCounts.timeSpent.count
+                      highestCounts.timeSpent.count >= 0
                         ? $dateFormat.minutesToHHMM(
                             Math.round(highestCounts.timeSpent.count)
                           )
@@ -352,8 +415,14 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.timeSpent.date ?? "---" }}</span
-                  >
+                    >{{ highestCounts.timeSpent.date ?? "---" }}
+
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(highestCounts.timeSpent.date)
+                      )
+                    }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -367,7 +436,16 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Footfall <span style="font-size: 12px">Weekend</span>
+              Highest Footfall
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #4285f4;
+                "
+                >Weekend</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -392,7 +470,7 @@
                       font-weight: 300;
                       font-size: 50px;
                     "
-                    >{{ highestCounts.footFall.count ?? "---" }}</span
+                    >{{ highestCountsWeekend.footFall.count ?? "---" }}</span
                   >
                 </span>
               </v-col>
@@ -410,7 +488,14 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.footFall.date ?? "---" }}</span
+                    >{{ highestCountsWeekend.footFall.date ?? "---" }}
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(
+                          highestCountsWeekend.footFall.date
+                        )
+                      )
+                    }}</span
                   >
                 </span>
               </v-col>
@@ -422,7 +507,16 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Lowest Footfall <span style="font-size: 12px">Weekend</span>
+              Lowest Footfall
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #4285f4;
+                "
+                >Weekend</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -443,8 +537,8 @@
                       font-weight: 300;
                       font-size: 50px;
                     "
-                    >{{ highestCounts.lowestFootfall.count ?? "---" }}</span
-                  >
+                    >{{ highestCountsWeekend.lowestFootfall.count ?? "---" }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -461,8 +555,15 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.lowestFootfall.date ?? "---" }}</span
-                  >
+                    >{{ highestCountsWeekend.lowestFootfall.date ?? "---" }}
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(
+                          highestCountsWeekend.lowestFootfall.date
+                        )
+                      )
+                    }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -473,48 +574,52 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Peak Hours <span style="font-size: 12px">Weekend</span>
+              Peak Hours
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #4285f4;
+                "
+                >Weekend</span
+              >
             </div>
-            <v-row style="height: 75px">
+            <v-row style="height: 115px">
               <v-col
                 cols="12"
-                style="font-size: 50px; color: #c55a11; text-align: center"
+                style="
+                  font-size: 50px;
+                  color: #c55a11;
+                  text-align: center;
+                  margin: auto;
+                "
               >
                 <span style="">
-                  <span>
-                    <img
-                      src="../../static/icons/male51.png"
-                      style="width: 35px"
-                    />
-                  </span>
                   <span
                     style="
                       margin: auto;
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 50px;
+                      font-size: 30px;
                     "
-                    >{{ highestCounts.maleCount.count ?? "---" }}</span
+                    v-if="peakHoursListWeekEnds.length == 0"
+                    >---</span
                   >
-                </span>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" style="text-align: center">
-                <span style="">
-                  <span>
-                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
-                  </span>
-                  <span
+                  <div
+                    v-for="hour in peakHoursListWeekEnds"
                     style="
                       margin: auto;
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
+                      font-size: 30px;
                     "
-                    >{{ highestCounts.maleCount.date ?? "---" }}</span
                   >
+                    {{ $dateFormat.convertToAMPM(hour) }} -
+                    {{ $dateFormat.convertToAMPM(hour + 1) }}
+                  </div>
                 </span>
               </v-col>
             </v-row>
@@ -525,48 +630,54 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Lean Hours <span style="font-size: 12px">Weekend</span>
+              Lean Hours
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #4285f4;
+                "
+                >Weekend</span
+              >
             </div>
-            <v-row style="height: 75px">
+            <v-row style="height: 115px">
               <v-col
                 cols="12"
-                style="font-size: 50px; color: #c55a11; text-align: center"
+                style="
+                  margin: auto;
+                  font-size: 50px;
+                  color: #c55a11;
+                  text-align: center;
+                "
               >
                 <span style="">
-                  <span>
-                    <img
-                      src="../../static/icons/female51.png"
-                      style="width: 35px"
-                    />
+                  <span style="">
+                    <span
+                      style="
+                        margin: auto;
+                        padding: 0px;
+                        margin-left: 0px;
+                        font-weight: 300;
+                        font-size: 30px;
+                      "
+                      v-if="leanHoursListWeekEnds.length == 0"
+                      >---</span
+                    >
+                    <div
+                      v-for="hour in leanHoursListWeekEnds"
+                      style="
+                        margin: auto;
+                        padding: 0px;
+                        margin-left: 0px;
+                        font-weight: 300;
+                        font-size: 30px;
+                      "
+                    >
+                      {{ $dateFormat.convertToAMPM(hour) }} -
+                      {{ $dateFormat.convertToAMPM(hour + 1) }}
+                    </div>
                   </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                      font-size: 50px;
-                    "
-                    >{{ highestCounts.femaleCount.count ?? "---" }}</span
-                  >
-                </span>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" style="text-align: center">
-                <span style="">
-                  <span>
-                    <v-icon size="20">mdi mdi-calendar-range</v-icon>
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                    "
-                    >{{ highestCounts.femaleCount.date ?? "---" }}</span
-                  >
                 </span>
               </v-col>
             </v-row>
@@ -577,7 +688,16 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Top Age Group<span style="font-size: 12px">Weekend</span>
+              Top Age Group
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #4285f4;
+                "
+                >Weekend</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -593,8 +713,8 @@
                       font-weight: 300;
                       font-size: 30px;
                     "
-                    >{{ highestCounts.ageGroup.name ?? "---" }} ({{
-                      highestCounts.ageGroup.count ?? "---"
+                    >{{ highestCountsWeekend.ageGroup.name ?? "---" }} ({{
+                      highestCountsWeekend.ageGroup.count ?? "---"
                     }})</span
                   >
                 </span>
@@ -613,8 +733,16 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.ageGroup.date ?? "---" }}</span
                   >
+                    {{ highestCountsWeekend.ageGroup.date }}
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(
+                          highestCountsWeekend.ageGroup.date
+                        )
+                      )
+                    }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -625,7 +753,16 @@
         <v-row style="width: 100%; height: 150px">
           <v-card class="py-2" style="width: 100%">
             <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Highest Time Spent<span style="font-size: 12px">Weekend</span>
+              Highest Time Spent
+              <span
+                style="
+                  font-size: 12px;
+                  float: right;
+                  padding-right: 5px;
+                  color: #4285f4;
+                "
+                >Weekend</span
+              >
             </div>
             <v-row style="height: 75px">
               <v-col
@@ -648,9 +785,9 @@
                     "
                   >
                     {{
-                      highestCounts.timeSpent.count
+                      highestCountsWeekend.timeSpent.count >= 0
                         ? $dateFormat.minutesToHHMM(
-                            Math.round(highestCounts.timeSpent.count)
+                            Math.round(highestCountsWeekend.timeSpent.count)
                           )
                         : "---"
                     }}
@@ -671,8 +808,16 @@
                       margin-left: 0px;
                       font-weight: 300;
                     "
-                    >{{ highestCounts.timeSpent.date ?? "---" }}</span
-                  >
+                    >{{ highestCountsWeekend.timeSpent.date ?? "---" }}
+
+                    {{
+                      caps(
+                        $dateFormat.getDayFullName(
+                          highestCountsWeekend.timeSpent.date
+                        )
+                      )
+                    }}
+                  </span>
                 </span>
               </v-col>
             </v-row>
@@ -873,6 +1018,10 @@ export default {
   props: [],
 
   data: () => ({
+    peakHoursListWeekDays: [],
+    leanHoursListWeekDays: [],
+    peakHoursListWeekEnds: [],
+    leanHoursListWeekEnds: [],
     tableHeight: 750,
     status: "",
     department_ids: "",
@@ -909,6 +1058,38 @@ export default {
     total: 0,
 
     highestCounts: {
+      footFall: {
+        count: null,
+        date: null,
+      },
+      maleCount: {
+        count: null,
+        date: null,
+      },
+      femaleCount: {
+        count: null,
+        date: null,
+      },
+      ageGroup: {
+        name: null,
+        count: null,
+        date: null,
+      },
+      timeSpent: {
+        count: null,
+        date: null,
+      },
+      blockListed: {
+        count: null,
+        date: null,
+      },
+      lowestFootfall: {
+        count: null,
+        date: null,
+      },
+    },
+
+    highestCountsWeekend: {
       footFall: {
         count: null,
         date: null,
@@ -1189,29 +1370,60 @@ export default {
       this.totalRowsCount = total;
       this.loading = false;
 
-      this.getHighestValues();
+      this.getHighestValues(true);
+      this.getHighestValues(false);
+
+      if (this.data[0]) {
+        if (this.data[0].highest_peak_hours_weekDays) {
+          this.peakHoursListWeekDays =
+            this.data[0].highest_peak_hours_weekDays.top3Highest;
+          this.leanHoursListWeekDays =
+            this.data[0].highest_peak_hours_weekDays.top3Lowest;
+          this.peakHoursListWeekEnds =
+            this.data[0].highest_peak_hours_weekEnds.top3Highest;
+          this.leanHoursListWeekEnds =
+            this.data[0].highest_peak_hours_weekEnds.top3Lowest;
+        }
+      }
     },
-    getHighestValues() {
+    getHighestValues(isWeekEnd) {
       let highestMaleCount = 0;
-      let highestMaleCountDate = "";
+      let highestMaleCountDate = "---";
       let highestFemaleCount = 0;
-      let highestFemaleCountDate = "";
+      let highestFemaleCountDate = "---";
       let highestFootFall = 0;
-      let highestFootFallDate = "";
-      let highestAgeGroupname = "";
+      let highestFootFallDate = "---";
+      let highestAgeGroupname = "---";
       let highestAgeGroup = 0;
-      let highestAgeGroupDate = "";
+      let highestAgeGroupDate = "---";
 
-      let highestTimeSpent = 0;
-      let highestTimeSpentDate = "";
+      let highestTimeSpent = "---";
+      let highestTimeSpentDate = "---";
 
-      let highestBlocklisted = 0;
-      let highestBlocklistedDate = "";
+      let highestBlocklisted = "---";
+      let highestBlocklistedDate = "---";
 
-      let lowestFootfall = 0;
-      let lowestFootfallDate = "";
-      if (this.data)
+      let lowestFootfall = Infinity;
+      let lowestFootfallDate = "---";
+
+      let weekendsList = [];
+
+      if (this.data[0]) {
+        weekendsList = this.data[0].weekendsList;
+
         this.data.forEach((entry) => {
+          let dayName = this.$dateFormat.getDayFullName(entry.date);
+          if (isWeekEnd) {
+            if (weekendsList[dayName] == 0) {
+              return;
+            }
+          } else {
+            //non weekends
+
+            if (weekendsList[dayName] == 1) {
+              return;
+            }
+          }
           if (entry.male_count > highestMaleCount) {
             highestMaleCount = entry.male_count;
             highestMaleCountDate = entry.date;
@@ -1248,8 +1460,8 @@ export default {
             highestAgeGroupDate = entry.date;
           }
 
-          if (entry.max_total_hours > highestTimeSpent) {
-            highestTimeSpent = entry.max_total_hours;
+          if (entry.max_hrs > highestTimeSpent) {
+            highestTimeSpent = entry.max_hrs;
             highestTimeSpentDate = entry.date;
           }
 
@@ -1258,12 +1470,24 @@ export default {
             highestBlocklistedDate = entry.date;
           }
 
-          if (entry.out_count + entry.in_count > lowestFootfall) {
+          if (entry.out_count + entry.in_count < lowestFootfall) {
             lowestFootfall = entry.out_count + entry.in_count;
             lowestFootfallDate = entry.date;
           }
         });
-      this.highestCounts = {
+      }
+
+      if (lowestFootfall == Infinity) {
+        lowestFootfall = "---";
+      }
+      if (highestFootFall == lowestFootfall) {
+        lowestFootfall = "---";
+        lowestFootfallDate = "---";
+      }
+      if (highestFootFallDate == "---") {
+        highestFootFall = "---";
+      }
+      let result = {
         footFall: {
           count: highestFootFall,
           date: highestFootFallDate,
@@ -1294,6 +1518,11 @@ export default {
           date: lowestFootfallDate,
         },
       };
+      if (isWeekEnd) {
+        this.highestCountsWeekend = result;
+      } else {
+        this.highestCounts = result;
+      }
 
       console.log(this.highestCounts);
     },
@@ -1304,7 +1533,10 @@ export default {
       pdf.setAttribute("target", "_blank");
       pdf.click();
     },
-
+    caps(str) {
+      if (str) return str.replace(/\b\w/g, (c) => c.toUpperCase());
+      else return "";
+    },
     async process_file(type) {
       try {
         if (!this.data || !this.data.length) {

@@ -491,7 +491,7 @@ class CustomerReportController extends Controller
     }
 
 
-    public function CustomerStatsReport()
+    public function CustomerStatsReport(Request $request)
     {
         $branchReportQuery = CompanyBranch::query();
         $branchReportQuery->where("company_id", request("company_id"));
@@ -503,13 +503,16 @@ class CustomerReportController extends Controller
         if (request("branch_id")) {
             $customerReportQuery->where("branch_id", request("branch_id"));
         }
-        $customerReportQuery->whereBetween("date", [request("from_date"), date("Y-m-d", strtotime(request("to_date") . " +1 day"))]);
+        $customerReportQuery->whereBetween("date", [request("from_date"), date("Y-m-d", strtotime(request("to_date") . " +0 day"))]);
         $customerReportsByDates = $customerReportQuery->get()->groupBy("date");
-
-
-
-
         $result = collect(); // Create a collection to store paginated results
+
+        $weekendsList = (new CompanyBranchController)->getWeekendsList($request);
+        //get highestfootfall count 
+
+
+        $HighestPeakHoursWeekdays = $this->getHighestPeakHours($request, $weekendsList, false);
+        $HighestPeakHoursWeekEnds = $this->getHighestPeakHours($request, $weekendsList, true);
 
         foreach ($customerReportsByDates as $dateKey => $date) {
 
@@ -530,19 +533,26 @@ class CustomerReportController extends Controller
 
             $status_label = $date->groupBy("status_label")->map->count();
 
+            $child_male_count = isset($gender_age_category["Male"]["CHILD"]) ?  $gender_age_category["Male"]["CHILD"]->count() : 0;
+            $child_female_count = isset($gender_age_category["Female"]["CHILD"]) ?  $gender_age_category["Female"]["CHILD"]->count() : 0;
+
             $result->push([
+
+                "highest_peak_hours_weekDays" => $HighestPeakHoursWeekdays,
+                "highest_peak_hours_weekEnds" => $HighestPeakHoursWeekEnds,
+
                 "branch" => $date->pluck("branch_for_stats_only")->first(),
                 "date" => $dateKey,
 
                 "in_count" => $inOut["in"] ?? 0,
-                "in_male_count" =>  $statusGroup["in"]->where("gender", "Male")->count(),
-                "in_female_count" =>  $statusGroup["in"]->where("gender", "Female")->count(),
-                "in_child_count" =>  $statusGroup["in"]->where("gender", "Child")->count(),
+                "in_male_count" =>  $statusGroup["in"]->where("gender", "Male")->where("age_category", "!=", "Child")->count(),
+                "in_female_count" =>  $statusGroup["in"]->where("gender", "Female")->where("age_category", "!=", "Child")->count(),
+                "in_child_count" =>  $statusGroup["in"]->where("age_category", "Child")->count(),
 
                 "out_count" => $inOut["out"] ?? 0,
-                "out_male_count" =>  $statusGroup["out"]->where("gender", "Male")->count(),
-                "out_female_count" =>  $statusGroup["out"]->where("gender", "Female")->count(),
-                "out_child_count" =>  $statusGroup["out"]->where("gender", "Child")->count(),
+                "out_male_count" =>  $statusGroup["out"]->where("gender", "Male")->where("age_category", "!=", "Child")->count(),
+                "out_female_count" =>  $statusGroup["out"]->where("gender", "Female")->where("age_category", "!=", "Child")->count(),
+                "out_child_count" =>  $statusGroup["out"]->where("age_category", "Child")->count(),
 
 
                 "vip_count" => $type["vip"] ?? 0,
@@ -553,14 +563,14 @@ class CustomerReportController extends Controller
                 "blocklisted" => $status_label["blocklisted"] ?? 0,
 
 
-                "male_count" => $gender["Male"] ?? 0,
-                "female_count"  => $gender["Female"] ?? 0,
+                "male_count" => $gender["Male"] ? $gender["Male"] - $child_male_count : 0,
+                "female_count"  =>  $gender["Female"] ? $gender["Female"] -  $child_female_count : 0,
 
                 "male_senior_count" => isset($gender_age_category["Male"]["SENIOR"]) ?  $gender_age_category["Male"]["SENIOR"]->count() : 0,
                 "female_senior_count" => isset($gender_age_category["Female"]["SENIOR"]) ?  $gender_age_category["Female"]["SENIOR"]->count() : 0,
 
-                "child_male_count" => isset($gender_age_category["Male"]["CHILD"]) ?  $gender_age_category["Male"]["CHILD"]->count() : 0,
-                "child_female_count" => isset($gender_age_category["Female"]["CHILD"]) ?  $gender_age_category["Female"]["CHILD"]->count() : 0,
+                "child_male_count" => $child_male_count,
+                "child_female_count" => $child_female_count,
 
                 "male_younger_count" => isset($gender_age_category["Male"]["YOUNGER"]) ?  $gender_age_category["Male"]["YOUNGER"]->count() : 0,
                 "female_younger_count" => isset($gender_age_category["Female"]["YOUNGER"]) ?  $gender_age_category["Female"]["YOUNGER"]->count() : 0,
@@ -578,7 +588,8 @@ class CustomerReportController extends Controller
                 "min_hrs" => $total_hrs->min() ?: 0,
                 "max_hrs" => $total_hrs->max() ?: 0,
                 "avg_hrs" => $total_hrs->average() ?: 0,
-                "occupancy" => $occupanySum
+                "occupancy" => $occupanySum,
+                "weekendsList" => $weekendsList
             ]);
         }
 
@@ -602,5 +613,59 @@ class CustomerReportController extends Controller
 
 
         return $result;
+    }
+
+    public function getHighestPeakHours($requst, $weekendsList, $filterWeekEnds)
+    {
+        $attendanceLogs = AttendanceLog::where("company_id", request("company_id"));
+        if (request("branch_id")) {
+            $attendanceLogs->where("branch_id", request("branch_id"));
+        }
+        $attendanceLogs = $attendanceLogs->whereBetween("LogTime", [request("from_date"), date("Y-m-d", strtotime(request("to_date") . " +1 day"))])->pluck("LogTime");
+
+
+
+
+        $hourlyVisitorCount = [];
+
+        foreach ($attendanceLogs as $log) {
+
+            $dayName = strtolower(date("l", strtotime($log)));
+            if ($filterWeekEnds) {
+                if ($weekendsList[$dayName] == 0) {
+
+                    continue;
+                }
+            } else {
+                if ($weekendsList[$dayName] == 1) {
+
+                    continue;
+                }
+            }
+            $hour = date('H', strtotime($log));
+
+            // Increment visitor count for the corresponding hour
+            if (!isset($hourlyVisitorCount[$hour])) {
+                $hourlyVisitorCount[$hour] = 1;
+            } else {
+                $hourlyVisitorCount[$hour]++;
+            }
+        }
+        // Copy the array before sorting
+        $sortedVisitorCount = $hourlyVisitorCount;
+
+        // Sort the array in descending order
+        arsort($sortedVisitorCount);
+
+        // Get the top 3 highest hours
+        $top3Highest = array_slice(array_keys($sortedVisitorCount), 0, 2);
+
+        // Sort the array in ascending order
+        asort($sortedVisitorCount);
+
+        // Get the top 3 lowest hours
+        $top3Lowest = array_slice(array_keys($sortedVisitorCount), 0, 2);
+
+        return ["top3Highest" => $top3Highest, "top3Lowest" => $top3Lowest];
     }
 }

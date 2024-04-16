@@ -182,6 +182,15 @@ export default ({ app }, inject) => {
 
       return formattedDate;
     },
+    convertToAMPM(hour) {
+      if (hour >= 0 && hour <= 11) {
+        return hour + " AM";
+      } else if (hour == 12) {
+        return hour + " PM";
+      } else {
+        return hour - 12 + " PM";
+      }
+    },
     getDayName: (inputDate) => {
       // Create a new Date object
       var today = new Date(inputDate);
