@@ -17,7 +17,7 @@ class CustomerReport extends Model
     }
     public function branch_for_stats_only()
     {
-        return $this->belongsTo(CompanyBranch::class, "br_id");
+        return $this->belongsTo(CompanyBranch::class, "branch_id");
     }
     public function in_log()
     {

@@ -10,6 +10,8 @@ use App\Models\CustomerReport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class CustomerReportController extends Controller
 {
@@ -486,5 +488,119 @@ class CustomerReportController extends Controller
         $query->with("customer", "in_log", "out_log");
 
         return $query;
+    }
+
+
+    public function CustomerStatsReport()
+    {
+        $branchReportQuery = CompanyBranch::query();
+        $branchReportQuery->where("company_id", request("company_id"));
+        $occupanySum =  $branchReportQuery->where("id", request("branch_id") ?? 0)->sum("occupancy");
+
+        $customerReportQuery = CustomerReport::with("branch_for_stats_only");
+
+        $customerReportQuery->where("company_id", request("company_id"));
+        if (request("branch_id")) {
+            $customerReportQuery->where("branch_id", request("branch_id"));
+        }
+        $customerReportQuery->whereBetween("date", [request("from_date"), date("Y-m-d", strtotime(request("to_date") . " +1 day"))]);
+        $customerReportsByDates = $customerReportQuery->get()->groupBy("date");
+
+
+
+
+        $result = collect(); // Create a collection to store paginated results
+
+        foreach ($customerReportsByDates as $dateKey => $date) {
+
+            $total_hrs = $date->pluck("total_hrs");
+
+            $statusGroup = $date->groupBy("status");
+
+            $inOut = $statusGroup->map->count();
+
+            $type = $date->groupBy("type")->map->count();
+
+
+            $age_category = $date->groupBy("age_category")->map->count();
+
+            $gender = $date->groupBy("gender")->map->count();
+
+            $gender_age_category = $date->groupBy(["gender", "age_category"]);
+
+            $status_label = $date->groupBy("status_label")->map->count();
+
+            $result->push([
+                "branch" => $date->pluck("branch_for_stats_only")->first(),
+                "date" => $dateKey,
+
+                "in_count" => $inOut["in"] ?? 0,
+                "in_male_count" =>  $statusGroup["in"]->where("gender", "Male")->count(),
+                "in_female_count" =>  $statusGroup["in"]->where("gender", "Female")->count(),
+                "in_child_count" =>  $statusGroup["in"]->where("gender", "Child")->count(),
+
+                "out_count" => $inOut["out"] ?? 0,
+                "out_male_count" =>  $statusGroup["out"]->where("gender", "Male")->count(),
+                "out_female_count" =>  $statusGroup["out"]->where("gender", "Female")->count(),
+                "out_child_count" =>  $statusGroup["out"]->where("gender", "Child")->count(),
+
+
+                "vip_count" => $type["vip"] ?? 0,
+                "normal_count" => $type["normal"] ?? 0,
+
+
+                "whitelisted" => $status_label["whitelisted"] ?? 0,
+                "blocklisted" => $status_label["blocklisted"] ?? 0,
+
+
+                "male_count" => $gender["Male"] ?? 0,
+                "female_count"  => $gender["Female"] ?? 0,
+
+                "male_senior_count" => isset($gender_age_category["Male"]["SENIOR"]) ?  $gender_age_category["Male"]["SENIOR"]->count() : 0,
+                "female_senior_count" => isset($gender_age_category["Female"]["SENIOR"]) ?  $gender_age_category["Female"]["SENIOR"]->count() : 0,
+
+                "child_male_count" => isset($gender_age_category["Male"]["CHILD"]) ?  $gender_age_category["Male"]["CHILD"]->count() : 0,
+                "child_female_count" => isset($gender_age_category["Female"]["CHILD"]) ?  $gender_age_category["Female"]["CHILD"]->count() : 0,
+
+                "male_younger_count" => isset($gender_age_category["Male"]["YOUNGER"]) ?  $gender_age_category["Male"]["YOUNGER"]->count() : 0,
+                "female_younger_count" => isset($gender_age_category["Female"]["YOUNGER"]) ?  $gender_age_category["Female"]["YOUNGER"]->count() : 0,
+
+                "male_adult_count" => isset($gender_age_category["Male"]["ADULT"]) ?  $gender_age_category["Male"]["ADULT"]->count() : 0,
+                "female_adult_count" => isset($gender_age_category["Female"]["ADULT"]) ?  $gender_age_category["Female"]["ADULT"]->count() : 0,
+
+
+                "adult_count" => $age_category["ADULT"] ?? 0,
+                "senior_count" => $age_category["SENIOR"] ?? 0,
+                "child_count" => $age_category["CHILD"] ?? 0,
+                "younger_count" => $age_category["YOUNGER"] ?? 0,
+
+                "repeated_customers" => $date->groupBy("user_id")->count() ?? 0,
+                "min_hrs" => $total_hrs->min() ?: 0,
+                "max_hrs" => $total_hrs->max() ?: 0,
+                "avg_hrs" => $total_hrs->average() ?: 0,
+                "occupancy" => $occupanySum
+            ]);
+        }
+
+        if (!request()->filled("noPagination")) {
+
+
+            $dataCollection = new Collection($result);
+            $perPage = request()->has('per_page') ? request()->get('per_page') : 10;
+            $page = request()->has('page') ? request()->get('page') : 1;
+            $currentPageItems = $dataCollection->slice(($page - 1) * $perPage, $perPage)->all();
+            return  $paginator = new LengthAwarePaginator(
+                $currentPageItems, // Items for the current page
+                $dataCollection->count(), // Total items
+                $perPage, // Items per page
+                $page, // Current page
+                ['path' => request()->url()] // Additional options, like the base URL
+            );
+        } else {
+            return  $result;
+        }
+
+
+        return $result;
     }
 }

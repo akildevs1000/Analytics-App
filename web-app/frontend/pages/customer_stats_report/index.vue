@@ -976,7 +976,7 @@ export default {
         value: "total_footfall",
       },
       {
-        text: "IN",
+        text: "In",
         align: "center",
         sortable: true,
         key: "in",
@@ -1089,7 +1089,7 @@ export default {
         align: "left",
         sortable: true,
         key: "branch_id", //sorting
-        value: "branch_for_stats_only.branch_name", //edit purpose
+        value: "branch.branch_name", //edit purpose
 
         filterable: true,
         filterSpecial: true,

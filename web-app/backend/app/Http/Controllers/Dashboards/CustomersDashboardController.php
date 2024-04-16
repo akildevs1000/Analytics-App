@@ -168,7 +168,11 @@ class CustomersDashboardController extends Controller
         }
 
         $colorCodes = [
-            ["min" => 1, "max" => 2, "color" => "#0086A8"], ["min" => 3, "max" => 5, "color" => "#006078"], ["min" => 6, "max" => 10, "color" => "#004D60"], ["min" => 6, "max" => 10, "color" => "#003542"], ["min" => 11, "max" => 10, "color" => "#00242C"], ["min" => 15, "max" => 10, "color" => "#00161A"]
+            ["min" => 1, "max" => 2, "color" => "#0086A8"],
+            ["min" => 3, "max" => 5, "color" => "#006078"],
+            ["min" => 6, "max" => 10, "color" => "#004D60"],
+            ["min" => 11, "max" => 20, "color" => "#00242C"],
+            ["min" => 21, "max" => 50, "color" => "#00161A"]
         ];
         //------------------------------------
 

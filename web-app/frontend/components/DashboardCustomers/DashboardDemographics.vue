@@ -65,7 +65,7 @@
                 </v-col>
               </v-row>
               <v-row class="text-center">
-                <v-col cols="4">
+                <v-col cols="4" style="padding-left: 0px; padding-right: 0px">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -82,14 +82,14 @@
                         }}%</span
                       >
                     </div>
-                    <div style="font-size: 12px">YOUNG</div>
+                    <div style="font-size: 12px">Young</div>
                     <div style="font-size: 10px; color: #a6a6a6">
                       15- 25 YEARS
                     </div>
                   </span>
                 </v-col>
 
-                <v-col cols="4">
+                <v-col cols="4" style="padding-left: 0px; padding-right: 0px">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300">
@@ -113,7 +113,7 @@
                   </span>
                 </v-col>
 
-                <v-col cols="4">
+                <v-col cols="4" style="padding-left: 0px; padding-right: 0px">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300">
@@ -186,7 +186,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4">
+                <v-col cols="4" style="padding-left: 0px; padding-right: 0px">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300">
@@ -210,7 +210,7 @@
                   </span>
                 </v-col>
 
-                <v-col cols="4">
+                <v-col cols="4" style="padding-left: 0px; padding-right: 0px">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"
@@ -234,7 +234,7 @@
                   </span>
                 </v-col>
 
-                <v-col cols="4">
+                <v-col cols="4" style="padding-left: 0px; padding-right: 0px">
                   <span style="float: left; width: 100%">
                     <div>
                       <span style="font-size: 22px; font-weight: 300"

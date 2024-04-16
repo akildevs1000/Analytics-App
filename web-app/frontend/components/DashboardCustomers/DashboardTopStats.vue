@@ -20,8 +20,8 @@
                 color: #c55a11;
               "
             >
-              <v-col cols="4">
-                <span style="display: flex; float: right">
+              <v-col cols="4" style="text-align: center">
+                <span style="">
                   <span>
                     <img
                       src="../../static/icons/male51.png"
@@ -40,8 +40,8 @@
                   </span>
                 </span>
               </v-col>
-              <v-col cols="4">
-                <span style="display: flex; float: right">
+              <v-col cols="4" style="text-align: center">
+                <span>
                   <span>
                     <img
                       src="../../static/icons/female51.png"
@@ -61,8 +61,8 @@
                 </span>
               </v-col>
 
-              <v-col cols="4">
-                <span style="display: flex; float: left; padding-left: 10px">
+              <v-col cols="4" style="text-align: center">
+                <span>
                   <span>
                     <img
                       src="../../static/icons/kids51.png"
@@ -105,8 +105,8 @@
                 color: #c55a11;
               "
             >
-              <v-col cols="4">
-                <span style="display: flex; float: right">
+              <v-col cols="4" style="text-align: center">
+                <span>
                   <span>
                     <img
                       src="../../static/icons/male51.png"
@@ -125,8 +125,8 @@
                   >
                 </span>
               </v-col>
-              <v-col cols="4">
-                <span style="display: flex; float: right">
+              <v-col cols="4" style="text-align: center">
+                <span>
                   <span>
                     <img
                       src="../../static/icons/female51.png"
@@ -146,8 +146,8 @@
                 </span>
               </v-col>
 
-              <v-col cols="4">
-                <span style="display: flex; float: left; padding-left: 10px">
+              <v-col cols="4" style="text-align: center">
+                <span>
                   <span>
                     <img
                       src="../../static/icons/kids51.png"
