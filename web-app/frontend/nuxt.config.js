@@ -12,7 +12,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: "",
-    title: "MyTime 2 Cloud",
+    title: "People Counting",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -41,25 +41,25 @@ export default {
       },
     ],
     script: [
-      {
-        type: "text/javascript",
-        src: "https://code.jquery.com/jquery-3.5.1.js",
-        async: false,
-        body: false,
-      }, // Insert in body
-      {
-        type: "text/javascript",
-        src: "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js",
-        async: false,
-        body: false,
-      }, // Insert in body
+      // {
+      //   type: "text/javascript",
+      //   src: "https://code.jquery.com/jquery-3.5.1.js",
+      //   async: false,
+      //   body: false,
+      // }, // Insert in body
+      // {
+      //   type: "text/javascript",
+      //   src: "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js",
+      //   async: false,
+      //   body: false,
+      // }, // Insert in body
 
-      {
-        type: "text/javascript",
-        src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
-        async: false,
-        body: false,
-      }, // Insert in body
+      // {
+      //   type: "text/javascript",
+      //   src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
+      //   async: false,
+      //   body: false,
+      // }, // Insert in body
     ],
   },
 
@@ -141,8 +141,8 @@ export default {
 
   pwa: {
     manifest: {
-      name: "MyTime 2 Cloud",
-      short_name: "MyTime 2 Cloud",
+      name: "People Counting",
+      short_name: "People Counting",
       lang: "en",
     },
     icon: {

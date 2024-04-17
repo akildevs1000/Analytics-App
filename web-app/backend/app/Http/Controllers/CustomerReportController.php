@@ -20,81 +20,6 @@ class CustomerReportController extends Controller
         return $this->processFilter()->paginate(request("per_page") ?? 10);
     }
 
-    public function stats1()
-    {
-        $Query = CustomerReport::query()
-            ->select("customer_reports.date", "customer_reports.total_hrs", "customer_reports.branch_id as br_id")
-            ->selectRaw('(SELECT AVG(total_hrs)) as avg_total_hours')
-            ->selectRaw('(SELECT MIN(total_hrs)) as min_total_hours')
-            ->selectRaw('(SELECT MAX(total_hrs)) as max_total_hours')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category != "CHILD" THEN 1 END) as male_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category = "CHILD"   THEN 1 END) as child_male_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category = "YOUNGER" THEN 1 END) as male_younger_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category  = "ADULT" THEN 1 END) as male_adult_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Male" AND attendance_logs.age_category  = "SENIOR" THEN 1 END) as male_senior_count')
-
-
-
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Female" AND attendance_logs.age_category != "CHILD" THEN 1 END) as female_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Female" AND attendance_logs.age_category = "CHILD"   THEN 1 END) as child_female_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Female" AND attendance_logs.age_category = "YOUNGER" THEN 1 END) as female_younger_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Female" AND attendance_logs.age_category  = "ADULT" THEN 1 END) as female_adult_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.Gender = "Female" AND attendance_logs.age_category  = "SENIOR" THEN 1 END) as female_senior_count')
-
-
-
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.age_category = "CHILD"  THEN 1 END) as child_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.age_category = "YOUNGER" THEN 1 END) as younger_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.age_category = "ADULT" THEN 1 END) as adult_count')
-            ->selectRaw('COUNT(CASE WHEN attendance_logs.age_category = "SENIOR" THEN 1 END) as senior_count')
-            ->selectRaw('COUNT(CASE WHEN customers.type = "vip" THEN 1 END) as vip_customer_count')
-
-            ->selectRaw('COUNT(CASE WHEN customers.status = "blocklisted" THEN 1 END) as blocklisted_customer_count')
-            ->selectRaw('COUNT(CASE WHEN customers.type = "normal" THEN 1 END) as normal_customer_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in" THEN 1 END) as in_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in" AND attendance_logs.Gender = "Male" AND attendance_logs.age_category != "CHILD" THEN 1 END) as in_male_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in"  AND attendance_logs.Gender = "Female" AND attendance_logs.age_category != "CHILD" THEN 1 END) as in_female_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "in"  AND attendance_logs.age_category = "CHILD"  THEN 1 END) as in_child_count')
-
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out" THEN 1 END) as out_count')
-
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out" AND attendance_logs.Gender = "Male" AND attendance_logs.age_category != "CHILD" THEN 1 END) as out_male_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out"  AND attendance_logs.Gender = "Female" AND attendance_logs.age_category != "CHILD" THEN 1 END) as out_female_count')
-            ->selectRaw('COUNT(CASE WHEN customer_reports.status = "out"  AND attendance_logs.age_category = "CHILD"  THEN 1 END) as out_child_count')
-
-            ->selectRaw('(SELECT COUNT(*) 
-                  FROM (
-                      SELECT UserID
-                      FROM attendance_logs
-                      GROUP BY UserID
-                      HAVING COUNT(*) > 2
-                  ) AS repeated_users) AS repeated_customer_count');
-
-        $Query->when(request()->filled("branch_id"), function ($q) {
-            return $q->selectRaw('(SELECT occupancy FROM company_branches WHERE id = ' . request("branch_id") . ') as occupancy');
-        })->when(!request()->filled("branch_id"), function ($q) {
-            return $q->selectRaw('(SELECT SUM(occupancy) FROM company_branches WHERE company_id = ' . request("company_id") . ') as occupancy');
-        });
-        $return =   $Query->join('customers', 'customer_reports.user_id', '=', 'customers.system_user_id')
-            ->join('attendance_logs', 'attendance_logs.id', '=', 'customer_reports.in_id')
-
-            ->where('customers.company_id', request("company_id"))
-            ->whereBetween('customer_reports.date', [request("from_date"), request("to_date")])
-            ->when(request()->filled("branch_id"), fn ($q) => $q->where('br_id', request("branch_id")))
-            ->with("branch_for_stats_only")
-            ->groupBy('customer_reports.date');
-
-
-        if (!request()->filled("noPagination"))
-
-            return  $return->paginate(request("per_page") ?? 10);
-
-        else {
-            return  $return->get();
-        }
-    }
-
-
     public function stats()
     {
         $branchReportQuery = CompanyBranch::query();
@@ -181,96 +106,6 @@ class CustomerReportController extends Controller
         return $result;
     }
 
-
-    public function stats_ok()
-    {
-        $startDate = new \DateTime(request("from_date"));
-        $endDate = new \DateTime(request("to_date"));
-
-        $customerReportQuery = CustomerReport::query();
-        $customerReportQuery->where("company_id", request("company_id"));
-        $customerReportQuery->whereBetween("date", [request("from_date"), date("Y-m-d", strtotime(request("to_date") . " +1 day"))]);
-
-        $attendanceReportQuery = AttendanceLog::query();
-        $attendanceReportQuery->where("company_id", request("company_id"));
-        $attendanceReportQuery->whereBetween("LogTime", [request("from_date"), date("Y-m-d", strtotime(request("to_date") . " +1 day"))]);
-
-        $branchReportQuery = CompanyBranch::query();
-        $branchReportQuery->where("company_id", request("company_id"));
-        $occupanySum =  $branchReportQuery->where("id", request("branch_id") ?? 0)->sum("occupancy");
-
-        $result = collect(); // Create a collection to store paginated results
-
-        while ($startDate <= $endDate) {
-
-            $attendandData = $attendanceReportQuery->whereDate("LogTime", $startDate)->get();
-
-            $customer = Customer::whereIn("system_user_id", $attendandData->pluck("UserID"))->get();
-
-            $customerStatuses = $customer->groupBy('status')->map->count();
-
-            $customerTypes = $customer->groupBy('type')->map->count();
-
-            $customerData = $customerReportQuery->whereDate("date", $startDate)->get();
-
-            $total_hrs = $customerReportQuery->whereDate("date", $startDate)->pluck("total_hrs");
-
-            $result->push([
-
-                "in_count" => $customerData->where("status", "in")->count(),
-                "in_male_count" => $customerData->where("status", "in")->where("Gender", "Male")->where("age_category", "!=", "CHILD")->count(),
-                "in_female_count" => $customerData->where("status", "in")->where("Gender", "Female")->where("age_category", "!=", "CHILD")->count(),
-                "in_child_count" => $customerData->where("status", "in")->where("age_category", "CHILD")->count(),
-
-                "out_count" => $customerData->where("status", "out")->count(),
-                "out_male_count" => $customerData->where("status", "out")->where("Gender", "Male")->count(),
-                "out_female_count" => $customerData->where("status", "out")->where("Gender", "Female")->where("age_category", "!=", "CHILD")->count(),
-                "out_child_count" => $customerData->where("status", "out")->where("age_category", "CHILD")->count(),
-
-                "male_count" => $attendandData->where("Gender", "Male")->count(),
-                "female_count" => $attendandData->where("Gender", "Female")->count(),
-
-                "male_senior_count" => $attendandData->where("Gender", "Male")->where("age_category", "SENIOR")->count(),
-                "female_senior_count" => $attendandData->where("Gender", "Female")->where("age_category", "SENIOR")->count(),
-
-                "child_male_count" => $attendandData->where("Gender", "Male")->where("age_category", "CHILD")->count(),
-                "child_female_count" => $attendandData->where("Gender", "Female")->where("age_category", "CHILD")->count(),
-
-                "male_younger_count" => $attendandData->where("Gender", "Male")->where("age_category", "YOUNGER")->count(),
-                "female_younger_count" => $attendandData->where("Gender", "Female")->where("age_category", "YOUNGER")->count(),
-
-                "male_adult_count" => $attendandData->where("Gender", "Male")->where("age_category", "ADULT")->count(),
-                "female_adult_count" => $attendandData->where("Gender", "Female")->where("age_category", "ADULT")->count(),
-
-                "child_count" => $attendandData->where("age_category", "CHILD")->count(),
-                "younger_count" => $attendandData->where("age_category", "YOUNGER")->count(),
-                "adult_count" => $attendandData->where("age_category", "ADULT")->count(),
-                "senior_count" => $attendandData->where("age_category", "SENIOR")->count(),
-
-                "vip_customers_count" => 0, // how to get vip customer count,
-                "normal_customers_count" => 0, // how to get vip customer count,
-
-                "min_hrs" => $total_hrs->min() ?: 0,
-                "max_hrs" => $total_hrs->max() ?: 0,
-                "avg_hrs" => $total_hrs->average() ?: 0,
-
-                "repeated_customers_count" => $attendandData->groupBy("UserID")->countBy("UserID")->values()[0] ?? 0,
-
-                "vip_customer_count" => $customerTypes["VIP"] ?? 0,
-                "normal_customer_count" => $customerTypes["NORMAL"] ?? 0,
-
-                "whitelisted" => $customerStatuses["whitelisted"] ?? 0,
-                "blocklisted_customer_count" => $customerStatuses["Blocklisted"] ?? 0,
-
-                "occupancy" => $occupanySum
-            ]);
-
-            $startDate->modify('+1 day'); // Move to the next day
-        }
-
-        return $result;
-    }
-
     public function store(Request $request)
     {
         return $this->render($request->company_id ?? 0, $request->date ?? date("Y-m-d"), $request->UserIds, true);
@@ -335,8 +170,10 @@ class CustomerReportController extends Controller
             ->get()
             ->groupBy('UserID');
 
+        // echo json_encode($userLogs);die;
 
-        //update atendance table with shift ID if shift with employee not found 
+
+        //update atendance table with shift ID if shift with employee not found
         if (count($userLogs) == 0) {
             return "No Record found";
         }
@@ -353,10 +190,12 @@ class CustomerReportController extends Controller
             $logs = $logs->toArray() ?? [];
 
             $firstLog = collect($logs)->filter(function ($record) {
+                return true;
                 return isset($record["device"]["function"]) && ($record["device"]["function"] !== "Out");
             })->first();
 
             $lastLog = collect($logs)->filter(function ($record) {
+                return true;
                 return isset($record["device"]["function"]) && ($record["device"]["function"] !== "In");
             })->last();
 
@@ -370,6 +209,8 @@ class CustomerReportController extends Controller
                 "user_id" =>   $firstLog["UserID"],
                 "company_id" =>   $firstLog["company_id"],
                 "branch_id" =>   $firstLog["branch_id"],
+                "age_category" => $firstLog["age_category"],
+                "gender" => $firstLog["Gender"],
                 "in_id" => $firstLog["id"],
                 "status" => "in",
                 "out_id" => "0",
@@ -384,6 +225,8 @@ class CustomerReportController extends Controller
                 $item["status"] = "out";
                 $item["total_hrs"] = $this->getTotalHrsMins($firstLog["time"] ?? 0, $lastLog["time"] ?? 0);
 
+                $item["age_category"] = $lastLog["age_category"];
+                $item["gender"] = $lastLog["Gender"];
 
                 $out_ids[] = $item["out_id"];
             }
@@ -391,7 +234,7 @@ class CustomerReportController extends Controller
             $item["date"] = $params["date"];
             $items[] = $item;
         }
-        //return json_encode($items);
+        // return json_encode($items);
         if (!count($items)) {
             return '[' . $date . " " . date("H:i:s") . '] No data found' . $message;
         }
@@ -420,10 +263,10 @@ class CustomerReportController extends Controller
     {
         $query = CustomerReport::query();
 
+        $query->with("branch");
+
         $query->when(request()->filled("branch_id"), function ($q) {
-            $q->whereHas("customer", function ($qu) {
-                $qu->where('branch_id', request("branch_id"));
-            });
+            $q->where('branch_id', request("branch_id"));
         });
 
         $query->when(request()->filled("status"), function ($q) {
@@ -438,22 +281,12 @@ class CustomerReportController extends Controller
             });
         });
 
-        $query->when(request()->filled("age_category"), function ($query) {
-            $query->where(function ($q) {
-                $q->whereHas("in_log", function ($qu) {
-                    $qu->where('age_category', request("age_category"));
-                    $qu->where('company_id', request("company_id"));
-                });
-            });
+        $query->when(request()->filled("age_category"), function ($q) {
+            $q->where('age_category', request("age_category"));
         });
 
-        $query->when(request()->filled("Gender"), function ($query) {
-            $query->where(function ($q) {
-                $q->whereHas("in_log", function ($qu) {
-                    $qu->where('Gender', request("Gender"));
-                    $qu->where('company_id', request("company_id"));
-                });
-            });
+        $query->when(request()->filled("gender"), function ($q) {
+            $q->where('gender', request("gender"));
         });
 
         $query->when(request()->filled("UserID"), function ($q) {
@@ -508,7 +341,7 @@ class CustomerReportController extends Controller
         $result = collect(); // Create a collection to store paginated results
 
         $weekendsList = (new CompanyBranchController)->getWeekendsList($request);
-        //get highestfootfall count 
+        //get highestfootfall count
 
 
         $HighestPeakHoursWeekdays = $this->getHighestPeakHours($request, $weekendsList, false);

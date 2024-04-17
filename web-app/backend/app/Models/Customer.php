@@ -11,6 +11,9 @@ class Customer extends Model
 
     protected $guarded = [];
 
+    protected $appends = ["profile_picture_name"];
+
+
     public function company()
     {
         return $this->belongsTo(Company::class);
@@ -35,6 +38,11 @@ class Customer extends Model
     {
         if (!$value) return null;
         return asset('customer/profile_picture/' . $value);
+    }
+
+    public function getProfilePictureNameAttribute()
+    {
+        return explode("customer/profile_picture/", $this->profile_picture)[1] ?? null;
     }
 
     public function getTypeAttribute($value)
