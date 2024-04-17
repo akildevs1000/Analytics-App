@@ -615,6 +615,7 @@ class CustomerReportController extends Controller
         return $result;
     }
 
+
     public function getHighestPeakHours($requst, $weekendsList, $filterWeekEnds)
     {
         $attendanceLogs = AttendanceLog::where("company_id", request("company_id"));
@@ -667,5 +668,56 @@ class CustomerReportController extends Controller
         $top3Lowest = array_slice(array_keys($sortedVisitorCount), 0, 2);
 
         return ["top3Highest" => $top3Highest, "top3Lowest" => $top3Lowest];
+    }
+    public function CustomerStatsSumBetweenDatesReport(Request $request)
+    {
+        $branchReportQuery = CompanyBranch::query();
+        $branchReportQuery->where("company_id", request("company_id"));
+
+
+        $customerReportQuery = CustomerReport::with("branch_for_stats_only");
+
+        $customerReportQuery->where("company_id", request("company_id"));
+        if (request("branch_id")) {
+            $customerReportQuery->where("branch_id", request("branch_id"));
+        }
+        $customerReportQuery->whereBetween("date", [request("from_date"), date("Y-m-d", strtotime(request("to_date") . " +0 day"))]);
+        $customerReports  = $customerReportQuery->get();
+
+
+        $dayCounts = [
+            'WeekDay' => ['Male' => 0, 'Female' => 0, 'Child' => 0],
+            'WeekEnd' => ['Male' => 0, 'Female' => 0, 'Child' => 0],
+
+        ];
+        $weekendsList = (new CompanyBranchController)->getWeekendsList($request);
+        foreach ($customerReports as $report) {
+            $gender = $report->gender;
+            $gender = $report->gender;
+            $dayName = strtolower(date("l", strtotime($report->date)));
+            if ($weekendsList[$dayName] == 0) {
+                if (($gender === 'Male' || $gender === 'Female') && $report->age_category != 'Child') {
+                    $dayCounts["WeekDay"][$gender]++;
+                } else {
+                    $dayCounts["WeekDay"]["Child"]++;
+                }
+            } else {
+                if (($gender === 'Male' || $gender === 'Female') && $report->age_category != 'Child') {
+                    $dayCounts["WeekEnd"][$gender]++;
+                } else {
+                    $dayCounts["WeekDay"]["Child"]++;
+                }
+            }
+        }
+
+        return  $dayCounts;
+
+
+        // return $customerReports = [
+        //     "total" => $customerReports->count(),
+        //     "male_count" => $customerReports->where("gender", "Male")->where("age_category", "!=", "Child")->count(),
+        //     "female_count" => $customerReports->where("gender", "Female")->where("age_category", "!=", "Child")->count(),
+        //     "kids_count" => $customerReports->where("age_category",   "Child")->count()
+        // ];
     }
 }

@@ -15,3 +15,4 @@ Route::get('customer-stats-report', [CustomerReportController::class, "CustomerS
 
 
 Route::post('customers_temp_pload', [CustomerController::class, "tempUpload"]);
+Route::get('customers-stats-between-dates', [CustomerReportController::class, "CustomerStatsSumBetweenDatesReport"]);

@@ -212,7 +212,7 @@
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 30px;
+                      font-size: 20px;
                     "
                     v-if="peakHoursListWeekDays.length == 0"
                     >---</span
@@ -224,7 +224,7 @@
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 30px;
+                      font-size: 20px;
                     "
                   >
                     {{ $dateFormat.convertToAMPM(hour) }} -
@@ -269,7 +269,7 @@
                         padding: 0px;
                         margin-left: 0px;
                         font-weight: 300;
-                        font-size: 30px;
+                        font-size: 20px;
                       "
                       v-if="leanHoursListWeekDays.length == 0"
                       >---</span
@@ -281,7 +281,7 @@
                         padding: 0px;
                         margin-left: 0px;
                         font-weight: 300;
-                        font-size: 30px;
+                        font-size: 20px;
                       "
                     >
                       {{ $dateFormat.convertToAMPM(hour) }} -
@@ -321,7 +321,7 @@
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 30px;
+                      font-size: 25px;
                     "
                     >{{ highestCounts.ageGroup.name ?? "---" }} ({{
                       highestCounts.ageGroup.count ?? "---"
@@ -602,7 +602,7 @@
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 30px;
+                      font-size: 20px;
                     "
                     v-if="peakHoursListWeekEnds.length == 0"
                     >---</span
@@ -614,7 +614,7 @@
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 30px;
+                      font-size: 20px;
                     "
                   >
                     {{ $dateFormat.convertToAMPM(hour) }} -
@@ -659,7 +659,7 @@
                         padding: 0px;
                         margin-left: 0px;
                         font-weight: 300;
-                        font-size: 30px;
+                        font-size: 20px;
                       "
                       v-if="leanHoursListWeekEnds.length == 0"
                       >---</span
@@ -671,7 +671,7 @@
                         padding: 0px;
                         margin-left: 0px;
                         font-weight: 300;
-                        font-size: 30px;
+                        font-size: 20px;
                       "
                     >
                       {{ $dateFormat.convertToAMPM(hour) }} -
@@ -711,7 +711,7 @@
                       padding: 0px;
                       margin-left: 0px;
                       font-weight: 300;
-                      font-size: 30px;
+                      font-size: 25px;
                     "
                     >{{ highestCountsWeekend.ageGroup.name ?? "---" }} ({{
                       highestCountsWeekend.ageGroup.count ?? "---"
