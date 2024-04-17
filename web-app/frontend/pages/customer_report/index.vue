@@ -335,25 +335,18 @@ export default {
         width: "300px",
       },
       {
-        text: "Age",
-        align: "left",
-        sortable: false,
-        key: "Age",
-        value: "in_log.Age",
-      },
-      {
         text: "Age Group",
         align: "left",
         sortable: false,
         key: "age_category",
-        value: "in_log.age_category",
+        value: "age_category",
       },
       {
         text: "Gender",
         align: "left",
         sortable: false,
         key: "Gender",
-        value: "in_log.Gender",
+        value: "gender",
       },
       {
         text: "In DateTime",
@@ -434,7 +427,7 @@ export default {
         align: "left",
         sortable: true,
         key: "branch_id", //sorting
-        value: "customer.branch.branch_name", //edit purpose
+        value: "branch.branch_name", //edit purpose
 
         filterable: true,
         filterSpecial: true,

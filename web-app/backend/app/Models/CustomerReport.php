@@ -15,6 +15,10 @@ class CustomerReport extends Model
     {
         return $this->belongsTo(Company::class);
     }
+    public function branch()
+    {
+        return $this->belongsTo(CompanyBranch::class);
+    }
     public function branch_for_stats_only()
     {
         return $this->belongsTo(CompanyBranch::class, "branch_id");
@@ -31,6 +35,6 @@ class CustomerReport extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'user_id', 'system_user_id')->with(["recent_log", "branch"]);
+        return $this->belongsTo(Customer::class, 'user_id', 'system_user_id')->with(["recent_log"]);
     }
 }

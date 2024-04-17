@@ -326,6 +326,13 @@
     "module": "customers"
   },
   {
+    "icon": "mdi-clipboard-text-clock",
+    "title": "Raw Logs",
+    "to": "/customer/logs",
+    "menu": "community",
+    "module": "customers"
+  },
+  {
     "icon": "mdi-comment-alert",
     "title": "Requests",
     "to": "/visitor/requests",
