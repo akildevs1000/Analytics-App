@@ -19,7 +19,7 @@
               <div class="card-body p-md-5 mx-md-4">
                 <v-row class="pb-5">
                   <v-col md="12" cols="12" class="text-center">
-                    <h2>MyTime2Cloud</h2>
+                    <h2>CountSmart</h2>
                   </v-col>
                 </v-row>
 
@@ -241,14 +241,13 @@
         class="hide-on-mobile d-none d-lg-flex"
       >
         <div class="about-content">
-          <h3>About Mytime2Cloud</h3>
+          <h3>About CountSmart</h3>
           <div style="font-weight: 300">
-            MyTime2Cloud is an innovative and comprehensive platform
-            meticulously crafted to redefine how organizations approach
-            workforce management. By combining time attendance management with
-            facial recognition access control, MyTime2Cloud simplifies and
-            provides a streamlined experience for both employees and HR
-            professionals.<br />
+            CountSmart is an innovative and comprehensive platform meticulously
+            crafted to redefine how organizations approach workforce management.
+            By combining time attendance management with facial recognition
+            access control, CountSmart simplifies and provides a streamlined
+            experience for both employees and HR professionals.<br />
             Customization and Reporting: The platform offers customizable
             settings to fit the specific needs of different organizations. It
             generates comprehensive reports and analytics based on attendance

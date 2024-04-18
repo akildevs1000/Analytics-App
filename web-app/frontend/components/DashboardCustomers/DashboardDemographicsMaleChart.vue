@@ -22,8 +22,8 @@ export default {
 
       chartOptions1: {
         series: [],
-        colors: ["#DB4437", "#0F9D58", "#4285F4"],
-        labels: ["Young", "Adult", "Senior"],
+        colors: ["#DB4437", "#0F9D58", "#F4B400"],
+        labels: ["Young", "Mid Age", "Senior"],
         // labels: {
         //   show: true,
         // },
@@ -58,26 +58,29 @@ export default {
                 show: true,
                 name: {
                   show: true,
-
-                  fontFamily: "Roboto",
+                  fontSize: "18px",
+                  // fontFamily: "Roboto",
                   color: "#dfsda",
-                  offsetY: -10,
+                  offsetY: -15,
                 },
                 value: {
                   show: true,
-
-                  fontFamily: "Roboto, sans-serif",
+                  fontWeight: "bold",
+                  fontSize: "25px",
+                  // fontFamily: "Roboto, sans-serif",
                   color: undefined,
-                  offsetY: 16,
+                  offsetY: -5,
                   formatter: function (val) {
                     return val;
                   },
                 },
                 total: {
                   show: true,
-                  label: "Total",
+                  label: "",
+                  fontWeight: "bold",
+                  fontSize: "18px",
                   color: "#373d3f",
-                  fontFamily: "Roboto, sans-serif",
+                  // fontFamily: "Roboto, sans-serif",
                   formatter: function (w) {
                     return w.globals.seriesTotals.reduce((a, b) => {
                       return a + b;

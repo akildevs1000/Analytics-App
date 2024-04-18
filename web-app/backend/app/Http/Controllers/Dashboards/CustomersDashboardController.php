@@ -511,6 +511,8 @@ class CustomersDashboardController extends Controller
         $repeated_customer_count = 0;
         $blocked_customer_count = 0;
 
+        $room_occupancy_percentage = 0;
+
         $room_occupancy_before1day_percentage = 0;
 
         $total_footfall_yesterday_percentage = 0;
@@ -737,7 +739,7 @@ class CustomersDashboardController extends Controller
 
         //occupancy
         if ($total_company_capacity_occupancy > 0) {
-            $room_occupancy = round($total_footfall_count * 100 / $total_company_capacity_occupancy, 0);
+            $room_occupancy_percentage = round($total_footfall_count * 100 / $total_company_capacity_occupancy, 0);
 
 
             if ($total_footfall_count_before1day == 0) {
@@ -879,6 +881,7 @@ class CustomersDashboardController extends Controller
             "total_footfall_yesterday_percentage" => $total_footfall_yesterday_percentage,
 
             "room_occupancy" =>  $room_occupancy,
+            "room_occupancy_percentage" =>  $room_occupancy_percentage,
             "room_occupancy_before1day_percentage" =>  $room_occupancy_before1day_percentage,
 
 

@@ -3,7 +3,7 @@
     style="width: 100%"
     v-if="can('dashboard_access') && can('dashboard_view')"
   >
-    <v-row>
+    <v-row class="statisticsPageFont">
       <v-col
         cols="12"
         class="pt-0"
@@ -71,7 +71,7 @@
                     v-on="on"
                     dense
                     class="custom-text-box shadow-none"
-                    label="Date Filter"
+                    label="Date "
                   ></v-text-field>
                 </template>
                 <v-date-picker

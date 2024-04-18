@@ -2,377 +2,300 @@
   <div style="width: 101%; margin-top: 4px">
     <v-row style="width: 101%; margin-right: 0px" class="pt-2">
       <v-col lg="3" md="3" sm="12" xs="12">
-        <v-row style="width: 100%; height: 150px">
-          <v-card class="py-2" style="width: 100%">
-            <v-row style="height: 70px">
-              <v-col cols="4" style="padding-left: 25px; font-size: 18px"
-                ><span>In</span>
-              </v-col>
-              <v-col cols="8" style="font-size: 60px; color: #c55a11">
-                <span>{{ data.live_total_count ?? "---" }}</span>
-              </v-col>
-            </v-row>
-            <v-row
-              style="
-                vertical-align: bottom;
-                font-size: 40px;
-                font-weight: 300;
-                color: #c55a11;
-              "
-            >
-              <v-col cols="4" style="text-align: center">
-                <span style="">
-                  <span>
+        <v-row style="width: 100%; height: 130px">
+          <v-card class="py-2" style="width: 100%; border-radius: 8px">
+            <v-row>
+              <v-col cols="4" class="pl-6 text-center">
+                <div style="width: 100px">
+                  <div style="height: 70px">
                     <img
-                      src="../../static/icons/male51.png"
-                      style="width: 33px"
+                      src="../../static/icons/inside.png"
+                      style="width: 60px; padding-top: 10px"
                     />
-                  </span>
-                  <span
+                  </div>
+                  <div
+                    class="pt-2"
                     style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      padding-left: 5px;
-                      margin-top: -3px;
+                      font-size: 20px;
+                      font-family: OpenSansCondensedBold1 !important;
                     "
-                    >{{ data.live_male_count ?? "---" }}
-                  </span>
-                </span>
-              </v-col>
-              <v-col cols="4" style="text-align: center">
-                <span>
-                  <span>
-                    <img
-                      src="../../static/icons/female51.png"
-                      style="width: 33px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      padding-left: 5px;
-                      margin-top: -3px;
-                    "
-                    >{{ data.live_female_count ?? "---" }}
-                  </span>
-                </span>
+                  >
+                    Inside
+                  </div>
+                </div>
               </v-col>
 
-              <v-col cols="4" style="text-align: center">
-                <span>
-                  <span>
-                    <img
-                      src="../../static/icons/kids51.png"
-                      style="width: 22px; padding-top: 18px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      padding-top: 4px;
-                      padding-left: 5px;
-                      margin-top: -3px;
-                    "
-                    >{{ data.live_child_count ?? "---" }}</span
-                  >
-                </span>
+              <v-col cols="8" class="pl-6 text-center">
+                <div style="width: 250px">
+                  <div style="height: 70px; display: flex">
+                    <div
+                      style="
+                        font-weight: bold;
+                        width: 100%;
+                        margin: auto;
+                        font-size: 30px;
+                      "
+                    >
+                      {{ data.live_total_count ?? "---" }}
+                    </div>
+                  </div>
+                  <div class="pt-2" style="font-size: 23px; color: #a19d9d">
+                    <div>
+                      <span>{{ data.live_male_count ?? "---" }}</span>
+                      <v-divider
+                        class="ml-2 mr-2"
+                        style="height: 13px; vertical-align: inherit"
+                        vertical
+                      ></v-divider>
+                      <span>{{ data.live_female_count ?? "---" }}</span>
+                      <v-divider
+                        class="ml-2 mr-2"
+                        style="height: 20px"
+                        vertical
+                      ></v-divider>
+                      <span>{{ data.live_child_count ?? "---" }}</span>
+                    </div>
+                  </div>
+                </div>
               </v-col>
             </v-row>
           </v-card>
         </v-row>
       </v-col>
       <v-col lg="3" md="3" sm="12" xs="12">
-        <v-row style="width: 100%; height: 150px">
-          <v-card class="py-2" style="width: 100%">
-            <v-row style="height: 70px">
-              <v-col cols="4" style="padding-left: 25px; font-size: 18px"
-                ><span>Out</span>
-              </v-col>
-              <v-col cols="8" style="font-size: 60px; color: #c55a11">
-                <span>{{ data.out_total_count ?? "---" }}</span>
-              </v-col>
-            </v-row>
-            <v-row
-              style="
-                vertical-align: bottom;
-                font-size: 40px;
-                font-weight: 300;
-                color: #c55a11;
-              "
-            >
-              <v-col cols="4" style="text-align: center">
-                <span>
-                  <span>
-                    <img
-                      src="../../static/icons/male51.png"
-                      style="width: 33px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      padding-left: 5px;
-                      margin-top: -3px;
-                    "
-                    >{{ data.out_male_count ?? "---" }}</span
-                  >
-                </span>
-              </v-col>
-              <v-col cols="4" style="text-align: center">
-                <span>
-                  <span>
-                    <img
-                      src="../../static/icons/female51.png"
-                      style="width: 33px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      padding-left: 5px;
-                      margin-top: -3px;
-                    "
-                    >{{ data.out_female_count ?? "---" }}
-                  </span>
-                </span>
-              </v-col>
-
-              <v-col cols="4" style="text-align: center">
-                <span>
-                  <span>
-                    <img
-                      src="../../static/icons/kids51.png"
-                      style="width: 22px; padding-top: 18px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      padding-top: 4px;
-                      padding-left: 5px;
-
-                      margin-top: -3px;
-                    "
-                    >{{ data.out_child_count ?? "---" }}</span
-                  >
-                </span>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-row>
-      </v-col>
-      <v-col lg="2" md="2" sm="12" xs="12">
-        <v-row style="width: 100%; height: 150px">
-          <v-card class="py-2" style="width: 100%">
-            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Total FootFall
-            </div>
-            <v-row style="height: 75px">
-              <v-col
-                cols="12"
-                style="font-size: 60px; color: #c55a11; text-align: center"
-              >
-                <span style="">
-                  <span>
-                    <img
-                      src="../../static/icons/foot.png"
-                      style="width: 35px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                    "
-                    >{{ data.total_footfall_count ?? "---" }}</span
-                  >
-                </span>
-              </v-col>
-            </v-row>
+        <v-row style="width: 100%; height: 130px">
+          <v-card class="py-2" style="width: 100%; border-radius: 8px">
             <v-row>
-              <v-col cols="12" style="text-align: center">
-                <span style="">
-                  <span>
+              <v-col cols="4" class="pl-6 text-center">
+                <div style="width: 100px">
+                  <div style="height: 70px">
                     <img
-                      src="../../static/icons/stats.png"
-                      style="width: 15px"
+                      src="../../static/icons/ouside.png"
+                      style="width: 60px; padding-top: 10px"
                     />
-                  </span>
-                  <span
+                  </div>
+                  <div
+                    class="pt-2"
                     style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
+                      font-size: 20px;
+                      font-family: OpenSansCondensedBold1 !important;
                     "
-                    >{{ data.total_footfall_yesterday_percentage ?? "---" }}% vs
-                    Yesterday</span
                   >
-                </span>
+                    Out
+                  </div>
+                </div>
               </v-col>
-            </v-row>
-          </v-card>
-        </v-row>
-      </v-col>
-      <v-col lg="2" md="2" sm="12" xs="12">
-        <v-row style="width: 100%; height: 150px">
-          <v-card class="py-2" style="width: 100%">
-            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Occupancy
-            </div>
-            <v-row style="height: 75px">
-              <v-col
-                cols="12"
-                style="font-size: 50px; color: #c55a11; text-align: center"
-              >
-                <span style="">
-                  <span>
-                    <!-- <img
-                        src="../../static/icons/foot.png"
-                        style="width: 35px"
-                      /> -->
-                    <v-icon size="40" style="margin-top: -10px" color="black"
-                      >mdi mdi-account-group</v-icon
+
+              <v-col cols="8" class="pl-6 text-center">
+                <div style="width: 250px">
+                  <div style="height: 70px; display: flex">
+                    <div
+                      style="
+                        font-weight: bold;
+                        width: 100%;
+                        margin: auto;
+                        font-size: 30px;
+                      "
                     >
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                      font-size: 50px;
-                    "
-                    >{{ data.room_occupancy ?? "---" }}%</span
-                  >
-                </span>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" style="text-align: center">
-                <span style="">
-                  <span>
-                    <img
-                      src="../../static/icons/stats.png"
-                      style="width: 15px"
-                    />
-                  </span>
-                  <span
-                    style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                    "
-                    >{{ data.room_occupancy_before1day_percentage ?? "---" }}%
-                    vs Yesterday</span
-                  >
-                </span>
+                      {{ data.out_total_count ?? "---" }}
+                    </div>
+                  </div>
+                  <div class="pt-2" style="font-size: 23px; color: #a19d9d">
+                    <div>
+                      <span>{{ data.out_male_count ?? "---" }}</span>
+                      <v-divider
+                        class="ml-2 mr-2"
+                        style="height: 13px; vertical-align: inherit"
+                        vertical
+                      ></v-divider>
+                      <span>{{ data.out_female_count ?? "---" }}</span>
+                      <v-divider
+                        class="ml-2 mr-2"
+                        style="height: 20px"
+                        vertical
+                      ></v-divider>
+                      <span>{{ data.out_child_count ?? "---" }}</span>
+                    </div>
+                  </div>
+                </div>
               </v-col>
             </v-row>
           </v-card>
         </v-row>
       </v-col>
       <v-col lg="2" md="2" sm="12" xs="12">
-        <v-row style="width: 100%; height: 150px">
-          <v-card class="py-2" style="width: 100%">
-            <div style="font-size: 20px; padding-left: 25px; font-size: 18px">
-              Average Time Spent
-            </div>
-            <v-row style="height: 75px">
-              <v-col
-                cols="12"
-                style="font-size: 50px; color: #c55a11; text-align: center"
-              >
-                <span style="">
-                  <span>
-                    <!-- <img
-                        src="../../static/icons/foot.png"
-                        style="width: 35px"
-                      /> -->
-                    <!-- <v-icon size="40" style="margin-top: -10px"
-                        >mdi mdi-account-group</v-icon
-                      > -->
-                  </span>
-                  <span
+        <v-row style="width: 100%; height: 130px">
+          <v-card class="py-2" style="width: 100%; border-radius: 8px">
+            <v-row>
+              <v-col cols="4" class="pl-6 text-center">
+                <div style="width: 60px">
+                  <div style="height: 70px">
+                    <img
+                      src="../../static/icons/footfall.png"
+                      style="width: 60px; padding-top: 10px"
+                    />
+                  </div>
+                  <div
+                    class="pt-2"
                     style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
-                      font-size: 50px;
+                      font-size: 20px;
+                      font-family: OpenSansCondensedBold1 !important;
                     "
-                    >{{
-                      data.avg_time_spent
-                        ? $dateFormat.minutesToHHMM(
-                            Math.round(data.avg_time_spent)
-                          )
-                        : "---"
-                    }}
-                  </span>
-                </span>
-                <span style="font-size: 25px"> min</span>
+                  >
+                    Total
+                  </div>
+                </div>
+              </v-col>
+
+              <v-col cols="8" class="pl-0 pr-0 text-center">
+                <div style="width: 100%">
+                  <div style="height: 70px; display: flex">
+                    <div
+                      style="
+                        font-weight: bold;
+                        width: 100%;
+                        margin: auto;
+                        font-size: 30px;
+                      "
+                    >
+                      {{ data.total_footfall_count ?? "---" }}
+                    </div>
+                  </div>
+                  <div class="pt-2" style="font-size: 23px; color: #a19d9d">
+                    <div>
+                      <span>{{ data.total_male_count ?? "---" }}</span>
+                      <v-divider
+                        class="ml-2 mr-2"
+                        style="height: 13px; vertical-align: inherit"
+                        vertical
+                      ></v-divider>
+                      <span>{{ data.total_female_count ?? "---" }}</span>
+                      <v-divider
+                        class="ml-2 mr-2"
+                        style="height: 20px"
+                        vertical
+                      ></v-divider>
+                      <span>{{ data.total_child_count ?? "---" }}</span>
+                    </div>
+                  </div>
+                </div>
               </v-col>
             </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
+      <v-col lg="2" md="2" sm="12" xs="12">
+        <v-row style="width: 100%; height: 130px">
+          <v-card class="py-2" style="width: 100%; border-radius: 8px">
             <v-row>
-              <v-col cols="6">
-                <span style="text-align: left; padding-left: 10%">
-                  <span>
+              <v-col cols="6" class="pl-6 text-center">
+                <div style="width: 100%">
+                  <div style="height: 70px">
                     <img
-                      src="../../static/icons/stats-down.png"
-                      style="width: 17px"
+                      src="../../static/icons/occupancy.png"
+                      style="width: 60px; padding-top: 10px"
                     />
-                  </span>
-                  <span
+                  </div>
+                  <div
+                    class="pt-2"
                     style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
+                      font-size: 20px;
+                      font-family: OpenSansCondensedBold1 !important;
                     "
-                    >{{
-                      data.avg_time_spent
-                        ? $dateFormat.minutesToHHMM(data.min_time_spent)
-                        : "---"
-                    }}</span
                   >
-                </span>
+                    Occupancy
+                  </div>
+                </div>
               </v-col>
-              <v-col cols="6" style="text-align: right; padding-right: 10%">
-                <span>
-                  <span>
+
+              <v-col cols="6" class="pl-0 pr-0 text-center">
+                <div style="width: 100%">
+                  <div style="height: 70px; display: flex">
+                    <div
+                      style="
+                        font-weight: bold;
+                        width: 100%;
+                        margin: auto;
+                        font-size: 30px;
+                      "
+                    >
+                      {{ data.room_occupancy_percentage ?? "---" }}%
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-row>
+      </v-col>
+      <v-col lg="2" md="2" sm="12" xs="12">
+        <v-row style="width: 100%; height: 130px">
+          <v-card class="py-2" style="width: 100%; border-radius: 8px">
+            <v-row>
+              <v-col cols="6" class="pl-6 text-center">
+                <div style="width: 100%">
+                  <div style="height: 70px">
                     <img
-                      src="../../static/icons/stats-up.png"
-                      style="width: 17px"
+                      src="../../static/icons/timespent.png"
+                      style="width: 60px; padding-top: 10px"
                     />
-                  </span>
-                  <span
+                  </div>
+                  <div
+                    class="pt-2"
                     style="
-                      margin: auto;
-                      padding: 0px;
-                      margin-left: 0px;
-                      font-weight: 300;
+                      font-size: 19px;
+                      font-family: OpenSansCondensedBold1 !important;
                     "
-                    >{{
-                      data.avg_time_spent
-                        ? $dateFormat.minutesToHHMM(data.max_time_spent)
-                        : "---"
-                    }}</span
                   >
-                </span>
+                    Time Spent
+                  </div>
+                </div>
+              </v-col>
+
+              <v-col
+                cols="6"
+                class="pl-0 pr-0 text-center"
+                style="padding: 0px"
+              >
+                <div style="width: 100%">
+                  <div style="height: 87px; display: flex">
+                    <div
+                      style="
+                        font-weight: bold;
+                        width: 100%;
+                        margin: auto;
+                        font-size: 30px;
+                      "
+                    >
+                      {{
+                        data.avg_time_spent
+                          ? $dateFormat.minutesToHHMM(
+                              Math.round(data.avg_time_spent)
+                            )
+                          : "---"
+                      }}
+                    </div>
+                  </div>
+                  <div class="pt-2" style="font-size: 20px; color: #a19d9d">
+                    <div>
+                      <span>{{
+                        data.min_time_spent
+                          ? $dateFormat.minutesToHHMM(data.min_time_spent)
+                          : "---"
+                      }}</span>
+                      <v-divider
+                        class="ml-0 mr-0"
+                        style="height: 13px; vertical-align: inherit"
+                        vertical
+                      ></v-divider>
+                      <span>{{
+                        data.avg_time_spent
+                          ? $dateFormat.minutesToHHMM(data.max_time_spent)
+                          : "---"
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
               </v-col>
             </v-row>
           </v-card>

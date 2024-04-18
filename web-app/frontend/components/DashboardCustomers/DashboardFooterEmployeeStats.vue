@@ -4,31 +4,31 @@
       <v-row class="text-center">
         <v-col cols="1"> </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">In</div>
+          <div style="font-size: 17px">In</div>
           <div style="font-size: 40px">{{ data.totalIn ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">Out</div>
+          <div style="font-size: 17px">Out</div>
           <div style="font-size: 40px">{{ data.totalOut ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">Present</div>
+          <div style="font-size: 17px">Present</div>
           <div style="font-size: 40px">{{ data.presentCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">Absent</div>
+          <div style="font-size: 17px">Absent</div>
           <div style="font-size: 40px">{{ data.absentCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">Holiday</div>
+          <div style="font-size: 17px">Holiday</div>
           <div style="font-size: 40px">{{ data.holidayCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">Leave</div>
+          <div style="font-size: 17px">Leave</div>
           <div style="font-size: 40px">{{ data.leaveCount ?? "---" }}</div>
         </v-col>
         <v-col cols="1">
-          <div style="font-size: 20px">Vacation</div>
+          <div style="font-size: 17px">Vacation</div>
           <div style="font-size: 40px">{{ data.vaccationCount ?? "---" }}</div>
         </v-col>
         <v-col cols="4">
