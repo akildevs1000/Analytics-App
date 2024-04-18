@@ -25,7 +25,7 @@
               </span>
             </v-col>
             <v-col cols="12" class="pt-0" style="margin-top: -5px">
-              <div style="font-size: 12px">VIP customers</div>
+              <div style="font-size: 14px">VIP customers</div>
             </v-col>
           </v-row>
         </v-col>
@@ -51,7 +51,7 @@
               </span>
             </v-col>
             <v-col cols="12" class="pt-0" style="margin-top: -5px">
-              <div style="font-size: 12px">Repeated Customer</div>
+              <div style="font-size: 14px">Repeated Customer</div>
             </v-col>
           </v-row>
         </v-col>
@@ -77,7 +77,7 @@
               </span>
             </v-col>
             <v-col cols="12" class="pt-0" style="margin-top: -5px">
-              <div style="font-size: 12px">Block Listed</div>
+              <div style="font-size: 14px">Block Listed</div>
             </v-col>
           </v-row>
         </v-col>

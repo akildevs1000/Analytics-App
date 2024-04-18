@@ -126,7 +126,7 @@
                           </div>
                           <h3 class="pb-7 pt-15">
                             Welcome To
-                            <span style="font-size: 20px"> Mytime2Cloud </span>
+                            <span style="font-size: 20px"> CountSmart </span>
                           </h3>
                         </div>
                         <div>
@@ -222,7 +222,7 @@
                             For Technical Support :
                             <a
                               target="_blank"
-                              href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                              href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                               ><v-icon color="black">mdi-whatsapp</v-icon></a
                             >
                             <a
@@ -277,7 +277,7 @@
                             For Technical Support :
                             <a
                               target="_blank"
-                              href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                              href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                               ><v-icon color="white">mdi-whatsapp</v-icon></a
                             >
                             <a

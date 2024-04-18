@@ -109,7 +109,12 @@
         >
           <div style="min-height: 100px">
             <div style="width: 100%" class="text-center">
-              <v-img
+              <img
+                title="CountSmart - Application "
+                :src="logo_src"
+                style="width: 311px; padding-top: 10px"
+              />
+              <!-- <v-img
                 class="text-center"
                 style="
                   width: 200px;
@@ -117,12 +122,23 @@
                   margin: auto;
                   text-align: center;
                 "
-                src="/logo22.png"
+                src="../static/loginlogo.png"
               ></v-img>
+
+              <img
+                class="text-center"
+                style="
+                  width: 200px;
+                  padding: 0px;
+                  margin: auto;
+                  text-align: center;
+                "
+                src="../static/loginlogo.png"
+              /> -->
             </div>
             <h3 class="pb-7 pt-15">
               Welcome To
-              <span style="font-size: 20px"> Mytime2Cloud </span>
+              <span style="font-size: 20px"> CountSmart </span>
             </h3>
           </div>
           <div>
@@ -211,7 +227,7 @@
               For Technical Support :
               <a
                 target="_blank"
-                href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                 ><v-icon color="black">mdi-whatsapp</v-icon></a
               >
               <a
@@ -225,8 +241,8 @@
             <v-col class="pa-5">
               <a
                 style="text-decoration: none; color: black"
-                href="mailto:support@mytime2cloud.com"
-                >support@mytime2cloud.com</a
+                href="mailto:support@countsmart.com"
+                >support@countsmart.com</a
               ></v-col
             >
           </v-row>
@@ -275,7 +291,7 @@
               <a
                 style="font-weight: 300"
                 target="_blank"
-                href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                 ><v-icon color="white">mdi-whatsapp</v-icon></a
               >
 
@@ -287,8 +303,8 @@
               <br />
               <a
                 style="text-decoration: none; color: #fff; font-weight: 300"
-                href="mailto:support@mytime2cloud.com"
-                >support@mytime2cloud.com</a
+                href="mailto:support@countsmart.com"
+                >support@countsmart.com</a
               >
             </v-col>
           </v-row>
@@ -320,7 +336,7 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-
+    logo_src: "",
     passwordRules: [(v) => !!v || "Password is required"],
 
     dialogWhatsapp: false,
@@ -333,6 +349,7 @@ export default {
     },
   }),
   created() {
+    this.logo_src = require("@/static/loginlogo.png");
     // this.$store.commit("dashboard/resetState", null);
     this.$store.dispatch("dashboard/resetState");
     this.$store.dispatch("resetState");

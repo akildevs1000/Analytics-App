@@ -248,7 +248,7 @@
                       </span>
                     </div>
                     <div
-                      style="font-size: 12px; text-align: left; color: #d9d6d6"
+                      style="font-size: 12px; text-align: left; color: #a3a3a3"
                     >
                       <img
                         v-if="data.female_percentage_yesterday > 0"
@@ -449,7 +449,7 @@
 
         <v-row class="pt-5">
           <v-col cols="12" style="padding-left: 5%; padding-right: 5%">
-            <table style="width: 100%; font-size: 14px" class="tablebordertop">
+            <table style="width: 100%; font-size: 16px" class="tablebordertop">
               <tr>
                 <td style="width: 50px">
                   <v-icon color="#DB4437">mdi mdi-checkbox-blank</v-icon>

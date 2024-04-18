@@ -1844,7 +1844,7 @@ font*/
 }
 
 .statisticsPageFont {
-  font-family: OpenSansCondensedBold1;
+  font-family: OpenSansCondensedLight1;
 }
 </style>
 
