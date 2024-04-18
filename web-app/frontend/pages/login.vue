@@ -261,28 +261,24 @@
           <div style="font-weight: 300">
             CountSmart is an innovative and comprehensive platform meticulously
             crafted to redefine how organizations approach workforce management.
-            By combining time attendance management with facial recognition
-            access control, CountSmart simplifies and provides a streamlined
-            experience for both employees and HR professionals.<br />
-            Customization and Reporting: The platform offers customizable
-            settings to fit the specific needs of different organizations. It
-            generates comprehensive reports and analytics based on attendance
-            data, enabling informed decision-making and efficient resource
-            allocation.
+            To effectively capture and analyze data on people count in shopping
+            malls, you'll want a comprehensive system that integrates various
+            technologies and methodologies. Here's a suggested outline for the
+            content you could include:
           </div>
           <h3 class="pt-10">Features</h3>
           <ul style="font-weight: 300">
-            <li>Employees management</li>
+            <li>Geographic Distribution</li>
 
-            <li>Time Attendance</li>
-            <li>Leave management</li>
-            <li>Payroll management</li>
-            <li>Access Controll</li>
-            <li>Visitor management</li>
-            <li>Face Recognisation Integration</li>
-            <li>Custom Reports</li>
-            <li>Custom Dashboards</li>
-            <li>Email and Whatsapp Notifications</li>
+            <li>Gender Distribution</li>
+            <li>Age Demographics</li>
+            <li>Dwell Time</li>
+            <li>In and Out Count</li>
+            <li>VIP Visitors</li>
+            <li>Trends and Insights</li>
+            <li>Data Visualization</li>
+            <li>Security and Privacy Measures</li>
+            <li>Continuous Monitoring and Improvement</li>
           </ul>
           <v-row class="text-left pt-10">
             <v-col class="pa-5">
