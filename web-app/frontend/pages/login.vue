@@ -136,9 +136,9 @@
                 src="../static/loginlogo.png"
               /> -->
             </div>
-            <h3 class="pb-7 pt-15">
-              Welcome To
-              <span style="font-size: 20px"> CountSmart </span>
+            <h3 class="pb-7 pt-15 text-left">
+              Login To
+              <span style="font-size: 20px"> Dashboard </span>
             </h3>
           </div>
           <div>
@@ -224,7 +224,7 @@
 
           <v-row class="text-center" style="font-size: 13px">
             <v-col class="pa-5">
-              For Technical Support :
+              For Technical Support 1:
               <a
                 target="_blank"
                 href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
@@ -257,7 +257,7 @@
         class="hide-on-mobile d-none d-lg-flex"
       >
         <div class="about-content">
-          <h3>About CountSmart</h3>
+          <!-- <h3>About CountSmart</h3>
           <div style="font-weight: 300">
             CountSmart is an innovative and comprehensive platform meticulously
             crafted to redefine how organizations approach workforce management.
@@ -279,11 +279,21 @@
             <li>Data Visualization</li>
             <li>Security and Privacy Measures</li>
             <li>Continuous Monitoring and Improvement</li>
-          </ul>
-          <v-row class="text-left pt-10">
+          </ul> -->
+          <v-row
+            class="text-left pt-10"
+            style="
+              position: fixed;
+              bottom: 0px;
+              right: 25px;
+              bottom: 100px;
+              bottom: 42px;
+              right: 25px;
+              width: 30%;
+            "
+          >
+            <v-col><h3>Technical Support2</h3></v-col>
             <v-col class="pa-5">
-              <h3>Technical Support</h3>
-
               <a
                 style="font-weight: 300"
                 target="_blank"
@@ -542,7 +552,7 @@ html {
 }
 @media (min-width: 1300px) {
   .bg-body {
-    background-image: url("../static/login/bgimage3.png") !important;
+    background-image: url("../static/login/business_analoatics_1.png") !important;
   }
   .gradient-form {
     height: 100vh !important;

@@ -3,7 +3,7 @@
     style="width: 100%"
     v-if="can('dashboard_access') && can('dashboard_view')"
   >
-    <v-row class="statisticsPageFont">
+    <v-row class="">
       <v-col
         cols="12"
         class="pt-0"

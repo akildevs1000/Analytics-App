@@ -1828,6 +1828,9 @@ body {
   border-collapse: collapse;
 }
 
+.fontforNumber {
+  font-family: sans-serif !important;
+}
 @font-face {
   font-family: "OpenSansCondensedBold1"; /*a name to be used later*/
   src: url(../assets/open-sans-condensed/OpenSans-CondBold.ttf); /*URL to font*/

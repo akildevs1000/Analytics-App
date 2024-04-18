@@ -14,7 +14,7 @@
                     />
                   </div>
                   <div
-                    class="pt-2"
+                    class="pt-2 statisticsPageFont"
                     style="
                       font-size: 20px;
                       font-family: OpenSansCondensedBold1 !important;
@@ -25,7 +25,7 @@
                 </div>
               </v-col>
 
-              <v-col cols="8" class="pl-6 text-center">
+              <v-col cols="8" class="pl-6 text-center fontforNumber">
                 <div style="width: 250px">
                   <div style="height: 70px; display: flex">
                     <div
@@ -75,7 +75,7 @@
                     />
                   </div>
                   <div
-                    class="pt-2"
+                    class="pt-2 statisticsPageFont"
                     style="
                       font-size: 20px;
                       font-family: OpenSansCondensedBold1 !important;
@@ -86,7 +86,7 @@
                 </div>
               </v-col>
 
-              <v-col cols="8" class="pl-6 text-center">
+              <v-col cols="8" class="pl-6 text-center fontforNumber">
                 <div style="width: 250px">
                   <div style="height: 70px; display: flex">
                     <div
@@ -127,7 +127,7 @@
         <v-row style="width: 100%; height: 130px">
           <v-card class="py-2" style="width: 100%; border-radius: 8px">
             <v-row>
-              <v-col cols="4" class="pl-6 text-center">
+              <v-col cols="4" class="pl-6 text-center statisticsPageFont">
                 <div style="width: 60px">
                   <div style="height: 70px">
                     <img
@@ -147,7 +147,7 @@
                 </div>
               </v-col>
 
-              <v-col cols="8" class="pl-0 pr-0 text-center">
+              <v-col cols="8" class="pl-0 pr-0 text-center fontforNumber">
                 <div style="width: 100%">
                   <div style="height: 70px; display: flex">
                     <div
@@ -188,7 +188,7 @@
         <v-row style="width: 100%; height: 130px">
           <v-card class="py-2" style="width: 100%; border-radius: 8px">
             <v-row>
-              <v-col cols="6" class="pl-6 text-center">
+              <v-col cols="6" class="pl-6 text-center statisticsPageFont">
                 <div style="width: 100%">
                   <div style="height: 70px">
                     <img
@@ -208,7 +208,7 @@
                 </div>
               </v-col>
 
-              <v-col cols="6" class="pl-0 pr-0 text-center">
+              <v-col cols="6" class="pl-0 pr-0 text-center fontforNumber">
                 <div style="width: 100%">
                   <div style="height: 70px; display: flex">
                     <div
@@ -232,7 +232,7 @@
         <v-row style="width: 100%; height: 130px">
           <v-card class="py-2" style="width: 100%; border-radius: 8px">
             <v-row>
-              <v-col cols="6" class="pl-6 text-center">
+              <v-col cols="6" class="pl-6 text-center statisticsPageFont">
                 <div style="width: 100%">
                   <div style="height: 70px">
                     <img
@@ -247,14 +247,14 @@
                       font-family: OpenSansCondensedBold1 !important;
                     "
                   >
-                    Time Spent
+                    Avg.Time
                   </div>
                 </div>
               </v-col>
 
               <v-col
                 cols="6"
-                class="pl-0 pr-0 text-center"
+                class="pl-0 pr-0 text-center fontforNumber"
                 style="padding: 0px"
               >
                 <div style="width: 100%">

@@ -449,7 +449,7 @@
 
         <v-row class="pt-5">
           <v-col cols="12" style="padding-left: 5%; padding-right: 5%">
-            <table style="width: 100%; font-size: 16px" class="tablebordertop">
+            <table style="width: 100%; font-size: 14px" class="tablebordertop">
               <tr>
                 <td style="width: 50px">
                   <v-icon color="#DB4437">mdi mdi-checkbox-blank</v-icon>
