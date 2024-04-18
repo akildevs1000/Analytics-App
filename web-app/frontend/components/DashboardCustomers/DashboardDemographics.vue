@@ -25,7 +25,7 @@
                       </span>
                     </div>
                     <div
-                      style="font-size: 12px; text-align: left; color: #d9d6d6"
+                      style="font-size: 12px; text-align: left; color: #a3a3a3"
                     >
                       <img
                         v-if="data.male_percentage_yesterday > 0"
@@ -371,7 +371,7 @@
                       </span>
                     </div>
                     <div
-                      style="font-size: 12px; text-align: left; color: #d9d6d6"
+                      style="font-size: 12px; text-align: left; color: #a3a3a3"
                     >
                       <img
                         v-if="data.female_percentage_yesterday > 0"

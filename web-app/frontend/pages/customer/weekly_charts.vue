@@ -63,7 +63,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-row
+    <v-row style="min-height: 800px"
       ><v-col cols="6">
         <v-card
           ><v-card-text>
@@ -73,16 +73,20 @@
               <v-col cols="7">
                 <div
                   v-if="totalCountWeekDay == 0"
-                  style="margin: auto; padding: 25%"
+                  style="margin: auto; padding: 15%"
                 >
                   No Data
                 </div>
+
                 <div
                   :style="'display:' + totalCountWeekDay > 0 ? 'block' : 'none'"
-                  :id="weekdaysChartName"
-                  style="width: 100%"
-                  :key="key"
-                ></div>
+                >
+                  <div
+                    :id="weekdaysChartName"
+                    style="width: 100%"
+                    :key="key"
+                  ></div>
+                </div>
               </v-col>
               <v-col cols="5" style="font-family: sans-serif; font-size: 20px">
                 <div
@@ -219,16 +223,20 @@
               <v-col cols="7">
                 <div
                   v-if="totalCountWeekEnd == 0"
-                  style="margin: auto; padding: 25%"
+                  style="margin: auto; padding: 15%"
                 >
                   No Data
                 </div>
+
                 <div
                   :style="'display:' + totalCountWeekEnd > 0 ? 'block' : 'none'"
-                  :id="weekendsChartName"
-                  style="width: 100%"
-                  :key="key"
-                ></div>
+                >
+                  <div
+                    :id="weekendsChartName"
+                    style="width: 100%"
+                    :key="key"
+                  ></div>
+                </div>
               </v-col>
               <v-col cols="5" style="font-family: sans-serif; font-size: 20px">
                 <div
@@ -425,8 +433,8 @@ export default {
           show: false,
         },
       },
-      totalCountWeekDay: 0,
-      totalCountWeekEnd: 0,
+      totalCountWeekDay: 1,
+      totalCountWeekEnd: 1,
       ApexCharts1: {},
       ApexChartsWeekEnd: {},
     };
@@ -434,19 +442,7 @@ export default {
   watch: {},
   mounted() {
     setTimeout(() => {
-      this.ApexCharts1 = new ApexCharts(
-        document.querySelector("#" + this.weekdaysChartName),
-        this.chartOptions1
-      );
-      this.ApexCharts1.render();
-
-      //
-      this.ApexChartsWeekEnd = new ApexCharts(
-        document.querySelector("#" + this.weekendsChartName),
-        this.chartOptionsWeekEnd
-      );
-      this.ApexChartsWeekEnd.render();
-
+      this.loadCharts();
       this.getDataFromApi();
     }, 1000 * 3);
   },
@@ -467,6 +463,20 @@ export default {
   },
 
   methods: {
+    loadCharts() {
+      this.ApexCharts1 = new ApexCharts(
+        document.querySelector("#" + this.weekdaysChartName),
+        this.chartOptions1
+      );
+      this.ApexCharts1.render();
+
+      //
+      this.ApexChartsWeekEnd = new ApexCharts(
+        document.querySelector("#" + this.weekendsChartName),
+        this.chartOptionsWeekEnd
+      );
+      this.ApexChartsWeekEnd.render();
+    },
     getBranches() {
       if (this.$auth.user.branch_id) {
         this.branch_id = this.$auth.user.branch_id;
@@ -554,7 +564,16 @@ export default {
         parseInt(data.WeekEnd.Female) +
         parseInt(data.WeekEnd.Child);
 
-      this.ApexChartsWeekEnd.updateOptions(this.chartOptionsWeekEnd);
+      try {
+        this.ApexChartsWeekEnd.updateOptions(this.chartOptionsWeekEnd);
+      } catch (e) {
+        setTimeout(() => {
+          this.loadCharts();
+          setTimeout(() => {
+            this.ApexChartsWeekEnd.updateOptions(this.chartOptionsWeekEnd);
+          }, 1000 * 2);
+        }, 1000 * 2);
+      }
 
       this.loading = false;
     },
