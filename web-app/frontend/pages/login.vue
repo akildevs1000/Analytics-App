@@ -224,7 +224,7 @@
 
           <v-row class="text-center" style="font-size: 13px">
             <v-col class="pa-5">
-              For Technical Support 1:
+              For Technical Support :
               <a
                 target="_blank"
                 href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
@@ -292,7 +292,7 @@
               width: 30%;
             "
           >
-            <v-col><h3>Technical Support2</h3></v-col>
+            <v-col><h3>Technical Support</h3></v-col>
             <v-col class="pa-5">
               <a
                 style="font-weight: 300"
