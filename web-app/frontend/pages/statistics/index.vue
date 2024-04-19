@@ -92,13 +92,19 @@
       <v-col cols="12">
         <v-row>
           <v-col cols="6" class="pl-0">
-            <v-card class="py-2" style="width: 100%; height: 500px">
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 500px; border-radius: 8px"
+            >
               <div class="pl-3" style="font-size: 18px">Demographics</div>
               <DashboardDemographics />
             </v-card>
           </v-col>
           <v-col cols="6" style="padding-left: 6px">
-            <v-card class="py-2" style="width: 100%; height: 500px">
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 500px; border-radius: 8px"
+            >
               <DashboardChart
                 :filter_device_serial_number="filter_device_serial_number"
                 :name="'AlarmDashboardHourlyChart'"
@@ -116,14 +122,20 @@
       <v-col cols="12" class="pt-0">
         <v-row>
           <v-col cols="4" class="pl-0">
-            <v-card class="py-2" style="width: 100%; height: 130px">
-              <div class="pl-3" style="font-size: 18px">Customers</div>
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 130px; border-radius: 8px"
+            >
+              <!-- <div class="pl-3" style="font-size: 18px">Customers</div> -->
               <DashboardFooterCustomerStats />
             </v-card>
           </v-col>
           <v-col cols="8" class="pl-0">
-            <v-card class="py-2" style="width: 100%; height: 130px">
-              <div class="pl-3" style="font-size: 18px">Employees</div>
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 130px; border-radius: 8px"
+            >
+              <!-- <div class="pl-3" style="font-size: 18px">Employees</div> -->
               <DashboardFooterEmployeeStats />
             </v-card>
           </v-col>

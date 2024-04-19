@@ -93,8 +93,10 @@ class ThemeController extends Controller
                 ->where("branch_id", $request->branch_id)
                 ->get();
 
+
             foreach ($branchShiftManagers as $branchShiftManager) {
 
+                $onDutyShiftManagers = $branchShiftManager;
 
                 $latestLog = AttendanceLog::with(["employee"])
                     ->where("company_id", $id)
