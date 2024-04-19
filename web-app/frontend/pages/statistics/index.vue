@@ -126,7 +126,7 @@
               class="py-2"
               style="width: 100%; height: 130px; border-radius: 8px"
             >
-              <!-- <div class="pl-3" style="font-size: 18px">Customers</div> -->
+              <div class="pl-3" style="font-size: 18px">Customers</div>
               <DashboardFooterCustomerStats />
             </v-card>
           </v-col>
@@ -135,7 +135,7 @@
               class="py-2"
               style="width: 100%; height: 130px; border-radius: 8px"
             >
-              <!-- <div class="pl-3" style="font-size: 18px">Employees</div> -->
+              <div class="pl-3" style="font-size: 18px">Employees</div>
               <DashboardFooterEmployeeStats />
             </v-card>
           </v-col>
