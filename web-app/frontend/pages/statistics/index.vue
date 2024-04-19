@@ -9,7 +9,7 @@
         class="pt-0"
         style="padding-right: 0px; margin-right: 0px"
       >
-        <v-row justify="end">
+        <v-row justify="end" style="padding-top: 10px">
           <v-col cols="4" class="pb-0" style="min-width: 670px">
             <span style="float: left; width: 200px">
               <v-select

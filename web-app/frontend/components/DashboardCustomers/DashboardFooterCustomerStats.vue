@@ -32,7 +32,7 @@
                       margin: auto;
                       padding: 0px;
                       margin-left: 0px;
-                      font-size: 40px;
+                      font-size: 30px;
                     "
                   >
                     {{ data.vip_customer_count ?? "---" }}
@@ -60,7 +60,7 @@
                       margin: auto;
                       padding: 0px;
                       margin-left: 0px;
-                      font-size: 40px;
+                      font-size: 30px;
                     "
                   >
                     {{ data.repeated_customer_count ?? "---" }}
@@ -88,7 +88,7 @@
                       margin: auto;
                       padding: 0px;
                       margin-left: 0px;
-                      font-size: 40px;
+                      font-size: 30px;
                     "
                   >
                     {{ data.blocked_customer_count ?? "---" }}

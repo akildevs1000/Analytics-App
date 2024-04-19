@@ -24,7 +24,7 @@
               />
 
               <div style="font-size: 30px">{{ data.totalIn ?? "---" }}</div>
-              <div style="font-size: 14px">In</div>
+              <div style="font-size: 13px">In</div>
             </v-col>
             <v-col cols="1" class="pt-0">
               <img
@@ -33,7 +33,7 @@
               />
 
               <div style="font-size: 30px">{{ data.totalOut ?? "---" }}</div>
-              <div style="font-size: 14">Out</div>
+              <div style="font-size: 13px">Out</div>
             </v-col>
             <v-col cols="1" class="pt-0">
               <img
@@ -44,7 +44,7 @@
               <div style="font-size: 30px">
                 {{ data.presentCount ?? "---" }}
               </div>
-              <div style="font-size: 14px">Present</div>
+              <div style="font-size: 13px">Present</div>
             </v-col>
             <v-col cols="1" class="pt-0">
               <img
@@ -57,14 +57,14 @@
               </div>
               <div style="font-size: 14px">Absent</div>
             </v-col>
-            <v-col cols="1" class="pt-0">
+            <!-- <v-col cols="1" class="pt-0">
               <img src="../../static/icons/holidays.png" style="width: 50px" />
 
               <div style="font-size: 30px">
                 {{ data.holidayCount ?? "---" }}
               </div>
               <div style="font-size: 14px">Holiday</div>
-            </v-col>
+            </v-col> -->
             <v-col cols="1" class="pt-0">
               <img
                 src="../../static/icons/employee-leaves.png"
@@ -85,9 +85,9 @@
               <div style="font-size: 30px">
                 {{ data.vaccationCount ?? "---" }}
               </div>
-              <div style="font-size: 14px">Vacation</div>
+              <div style="font-size: 13px">Vacation</div>
             </v-col>
-            <v-col cols="4" class="pt-0">
+            <v-col cols="5" class="pt-0">
               <img
                 src="../../static/icons/employee-manager.png"
                 style="width: 40px"
