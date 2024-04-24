@@ -1,0 +1,354 @@
+[2024-04-05 13:22:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:22:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:22:37] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1623415482-  
+[2024-04-05 13:22:37] local.INFO: Elvie Dibbert - 77178 - OK - Successfully Uploaded  
+[2024-04-05 13:25:23] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:25:23] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:25:24] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=984607638-  
+[2024-04-05 13:25:24] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:26:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:26:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:26:29] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1787354600-  
+[2024-04-05 13:26:29] local.INFO: Elvie Dibbert - 77178 - OK - Successfully Uploaded  
+[2024-04-05 13:28:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:28:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:28:59] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=960972104-  
+[2024-04-05 13:28:59] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:37:57] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:37:57] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:37:57] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2089148995-  
+[2024-04-05 13:37:57] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:39:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:39:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:39:03] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1348590463-  
+[2024-04-05 13:39:03] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:41:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:41:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:41:06] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=438314787-  
+[2024-04-05 13:41:06] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:44:44] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:44:44] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:44:45] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1941953947-  
+[2024-04-05 13:44:45] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:45:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:45:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:45:09] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=26709063-  
+[2024-04-05 13:45:09] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:48:25] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:48:25] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:48:26] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=704759657-  
+[2024-04-05 13:48:26] local.ERROR: Louvenia Dooley - 64899 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 13:50:43] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:50:43] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 13:50:43] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=776846996-  
+[2024-04-05 13:50:43] local.INFO: Louvenia Dooley - 64899 - OK - Successfully Uploaded  
+[2024-04-05 14:09:17] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:09:17] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:14:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:14:55] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:18:18] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:18:18] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:18:54] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:18:54] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:20:16] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:20:16] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:21:55] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:21:55] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:24:01] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login - HTTP Code: 0  
+[2024-04-05 14:24:58] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login - HTTP Code: 0  
+[2024-04-05 14:27:22] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:40:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:42:38] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:44:02] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:45:29] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:46:26] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:47:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:47:42] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:47:42] local.INFO: Elvie Dibbert - 77178 - SessionID is not generated.  
+[2024-04-05 14:48:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:49:34] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:55:17] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:56:18] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 14:57:43] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:02:46] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:03:03] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:11:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:11:54] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:12:45] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:14:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:14:49] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:15:26] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:17:02] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:18:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:18:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:18:29] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=184706235-  
+[2024-04-05 15:18:29] local.INFO: Elvie Dibbert - 77178 - OK - Successfully Uploaded  
+[2024-04-05 15:18:42] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:18:42] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:18:43] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=988067430-  
+[2024-04-05 15:18:43] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:19:10] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:19:10] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:19:11] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=757906903-  
+[2024-04-05 15:19:11] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:23:37] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:23:37] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:23:38] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1923586173-  
+[2024-04-05 15:23:38] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:24:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:24:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:24:28] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2007674137-  
+[2024-04-05 15:24:28] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:24:37] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:24:37] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:26:40] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:26:40] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:26:41] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1966634553-  
+[2024-04-05 15:26:41] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:28:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:28:30] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:28:31] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1502761851-  
+[2024-04-05 15:28:31] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:28:57] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:28:57] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:28:58] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=805662166-  
+[2024-04-05 15:28:58] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:29:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:29:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:29:30] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=743526755-  
+[2024-04-05 15:30:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:30:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:30:05] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1290794186-  
+[2024-04-05 15:30:05] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:30:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:30:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:30:35] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:30:35] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:30:36] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=922277295-  
+[2024-04-05 15:32:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:06] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1160417469-  
+[2024-04-05 15:32:18] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:18] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:19] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1969548815-  
+[2024-04-05 15:32:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:29] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1843862077-  
+[2024-04-05 15:32:40] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:40] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:32:42] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=36507190-  
+[2024-04-05 15:33:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:02] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=398972464-  
+[2024-04-05 15:33:17] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:17] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:17] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1361345519-  
+[2024-04-05 15:33:26] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:26] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:27] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=469391684-  
+[2024-04-05 15:33:37] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:37] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:33:38] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=813976159-  
+[2024-04-05 15:34:10] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:34:10] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:34:11] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=138642063-  
+[2024-04-05 15:34:11] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:34:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:34:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:34:35] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=659456109-  
+[2024-04-05 15:34:35] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 15:36:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:36:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 15:36:11] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=613326743-  
+[2024-04-05 15:36:11] local.INFO: Louvenia Dooley - 64899 - OK - Successfully Uploaded  
+[2024-04-05 16:24:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:24:59] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:25:00] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=727788593-  
+[2024-04-05 16:25:00] local.INFO: Louvenia Dooley - 64899 - OK - Successfully Uploaded  
+[2024-04-05 16:31:41] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:31:41] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:31:42] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=265343554-  
+[2024-04-05 16:31:42] local.INFO: Louvenia Dooley - 64899 - OK - Successfully Uploaded  
+[2024-04-05 16:33:13] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:33:13] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:33:15] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2049216739-  
+[2024-04-05 16:33:15] local.ERROR: Louvenia Dooley - 64899 - Face Exists With Name "Louvenia Dooley" - Failed:   
+[2024-04-05 16:35:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:35:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:35:08] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1729714647-  
+[2024-04-05 16:35:08] local.ERROR: Louvenia Dooley - 64899 - Face Exists With Name "Louvenia Dooley" - Failed:   
+[2024-04-05 16:35:52] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:35:52] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:35:53] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=322128607-  
+[2024-04-05 16:35:53] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Louvenia Dooley" - Failed:   
+[2024-04-05 16:35:53] local.ERROR: {"cameraResponse2":[],"cameraResponse1":[{"0":"Face Exists With Name \"Louvenia Dooley\""}],"deviceResponse":{"data":[],"status":200,"message":"","transactionType":0}}  
+[2024-04-05 16:36:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:36:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:36:07] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1891550658-  
+[2024-04-05 16:36:07] local.INFO: Elvie Dibbert - 77178 - OK - Successfully Uploaded  
+[2024-04-05 16:36:08] local.ERROR: {"cameraResponse2":[],"cameraResponse1":[{"0":"OK"}],"deviceResponse":{"data":[],"status":200,"message":"","transactionType":0}}  
+[2024-04-05 16:36:47] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:36:47] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:36:48] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=171570355-  
+[2024-04-05 16:36:48] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 16:38:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:38:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:38:37] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=598046496-  
+[2024-04-05 16:38:37] local.ERROR: Elvie Dibbert - 77178 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 16:39:17] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:39:17] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:39:20] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1185464013-  
+[2024-04-05 16:39:20] local.ERROR: Louvenia Dooley - 64899 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 16:40:24] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:40:24] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:40:25] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=902751439-  
+[2024-04-05 16:40:25] local.ERROR: Louvenia Dooley - 64899 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 16:42:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:42:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:42:37] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=489036587-  
+[2024-04-05 16:42:37] local.ERROR: Louvenia Dooley - 64899 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 16:45:14] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:45:14] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:45:15] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=143161799-  
+[2024-04-05 16:45:15] local.ERROR: Louvenia Dooley - 64899 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 16:45:17] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=143161799-  
+[2024-04-05 16:45:17] local.ERROR: Ottis Kohler - 76578 - Face Exists With Name "Elvie Dibbert" - Failed:   
+[2024-04-05 16:47:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:47:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:47:29] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1432006195-  
+[2024-04-05 16:47:29] local.INFO: Louvenia Dooley - 64899 - OK - Successfully Uploaded  
+[2024-04-05 16:48:11] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:48:11] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:48:12] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1238818329-  
+[2024-04-05 16:48:12] local.INFO: Elvie Dibbert - 77178 - OK - Successfully Uploaded  
+[2024-04-05 16:50:45] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:50:46] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:50:47] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=2121355216-  
+[2024-04-05 16:50:47] local.INFO: Elvie Dibbert - 77178 - OK - Successfully Uploaded  
+[2024-04-05 16:51:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:51:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:51:33] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1481132789-  
+[2024-04-05 16:51:46] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:51:46] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:51:47] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1219722755-  
+[2024-04-05 16:57:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:57:09] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 16:57:10] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=380994176-  
+[2024-04-05 17:05:44] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:05:44] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:05:45] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=520213908-  
+[2024-04-05 17:06:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:06:27] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:06:29] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=794981666-  
+[2024-04-05 17:07:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:07:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:07:05] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=291695786-  
+[2024-04-05 17:08:23] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:08:23] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:08:24] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1424944056-  
+[2024-04-05 17:08:42] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:08:42] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:08:43] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1765144278-  
+[2024-04-05 17:10:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:10:36] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:10:37] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1160729944-  
+[2024-04-05 17:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:11:07] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:11:09] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1099720725-  
+[2024-04-05 17:11:43] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:11:43] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:11:45] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=583077796-  
+[2024-04-05 17:12:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:12:33] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:12:34] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=1172597043-  
+[2024-04-05 17:13:56] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:13:56] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:13:57] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=326541188-  
+[2024-04-05 17:17:38] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:17:38] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-05 17:17:39] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=145399326-  
+[2024-04-06 11:52:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:52:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:52:28] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=1582683515-  
+[2024-04-06 11:53:39] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:54:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:54:32] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:54:32] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=762299093-  
+[2024-04-06 11:54:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:54:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:54:48] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=965671178-  
+[2024-04-06 11:54:48] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 11:55:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:05] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=1920540202-  
+[2024-04-06 11:55:05] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 11:55:34] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:34] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:34] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=1396130115-  
+[2024-04-06 11:55:34] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 11:55:45] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:45] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:45] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=2049663803-  
+[2024-04-06 11:55:45] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 11:55:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:48] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:48] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=829939201-  
+[2024-04-06 11:55:48] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 11:55:53] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:53] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:55:53] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=81038786-  
+[2024-04-06 11:55:53] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 11:56:15] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:56:15] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:56:16] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=289645881-  
+[2024-04-06 11:56:16] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 11:58:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:58:04] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 11:58:04] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=430576095-  
+[2024-04-06 11:58:04] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 12:05:43] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:05:43] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:05:43] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=882130860-  
+[2024-04-06 12:05:43] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 12:35:52] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:35:52] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:35:52] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=1245763465-  
+[2024-04-06 12:35:52] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 12:37:40] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:37:40] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:37:40] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=1380994977-  
+[2024-04-06 12:37:40] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 12:38:41] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:38:41] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 12:38:41] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=482006790-  
+[2024-04-06 12:38:41] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 13:11:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:11:00] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:11:00] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=2103121004-  
+[2024-04-06 13:11:00] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 13:27:51] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:27:51] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:27:51] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=1418075877-  
+[2024-04-06 13:27:51] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 13:28:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:28:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:28:05] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=80237821-  
+[2024-04-06 13:28:05] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 13:28:12] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:28:12] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:28:12] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=86632363-  
+[2024-04-06 13:28:12] local.INFO: 1206280294 - Live status updated  
+[2024-04-06 13:39:39] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:39:39] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-06 13:39:39] local.INFO: CURL 192.168.2.27:80/ISAPI/DeviceInfo?ID=2079692333-  
+[2024-04-06 13:39:39] local.INFO: 1206280294 - Live status updated  
+[2024-04-08 12:48:16] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:01:52] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:04:05] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:05:28] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:07:21] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:07:40] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:08:06] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:08:44] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:09:20] local.INFO: CURL 192.168.2.27:80/ISAPI/Security/Login-  
+[2024-04-08 13:29:24] local.INFO: CURL 192.168.2.27:80/ISAPI/FaceDetection/RegisterImage?ID=433792840-  
