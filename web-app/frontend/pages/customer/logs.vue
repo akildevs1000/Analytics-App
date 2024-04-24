@@ -153,7 +153,12 @@
               <v-avatar
                 v-if="item && item.customer && item.customer.profile_picture"
               >
-                <v-img :src="item?.customer?.profile_picture || '/no-profile-image.jpg'"> </v-img>
+                <v-img
+                  :src="
+                    item?.customer?.profile_picture || '/no-profile-image.jpg'
+                  "
+                >
+                </v-img>
               </v-avatar>
             </v-col>
             <v-col class="pt-1">
@@ -166,33 +171,6 @@
               </small>
             </v-col>
           </v-row>
-          <v-row no-gutters v-else>
-            <v-col class="mr-4">
-              <v-avatar>
-                <v-img
-                  :src="
-                    item.employee && item.employee.profile_picture
-                      ? item.employee.profile_picture
-                      : '/no-profile-image.jpg'
-                  "
-                >
-                </v-img>
-              </v-avatar>
-            </v-col>
-            <v-col class="pt-1">
-              <strong>
-                {{ item.employee ? item.employee.first_name : "---" }}
-                {{ item.employee ? item.employee.last_name : "---" }}</strong
-              >
-              <div>
-                {{
-                  item.employee && item.employee.designation
-                    ? caps(item.employee.designation.name)
-                    : "---"
-                }}
-              </div>
-            </v-col>
-          </v-row>
         </template>
       </v-data-table>
     </v-card>
@@ -201,7 +179,6 @@
 </template>
 
 <script>
-
 export default {
   data: () => ({
     isCompany: true,
@@ -213,7 +190,9 @@ export default {
     from_date_filter: "",
 
     showFilters: false,
-    filters: {},
+    filters: {
+      user_type: "Customer",
+    },
     isFilter: false,
     generateLogsDialog: false,
     totalRowsCount: 0,
@@ -272,7 +251,7 @@ export default {
     snackbar: false,
     headers: [
       {
-        text: "Customer",
+        text: "Employee",
         align: "left",
         sortable: true,
         key: "user", //sorting
