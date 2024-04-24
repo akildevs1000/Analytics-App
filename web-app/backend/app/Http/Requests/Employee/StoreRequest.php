@@ -37,7 +37,7 @@ class StoreRequest extends FormRequest
                 'regex:/^[1-9][0-9]*$/',
                 // "unique:attendance_logs,UserID",
                 $controller->uniqueRecord("employees", "employee_id", $this->employee_id),
-                $controller->uniqueRecord("attendance_logs", "UserID", $this->employee_id),
+                // $controller->uniqueRecord("attendance_logs", "UserID", $this->employee_id),
             ],
             'system_user_id' => [
                 'required',
