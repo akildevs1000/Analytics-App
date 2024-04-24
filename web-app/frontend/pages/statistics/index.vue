@@ -3,13 +3,13 @@
     style="width: 100%"
     v-if="can('dashboard_access') && can('dashboard_view')"
   >
-    <v-row>
+    <v-row class="">
       <v-col
         cols="12"
         class="pt-0"
         style="padding-right: 0px; margin-right: 0px"
       >
-        <v-row justify="end">
+        <v-row justify="end" style="padding-top: 10px">
           <v-col cols="4" class="pb-0" style="min-width: 670px">
             <span style="float: left; width: 200px">
               <v-select
@@ -71,7 +71,7 @@
                     v-on="on"
                     dense
                     class="custom-text-box shadow-none"
-                    label="Date Filter"
+                    label="Date "
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -92,13 +92,19 @@
       <v-col cols="12">
         <v-row>
           <v-col cols="6" class="pl-0">
-            <v-card class="py-2" style="width: 100%; height: 500px">
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 500px; border-radius: 8px"
+            >
               <div class="pl-3" style="font-size: 18px">Demographics</div>
               <DashboardDemographics />
             </v-card>
           </v-col>
           <v-col cols="6" style="padding-left: 6px">
-            <v-card class="py-2" style="width: 100%; height: 500px">
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 500px; border-radius: 8px"
+            >
               <DashboardChart
                 :filter_device_serial_number="filter_device_serial_number"
                 :name="'AlarmDashboardHourlyChart'"
@@ -116,13 +122,19 @@
       <v-col cols="12" class="pt-0">
         <v-row>
           <v-col cols="4" class="pl-0">
-            <v-card class="py-2" style="width: 100%; height: 130px">
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 130px; border-radius: 8px"
+            >
               <div class="pl-3" style="font-size: 18px">Customers</div>
               <DashboardFooterCustomerStats />
             </v-card>
           </v-col>
           <v-col cols="8" class="pl-0">
-            <v-card class="py-2" style="width: 100%; height: 130px">
+            <v-card
+              class="py-2"
+              style="width: 100%; height: 130px; border-radius: 8px"
+            >
               <div class="pl-3" style="font-size: 18px">Employees</div>
               <DashboardFooterEmployeeStats />
             </v-card>

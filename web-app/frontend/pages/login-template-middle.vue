@@ -19,7 +19,7 @@
               <div class="card-body p-md-5 mx-md-4">
                 <v-row class="pb-5">
                   <v-col md="12" cols="12" class="text-center">
-                    <h2>MyTime2Cloud</h2>
+                    <h2>CountSmart</h2>
                   </v-col>
                 </v-row>
 
@@ -126,7 +126,7 @@
                           </div>
                           <h3 class="pb-7 pt-15">
                             Welcome To
-                            <span style="font-size: 20px"> Mytime2Cloud </span>
+                            <span style="font-size: 20px"> CountSmart </span>
                           </h3>
                         </div>
                         <div>
@@ -222,7 +222,7 @@
                             For Technical Support :
                             <a
                               target="_blank"
-                              href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                              href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                               ><v-icon color="black">mdi-whatsapp</v-icon></a
                             >
                             <a
@@ -249,12 +249,12 @@
                           color: #fff;
                         "
                       >
-                        <h3>About Mytime2Cloud</h3>
+                        <h3>About CountSmart</h3>
                         <div style="font-weight: 300">
-                          MyTime2Cloud is an innovative and comprehensive
-                          platform meticulously crafted to redefine how
-                          organizations approach workforce management. It serves
-                          as the ultimate solution, seamlessly amalgamating
+                          CountSmart is an innovative and comprehensive platform
+                          meticulously crafted to redefine how organizations
+                          approach workforce management. It serves as the
+                          ultimate solution, seamlessly amalgamating
                           cutting-edge automation with an acute understanding of
                           employee needs. Tailored to cater to both employees
                           and HR professionals, it encompasses a myriad of
@@ -277,7 +277,7 @@
                             For Technical Support :
                             <a
                               target="_blank"
-                              href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                              href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                               ><v-icon color="white">mdi-whatsapp</v-icon></a
                             >
                             <a
@@ -317,7 +317,7 @@
                       style="color: #fff; padding: 3rem !important"
                     >
                       <h2 class="pb-7" style="font-size: 2em">
-                        Welcome To MyTime2Cloud
+                        Welcome To CountSmart
                       </h2>
 
                       <v-form

@@ -129,7 +129,7 @@
       <span class="text-overflow">{{ title }}</span>
 
       <v-spacer></v-spacer>
-      <span style="100%">
+      <span style="width: 100%">
         <v-bottom-navigation
           dense
           elevation="0"
@@ -542,7 +542,7 @@ export default {
       clipped: true,
 
       miniVariant: false,
-      title: "MyTime2Cloud",
+      title: "CountSmart",
       socket: null,
       logout_btn: {
         icon: "mdi-logout",

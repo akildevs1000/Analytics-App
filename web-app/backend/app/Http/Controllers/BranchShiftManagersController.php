@@ -38,8 +38,9 @@ class BranchShiftManagersController extends Controller
 
         try {
 
-            $isExist = BranchShiftManagers::where('company_id', '=', $request->company_id)->where('name', '=', $request->name)->first();
-            if ($isExist == null) {
+            //$isExist = BranchShiftManagers::where('company_id', '=', $request->company_id)->where('name', '=', $request->name)->first();
+            // if ($isExist == null) 
+            {
 
                 $record = BranchShiftManagers::create($request->validated());
                 DB::commit();
@@ -50,9 +51,10 @@ class BranchShiftManagersController extends Controller
                 } else {
                     return $this->response('Leave Type  cannot be created.', null, false);
                 }
-            } else {
-                return $this->response('Leave Type "' . $request->name . '" already exist', null, false);
             }
+            //else {
+            //     return $this->response('Leave Type "' . $request->name . '" already exist', null, false);
+            // }
         } catch (\Throwable $th) {
             DB::rollback();
             throw $th;

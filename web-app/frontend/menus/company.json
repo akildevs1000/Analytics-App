@@ -303,17 +303,32 @@
     "menu": "community",
     "module": "customers"
   },
+
   {
     "icon": "mdi-chart-bar",
+    "title": "Weekly Report",
+    "to": "/customer/customer_weekly_report",
+    "menu": "community",
+    "module": "customers"
+  },
+  {
+    "icon": "mdi mdi-chart-bar",
     "title": "Stats Report",
     "to": "/customer_stats_report",
     "menu": "community",
     "module": "customers"
   },
   {
-    "icon": "mdi-chart-bar",
-    "title": "Weekly Report",
-    "to": "/customer/customer_weekly_report",
+    "icon": "mdi mdi-chart-pie",
+    "title": "Weekly Charts",
+    "to": "/customer/weekly_charts",
+    "menu": "community",
+    "module": "customers"
+  },
+  {
+    "icon": "mdi-clipboard-text-clock",
+    "title": "Raw Logs",
+    "to": "/customer/logs",
     "menu": "community",
     "module": "customers"
   },

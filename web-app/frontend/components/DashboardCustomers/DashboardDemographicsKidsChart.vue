@@ -23,7 +23,7 @@ export default {
       chartOptions1: {
         series: [],
         colors: ["#0F9D58", "#DB4437"],
-        labels: ["Male", "Female"],
+        labels: ["Boys", "Girls"],
         // labels: {
         //   show: true,
         // },
@@ -44,6 +44,11 @@ export default {
 
         dataLabels: {
           enabled: true,
+          style: {
+            fontSize: "10px",
+            fontFamily: "Roboto",
+            fontWeight: "normal",
+          },
         },
 
         plotOptions: {
@@ -53,26 +58,29 @@ export default {
                 show: true,
                 name: {
                   show: true,
-                  fontSize: "22px",
-                  fontFamily: "Rubik",
+                  fontSize: "18px",
+                  // fontFamily: "Roboto",
                   color: "#dfsda",
-                  offsetY: -10,
+                  offsetY: -15,
                 },
                 value: {
                   show: true,
-                  fontSize: "16px",
-                  fontFamily: "Roboto, sans-serif",
+                  fontWeight: "bold",
+                  fontSize: "25px",
+                  // fontFamily: "Roboto, sans-serif",
                   color: undefined,
-                  offsetY: 16,
+                  offsetY: -5,
                   formatter: function (val) {
                     return val;
                   },
                 },
                 total: {
                   show: true,
-                  label: "Total",
+                  label: "",
+                  fontWeight: "bold",
+                  fontSize: "18px",
                   color: "#373d3f",
-                  fontFamily: "Roboto, sans-serif",
+                  // fontFamily: "Roboto, sans-serif",
                   formatter: function (w) {
                     return w.globals.seriesTotals.reduce((a, b) => {
                       return a + b;

@@ -116,7 +116,11 @@
         style="cursor: pointer"
         @click="gotoHomePage()"
       >
-        <img title="My Time Cloud " :src="logo_src" style="width: 150px" />
+        <img
+          title="CountSmart - Application "
+          :src="logo_src"
+          style="width: 150px; padding-top: 10px"
+        />
       </span>
       <v-spacer></v-spacer>
 
@@ -157,12 +161,12 @@
           <!-- <v-icon color="white" size="35" style="color: #fff"
             >mdi-clock-outline</v-icon
           > -->
-          <span style="width: 70px"
+          <!-- <span style="width: 70px"
             ><img
               src="../static/icons/clock.png"
               style="width: 60px; padding-top: 10px"
-          /></span>
-          <span
+          /></span> -->
+          <!-- <span
             style="
               font-size: 40px;
               color: #fff;
@@ -171,16 +175,10 @@
             "
           >
             {{ currentTime }}</span
-          >
-          <span
-            style="
-              font-size: 20px;
-              font-weight: 200;
-              color: #fff;
-              vertical-align: super;
-            "
-            >{{ todayDate }}</span
-          >
+          > -->
+          <span style="font-size: 20px; font-weight: 200; color: #fff">{{
+            todayDate
+          }}</span>
         </div>
       </span>
       <v-menu
@@ -732,7 +730,7 @@ export default {
       clipped: true,
 
       miniVariant: true,
-      title: "Peoples Count - Application",
+      title: "CountSmart - Application",
       socket: null,
       logout_btn: {
         icon: "mdi-logout",
@@ -754,7 +752,24 @@ export default {
     this.logo_src = require("@/static/logo22.png");
     this.pendingNotificationsCount = 0;
 
-    setInterval(() => {
+    // setInterval(() => {
+    //   const now = new Date();
+    //   // Get the day, month, year, and day of the week
+    //   var day = now.getDate();
+    //   var month = now.getMonth() + 1; // Month is zero-based, so add 1
+    //   var year = now.getFullYear();
+
+    //   day = (day < 10 ? "0" : "") + day;
+    //   month = (month < 10 ? "0" : "") + month;
+    //   const formattedDateTime = month + "-" + day + "-" + year;
+
+    //   this.currentTime = now.toLocaleTimeString([], { hour12: false });
+    //   try {
+    //     this.todayDate =
+    //       this.$dateFormat.format_date_with_dayname(formattedDateTime);
+    //   } catch (e) {}
+    // }, 1000);
+    setTimeout(() => {
       const now = new Date();
       // Get the day, month, year, and day of the week
       var day = now.getDate();
@@ -770,7 +785,7 @@ export default {
         this.todayDate =
           this.$dateFormat.format_date_with_dayname(formattedDateTime);
       } catch (e) {}
-    }, 1000);
+    }, 1000 * 2);
   },
 
   mounted() {
@@ -1797,6 +1812,42 @@ body {
 }
 .weekly-report-table td {
   border: 1px solid #ddd;
+}
+.tablebordertop,
+.tablebordertop th,
+.tablebordertop td {
+  border-top: 1px solid #ddd;
+  border-collapse: collapse;
+  height: 36px;
+  width: 100px;
+}
+
+.last-row th,
+.last-row td {
+  border-bottom: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+.fontforNumber {
+  font-family: sans-serif !important;
+}
+@font-face {
+  font-family: "OpenSansCondensedBold1"; /*a name to be used later*/
+  src: url(../assets/open-sans-condensed/OpenSans-CondBold.ttf); /*URL to font*/
+}
+@font-face {
+  font-family: "OpenSansCondensedLight1"; /*a name to be used later*/
+  src: url(../assets/open-sans-condensed/OpenSans-CondLight.ttf); /*URL to font*/
+}
+@font-face {
+  font-family: "OpenSansCondensedItalic1"; /*a name to be used
+later*/
+  src: url(../assets/open-sans-condensed/OpenSans-CondLightItalic.ttf); /*URL to
+font*/
+}
+
+.statisticsPageFont {
+  font-family: OpenSansCondensedLight1;
 }
 </style>
 

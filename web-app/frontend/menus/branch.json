@@ -59,6 +59,15 @@
     "filterSpecial": false
   },
   {
+    "text": "Occupancy",
+    "align": "left",
+    "sortable": false,
+    "key": "occupancy",
+    "value": "occupancy",
+    "filterable": false,
+    "filterSpecial": false
+  },
+  {
     "text": "Since",
     "align": "left",
     "sortable": false,

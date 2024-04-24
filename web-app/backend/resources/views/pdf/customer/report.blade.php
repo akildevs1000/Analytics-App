@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <title>Community Report</title>
     <style>
         * {
@@ -167,22 +167,7 @@
 <body>
     <div>
 
-        @foreach ($chunks as $chunk)
-            <div id="footer">
-                <div class="pageCounter">
-                    <p></p>
-                    @php
-                        $p = count($chunks);
-                        if ($p <= 1) {
-                            echo '<span></span>';
-                        } else {
-                            for ($a = 1; $a <= $p; $a++) {
-                                echo '<span></span>';
-                            }
-                    } @endphp
-                </div>
-
-            </div>
+        @foreach ($chunks as $chunkKey => $chunk)
             <table>
                 <tr>
                     <td class="text-left border-none col-4">
@@ -212,36 +197,39 @@
             </table>
             <table class="mt-5">
                 <tr>
-                    <th>S.NO</th>
-                    <th>Customer</th>
-                    <th>Customer Type</th>
                     <th>Branch</th>
+                    <th>Customer</th>
+                    <th>Age Group</th>
+                    <th>Gender</th>
                     <th>In DateTime</th>
                     <th>Out DateTime</th>
+                    <th>In Device</th>
+                    <th>Out Device</th>
                     <th>Total Hrs</th>
                     <th>Status</th>
+                    <th>Customer Type</th>
+
                 </tr>
                 @foreach ($chunk as $key => $data)
                     <tr>
-                        <td style="width:10px;">{{ $key + 1 }}</td>
+                        <td>{{ $data['branch']['branch_name'] ?? '---' }}</td>
 
                         <td>
                             @php
-                                $pic = 'https://i.pinimg.com/originals/df/5f/5b/df5f5b1b174a2b4b6026cc6c8f9395c1.jpg';
+                                // $pic = 'https://i.pinimg.com/originals/df/5f/5b/df5f5b1b174a2b4b6026cc6c8f9395c1.jpg';
 
-                                // if ($data['customer'] && $data['customer']['profile_picture']) {
-                                //     $pic =
-                                //         getcwd() .
-                                //         '/customer/profile_picture/' .
-                                //         $data['customer']['profile_picture'];
-                                // }
+                                if ($data['customer'] && $data['customer']['profile_picture']) {
+                                    $pic =
+                                        getcwd() .
+                                        '/customer/profile_picture/' .
+                                        $data['customer']['profile_picture_name'];
+                                }
 
                             @endphp
 
                             <table>
                                 <tr>
                                     <td style="width:20px;" class="border-none">
-
                                         <img alt="{{ $pic }}"
                                             style="border-radius: 50%;width:40px;height:40px;padding-top:5px;"src="{{ $pic }}" />
                                     </td>
@@ -251,27 +239,38 @@
                                         </b>
                                         <br>
                                         <small style="margin-left:5px;">
-                                            EID:{{ $data['customer']['system_user_id'] ?? '---' }}
+                                            {{ $data['user_id'] ?? '---' }}
                                         </small>
                                     </td>
                                 </tr>
                             </table>
                         </td>
-                        <td>{{ $data['customer']['type'] ?? '---' }}</td>
-                        <td>{{ $data['customer']['branch']['branch_name'] ?? '---' }}</td>
+                        <td>
+                            {{ $data['age_category'] ?? '---' }}
+                        </td>
+                        <td>
+                            {{ $data['gender'] ?? '---' }}
+                        </td>
                         <td>
                             {{ $data['in_log']['LogTime'] ?? '---' }}
                         </td>
                         <td>
                             {{ $data['out_log']['LogTime'] ?? '---' }}
                         </td>
+                        <td>
+                            {{ $data['in_log']['device']['name'] ?? '---' }}
+                        </td>
+                        <td>
+                            {{ $data['out_log']['device']['name'] ?? '---' }}
+                        </td>
                         </td>
                         <td>{{ $data['total_hrs'] }}</td>
                         <td>{{ $data['status'] }}</td>
+                        <td>{{ $data['customer']['type'] ?? '---' }}</td>
                     </tr>
                 @endforeach
             </table>
-            <footer class="page page-break">
+            <footer class="page">
 
                 <hr class="mt-1" style="color:#dddddd;">
                 <table>

@@ -14,7 +14,7 @@
                     <!-- <img width="35%" :src="logo" alt="logo" /> -->
                   </div>
                   <div class="card-body p-md-5 mx-md-4" style="color: #fff">
-                    <h2 class="pb-7">Welcome To MyTime2Cloud</h2>
+                    <h2 class="pb-7">Welcome To CountSmart</h2>
                     <h4 class="mt-2 mb-5 pb-1">Reset Password</h4>
                     <v-form v-if="emailView" ref="form" method="post">
                       <div class="form-outline">

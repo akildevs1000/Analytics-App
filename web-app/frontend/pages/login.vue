@@ -19,7 +19,7 @@
               <div class="card-body p-md-5 mx-md-4">
                 <v-row class="pb-5">
                   <v-col md="12" cols="12" class="text-center">
-                    <h2>MyTime2Cloud</h2>
+                    <h2>CountSmart</h2>
                   </v-col>
                 </v-row>
 
@@ -109,7 +109,12 @@
         >
           <div style="min-height: 100px">
             <div style="width: 100%" class="text-center">
-              <v-img
+              <img
+                title="CountSmart - Application "
+                :src="logo_src"
+                style="width: 311px; padding-top: 10px"
+              />
+              <!-- <v-img
                 class="text-center"
                 style="
                   width: 200px;
@@ -117,12 +122,23 @@
                   margin: auto;
                   text-align: center;
                 "
-                src="/logo22.png"
+                src="../static/loginlogo.png"
               ></v-img>
+
+              <img
+                class="text-center"
+                style="
+                  width: 200px;
+                  padding: 0px;
+                  margin: auto;
+                  text-align: center;
+                "
+                src="../static/loginlogo.png"
+              /> -->
             </div>
-            <h3 class="pb-7 pt-15">
-              Welcome To
-              <span style="font-size: 20px"> Mytime2Cloud </span>
+            <h3 class="pb-7 pt-15 text-left">
+              Login To
+              <span style="font-size: 20px"> Dashboard </span>
             </h3>
           </div>
           <div>
@@ -211,7 +227,7 @@
               For Technical Support :
               <a
                 target="_blank"
-                href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                 ><v-icon color="black">mdi-whatsapp</v-icon></a
               >
               <a
@@ -225,8 +241,8 @@
             <v-col class="pa-5">
               <a
                 style="text-decoration: none; color: black"
-                href="mailto:support@mytime2cloud.com"
-                >support@mytime2cloud.com</a
+                href="mailto:support@countsmart.com"
+                >support@countsmart.com</a
               ></v-col
             >
           </v-row>
@@ -241,42 +257,47 @@
         class="hide-on-mobile d-none d-lg-flex"
       >
         <div class="about-content">
-          <h3>About Mytime2Cloud</h3>
+          <!-- <h3>About CountSmart</h3>
           <div style="font-weight: 300">
-            MyTime2Cloud is an innovative and comprehensive platform
-            meticulously crafted to redefine how organizations approach
-            workforce management. By combining time attendance management with
-            facial recognition access control, MyTime2Cloud simplifies and
-            provides a streamlined experience for both employees and HR
-            professionals.<br />
-            Customization and Reporting: The platform offers customizable
-            settings to fit the specific needs of different organizations. It
-            generates comprehensive reports and analytics based on attendance
-            data, enabling informed decision-making and efficient resource
-            allocation.
+            CountSmart is an innovative and comprehensive platform meticulously
+            crafted to redefine how organizations approach workforce management.
+            To effectively capture and analyze data on people count in shopping
+            malls, you'll want a comprehensive system that integrates various
+            technologies and methodologies. Here's a suggested outline for the
+            content you could include:
           </div>
           <h3 class="pt-10">Features</h3>
           <ul style="font-weight: 300">
-            <li>Employees management</li>
+            <li>Geographic Distribution</li>
 
-            <li>Time Attendance</li>
-            <li>Leave management</li>
-            <li>Payroll management</li>
-            <li>Access Controll</li>
-            <li>Visitor management</li>
-            <li>Face Recognisation Integration</li>
-            <li>Custom Reports</li>
-            <li>Custom Dashboards</li>
-            <li>Email and Whatsapp Notifications</li>
-          </ul>
-          <v-row class="text-left pt-10">
+            <li>Gender Distribution</li>
+            <li>Age Demographics</li>
+            <li>Dwell Time</li>
+            <li>In and Out Count</li>
+            <li>VIP Visitors</li>
+            <li>Trends and Insights</li>
+            <li>Data Visualization</li>
+            <li>Security and Privacy Measures</li>
+            <li>Continuous Monitoring and Improvement</li>
+          </ul> -->
+          <v-row
+            class="text-left pt-10"
+            style="
+              position: fixed;
+              bottom: 0px;
+              right: 25px;
+              bottom: 100px;
+              bottom: 42px;
+              right: 25px;
+              width: 30%;
+            "
+          >
+            <v-col><h3>Technical Support</h3></v-col>
             <v-col class="pa-5">
-              <h3>Technical Support</h3>
-
               <a
                 style="font-weight: 300"
                 target="_blank"
-                href="https://wa.me/971529048025?text=Hello MyTime2Cloud. I need your support."
+                href="https://wa.me/971529048025?text=Hello CountSmart. I need your support."
                 ><v-icon color="white">mdi-whatsapp</v-icon></a
               >
 
@@ -288,8 +309,8 @@
               <br />
               <a
                 style="text-decoration: none; color: #fff; font-weight: 300"
-                href="mailto:support@mytime2cloud.com"
-                >support@mytime2cloud.com</a
+                href="mailto:support@countsmart.com"
+                >support@countsmart.com</a
               >
             </v-col>
           </v-row>
@@ -321,7 +342,7 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-
+    logo_src: "",
     passwordRules: [(v) => !!v || "Password is required"],
 
     dialogWhatsapp: false,
@@ -334,6 +355,7 @@ export default {
     },
   }),
   created() {
+    this.logo_src = require("@/static/loginlogo.png");
     // this.$store.commit("dashboard/resetState", null);
     this.$store.dispatch("dashboard/resetState");
     this.$store.dispatch("resetState");
@@ -530,7 +552,7 @@ html {
 }
 @media (min-width: 1300px) {
   .bg-body {
-    background-image: url("../static/login/bgimage3.png") !important;
+    background-image: url("../static/login/business_analoatics_1.png") !important;
   }
   .gradient-form {
     height: 100vh !important;
