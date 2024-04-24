@@ -12,6 +12,7 @@ use App\Http\Requests\Employee\EmployeeUpdateRequest;
 use App\Http\Requests\Employee\StoreRequest;
 use App\Http\Requests\Employee\UpdateRequest;
 use App\Models\Attendance;
+use App\Models\Community\AttendanceLog;
 use App\Models\Company;
 use App\Models\CompanyBranch;
 use App\Models\CompanyContact;
@@ -106,28 +107,38 @@ class EmployeeController extends Controller
 
         // DB::beginTransaction();
 
-        if ($request->filled('email')) {
+        // if ($request->filled('email')) {
 
-            $user = User::create([
-                "user_type" => "employee",
-                "name" => "null",
-                "email" => $request->email,
-                "password" => Hash::make("secret"),
-                "company_id" => $data["company_id"],
-            ]);
+        //     $user = User::create([
+        //         "user_type" => "employee",
+        //         "name" => "null",
+        //         "email" => $request->email,
+        //         "password" => Hash::make("secret"),
+        //         "company_id" => $data["company_id"],
+        //     ]);
 
-            if (!$user) {
-                return $this->response('User cannot add.', null, false);
-            }
+        //     if (!$user) {
+        //         return $this->response('User cannot add.', null, false);
+        //     }
 
-            $data["user_id"] = $user->id;
-        }
+        //     $data["user_id"] = $user->id;
+        // }
 
         unset($data['email']);
 
         try {
 
             $employee = Employee::create($data);
+
+
+            AttendanceLog::where(
+                [
+                    "company_id" => $data["company_id"],
+                    "UserID" => $data["system_user_id"],
+                    "branch_id" => $data["branch_id"],
+                ]
+            )->update(["user_type" => "Employee"]);
+
             if (!$employee) {
                 return $this->response('Employee cannot add.', null, false);
             }
@@ -137,7 +148,7 @@ class EmployeeController extends Controller
 
             //set default attendance data for new Employees(1 month) 
 
-            (new AttendanceController)->seedDefaultData($data["company_id"], [$data["system_user_id"]], $data["branch_id"]);
+            // (new AttendanceController)->seedDefaultData($data["company_id"], [$data["system_user_id"]], $data["branch_id"]);
 
 
             return $this->response('Employee successfully created.', null, true);
