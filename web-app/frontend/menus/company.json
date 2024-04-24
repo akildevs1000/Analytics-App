@@ -188,19 +188,11 @@
     "menu": "shift_access",
     "module": "employees"
   },
-
   {
     "icon": "mdi-account-tie",
     "title": "Schedule",
     "to": "/employee_schedule",
     "menu": "employee_schedule_access",
-    "module": "employees"
-  },
-  {
-    "icon": "mdi-clipboard-text-clock",
-    "title": "Device Logs",
-    "to": "/devicelogs",
-    "menu": "logs_access",
     "module": "employees"
   },
   {
@@ -215,6 +207,13 @@
     "title": "Change Requests",
     "to": "/change_requests",
     "menu": "attendance_report_access",
+    "module": "employees"
+  },
+  {
+    "icon": "mdi-clipboard-text-clock",
+    "title": "Raw Logs",
+    "to": "/employees/logs",
+    "menu": "logs_access",
     "module": "employees"
   },
   {
@@ -435,13 +434,6 @@
     "title": "Access Control",
     "to": "/access_control_report",
     "menu": "timezone",
-    "module": "reports"
-  },
-  {
-    "icon": "mdi-clipboard-text-clock",
-    "title": "Device Logs",
-    "to": "/devicelogs",
-    "menu": "logs_access",
     "module": "reports"
   },
   {
