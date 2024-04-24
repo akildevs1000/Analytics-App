@@ -19,7 +19,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        return Customer::where("company_id", request("company_id"))->with("recent_log")->paginate(request('per_page') ?? 10);
+        return Customer::orderByDesc("id")->where("company_id", request("company_id"))->with("recent_log")->paginate(request('per_page') ?? 10);
     }
 
     public function show(Customer $customer)
