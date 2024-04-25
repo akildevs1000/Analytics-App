@@ -251,7 +251,7 @@ export default {
     snackbar: false,
     headers: [
       {
-        text: "Employee",
+        text: "Customer",
         align: "left",
         sortable: true,
         key: "user", //sorting
