@@ -149,7 +149,15 @@ class MultiShiftController extends Controller
                 $nextLog = isset($data[$i + 1]) ? $data[$i + 1] : false;
                 $item["employee_id"] = $row->system_user_id;
 
+                if ($nextLog && $nextLog['device']['function'] == "In") {
+                    $i++;
+                    $nextLog = isset($data[$i + 1]) ? $data[$i + 1] : false;
+                }
 
+                else if ($currentLog && $currentLog['device']['function'] == "Out") {
+                    $i++;
+                    $currentLog = isset($data[$i + 1]) ? $data[$i + 1] : false;
+                }
 
                 $minutes = 0;
 
@@ -182,6 +190,9 @@ class MultiShiftController extends Controller
                         $totalMinutes += $minutes;
                     }
                 }
+
+
+
                 $logsJson[] =  [
                     "in" => isset($currentLog["device"]["function"]) && ($currentLog["device"]["function"] != "Out") ?  $currentLog['time'] : "---",
                     "out" => $nextLog && isset($nextLog["device"]["function"]) && ($nextLog["device"]["function"] != "In") ?  $nextLog['time'] : "---",
@@ -192,6 +203,7 @@ class MultiShiftController extends Controller
                     // "diff" => $nextLog ? $this->minutesToHoursNEW($currentLog['time'], $nextLog['time']) : "---",
                     "device_in" => $currentLog['device']['short_name'] ?? $currentLog['device']['name'] ??  "---",
                     "device_out" => $nextLog['device']['short_name'] ?? $nextLog['device']['name'] ?? "---",
+
                     "total_minutes" =>  $this->minutesToHours($minutes),
                 ];
 
@@ -208,7 +220,6 @@ class MultiShiftController extends Controller
 
             $items[] = $item;
         }
-
 
 
         $UserIds = array_column($items, "employee_id");
@@ -234,7 +245,7 @@ class MultiShiftController extends Controller
                     ->where("LogTime", "<=", $date . ' 23:59:00')
                     ->update(["checked" => true, "checked_datetime" => date('Y-m-d H:i:s')]);
             }
-            $message = "[" . $date . " " . date("H:i:s") .  "] Multi Shift Night.   Affected Ids: " . json_encode($UserIds) . " " . $message;
+            $message = "[" . $date . " " . date("H:i:s") .  "] Multi Shift.   Affected Ids: " . json_encode($UserIds) . " " . $message;
         } catch (\Throwable $e) {
             $message = $this->getMeta("Multi Shift ", $e->getMessage());
         }
